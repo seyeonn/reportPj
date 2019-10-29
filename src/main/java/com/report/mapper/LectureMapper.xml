@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.report.mapper.LectureMapper">
+
+	<select id="findOne" resultType="Lecture">
+		SELECT * FROM Lecture WHERE lecture_no = #{lecture_no}
+	</select>
+
+	<select id="findByLectureName" resultType="Lecture">
+		SELECT * FROM Lecture WHERE lecture_name = #{lecture_name}
+	</select>
+
+	<select id="findAll" resultType="Lecture">
+		SELECT l.*, t.Ta
+		FROM Lecture l LEFT JOIN Ta t ON l.ta_no = t.ta_no
+	</select>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT Lecture (lecture_name, lecture_type, name, email, userType, department_no)
+		VALUES (#{lecture_name}, #{lecture_type}, #{name}, #{email}, #{userType}, #{department_no})
+	</insert>
+
+	<update id="update">
+		UPDATE Lecture SET
+		password = #{password},
+		name = #{name},
+		email = #{email},
+		userType = #{userType},
+		department_no = #{department_no},
+		WHERE lecture_no = #{lecture_no}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM Lecture WHERE lecture_no = #{lecture_no}
+	</delete>
+
+</mapper>
