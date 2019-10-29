@@ -97,7 +97,7 @@
             비밀번호 확인을 입력해주세요.
           </div>
         </div>
-        <button class="btn btn btn-primary btn-lg btn-block" type="submit">회원가입</button>
+        <button class="btn btn btn-primary btn-lg btn-block" type="submit onclick="location.href='login'">회원가입</button>
 </form:form>
     </div>
 
