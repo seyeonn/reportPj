@@ -11,7 +11,7 @@ import lombok.Setter;
 public class Professor_notice {
 
 	int notice_no;
-	int leture_no;
+	int lecture_no;
 	int professor_no;
 	String header;
 	String title;
