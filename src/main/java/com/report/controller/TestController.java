@@ -26,4 +26,8 @@ public class TestController {
 	public static String notice() {
 		return "professor/notice";
 	}
+	@RequestMapping("studentsignup")
+	public static String studentsignup() {
+		return "student/signup";
+	}
 }
