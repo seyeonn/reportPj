@@ -21,7 +21,7 @@
         <div class="mb-3">
           <label>아이디</label>
           <div class="input-group">
-          	<form:input path="studentId" class="form-control"  placeholder="반드시 학번이어야 합니다. ex)201732032"/>
+          	<form:input path="student_id" class="form-control"  placeholder="반드시 학번이어야 합니다. ex)201732032"/>
             <div class="invalid-feedback">
               아이디를 입력해주세요.
             </div>
@@ -31,7 +31,7 @@
         <div class="mb-3">
           <label>이름</label>
           <div class="input-group">
-          	<form:input path="studentName" class="form-control" placeholder="반드시 실명이어야 합니다. ex)홍길동"/>
+          	<form:input path="student_name" class="form-control" placeholder="반드시 실명이어야 합니다. ex)홍길동"/>
             <div class="invalid-feedback">
               이름을 입력해주세요.
             </div>
@@ -41,8 +41,8 @@
         
           <div class="mb-3">
             <label>학과</label>
-  			<form:select path="departmentNo" class="custom-select d-block w-100" 
-  			itemValue="departmentNo" itemLabel="departmentName" items="${ departments }" />
+  			<form:select path="department_no" class="custom-select d-block w-100" 
+  			itemValue="department_no" itemLabel="department_name" items="${ departments }" />
             <div class="invalid-feedback">
               학과를 선택해주세요.
             </div>
@@ -51,7 +51,7 @@
 
         <div class="mb-3">
           <label>이메일</label>
-          <form:input path="email" class="form-control"  placeholder="you@example.com"/>
+          <form:input path="student_email" class="form-control"  placeholder="you@example.com"/>
           <div class="invalid-feedback">
             이메일을 입력해주세요.
           </div>
@@ -60,7 +60,7 @@
 
         <div class="mb-3">
           <label>전화번호</label>      
-          <form:input path="studentPhone" class="form-control" placeholder="-없이 숫자만 입력해주세요."/>  
+          <form:input path="student_phone" class="form-control" placeholder="-없이 숫자만 입력해주세요."/>  
           <div class="invalid-feedback">
             전화번호를 입력해주세요.
           </div>
@@ -68,7 +68,7 @@
 
         <div class="mb-3">
           <label>질문</label>
-          <form:input path="passwordQuestion" class="form-control" placeholder="비밀번호 재발급을 위한 질문 예) 가장 좋아하는 음식"/>
+          <form:input path="password_question" class="form-control" placeholder="비밀번호 재발급을 위한 질문 예) 가장 좋아하는 음식"/>
           <div class="invalid-feedback">
             비밀번호 재발급을 위한 질문을 입력해주세요.
           </div>
@@ -76,7 +76,7 @@
 
         <div class="mb-3">
           <label>답</label>
-          <form:input path="passwordAnswer" class="form-control" placeholder="패스워드 재발급을 위한 답    예) 치킨"/>
+          <form:input path="password_answer" class="form-control" placeholder="패스워드 재발급을 위한 답    예) 치킨"/>
           <div class="invalid-feedback">
             비밀번호 재발급을 위한 답을 입력해주세요.
           </div>
