@@ -4,7 +4,7 @@
 
 <mapper namespace="com.report.mapper.TaMapper">
 
-	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="ta_no">
 		INSERT Ta (ta_id, professor_no, password)
 		VALUES (#{ta_id}, #{professor_no}, #{password})
 	</insert>

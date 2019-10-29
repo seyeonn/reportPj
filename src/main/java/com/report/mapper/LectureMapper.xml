@@ -17,7 +17,7 @@
 		FROM Lecture l LEFT JOIN Ta t ON l.ta_no = t.ta_no
 	</select>
 
-	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="lecture_no">
 		INSERT Lecture (lecture_name, lecture_type, name, email, userType, department_no)
 		VALUES (#{lecture_name}, #{lecture_type}, #{name}, #{email}, #{userType}, #{department_no})
 	</insert>
