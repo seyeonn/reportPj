@@ -16,7 +16,7 @@
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h4 class="mb-3">회원가입</h4>
       
-      <form:form method = "post" modelAttribute="professorRegisterModel" class="needs-validation">
+      <form:form method = "post" modelAttribute="professor" class="needs-validation">
         <hr class="mb-4">
         <div class="mb-3">
           <label>아이디</label>
