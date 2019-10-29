@@ -18,17 +18,15 @@
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
-		INSERT Lecture (lecture_name, lecture_type, name, email, userType, department_no)
-		VALUES (#{lecture_name}, #{lecture_type}, #{name}, #{email}, #{userType}, #{department_no})
+		INSERT Lecture (lecture_name, lecture_type, ta_no)
+		VALUES (#{lecture_name}, #{lecture_type}, #{ta_no})
 	</insert>
 
 	<update id="update">
 		UPDATE Lecture SET
-		password = #{password},
-		name = #{name},
-		email = #{email},
-		userType = #{userType},
-		department_no = #{department_no},
+		lecture_name = #{lecture_name},
+		lecture_type = #{lecture_type},
+		ta_no = #{ta_no},
 		WHERE lecture_no = #{lecture_no}
 	</update>
 
