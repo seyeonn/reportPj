@@ -14,7 +14,6 @@ public class Student {
 	String student_email;
 	String student_phone;
 	String password;
-	String password2;
 	String password_question;
 	String password_answer;
 }
