@@ -15,4 +15,5 @@ public class Professor {
 	String password;
 	String password_question;
 	String password_answer;
+	int ta_no;
 }

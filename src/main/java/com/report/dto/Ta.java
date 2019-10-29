@@ -9,6 +9,5 @@ public class Ta {
 	
 	int ta_no;
 	String ta_id;
-	int professor_no;
 	String password;
 }
