@@ -11,6 +11,4 @@ public class Ta {
 	String ta_id;
 	int professor_no;
 	String password;
-	String password_question;
-	String password_answer;
 }
