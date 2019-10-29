@@ -9,10 +9,8 @@
 
 <body class="bg-light">
 
-  <!-- Head -->
-<c:import url="../ta/nav.jsp" />
-
-
+  <!-- Nav -->
+  <c:import url="../ta/nav.jsp" />
 
   <main role="main" class="main-container">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
