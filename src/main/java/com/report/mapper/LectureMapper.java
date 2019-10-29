@@ -8,7 +8,7 @@ import com.report.dto.Lecture;
 
 @Mapper
 public interface LectureMapper {
-	Lecture fineOne(int lecture_no);
+	Lecture findOne(int lecture_no);
 	Lecture findByLectureName(String lecture_name);
 	List<Lecture> findAll();
 	void insert(Lecture lecture);
