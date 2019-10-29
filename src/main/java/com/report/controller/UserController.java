@@ -12,5 +12,9 @@ public class UserController {
 		return "user/login";
 	}
 
+	@RequestMapping("option")
+	public static String option() {
+		return "user/option";
+	}
 
 }
