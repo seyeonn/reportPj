@@ -21,7 +21,7 @@
         <div class="mb-3">
           <label>아이디</label>
           <div class="input-group">
-          	<form:input path="student_id" class="form-control"  placeholder="반드시 학번이어야 합니다. ex)201732032"/>
+          	<form:input path="student_id" class="form-control" placeholder="반드시 학번이어야 합니다. ex)201732032"/>
             <div class="invalid-feedback">
               아이디를 입력해주세요.
             </div>
