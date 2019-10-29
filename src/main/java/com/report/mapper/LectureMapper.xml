@@ -17,9 +17,15 @@
 		FROM Lecture l LEFT JOIN Ta t ON l.ta_no = t.ta_no
 	</select>
 
+<<<<<<< HEAD
+	<insert id="insert" useGeneratedKeys="true" keyProperty="lecture_no">
+		INSERT Lecture (lecture_name, lecture_type, name, email, userType, department_no)
+		VALUES (#{lecture_name}, #{lecture_type}, #{name}, #{email}, #{userType}, #{department_no})
+=======
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 		INSERT Lecture (lecture_name, lecture_type, ta_no)
 		VALUES (#{lecture_name}, #{lecture_type}, #{ta_no})
+>>>>>>> 2246efc933ce4141e2fd3c6e3164437b269f8729
 	</insert>
 
 	<update id="update">

@@ -18,8 +18,13 @@
   </select>
 
   <insert id="insert" useGeneratedKeys="true" keyProperty="student_no">
+<<<<<<< HEAD
+    INSERT Student (student_id, student_name, department_no, student_email, student_phone, password, password2, password_question, password_answer)
+    VALUES (#{student_id}, #{student_name}, #{department_no}, #{student_email}, #{student_phone}, #{password}, #{password2}, #{password_question}, #{password_answer})
+=======
     INSERT Student (student_id, student_name, department_no, student_email, student_phone, password_question, password_answer, password)
     VALUES (#{student_id}, #{student_name}, #{department_no}, #{student_email}, #{student_phone}, #{password_question}, #{password_answer}, #{password})
+>>>>>>> 2246efc933ce4141e2fd3c6e3164437b269f8729
   </insert>
 
   <update id="update">
