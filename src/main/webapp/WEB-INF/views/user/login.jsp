@@ -1,21 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!doctype html>
 <html lang="en">
 
-<head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
- <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/signin/">
-
-  <title>로그인</title>
-  <style type="text/css">
-    <%@include file="/WEB-INF/bootstrap/css/bootstrap.min.css" %>
-    <%@include file="/WEB-INF/bootstrap/css/signin.css" %>
-    <%@include file="/WEB-INF/bootstrap/css/form-validation.css" %>
-  </style>
-  <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-  <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-</head>
+<!-- Head -->
+<c:import url="../common/loginhead.jsp" />
 
 <body>
 

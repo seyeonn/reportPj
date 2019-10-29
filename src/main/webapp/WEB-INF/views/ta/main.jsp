@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@page import="java.text.SimpleDateFormat"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%
 
@@ -32,27 +32,8 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 %>
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
-
-    <title>TA 메인</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/checkout/">
-
-    <!-- Bootstrap core CSS -->
-<style type="text/css">
-    <%@include file="/WEB-INF/bootstrap/css/bootstrap.min.css" %>
-    <%@include file="/WEB-INF/bootstrap/css/offcanvas.css" %>
-    <%@include file="/WEB-INF/bootstrap/css/form-validation.css" %>
-</style>
-
-    <!-- Custom styles for this template -->
-
-  </head>
+  <!-- Head -->
+<c:import url="../common/head.jsp" />
 
   <body class="bg-light">
 

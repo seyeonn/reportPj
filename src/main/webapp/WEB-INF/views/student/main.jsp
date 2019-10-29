@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@page import="java.text.SimpleDateFormat"%>
-
 <%@page import="java.util.Calendar"%>
 <%
 
@@ -32,20 +33,8 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 <!doctype html>
 <html lang="en">
 
-<head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
- <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
-
-  <title>메인 화면</title>
-
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/checkout/">
-  <style type="text/css">
-    <%@include file="/WEB-INF/bootstrap/css/bootstrap.min.css" %>
-    <%@include file="/WEB-INF/bootstrap/css/offcanvas.css" %>
-    <%@include file="/WEB-INF/bootstrap/css/form-validation.css" %>
-  </style>
-</head>
+<!-- Head -->
+<c:import url="../common/head.jsp" />
 
 <body class="bg-light">
 
@@ -173,9 +162,10 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
           </small>
         </div>
       </div>
+      
       <div class="col-md-3 order-md-3">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <h6 class="border-bottom border-gray pb-2 mb-0">달력</h6>
+		<h6 class="border-bottom border-gray pb-2 mb-0">달력</h6>
           <div>
             <table width="100%" border="0" cellspacing="1" cellpadding="1" id="KOO" bgcolor="#F3F9D7" style="border:1px solid #CED99C">
             <tr>
@@ -282,8 +272,8 @@ while(newLine > 0 && newLine < 7)
 </table>
 
           </div>
-
-        </div>
+		
+      </div>
       </div>
     </div>
   </div>

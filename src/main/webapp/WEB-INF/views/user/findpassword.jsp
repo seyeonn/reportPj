@@ -2,20 +2,8 @@
 <!doctype html>
 <html lang="en">
 
-<head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
- <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/signin/">
-
-  <title>비밀번호 찾기</title>
-  <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-  <style type="text/css">
-    <%@include file="/WEB-INF/bootstrap/css/bootstrap.min.css" %>
-    <%@include file="/WEB-INF/bootstrap/css/signin.css" %>
-    <%@include file="/WEB-INF/bootstrap/css/form-validation.css" %>
-  </style>
-  <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-</head>
+<!-- Head -->
+<c:import url="../common/head.jsp" />
 
 <body>
   <div class="container">

@@ -5,17 +5,9 @@
 <!doctype html>
 <html lang="en">
 
-<head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
- <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>회원가입</title>
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/checkout/">
-  <style type="text/css">
-    <%@include file="/WEB-INF/bootstrap/css/bootstrap.min.css" %>
-    <%@include file="/WEB-INF/bootstrap/css/offcanvas.css" %>
-    <%@include file="/WEB-INF/bootstrap/css/form-validation.css" %>
-  </style>
-</head>
+<!-- Head -->
+<c:import url="../common/head.jsp" />
+
 <body class="bg-light">
   <div class="container">
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
