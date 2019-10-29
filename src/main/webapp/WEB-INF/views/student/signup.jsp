@@ -92,7 +92,7 @@
 
         <div class="mb-3">
           <label>비밀번호 확인</label>
-           <form:password path="password2" class="form-control" placeholder="password" />
+           <form:password path="password" class="form-control" placeholder="password" />
           <div class="invalid-feedback">
             비밀번호 확인을 입력해주세요.
           </div>
