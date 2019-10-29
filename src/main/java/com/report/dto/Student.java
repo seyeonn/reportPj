@@ -3,9 +3,10 @@ package com.report.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 public class Student {
-	@Getter
-	@Setter
+	
 	int student_no;
 	String student_id;
 	String student_name;

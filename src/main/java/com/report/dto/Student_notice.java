@@ -5,9 +5,10 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 public class Student_notice {
-	@Getter
-	@Setter
+	
 	int studentnotice_no;
 	int lecture_no;
 	int student_no;
