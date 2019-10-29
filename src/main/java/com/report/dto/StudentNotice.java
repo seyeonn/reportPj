@@ -5,19 +5,14 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
-public class Professor_notice {
-
-	int notice_no;
+public class StudentNotice {
+	
+	int studentnotice_no;
 	int lecture_no;
-	int professor_no;
-	String header;
+	int student_no;
 	String title;
 	String content;
-	Date submitDate;
-	Date deadline;
-	Date deadline_add;
-	Date perfect_score;
+	Date submitdate;
 }
