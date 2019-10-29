@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.report.mapper.UserMapper">
+
+	<select id="findOne" resultType="User">
+		SELECT * FROM User WHERE no = #{no}
+	</select>
+
+	<select id="findByUserNumber" resultType="User">
+		SELECT * FROM User WHERE loginId = #{loginId}
+	</select>
+
+	<select id="findAll" resultType="User">
+		SELECT u.*, d.departmentName
+		FROM User u LEFT JOIN department d ON u.department_no = d.department_no
+	</select>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT Student (no, loginId, password, name, email, userType, department_no)
+		VALUES (#{no}, #{loginId}, #{password}, #{name}, #{email}, #{userType}, #{department_no})
+	</insert>
+
+	<update id="update">
+		UPDATE User SET
+		loginId = #{studentNumber},
+		password = #{password},
+		name = #{name},
+		email = #{email},
+		userType = #{userType},
+		department_no = #{department_no},
+		WHERE no = #{no}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM User WHERE no = #{no}
+	</delete>
+
+</mapper>

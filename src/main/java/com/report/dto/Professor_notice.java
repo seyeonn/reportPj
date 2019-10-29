@@ -5,10 +5,11 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
+
+@Getter
+@Setter
 public class Professor_notice {
 
-	@Getter
-	@Setter
 	int notice_no;
 	int leture_no;
 	int professor_no;
