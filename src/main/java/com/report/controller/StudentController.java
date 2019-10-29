@@ -14,7 +14,6 @@ import com.report.mapper.DepartmentMapper;
 import com.report.mapper.StudentMapper;
 
 @Controller
-
 public class StudentController {
 
 	@Autowired StudentMapper studentMapper;
