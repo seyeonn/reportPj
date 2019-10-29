@@ -92,12 +92,12 @@
 
         <div class="mb-3">
           <label>비밀번호 확인</label>
-           <form:password path="password2" class="form-control" placeholder="password" />
+           <form:password path="password" class="form-control" placeholder="password" />
           <div class="invalid-feedback">
             비밀번호 확인을 입력해주세요.
           </div>
         </div>
-        <button class="btn btn btn-primary btn-lg btn-block" type="submit">회원가입</button>
+        <button class="btn btn btn-primary btn-lg btn-block" type="submit onclick="location.href='login'">회원가입</button>
 </form:form>
     </div>
 
