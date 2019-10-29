@@ -8,7 +8,7 @@ import com.report.dto.User;
 
 @Mapper
 public interface UserMapper {
-	User fineOne(int no);
+	User findOne(int no);
 	User findByUserNumber(String loginId);
 	List<User> findAll();
 	void insert(User user);
