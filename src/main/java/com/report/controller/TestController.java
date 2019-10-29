@@ -22,4 +22,8 @@ public class TestController {
 	public static String tamain() {
 		return "ta/main";
 	}
+	@RequestMapping("notice")
+	public static String notice() {
+		return "professor/notice";
+	}
 }

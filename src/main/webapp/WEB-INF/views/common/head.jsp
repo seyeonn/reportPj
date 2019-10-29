@@ -15,4 +15,4 @@
     	<%@include file="/WEB-INF/bootstrap/css/offcanvas.css" %>
     	<%@include file="/WEB-INF/bootstrap/css/form-validation.css" %>
   	</style>
- </head>
+</head>
