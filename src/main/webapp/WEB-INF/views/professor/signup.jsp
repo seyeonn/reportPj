@@ -21,7 +21,7 @@
         <div class="mb-3">
           <label>아이디</label>
           <div class="input-group">
-          	<form:input path="professorId" class="form-control"  placeholder="반드시 학번이어야 합니다. ex)201732032"/>
+          	<form:input path="professor_id" class="form-control"  placeholder="반드시 학번이어야 합니다. ex)201732032"/>
             <div class="invalid-feedback">
               아이디를 입력해주세요.
             </div>
@@ -31,7 +31,7 @@
         <div class="mb-3">
           <label>이름</label>
           <div class="input-group">
-          	<form:input path="professorName" class="form-control" placeholder="반드시 실명이어야 합니다. ex)홍길동"/>
+          	<form:input path="professor_name" class="form-control" placeholder="반드시 실명이어야 합니다. ex)홍길동"/>
             <div class="invalid-feedback">
               이름을 입력해주세요.
             </div>
@@ -40,16 +40,16 @@
 
         <div class="mb-3">
           <label>학과</label>
-          <form:select path="departmentNo" class="custom-select d-block w-100"
-                       itemValue="departmentNo" itemLabel="departmentName" items="${ departments }" />
+          <form:select path="department_no" class="custom-select d-block w-100"
+                       itemValue="department_no" itemLabel="department_name" items="${ departments }" />
           <div class="invalid-feedback">
             학과를 선택해주세요.
           </div>
         </div>
         
         <div class="mb-3">
-          <label for="taId">* TA 아이디 등록 *</label>
-          <form:input path="taId" class="form-control" placeholder="TA 학생이 사용할 아이디를 등록해주세요."/>
+          <label>* TA 아이디 등록 *</label>
+          <form:input path="ta_no" class="form-control" placeholder="TA 학생이 사용할 아이디를 등록해주세요."/>
           <div class="invalid-feedback">
             TA 아이디를 등록해주세요.
           </div>
@@ -57,7 +57,7 @@
 
         <div class="mb-3">
           <label>이메일</label>
-          <form:input path="email" class="form-control"  placeholder="you@example.com"/>
+          <form:input path="professor_email" class="form-control"  placeholder="you@example.com"/>
           <div class="invalid-feedback">
             이메일을 입력해주세요.
           </div>
@@ -66,7 +66,7 @@
 
         <div class="mb-3">
           <label>전화번호</label>      
-          <form:input path="phone" class="form-control" placeholder="-없이 숫자만 입력해주세요."/>  
+          <form:input path="professor_phone" class="form-control" placeholder="-없이 숫자만 입력해주세요."/>  
           <div class="invalid-feedback">
             전화번호를 입력해주세요.
           </div>
@@ -74,7 +74,7 @@
 
         <div class="mb-3">
           <label>질문</label>
-          <form:input path="passwordQuestion" class="form-control" placeholder="비밀번호 재발급을 위한 질문 예) 가장 좋아하는 음식"/>
+          <form:input path="password_question" class="form-control" placeholder="비밀번호 재발급을 위한 질문 예) 가장 좋아하는 음식"/>
           <div class="invalid-feedback">
             비밀번호 재발급을 위한 질문을 입력해주세요.
           </div>
@@ -82,7 +82,7 @@
 
         <div class="mb-3">
           <label>답</label>
-          <form:input path="passwordAnswer" class="form-control" placeholder="패스워드 재발급을 위한 답    예) 치킨"/>
+          <form:input path="password_answer" class="form-control" placeholder="패스워드 재발급을 위한 답    예) 치킨"/>
           <div class="invalid-feedback">
             비밀번호 재발급을 위한 답을 입력해주세요.
           </div>
@@ -98,7 +98,7 @@
 
         <div class="mb-3">
           <label>비밀번호 확인</label>
-           <form:password path="password2" class="form-control" placeholder="password" />
+           <form:password path="password" class="form-control" placeholder="password" />
           <div class="invalid-feedback">
             비밀번호 확인을 입력해주세요.
           </div>
