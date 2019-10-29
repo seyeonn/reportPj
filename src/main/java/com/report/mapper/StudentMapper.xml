@@ -17,7 +17,7 @@
     FROM Student s LEFT JOIN department d ON s.department_no = d.no
   </select>
 
-  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="student_no">
     INSERT Student (student_id, student_name, department_no, student_email, student_phone, password_question, password_answer, password)
     VALUES (#{student_id}, #{student_name}, #{department_no}, #{student_email}, #{student_phone}, #{password_question}, #{password_answer}, #{password})
   </insert>
