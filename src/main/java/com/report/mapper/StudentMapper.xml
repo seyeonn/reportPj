@@ -30,7 +30,6 @@
       student_email = #{student_email},
       student_phone = #{student_phone},
       password = #{password},
-      password2 = #{password2},
       password_question = #{password_question},
       password_answer = #{password_answer}
     WHERE student_no = #{student_no}
