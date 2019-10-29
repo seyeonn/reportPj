@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+             "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.report.mapper.StudentMapper">
+
+  <select id="findOne" resultType="Student">
+    SELECT * FROM Student WHERE student_no = #{student_no}
+  </select>
+  
+  <select id="findByStudentId" resultType="Student">
+    SELECT * FROM Student WHERE student_id = #{student_id}
+  </select>   
+
+  <select id="findAll" resultType="Student">
+    SELECT s.*, d.department_name
+    FROM Student s LEFT JOIN department d ON s.department_no = d.no
+  </select>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT Student (student_id, student_name, department_no)
+    VALUES (#{student_id}, #{student_name}, #{department_no})
+  </insert>
+
+  <update id="update">
+    UPDATE Student SET 
+      student_id = #{student_id}, 
+      student_name = #{student_name}, 
+      department_no = #{department_no}
+    WHERE student_no = #{student_no}
+  </update>
+
+  <delete id="delete">
+    DELETE FROM Student WHERE student_no = #{student_no}
+  </delete>
+
+</mapper>
+

@@ -5,16 +5,16 @@
 <mapper namespace="com.report.mapper.TaMapper">
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
-		INSERT Ta (ta_no, ta_id, professor_no, password)
-		VALUES (#{ta_no}, #{ta_id}, #{professor_no}, #{password})
+		INSERT Ta (ta_id, professor_no, password)
+		VALUES (#{ta_id}, #{professor_no}, #{password})
 	</insert>
 
 	<update id="update">
 		UPDATE Ta SET
-		ta_no = #{ta_no},
 		ta_id = #{ta_id},
 		professor_no = #{professor_no},
 		password = #{password}
+		where ta_no = #{ta_no}
 	</update>
 
 	<delete id="delete">
