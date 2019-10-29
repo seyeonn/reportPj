@@ -61,8 +61,6 @@
                 <%--학생--%>
                 <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 9pt; font-weight: bold;" onclick="location.href='lecturefile'">DB 캡스톤디자인
                 <span class="d-block" style="font-weight: normal">홍은지 교수님</span></button>
-                <%--교수랑 TA--%>
-                <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 11pt; font-weight: bold;" onclick="location.href='professorlecture1'">DB 캡스톤디자인</button>
                 <button type="button" class="btn btn-outline-primary" name="button">삭제</button>
               </div>
 
