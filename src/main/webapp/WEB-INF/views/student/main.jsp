@@ -85,9 +85,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
                 <div class="d-flex justify-content-between align-items-center w-100">
                   <%--학생--%>
                   <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 9pt; font-weight: bold;" onclick="location.href='lecture'">DB 캡스톤디자인
-                  <span class="d-block" style="font-weight: normal">홍은지 교수님</span></button>
-                  <%--교수랑 TA--%>
-                  <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 11pt; font-weight: bold;" onclick="location.href='professorlecture1.html'">DB 캡스톤디자인</button>
+                  <span class="d-block" style="font-weight: normal">홍은지 교수님</span></button>              
                 </div>
               </div>
             </div>
@@ -104,7 +102,6 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
               <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
               <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                 <div class="d-flex justify-content-between align-items-center w-100">
-                  <%--학생--%>
                   <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 9pt; font-weight: bold;" onclick="location.href=''">모바일 프로그래밍
                   <span class="d-block" style="font-weight: normal">이승진 교수님</span></button>
                 </div>
