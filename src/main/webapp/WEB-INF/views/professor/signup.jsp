@@ -47,6 +47,7 @@
           </div>
         </div>
         
+        <!--  
         <div class="mb-3">
           <label>* TA 아이디 등록 *</label>
           <form:input path="ta_no" class="form-control" placeholder="TA 학생이 사용할 아이디를 등록해주세요."/>
@@ -54,6 +55,7 @@
             TA 아이디를 등록해주세요.
           </div>
         </div>
+        -->
 
         <div class="mb-3">
           <label>이메일</label>
