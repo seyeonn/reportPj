@@ -13,11 +13,13 @@ import com.report.dto.Professor;
 import com.report.dto.Ta;
 import com.report.mapper.DepartmentMapper;
 import com.report.mapper.ProfessorMapper;
+import com.report.mapper.TaMapper;
 
 @Controller
 public class ProfessorController {
 
 		@Autowired ProfessorMapper professorMapper;
+		@Autowired TaMapper taMapper;
 		@Autowired DepartmentMapper departmentMapper;
 
 		@GetMapping(value="professorsignup")
@@ -26,13 +28,15 @@ public class ProfessorController {
 			Ta ta = new Ta();
 			List<Department> departments = departmentMapper.findAll();
 			model.addAttribute("professor", professor);
+			model.addAttribute("ta", ta);
 			model.addAttribute("departments", departments);
 			return "professor/signup";
 		}
 
 		@PostMapping(value="professorsignup")
-		public String create(Model model, Professor professor) {
+		public String create(Model model, Professor professor, Ta ta) {
 			professorMapper.insert(professor);
+			taMapper.insert(ta);
 			return "user/login";
 		}
 
