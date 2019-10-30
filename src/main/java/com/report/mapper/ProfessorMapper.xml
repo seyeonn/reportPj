@@ -18,10 +18,8 @@
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="professor_no">
-		INSERT into Professor (p.professor_id, p.professor_name, p.professor_phone, p.professor_email, p.password, p.password_question, p.password_answer, p.department_no, t.ta_id)
-		SELECT #{professor_id}, #{professor_name}, #{professor_phone}, #{professor_email}, #{password}, #{password_question}, #{password_answer}, #{department_no}, #{ta_id}
-		FROM Professor p 
-		LEFT JOIN Ta t ON p.ta_no = t.ta_no
+		INSERT Professor (professor_id, professor_name, professor_phone, professor_email, password, password_question, password_answer, department_no)
+		VALUES ( #{professor_id}, #{professor_name}, #{professor_phone}, #{professor_email}, #{password}, #{password_question}, #{password_answer}, #{department_no})
 	</insert>
 
 	<update id="update">
