@@ -35,4 +35,25 @@ public class ProfessorController {
 			professorMapper.insert(professor);
 			return "user/login";
 		}
+
+		@GetMapping(value="taapprove")
+		public String taapprove(Model model) {
+			Professor professor = new Professor();
+			Ta ta = new Ta();
+			List<Department> departments = departmentMapper.findAll();
+			model.addAttribute("professor", professor);
+			model.addAttribute("departments", departments);
+			return "professor/taapprove";
+		}
+
+		@GetMapping(value="mypage")
+		public String mypage(Model model) {
+			Professor professor = new Professor();
+			Ta ta = new Ta();
+			List<Department> departments = departmentMapper.findAll();
+			model.addAttribute("professor", professor);
+			model.addAttribute("departments", departments);
+			return "professor/mypage";
+		}
+
 }
