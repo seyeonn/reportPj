@@ -34,7 +34,7 @@ public class ProfessorController {
 		@PostMapping(value="professorsignup")
 		public String create(Model model, Professor professor) {
 			professorMapper.insert(professor);
-			return "user/login";
+			return "guest/login";
 		}
 
 		@GetMapping(value="taapprove")

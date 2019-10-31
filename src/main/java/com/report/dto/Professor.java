@@ -12,7 +12,8 @@ public class Professor {
 	int department_no;
 	String professor_email;
 	String professor_phone;
-	String password;
+	String password1;
+	String password2;
 	String password_question;
 	String password_answer;
 	int ta_no;

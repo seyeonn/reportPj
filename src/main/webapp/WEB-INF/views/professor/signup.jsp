@@ -92,7 +92,7 @@
 
         <div class="mb-3">
           <label>비밀번호</label>
-          <input type="password" name="password" id="pwd1" class="form-control" placeholder="password" />
+          <input type="password" name="password1" id="pwd1" class="form-control" placeholder="password" />
           <div class="invalid-feedback">
             비밀번호를 입력해주세요.
           </div>
@@ -100,7 +100,7 @@
 
         <div class="mb-3">
           <label>비밀번호 확인</label>
-           <input type="password" name="password" id="pwd2" class="form-control" placeholder="password" />
+           <input type="password" name="password2" id="pwd2" class="form-control" placeholder="password" required />
           <div class="invalid-feedback">
             비밀번호 확인을 입력해주세요.
           </div>

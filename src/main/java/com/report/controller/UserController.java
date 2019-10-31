@@ -9,12 +9,12 @@ public class UserController {
 
 	@RequestMapping("login")
 	public static String login() {
-		return "user/login";
+		return "guest/login";
 	}
 
 	@RequestMapping("option")
 	public static String option() {
-		return "user/option";
+		return "guest/option";
 	}
 
 }

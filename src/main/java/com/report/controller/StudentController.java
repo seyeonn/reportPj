@@ -31,7 +31,7 @@ public class StudentController {
 	@PostMapping(value="studentsignup")
 	public String create(Model model, Student student) {
 		studentMapper.insert(student);
-		return "user/login";
+		return "guest/login";
 	}
 
 }

@@ -18,8 +18,8 @@
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="professor_no">
-		INSERT Professor (professor_id, professor_name, professor_phone, professor_email, password, password_question, password_answer, department_no)
-		VALUES ( #{professor_id}, #{professor_name}, #{professor_phone}, #{professor_email}, #{password}, #{password_question}, #{password_answer}, #{department_no})
+		INSERT Professor (professor_id, professor_name, professor_phone, professor_email, password1, password2, password_question, password_answer, department_no)
+		VALUES ( #{professor_id}, #{professor_name}, #{professor_phone}, #{professor_email}, #{password1}, #{password2},#{password_question}, #{password_answer}, #{department_no})
 	</insert>
 
 	<update id="update">
