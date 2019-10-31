@@ -6,6 +6,5 @@
 	
 	<select id="findAll" resultType="Department">
 		SELECT * FROM Department
-	
 	</select>
 </mapper>

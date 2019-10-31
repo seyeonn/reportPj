@@ -2,6 +2,7 @@ package com.report.mapper;
 
 import java.util.List;
 
+import com.report.dto.Student;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.report.dto.User;

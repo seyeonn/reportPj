@@ -5,16 +5,10 @@
 <mapper namespace="com.report.mapper.StudentLectureMapper">
 
 	<select id="findOne" resultType="ProfessorLecture">
-		SELECT * FROM ProfessorLecture
-		WHERE professor_lecture_no = #{professor_lecture_no}
+		SELECT * FROM ProfessorLecture WHERE professor_lecture_no = #{professor_lecture_no}
 	</select>
 
-	<select id="findByProfessorLecture" resultType="ProfessorLecture">
-		SELECT l.*
-		FROM dbcap.professor_lecture pl LEFT JOIN dbcap.professor p ON p.professor_no =
-		pl.professor_no
-		LEFT JOIN dbcap.lecture l ON pl.lecture_no = l.lecture_no
-		where professor_name = #{professor_name}
-	</select>
+	<select id="findAll" resultType="ProfessorLecture">
+			</select>
 
 </mapper>

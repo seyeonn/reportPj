@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Professor {
+
 	int professor_no;
 	String professor_id;
 	String professor_name;
@@ -17,4 +18,5 @@ public class Professor {
 	String password_question;
 	String password_answer;
 	int ta_no;
+
 }
