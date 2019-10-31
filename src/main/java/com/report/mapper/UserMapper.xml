@@ -18,7 +18,7 @@
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="no">
-		INSERT Student (loginId, password, name, email, userType, department_no)
+		INSERT USER (loginId, password, name, email, userType, department_no)
 		VALUES (#{loginId}, #{password}, #{name}, #{email}, #{userType}, #{department_no})
 	</insert>
 
