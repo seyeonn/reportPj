@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,7 @@ import com.report.mapper.DepartmentMapper;
 import com.report.mapper.ProfessorMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.TaMapper;
+import com.report.mapper.UserMapper;
 
 //아직 로그인 하지 않은 사용자를 위한 페이지를 구현한다.
 @Controller
@@ -29,6 +32,7 @@ public class GuestController {
 	@Autowired TaMapper taMapper;
 	@Autowired DepartmentMapper departmentMapper;
 	@Autowired StudentMapper studentMapper;
+	@Autowired UserMapper userMapper;
 
 
 	@RequestMapping({"/", "index"})
@@ -51,15 +55,19 @@ public class GuestController {
 	@GetMapping(value="professorsignup")
 	public String professorcreate(Model model) {
 		Professor professor = new Professor();
+		User user = new User();
 		List<Department> departments = departmentMapper.findAll();
 		model.addAttribute("professor", professor);
+		model.addAttribute("user", user);
 		model.addAttribute("departments", departments);
 		return "professor/signup";
 	}
 
 	@PostMapping(value="professorsignup")
-	public String professorcreate(Model model, Professor professor) {
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public String professorcreate(Model model, Professor professor, User user) {
 		professorMapper.insert(professor);
+		userMapper.insert(user);
 		return "guest/login";
 	}
 
