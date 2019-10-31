@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.report.dto.Department;
+import com.report.dto.Professor;
 import com.report.dto.Student;
 import com.report.mapper.DepartmentMapper;
 import com.report.mapper.ProfessorMapper;
