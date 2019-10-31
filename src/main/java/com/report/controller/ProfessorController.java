@@ -25,18 +25,15 @@ public class ProfessorController {
 		@GetMapping(value="professorsignup")
 		public String create(Model model) {
 			Professor professor = new Professor();
-			Ta ta = new Ta();
 			List<Department> departments = departmentMapper.findAll();
 			model.addAttribute("professor", professor);
-			model.addAttribute("ta", ta);
 			model.addAttribute("departments", departments);
 			return "professor/signup";
 		}
 
 		@PostMapping(value="professorsignup")
-		public String create(Model model, Professor professor, Ta ta) {
+		public String create(Model model, Professor professor) {
 			professorMapper.insert(professor);
-			taMapper.insert(ta);
 			return "user/login";
 		}
 
