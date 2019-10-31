@@ -23,7 +23,7 @@
 
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <h7 class="mb-0 mx-2 text-white lh-100">${ student.student_name }</h7>
+        <h7 class="mb-0 mx-2 text-white lh-100">${ name }</h7>
         <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='loginform'">로그아웃</button>
       </form>
     </div>

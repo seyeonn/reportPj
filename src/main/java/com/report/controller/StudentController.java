@@ -19,6 +19,7 @@ import com.report.mapper.StudentMapper;
 @Controller
 
 public class StudentController {
+	
     @RequestMapping("student/studentMain")
 	public String studentMain(Model model, HttpServletRequest request) {
 		return "student/main"; // 로그인 한 학생을 위한 메인 페이지 URL
