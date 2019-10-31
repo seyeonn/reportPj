@@ -18,43 +18,51 @@ import com.report.mapper.TaMapper;
 @Controller
 public class ProfessorController {
 
-		@Autowired ProfessorMapper professorMapper;
-		@Autowired TaMapper taMapper;
-		@Autowired DepartmentMapper departmentMapper;
+      @Autowired ProfessorMapper professorMapper;
+      @Autowired TaMapper taMapper;
+      @Autowired DepartmentMapper departmentMapper;
 
-		@GetMapping(value="professorsignup")
-		public String create(Model model) {
-			Professor professor = new Professor();
-			List<Department> departments = departmentMapper.findAll();
-			model.addAttribute("professor", professor);
-			model.addAttribute("departments", departments);
-			return "professor/signup";
-		}
+      @GetMapping(value="professorsignup")
+      public String create(Model model) {
+         Professor professor = new Professor();
+         List<Department> departments = departmentMapper.findAll();
+         model.addAttribute("professor", professor);
+         model.addAttribute("departments", departments);
+         return "professor/signup";
+      }
 
-		@PostMapping(value="professorsignup")
-		public String create(Model model, Professor professor) {
-			professorMapper.insert(professor);
-			return "guest/login";
-		}
+      @PostMapping(value="professorsignup")
+      public String create(Model model, Professor professor) {
+         professorMapper.insert(professor);
+         return "guest/login";
+      }
 
-		@GetMapping(value="taapprove")
-		public String taapprove(Model model) {
-			Professor professor = new Professor();
-			Ta ta = new Ta();
-			List<Department> departments = departmentMapper.findAll();
-			model.addAttribute("professor", professor);
-			model.addAttribute("departments", departments);
-			return "professor/taapprove";
-		}
+      @GetMapping(value="taapprove")
+      public String taapprove(Model model) {
+         Professor professor = new Professor();
+         Ta ta = new Ta();
+         List<Department> departments = departmentMapper.findAll();
+         model.addAttribute("professor", professor);
+         model.addAttribute("departments", departments);
+         return "professor/taapprove";
+      }
 
-		@GetMapping(value="mypage")
-		public String mypage(Model model) {
-			Professor professor = new Professor();
-			Ta ta = new Ta();
-			List<Department> departments = departmentMapper.findAll();
-			model.addAttribute("professor", professor);
-			model.addAttribute("departments", departments);
-			return "professor/mypage";
-		}
+      @GetMapping(value="mypage")
+      public String mypage(Model model) {
+         Professor professor = new Professor();
+         Ta ta = new Ta();
+         List<Department> departments = departmentMapper.findAll();
+         model.addAttribute("professor", professor);
+         model.addAttribute("departments", departments);
+         return "professor/mypage";
+      }
 
+      @GetMapping(value="createlecture")
+      public String createlecture(Model model) {
+//         Professor professor = new Professor();
+//         List<ProfessorLecture>professorlectures = professorLectureMapper.findByProfessorLecture(model);
+//         model.addAttribute("professor", professor);
+//         model.addAttribute("professorlecture", professorlectures);
+         return "professor/createlecture";
+      }
 }
