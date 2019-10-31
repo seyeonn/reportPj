@@ -13,5 +13,5 @@ public interface LectureMapper {
 	List<Lecture> findAll();
 	void insert(Lecture lecture);
 	void update(Lecture lecture);
-	void delete(int lecture_no);
+	void delete(Lecture lecture);
 }
