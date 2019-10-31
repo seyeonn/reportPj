@@ -39,7 +39,7 @@
         </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-      <button class="btn btn-lg btn-primary btn-block" type="button" onclick="location.href='signup' ">회원가입</button>
+      <button class="btn btn-lg btn-primary btn-block" type="button" onclick="location.href='option' ">회원가입</button>
       <a href="findpassword">비밀번호 찾기</a>
       <c:if test="${ param.error != null }">
          <div class="mt5" style="text-align: right">로그인 실패</div>

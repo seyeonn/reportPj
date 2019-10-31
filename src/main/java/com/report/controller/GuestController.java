@@ -2,6 +2,8 @@ package com.report.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,7 @@ import com.report.mapper.TaMapper;
 
 //아직 로그인 하지 않은 사용자를 위한 페이지를 구현한다.
 @Controller
+@RequestMapping("guest")
 public class GuestController {
 	
     @Autowired ProfessorMapper professorMapper;
@@ -27,17 +30,17 @@ public class GuestController {
 	@Autowired StudentMapper studentMapper;
 
 
-    @RequestMapping({"/", "guest/index"})
+    @RequestMapping({"/", "index"})
     public String index() {
         return "guest/index"; //로그인 하지 않은 사용자를 위한 첫 페이지 URL
     }
 
-    @RequestMapping("guest/login")
-    public String login() {
+    @RequestMapping("login")
+    public String login(Model model, HttpServletRequest request) {
         return "guest/login"; //로그인 페이지 UR
     }
     
-    @RequestMapping("guest/option")
+    @RequestMapping("option")
 	public static String option() {
 		return "guest/option";
 	}

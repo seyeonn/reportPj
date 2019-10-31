@@ -11,7 +11,7 @@
 <body class="bg-light">
   <div class="container">
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-      <a class="navbar-brand mr-auto mr-lg-0" href="loginform">성공회대학교 과제제출시스템</a>
+      <a class="navbar-brand mr-auto mr-lg-0" href="login">성공회대학교 과제제출시스템</a>
     </nav>
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h4 class="mb-3">회원가입</h4>

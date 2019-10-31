@@ -20,6 +20,9 @@
   <insert id="insert" useGeneratedKeys="true" keyProperty="student_no">
     INSERT Student (student_id, student_name, department_no, student_email, student_phone, password_question, password_answer, password1, password2)
     VALUES (#{student_id}, #{student_name}, #{department_no}, #{student_email}, #{student_phone}, #{password_question}, #{password_answer}, #{password1}, #{password2})
+  	
+  	INSERT USER (loginId, password, name, userType, department_no)
+	VALUES (#{loginId}, #{password}, #{name} , '학생', #{department_no})
   </insert>
 
   <update id="update">
