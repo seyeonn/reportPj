@@ -16,22 +16,5 @@ import com.report.mapper.StudentMapper;
 @Controller
 public class StudentController {
 
-	@Autowired StudentMapper studentMapper;
-	@Autowired DepartmentMapper departmentMapper;
-
-	@GetMapping(value="studentsignup")
-	public String create(Model model) {
-		Student student = new Student();
-		List<Department> departments = departmentMapper.findAll();
-		model.addAttribute("student", student);
-		model.addAttribute("departments", departments);
-		return "student/signup";
-	}
-
-	@PostMapping(value="studentsignup")
-	public String create(Model model, Student student) {
-		studentMapper.insert(student);
-		return "guest/login";
-	}
 
 }

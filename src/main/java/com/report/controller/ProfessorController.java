@@ -22,20 +22,7 @@ public class ProfessorController {
       @Autowired TaMapper taMapper;
       @Autowired DepartmentMapper departmentMapper;
 
-      @GetMapping(value="professorsignup")
-      public String create(Model model) {
-         Professor professor = new Professor();
-         List<Department> departments = departmentMapper.findAll();
-         model.addAttribute("professor", professor);
-         model.addAttribute("departments", departments);
-         return "professor/signup";
-      }
-
-      @PostMapping(value="professorsignup")
-      public String create(Model model, Professor professor) {
-         professorMapper.insert(professor);
-         return "guest/login";
-      }
+  
 
       @GetMapping(value="taapprove")
       public String taapprove(Model model) {
