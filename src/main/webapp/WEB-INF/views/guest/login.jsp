@@ -25,7 +25,7 @@
           <input type="checkbox" value="id"> 아이디저장
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="button">로그인</button>
+      <button class="btn btn-lg btn-primary btn-block" type="button" onclick="location='studentMain'">로그인</button>
       <button class="btn btn-lg btn-primary btn-block" type="button" onclick="location='option' ">회원가입</button>
       <a href="findpassword">비밀번호 찾기</a>
     </form>
