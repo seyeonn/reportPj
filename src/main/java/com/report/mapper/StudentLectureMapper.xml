@@ -9,12 +9,5 @@
       WHERE student_lecture_no = #{student_lecture_no}
    </select>
 
-   <select id="findByStudentLecture" resultType="StudentLecture">
-      SELECT l.*
-      FROM dbcapston.student_lecture sl LEFT JOIN dbcapston.student s ON s.student_no =
-      sl.student_no
-      LEFT JOIN dbcapston.lecture l ON sl.lecture_no = l.lecture_no
-      where student_name = #{student_name}
-   </select>
 
 </mapper>

@@ -2,19 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.report.mapper.StudentLectureMapper">
+<mapper namespace="com.report.mapper.ProfessorLectureMapper">
 
    <select id="findOne" resultType="ProfessorLecture">
       SELECT * FROM ProfessorLecture
       WHERE professor_lecture_no = #{professor_lecture_no}
    </select>
 
-   <select id="findByProfessorLecture" resultType="ProfessorLecture">
-      SELECT l.*
-      FROM dbcapston.professor_lecture pl LEFT JOIN dbcapston.professor p ON p.professor_no =
-      pl.professor_no
-      LEFT JOIN dbcapston.lecture l ON pl.lecture_no = l.lecture_no
-      where professor_name = #{professor_name}
-   </select>
+
 
 </mapper>
