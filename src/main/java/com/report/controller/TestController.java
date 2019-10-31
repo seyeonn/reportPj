@@ -30,4 +30,8 @@ public class TestController {
 	public static String studentsignup() {
 		return "student/signup";
 	}
+	@RequestMapping("professorsignup")
+	public static String professorsignup() {
+		return "professor/signup";
+	}
 }
