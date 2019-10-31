@@ -8,8 +8,9 @@
 		SELECT * FROM User WHERE no = #{no}
 	</select>
 
-	<select id="findByUserNumber" resultType="User">
-		SELECT * FROM User WHERE loginId = #{loginId}
+	<select id="findByLoginId" resultType="User">
+		SELECT * FROM User WHERE
+		loginId = #{loginId}
 	</select>
 
 	<select id="findAll" resultType="User">

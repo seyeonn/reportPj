@@ -9,7 +9,7 @@ import com.report.dto.User;
 @Mapper
 public interface UserMapper {
 	User findOne(int no);
-	User findByUserNumber(String loginId);
+	User findByLoginId(String loginId);
 	List<User> findAll();
 	void insert(User user);
 	void update(User user);
