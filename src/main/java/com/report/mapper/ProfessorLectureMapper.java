@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ProfessorLectureMapper {
 	ProfessorLecture findOne(int professor_lecture_no);
-	List<ProfessorLecture> findAll();
-}
+	List<ProfessorLecture> findByProfessorLecture(String professor_name);
+	}

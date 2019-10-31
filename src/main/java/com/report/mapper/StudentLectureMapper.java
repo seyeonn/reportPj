@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface StudentLectureMapper {
 	StudentLecture findOne(int student_lecture_no);
-	List<StudentLecture> findAll();
+	List<StudentLecture> findByStudentLecture(String student_name);
 
 }

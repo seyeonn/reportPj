@@ -128,10 +128,11 @@
 						class="form-control" id="password" placeholder="password" required>
 				</div>
 				<button class="btn btn-primary btn-lg btn-block" type="submit">수정</button>
+			</form>
 		</div>
 
 
-		</form>
+
 
 
 

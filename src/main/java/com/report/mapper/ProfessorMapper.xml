@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.report.mapper.ProfessorMapper">
 
-    <select id="findOne" resultType="Professor">
+	<select id="findOne" resultType="Professor">
 		SELECT * FROM Professor WHERE professor_no = #{professor_no}
 	</select>
 
-    <select id="findByProfessorName" resultType="Professor">
+	<select id="findByProfessorName" resultType="Professor">
 		SELECT * FROM Professor WHERE professor_name = #{professor_name}
 	</select>
 
-    <select id="findAll" resultType="Professor">
+	<select id="findAll" resultType="Professor">
 		SELECT p.*, d.departmentName
 		FROM Professor p LEFT JOIN department d ON p.department_no = d.department_no
 	</select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="professor_no">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="professor_no">
 		INSERT Professor (professor_id, professor_name, professor_phone, professor_email, password, password_question, password_answer, department_no)
 		VALUES ( #{professor_id}, #{professor_name}, #{professor_phone}, #{professor_email}, #{password}, #{password_question}, #{password_answer}, #{department_no})
 	</insert>
 
-    <update id="update">
+	<update id="update">
 		UPDATE Professor SET
 		professor_id = #{professor_id},
 		professor_name = #{professor_name},
@@ -35,7 +35,7 @@
 		WHERE professor_no = #{professor_no}
 	</update>
 
-    <delete id="delete">
+	<delete id="delete">
 		DELETE FROM Professor WHERE professor_no = #{professor_no}
 	</delete>
 
