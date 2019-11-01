@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.report.dto.Department;
 import com.report.dto.Professor;
@@ -22,7 +22,10 @@ public class ProfessorController {
       @Autowired TaMapper taMapper;
       @Autowired DepartmentMapper departmentMapper;
 
-  
+      @RequestMapping("professor/professorMain")
+  	public String professorMain() {
+  		return "professor/main"; // 로그인 한 교수를 위한 메인 페이지 URL
+  	  }
 
       @GetMapping(value="taapprove")
       public String taapprove(Model model) {
