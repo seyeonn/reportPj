@@ -30,14 +30,12 @@
     <form class="form-signin my-3 p-3 bg-white rounded shadow-sm" method="post" action="login_processing">
       <label for="inputId" class="sr-only">아이디</label>
       <input type="text" name="loginId" class="form-control" placeholder="id" required autofocus>
-
+ 	  
       <label for="inputPassword" class="sr-only">비밀번호</label>
       <input type="password" name="passwd" class="form-control" placeholder="Password" required>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" value="id">
-        </label>
-      </div>
+    
+   
+    
       <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
       <button class="btn btn-lg btn-primary btn-block" type="button" onclick="location.href='option' ">회원가입</button>
       <a href="findpassword">비밀번호 찾기</a>
