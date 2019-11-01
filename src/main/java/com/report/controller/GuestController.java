@@ -51,6 +51,12 @@ public class GuestController {
 		return "guest/option";
 	}
 
+	@RequestMapping("findpassword")
+	public String findpassword(Model model) {
+
+		return "guest/findpassword"; //비민번호 찾
+	}
+
 	//교수회원가입
 	@GetMapping(value="professorsignup")
 	public String professorcreate(Model model) {
