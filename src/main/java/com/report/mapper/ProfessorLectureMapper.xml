@@ -8,7 +8,10 @@
       SELECT * FROM ProfessorLecture
       WHERE professor_lecture_no = #{professor_lecture_no}
    </select>
-
-
+   <select id="findByProfessorNo" resultType="ProfessorLecture">
+	  SELECT * FROM ProfessorLecture
+	  FROM ProfessorLecture pl LEFT JOIN professor p ON pl.professor_no = p.no
+      WHERE professor_no = #{professor_no}
+	</select>
 
 </mapper>
