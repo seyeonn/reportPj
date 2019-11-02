@@ -99,7 +99,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
       </div>
           <small class="d-block text-right mt-3">
 
-            <a href="createlecture.html">강좌 개설 </a>
+            <a href="createlecture">강좌 편집 </a>
           </small>
         </div>
           </div>
