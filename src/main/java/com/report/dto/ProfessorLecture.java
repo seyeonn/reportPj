@@ -6,8 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProfessorLecture {
-	
-	int professor_no;
-	int lecture_no;
+
+	Professor professor_no;
+	Lecture lecture_no;
 	int professor_lecture_no;
 }

@@ -17,7 +17,7 @@
   <main role="main" class="main-container">
     <div class="row">
       <div class="col-md-4 order-md-1 mb-4">
-      <form:form method = "post" modelAttribute=LecturRegisterModel">
+      <form:form method = "post" modelAttribute="lecture">
       <div class="my-3 p-3 bg-white rounded shadow-sm">
         <h6 class="border-bottom border-gray pb-2 mb-0">전공</h6>
         <%-- <c:forEach items="${} }"> --%>
@@ -93,7 +93,7 @@
 
       <div class="col-md-8 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <form:form method = "post" modelAttribute="lectureRegisterModel" class="form">
+        <form:form method = "post" modelAttribute="lecture" class="form">
             <table class="table">
               <thead>
                 <tr>

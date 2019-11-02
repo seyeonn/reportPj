@@ -23,16 +23,16 @@ public class LectureService {
     }
 
 
-    public void save(LectureRegisterModel newLecture){
+    public void save(Lecture newLecture){
     	Lecture lecture = createLecture(newLecture);
     	lectureMapper.insert(lecture);
     }
 
-    public Lecture createLecture(LectureRegisterModel newLecture){
+    public Lecture createLecture(Lecture newLecture){
         Lecture lecture = new Lecture();
 
-        lecture.setLecture_name(newLecture.getLectureName());
-        lecture.setLecture_type(newLecture.getLectureType());
+        lecture.setLecture_name(newLecture.getLecture_name());
+        lecture.setLecture_type(newLecture.getLecture_type());
 
         lecture.setTa_no((Integer) null);
 
