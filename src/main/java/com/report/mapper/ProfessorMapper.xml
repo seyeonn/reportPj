@@ -9,7 +9,7 @@
 	</select>
 
 	<select id="findByProfessorName" resultType="Professor">
-		SELECT * FROM Professor WHERE professor_name = #{professor_name}
+		SELECT * FROM Professor WHERE professor_name = #{name}
 	</select>
 
 	<select id="findAll" resultType="Professor">
@@ -18,18 +18,18 @@
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="professor_no">
-		INSERT Professor (professor_id, professor_name, professor_phone, professor_email, password, password_question, password_answer, department_no)
-		VALUES ( #{professor_id}, #{professor_name}, #{professor_phone}, #{professor_email}, #{password}, #{password_question}, #{password_answer}, #{department_no})
+		INSERT Professor (id, name, professor_phone, professor_email, password1, password2 ,password_question, password_answer, department_no, userType)
+		VALUES ( #{id}, #{name}, #{professor_phone}, #{professor_email}, #{password1}, #{password2}, #{password_question}, #{password_answer}, #{department_no}, '교수')
 	</insert>
 
 	<update id="update">
 		UPDATE Professor SET
-		professor_id = #{professor_id},
-		professor_name = #{professor_name},
+		id = #{id},
+		name = #{name},
 		professor_phone = #{professor_phone},
 		professor_email = #{professor_email},
 		department_no = #{department_no},
-		password = #{password},
+		password1 = #{password1},
 		password_question = #{password_question},
 		password_answer = #{password_answer},
 		WHERE professor_no = #{professor_no}

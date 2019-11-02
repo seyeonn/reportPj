@@ -64,8 +64,12 @@ public class GuestController {
 		User user = new User();
 		List<Department> departments = departmentMapper.findAll();
 		model.addAttribute("professor", professor);
-		model.addAttribute("user", user);
 		model.addAttribute("departments", departments);
+		user.setId(professor.getId());
+		user.setPassword1(professor.getPassword1());
+		user.setName(professor.getName());
+		user.setUserType(professor.getUserType());
+		user.setDepartment_no(professor.getDepartment_no());
 		return "professor/signup";
 	}
 
@@ -75,6 +79,7 @@ public class GuestController {
 		userMapper.insert(user);
 		return "guest/login";
 	}
+	
 
 
 	//학생회원가입
@@ -85,6 +90,11 @@ public class GuestController {
 		List<Department> departments = departmentMapper.findAll();
 		model.addAttribute("student", student);
 		model.addAttribute("departments", departments);
+		user.setId(student.getId());
+		user.setPassword1(student.getPassword1());
+		user.setName(student.getName());
+		user.setUserType(student.getUserType());
+		user.setDepartment_no(student.getDepartment_no());
 		return "student/signup";
 	}
 

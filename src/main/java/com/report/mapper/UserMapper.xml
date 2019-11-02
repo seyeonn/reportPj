@@ -10,7 +10,7 @@
 
 	<select id="findByLoginId" resultType="User">
 		SELECT * FROM User WHERE
-		loginId = #{loginId}
+		id = #{id}
 	</select>
 
 	<select id="findAll" resultType="User">
@@ -19,17 +19,15 @@
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="no">
-		INSERT USER (loginId, password, name, email, userType, department_no)
-		VALUES (#{loginId}, #{password}, #{name}, #{email}, #{userType}, #{department_no})
+		INSERT USER (id, password1, name, userType, department_no)
+		VALUES (#{id}, #{password1}, #{name}, '학생', #{department_no})
 	</insert>
 
 	<update id="update">
 		UPDATE User SET
-		loginId = #{loginId},
-		password = #{password},
+		id = #{id},
+		password1 = #{password1},
 		name = #{name},
-		email = #{email},
-		userType = #{userType},
 		department_no = #{department_no},
 		WHERE no = #{no}
 	</update>
@@ -37,5 +35,13 @@
 	<delete id="delete">
 		DELETE FROM User WHERE no = #{no}
 	</delete>
+	
+	<update id="changeType">
+		UPDATE User SET
+		userType='교수',
+		WHERE id = #{id}
+	</update>
 
+	
+	
 </mapper>

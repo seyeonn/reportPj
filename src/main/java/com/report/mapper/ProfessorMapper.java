@@ -9,7 +9,7 @@ import com.report.dto.Professor;
 @Mapper
 public interface ProfessorMapper {
 	Professor findOne(int professor_no);
-	Professor findByProfessorName(String professor_name);
+	Professor findByProfessorName(String name);
 	List<Professor> findAll();
 	void insert(Professor professor);
 	void update(Professor professor);

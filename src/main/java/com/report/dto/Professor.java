@@ -8,8 +8,8 @@ import lombok.Setter;
 public class Professor {
 
 	int professor_no;
-	String professor_id;
-	String professor_name;
+	String id;
+	String name;
 	int department_no;
 	String professor_email;
 	String professor_phone;
@@ -18,5 +18,6 @@ public class Professor {
 	String password_question;
 	String password_answer;
 	int ta_no;
+	String userType="교수";
 
 }

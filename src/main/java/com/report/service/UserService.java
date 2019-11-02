@@ -17,7 +17,7 @@ public class UserService {
 			return null;
 		}
 		String pw = password;
-		if(!user.getPassword().equals(pw)) {
+		if(!user.getPassword1().equals(pw)) {
 			return null;
 		}
 		return user;
