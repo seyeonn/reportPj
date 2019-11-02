@@ -79,7 +79,7 @@ public class GuestController {
 		userMapper.insert(user);
 		return "guest/login";
 	}
-	
+
 
 
 	//학생회원가입
