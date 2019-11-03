@@ -21,8 +21,6 @@ import com.report.dto.User;
 @Component
 public class MyAuthenticationProvider implements AuthenticationProvider {
 
-
-
 	@Autowired
 	UserService userService;
 

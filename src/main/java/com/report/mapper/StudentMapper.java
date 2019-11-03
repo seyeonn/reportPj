@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.report.dto.Student;
+import org.springframework.stereotype.Component;
 
 @Mapper
 public interface StudentMapper {
