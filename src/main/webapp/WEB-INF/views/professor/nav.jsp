@@ -15,13 +15,13 @@
               <a class="nav-link" href="professorMain">초기화면</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="professormypage">마이페이지</a>
+              <a class="nav-link" href="mypage">마이페이지</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="taapprove">TA 승인</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">도움말</a>
+              <a class="nav-link" href="information">도움말</a>
             </li>
 
           </ul>

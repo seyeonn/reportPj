@@ -51,6 +51,41 @@ public class ProfessorController {
         	model.addAttribute("professor", professor);
     		return "professor/lecturefile"; // 강의자료 페이지
     	  }
+
+      @RequestMapping("mypage")
+    	public String mypage(Model model,Principal principal) {
+      	Professor professor = professorMapper.findByProfessorId(principal.getName());
+        	model.addAttribute("professor", professor);
+    		return "professor/mypage"; // 마이페이지
+    	  }
+
+      @RequestMapping("information")
+    	public String information(Model model,Principal principal) {
+      	Professor professor = professorMapper.findByProfessorId(principal.getName());
+        	model.addAttribute("professor", professor);
+    		return "professor/information"; // 도움말 페이지
+    	  }
+
+      @RequestMapping("noticecontent")
+    	public String noticecontent(Model model,Principal principal) {
+      	Professor professor = professorMapper.findByProfessorId(principal.getName());
+        	model.addAttribute("professor", professor);
+    		return "professor/noticecontent"; //과제 및 공지 내용 페이지
+    	  }
+
+      @RequestMapping("studentnotice")
+     	public String studentnotice(Model model,Principal principal) {
+       	Professor professor = professorMapper.findByProfessorId(principal.getName());
+         	model.addAttribute("professor", professor);
+     		return "professor/studentnotice"; // 학생 게시판 페이지
+     	  }
+
+      @RequestMapping("inputscore")
+     	public String inputscore(Model model,Principal principal) {
+       	Professor professor = professorMapper.findByProfessorId(principal.getName());
+         	model.addAttribute("professor", professor);
+     		return "professor/inputscore"; // 학생 게시판 페이지
+     	  }
       @GetMapping(value="taapprove")
       public String taapprove(Model model) {
          Professor professor = new Professor();
@@ -61,15 +96,9 @@ public class ProfessorController {
          return "professor/taapprove";
       }
 
-      @GetMapping(value="mypage")
-      public String mypage(Model model) {
-         Professor professor = new Professor();
-         Ta ta = new Ta();
-         List<Department> departments = departmentMapper.findAll();
-         model.addAttribute("professor", professor);
-         model.addAttribute("departments", departments);
-         return "professor/mypage";
-      }
+
+
+
 
       @GetMapping(value="createlecture")
       public String createlecture(Model model) {

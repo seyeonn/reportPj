@@ -24,7 +24,7 @@
 						<span class="student_number-text">201732032</span>
 					</div>
 				</div>
-			<c:choose>
+<%-- 			<c:choose>
 				<c:when test=${ ta.ta_No > 0}>
 					<hr class="mb-4">
 					<div class="row">
@@ -54,7 +54,7 @@
 						</div>
 					</div>
 				</c:otherwise>
-			</c:choose>
+			</c:choose> --%>
 
 
 

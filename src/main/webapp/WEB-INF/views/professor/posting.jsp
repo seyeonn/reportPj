@@ -87,7 +87,7 @@
 
             <div style="float: right; display:inline-block; width: 900px;">
               <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='notice'">목록보기</button>
-              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='notice.html'">등록</button>
+              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='notice'">등록</button>
             </div>
             <label for=""><br></label>
         </div>
