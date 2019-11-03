@@ -76,7 +76,7 @@ public class GuestController {
 	@PostMapping(value="professorsignup")
 	public String professorcreate(Model model, Professor professor, User user) {
 		professorMapper.insert(professor);
-		userMapper.insert(user);
+		userMapper.professorInsert(user);
 		return "guest/login";
 	}
 
@@ -102,7 +102,7 @@ public class GuestController {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public String studentcreate(Model model, Student student, User user) {
 		studentMapper.insert(student);
-		userMapper.insert(user);
+		userMapper.studentInsert(user);
 		return "guest/login";
 	}
 
