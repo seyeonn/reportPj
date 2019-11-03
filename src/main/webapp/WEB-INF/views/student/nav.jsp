@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
 
-    <a class="navbar-brand mr-auto mr-lg-0" href="main">성공회대학교 과제제출시스템</a>
+    <a class="navbar-brand mr-auto mr-lg-0" href="studentMain">성공회대학교 과제제출시스템</a>
     <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,7 +24,7 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <h7 class="mb-0 mx-2 text-white lh-100">${ student.getId() } ${ student.getName() }</h7>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='loginform'">로그아웃</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='login'">로그아웃</button>
       </form>
     </div>
   </nav>

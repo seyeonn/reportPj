@@ -14,8 +14,8 @@
 
   <main role="main" class="main-container">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <strong>&nbsp&nbsp DB 캡스톤디자인 &nbsp&nbsp&nbsp&nbsp</strong>
-      <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 홍은지 교수님 &nbsp&nbsp / &nbsp&nbsp 학생수 :26</small>
+    <strong>&nbsp&nbsp DB 캡스톤디자인 &nbsp&nbsp&nbsp&nbsp</strong>
+    <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 홍은지 교수님 &nbsp&nbsp / &nbsp&nbsp 학생수 :26</small>
     </div>
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
@@ -36,46 +36,40 @@
                 <option>교양 러시아어</option>
               </optgroup>
             </select>
-            <hr>
-
-            <form class="form-inline mt-2 mt-md-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="게시글 이름으로 검색하기" aria-label="Search">
-              <button class="btn btn btn-primary my-2 my-sm-0" type="submit">검색</button>
-            </form>
           </div>
-
+          <hr>
           <form class="form">
-            <table class="table table-striped  text-center">
+            <table class="table table-bordered text-center">
               <thead class="thead-light">
                 <tr>
                   <th>번호</th>
-                  <th>제목</th>
-                  <th>파일</th>
-                  <th>작성자</th>
-                  <th>작성일</th>
+                  <th style="width: 700px">4</th>
                 </tr>
               </thead>
               <tbody>
-                <%-- <c:forEach var="" items="${  }">  --%>
-                <%-- <tr data-url="edtit?id=${ }"> --%>
                 <tr>
-                  <td>4 </td>
-                  <td>발표 주제</td>
-                  <td></td>
-                  <td>용동중</td>
-                  <td>2019-10-30</td>
+                  <td class="table-active">제목 </td>
+                  <td><input type="text" id="name" name="name" style="width: 600px"></td>
                 </tr>
-                <%-- </c:forEach> --%>
-              </tbody>
+                <tr>
+                  <td class="table-active">내용</td>
+                  <td><input type="text" id="ctt" name="ctt" style="width: 600px; height: 200px"></td>
+                </tr>
+                <tr>
+                  <td class="table-active">첨부파일 </td>
+                  <td>
+                    <form action="http://localhost/upload.php" method="post" enctype="multipart/form-data">
+                      <input type="file" name="profile">
+                      <input type="submit">
+                    </form>
+                  </td>
+                </tr>
             </table>
             <div style="float: right; display:inline-block; width: 900px;">
-                <%--학생만--%>
-              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='studentposting'">작성</button>
+              <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='studentnotice'">목록보기</button>
+              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='studentnotice'">등록</button>
             </div>
-            <div>
-			<label></label>
-			<label></label>
-            </div>
+            <label for=""><br></label>
           </form>
         </div>
       </div>

@@ -30,127 +30,46 @@ Calendar todayCal = Calendar.getInstance();
 SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
 int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 %>
+<!doctype html>
+<html lang="en">
+
 <!-- Head -->
 <c:import url="../common/head.jsp" />
 
-<!DOCTYPE HTML>
-<html lang="en">
-
-  <body class="bg-light">
-
-	<!-- Nav -->
-	<c:import url="../professor/nav.jsp" />
-    
+<body class="bg-light">
+    <!-- Nav -->
+  <c:import url="../professor/nav.jsp" />
+  
   <div class="main-container">
-      <div class="row">
-        <div class="col-md-3 order-md-1 mb-4">
-            <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <h6 class="border-bottom border-gray pb-2 mb-0">내 강좌</h6>
-          <div class="text-gray-dark"> 전공
-          <div class="media text-muted pt-3">
-            <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <div class="d-flex justify-content-between align-items-center w-100">
-                <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 11pt; font-weight: bold;" onclick="location.href='professorlecture1.html'">DB 캡스톤디자인</button>
-              </div>
-
-            </div>
-          </div>
-          <div class="media text-muted pt-3">
-            <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <div class="d-flex justify-content-between align-items-center w-100">
-                <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 11pt; font-weight: bold;" onclick="location.href=''">Python 프로그래밍</button>
-              </div>
-
-            </div>
-          </div>
-          <div class="media text-muted pt-3">
-            <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <div class="d-flex justify-content-between align-items-center w-100">
-                <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 11pt; font-weight: bold;" onclick="location.href=''">C프로그래밍</button>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="text-gray-dark"> 교양
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 11pt; font-weight: bold;" onclick="location.href=''">대학생활세미나2<br>(IT융합 5반)</button>
-            </div>
-
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 11pt; font-weight: bold;" onclick="location.href=''">대학생활세미나2<br>(IT융합 1반)</button>
-            </div>
-
-          </div>
-        </div>
-
+    <div class="row">
+      <div class="col-md-3 order-md-1 mb-4">
+ 		<c:import url="../professor/lecturemenu.jsp" />
       </div>
+
+      <div class="col-md-6 order-md-2">
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+          <h6 class="border-bottom border-gray pb-2 mb-0">타임 라인</h6>
+          <%--         <c:forEach var="" items="${  }"> --%>
+          <div class="media text-muted pt-3">
+            <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+              <div class="d-flex justify-content-between align-items-center w-100">
+                <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" onclick="location.href='lecture1.html'">DB 캡스톤디자인
+                <span class="d-block" style="font-weight: normal">사용자 인터페이스</span></button>
+              </div>
+            </div>
+          </div>
+          <%--  </c:forEach> --%>
           <small class="d-block text-right mt-3">
 
-            <a href="createlecture">강좌 편집 </a>
+            <a href="#"> </a>
+
           </small>
         </div>
-          </div>
-
-        <div class="col-md-6 order-md-2">
-          <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">타임 라인</h6>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" onclick="location.href='studentposting2.html'">DB 캡스톤디자인
-              <span class="d-block" style="font-weight: normal">발표 주제</span></button>
-            </div>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" onclick="location.href='studentposting2.html'">DB 캡스톤디자인
-              <span class="d-block" style="font-weight: normal">발표 주제 확정</span></button>
-            </div>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" onclick="location.href='studentposting2.html'">DB 캡스톤디자인
-              <span class="d-block" style="font-weight: normal">자유주제 발표 주제</span></button>
-            </div>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" onclick="location.href='studentposting2.html'">DB 캡스톤디자인
-              <span class="d-block" style="font-weight: normal">자유주제 발표</span></button>
-            </div>
-          </div>
-        </div>
-        <small class="d-block text-right mt-3">
-          <a href="#"> </a>
-        </small>
       </div>
-        </div>
-        
+      
       <div class="col-md-3 order-md-3">
-      <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
 		<h6 class="border-bottom border-gray pb-2 mb-0">달력</h6>
           <div>
             <table width="100%" border="0" cellspacing="1" cellpadding="1" id="KOO" bgcolor="#F3F9D7" style="border:1px solid #CED99C">
@@ -261,13 +180,14 @@ while(newLine > 0 && newLine < 7)
 		
       </div>
       </div>
-      </div>
-      </div>
     </div>
+  </div>
+  </div>
 
-      <footer class="my-5 pt-5 text-muted text-center text-small">
+  <footer class="my-5 pt-5 text-muted text-center text-small">
 
-      </footer>
-    </div>
-  </body>
+  </footer>
+  </div>
+</body>
+
 </html>

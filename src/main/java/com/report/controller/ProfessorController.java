@@ -31,6 +31,26 @@ public class ProfessorController {
   		return "professor/main"; // 로그인 한 교수를 위한 메인 페이지 URL
   	  }
 
+      @RequestMapping("notice")
+  	public String notice(Model model,Principal principal) {
+    	Professor professor = professorMapper.findByProfessorId(principal.getName());
+      	model.addAttribute("professor", professor);
+  		return "professor/notice"; // 과제 및 공지 페이지
+  	  }
+
+      @RequestMapping("posting")
+  	public String posting(Model model,Principal principal) {
+    	Professor professor = professorMapper.findByProfessorId(principal.getName());
+      	model.addAttribute("professor", professor);
+  		return "professor/posting"; // 과제 및 공지 작성 페이지
+  	  }
+
+      @RequestMapping("lecturefile")
+    	public String lecturefile(Model model,Principal principal) {
+      	Professor professor = professorMapper.findByProfessorId(principal.getName());
+        	model.addAttribute("professor", professor);
+    		return "professor/lecturefile"; // 강의자료 페이지
+    	  }
       @GetMapping(value="taapprove")
       public String taapprove(Model model) {
          Professor professor = new Professor();

@@ -47,6 +47,12 @@ public class StudentController {
 
   	 }
 
+    @RequestMapping("studentposting")
+   	public String studentposting(Model model) {
+   		return "student/studentposting"; // 학생 게시판게시물 작성 페이
+
+   	 }
+
     @RequestMapping("mypage")
    	public String mypage(Model model) {
    		return "student/mypage"; // 학생 게시판 페이지
@@ -58,4 +64,5 @@ public class StudentController {
    		return "student/information"; // 학생 게시판 페이지
 
    	 }
+
 }
