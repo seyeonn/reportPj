@@ -11,6 +11,10 @@
 	<select id="findByProfessorName" resultType="Professor">
 		SELECT * FROM Professor WHERE professor_name = #{name}
 	</select>
+	
+	<select id="findByProfessorId" resultType="Professor">
+		SELECT * FROM Professor WHERE id = #{id}
+	</select>
 
 	<select id="findAll" resultType="Professor">
 		SELECT p.*, d.departmentName

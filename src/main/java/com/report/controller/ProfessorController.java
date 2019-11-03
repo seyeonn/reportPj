@@ -1,5 +1,6 @@
 package com.report.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,17 @@ import com.report.mapper.ProfessorMapper;
 import com.report.mapper.TaMapper;
 
 @Controller
+@RequestMapping("professor")
 public class ProfessorController {
 
       @Autowired ProfessorMapper professorMapper;
       @Autowired TaMapper taMapper;
       @Autowired DepartmentMapper departmentMapper;
 
-      @RequestMapping("professor/professorMain")
-  	public String professorMain() {
+      @RequestMapping("professorMain")
+  	public String professorMain(Model model,Principal principal) {
+    	Professor professor = professorMapper.findByProfessorId(principal.getName());
+      	model.addAttribute("professor", professor);
   		return "professor/main"; // 로그인 한 교수를 위한 메인 페이지 URL
   	  }
 

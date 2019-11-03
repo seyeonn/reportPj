@@ -10,6 +10,7 @@ import com.report.dto.Professor;
 public interface ProfessorMapper {
 	Professor findOne(int professor_no);
 	Professor findByProfessorName(String name);
+	Professor findByProfessorId(String id);
 	List<Professor> findAll();
 	void insert(Professor professor);
 	void update(Professor professor);
