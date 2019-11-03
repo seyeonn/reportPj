@@ -12,7 +12,7 @@
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="main">초기화면</a>
+          <a class="nav-link" href="studentMain">초기화면</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="mypage">마이페이지</a>
