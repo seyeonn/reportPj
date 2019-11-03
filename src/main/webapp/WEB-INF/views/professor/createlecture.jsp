@@ -98,7 +98,7 @@
               <thead>
                 <tr>
                   <td class="table-active">강좌명 </td>
-                  <td><form:input path="lectureName"/></td>
+                  <td><form:input path="lecture_name"/></td>
                 </tr>
               </thead>
               <tboby>
@@ -106,11 +106,11 @@
                   <td class="table-active">분류</td>
                   <td>
                     <div class="custom-control custom-radio">
-                      <form:radiobutton path="lectureType" value="전공"/>
+                      <form:radiobutton path="lecture_type" value="전공"/>
                       <label >전공</label>
                     </div>
                     <div class="custom-control custom-radio">
-                      <form:radiobutton path="lectureType" value="교양"/>
+                      <form:radiobutton path="lecture_type" value="교양"/>
                       <label >교양</label>
                     </div>
                   </td>

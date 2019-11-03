@@ -34,7 +34,7 @@ public class LectureService {
         lecture.setLecture_name(newLecture.getLecture_name());
         lecture.setLecture_type(newLecture.getLecture_type());
 
-        lecture.setTa_no((Integer) null);
+        lecture.setTa_no(newLecture.getTa_no());
 
         return lecture;
 

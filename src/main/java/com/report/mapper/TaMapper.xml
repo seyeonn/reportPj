@@ -3,7 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.report.mapper.TaMapper">
-
+    <select id="findAll" resultType="Ta">
+		SELECT * FROM Ta
+	</select>
+	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="ta_no">
 		INSERT Ta (ta_id, professor_no, password)
 		VALUES (#{ta_id}, #{professor_no}, #{password})

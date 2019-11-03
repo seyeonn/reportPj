@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//import com.report.dbcap.service.TaService;
 import com.report.dto.Lecture;
 import com.report.service.LectureService;
 import com.report.service.ProfessorLectureService;
+import com.report.service.TaService;
 
 @Controller
 public class LectureController {
 
-//	@Autowired
-//	private TaService taService;
+	@Autowired
+	private TaService taService;
 
 	@Autowired
 	private LectureService lectureService;
@@ -31,17 +31,17 @@ public class LectureController {
 	private ProfessorLectureService professorLectureService;
 
 
-	@GetMapping("creatlecture")
+	@GetMapping("createlecture")
 	public String registerLecture(Model model, Lecture lecture){
-//		model.addAttribute("ta", taService.findAll());
+		model.addAttribute("ta", taService.findAll());
 		return "professor/createlecture";
 	}
 	//
 
-	@PostMapping("creatlecture")
+	@PostMapping("createlecture")
 	public String registerLecture(@Valid Lecture lecture, BindingResult bindingResult, Model model){
 		if(bindingResult.hasErrors()){
-//			model.addAttribute("ta", taService.findAll());
+			model.addAttribute("ta", taService.findAll());
 			return "professor/createlecture";
 		}
 
