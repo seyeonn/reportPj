@@ -20,4 +20,8 @@
 	<delete id="delete">
 		DELETE FROM Ta WHERE ta_no = #{ta_no}
 	</delete>
+	
+	<select id="findByTaId" resultType="Ta">
+    SELECT * FROM Ta WHERE ta_id = #{ta_id}
+  	</select> 
 </mapper>

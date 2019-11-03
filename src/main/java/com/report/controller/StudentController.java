@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.report.dto.Student;
 import com.report.mapper.StudentMapper;
 
 @Controller
@@ -19,7 +20,7 @@ public class StudentController {
 
     @RequestMapping("studentMain")
 	public String studentMain(Model model, Principal principal) {
-    	Object student = studentMapper.findByStudentId(principal.getName());
+    	Student student = studentMapper.findByStudentId(principal.getName());
     	model.addAttribute("student", student);
 		return "student/main"; // 로그인 한 학생을 위한 메인 페이지 URL
 
