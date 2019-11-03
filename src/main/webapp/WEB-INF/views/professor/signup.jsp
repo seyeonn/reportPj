@@ -21,7 +21,7 @@
         <div class="mb-3">
           <label>아이디</label>
           <div class="input-group">
-          	<form:input path="id" class="form-control"  />
+          	<form:input path="id" class="form-control" placeholder="사용할 아이디를 입력주요."  />
             <div class="invalid-feedback">
               아이디를 입력해주세요.
             </div>
