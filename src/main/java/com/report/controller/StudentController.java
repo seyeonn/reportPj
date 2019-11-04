@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.report.dto.Lecture;
 import com.report.dto.Student;
+import com.report.mapper.LectureMapper;
+import com.report.mapper.ProfessorMapper;
 import com.report.mapper.StudentMapper;
 import com.report.service.LectureService;
 
@@ -18,15 +20,17 @@ import com.report.service.LectureService;
 @RequestMapping("student")
 public class StudentController {
 	@Autowired StudentMapper studentMapper;
+	@Autowired ProfessorMapper professorMapper;
+	@Autowired LectureMapper lectureMapper;
 	@Autowired private LectureService lectureService;
 
     @RequestMapping("studentMain")
 	public String studentMain(Model model, Principal principal) {
     	Student student = studentMapper.findByStudentId(principal.getName());
-    	List<Lecture> studentlectures = studentMapper.findByStudentLecture(principal.getName());
-    	List<Lecture> lectures = lectureService.findAll();
-    	model.addAttribute("studentlectures",studentlectures);
-		model.addAttribute("lectures", lectures);
+    	List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
+    	List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
+    	model.addAttribute("studentlectures1",studentlectures1);
+    	model.addAttribute("studentlectures2",studentlectures2);
     	model.addAttribute("student", student);
 		return "student/main"; // 로그인 한 학생을 위한 메인 페이지 URL
 
@@ -35,9 +39,11 @@ public class StudentController {
     @RequestMapping("lecture")
  	public String studentlecture(Model model, Principal principal) {
     	Student student = studentMapper.findByStudentId(principal.getName());
-    	List<Lecture> studentlectures = studentMapper.findByStudentLecture(principal.getName());
+    	List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
+    	List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
     	List<Lecture> lectures = lectureService.findAll();
-    	model.addAttribute("studentlectures",studentlectures);
+    	model.addAttribute("studentlectures1",studentlectures1);
+    	model.addAttribute("studentlectures2",studentlectures2);
 		model.addAttribute("lectures", lectures);
     	model.addAttribute("student", student);
  		return "student/lecture"; // 로그인 한 학생을 위한 메인 페이지 URL
