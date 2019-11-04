@@ -80,7 +80,7 @@
               </tbody>
             </table>
             <div style="float: right; display:inline-block; width: 800px;">
-              <button class="btn btn-primary mx-2 my-sm-0" type="submit" style="width: 100px; float: right">강좌 개설</button>
+              <button class="btn btn-primary mx-2 my-sm-0" type="submit" style="width: 100px; float: right" onclick="location='createlecture'">강좌 개설</button>
             </div>
             <label>
               <br>
