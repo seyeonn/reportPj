@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.report.service.StudentNoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,8 @@ public class StudentController {
 	@Autowired LectureMapper lectureMapper;
 	@Autowired private LectureService lectureService;
 	@Autowired ProfessorLectureMapper professorLectureMapper;
+	@Autowired
+	StudentNoticeService studentNoticeService;
 
 	@RequestMapping("studentMain")
 	public String studentMain(Model model, Principal principal) {
@@ -87,8 +90,18 @@ public class StudentController {
     	model.addAttribute("lecture", lecture);
     	model.addAttribute("professor", professor);
   		return "student/notice"; // 과제 및 공지 페이지
+	}
 
-
+	@RequestMapping("studentnotice")
+	public String list(Model model, Principal principal, @RequestParam("id") int id) {
+		Lecture lecture = lectureMapper.findOne(id);
+		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
+		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
+		Student student = studentMapper.findByStudentId(principal.getName());
+		model.addAttribute("student", student);
+		model.addAttribute("lecture", lecture);
+		model.addAttribute("professor", professor);
+		return "student/studentnotice";
 	}
 
 	@RequestMapping("lecturefile")
@@ -96,7 +109,6 @@ public class StudentController {
 		return "student/lecturefile"; // 강의 자료 페이지
 
 	}
-
 
 
 	@RequestMapping("mypage")
@@ -110,9 +122,6 @@ public class StudentController {
 		return "student/information"; // 학생 게시판 페이지
 
 	}
-
-
-
 
     @RequestMapping("noticecontent")
    	public String noticecontent(Model model, Principal principal) {

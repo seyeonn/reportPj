@@ -9,8 +9,9 @@
 	</select>
 
 	<select id="findByLoginId" resultType="User">
-		SELECT * FROM User WHERE
-		id = #{id}
+		SELECT *
+		FROM User
+		WHERE id = #{id}
 	</select>
 
 	<select id="findAll" resultType="User">
