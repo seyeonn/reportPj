@@ -62,7 +62,7 @@
                 <form class="form">
                 <%-- <c:forEach var="" items="${studentNotice.getTitle()}"> --%>
                 <%-- <tr data-url="edtit?id=${ }"> --%>
-				 <tr>
+				 <tr onClick = " location.href='noticecontent' ">
                   <td>1 </td>
                   <td>과제</td>
                   <td>캡스톤 디자인 과제 계획서 및 보고서</td>
