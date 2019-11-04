@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.report.dto.Department;
@@ -21,6 +22,7 @@ import com.report.service.TaService;
 @Controller
 @RequestMapping("professor")
 public class ProfessorController {
+
 
       @Autowired ProfessorMapper professorMapper;
       @Autowired TaMapper taMapper;
@@ -111,17 +113,5 @@ public class ProfessorController {
          return "professor/taapprove";
       }
 
-      @GetMapping("createlecture")
-    	public String registerLecture(Model model, Lecture lecture, Principal principal){
-    	  Professor professor = professorMapper.findByProfessorId(principal.getName());
-      	  List<Lecture> professorLecture1 = professorMapper.findByProfessorLecture1(principal.getName());
-      	  List<Lecture> professorLecture2 = professorMapper.findByProfessorLecture2(principal.getName());
-      	  model.addAttribute("professorLecture1", professorLecture1);
-      	  model.addAttribute("professorLecture2", professorLecture2);
-          model.addAttribute("professor", professor);
-//    		ProfessorLecture professorlecture = professorlectureMapper.findByProfessorLectureName(principal.getName());
-//    		model.addAttribute("professorlecture", professorlecture);
-    		model.addAttribute("ta", taService.findAll());
-    		return "professor/createlecture";
-      }
+
 }
