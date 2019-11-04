@@ -21,7 +21,7 @@
 	</select>
 	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="professor_lecture_no">
-		INSERT ProfessorLecture (professor_no, lecture_no)
+		INSERT Professor_Lecture (professor_no, lecture_no)
 		VALUES (#{professor_no}, #{lecture_no})
 	</insert>
 	
