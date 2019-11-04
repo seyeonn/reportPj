@@ -93,6 +93,14 @@ public class ProfessorController {
          	model.addAttribute("professor", professor);
      		return "professor/inputscore"; // 학생 게시판 페이지
      	  }
+
+      @RequestMapping("studentcontent")
+   	public String studentcontent(Model model,Principal principal) {
+     	Professor professor = professorMapper.findByProfessorId(principal.getName());
+       	model.addAttribute("professor", professor);
+   		return "professor/studentcontent"; // 학생 게시판 페이지
+   	  }
+
       @GetMapping(value="taapprove")
       public String taapprove(Model model) {
          Professor professor = new Professor();

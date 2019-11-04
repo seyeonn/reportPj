@@ -45,7 +45,7 @@
           </div>
 
           <form class="form">
-            <table class="table table-striped  text-center">
+            <table class="table table-hover  text-center">
               <thead class="thead-light">
                 <tr>
                   <th>번호</th>
@@ -58,7 +58,7 @@
               <tbody>
                 <%-- <c:forEach var="" items="${  }">  --%>
                 <%-- <tr data-url="edtit?id=${ }"> --%>
-                <tr>
+                <tr onClick = " location.href='studentcontent' ">
                   <td>4 </td>
                   <td>발표 주제</td>
                   <td></td>

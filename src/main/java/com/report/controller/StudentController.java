@@ -106,4 +106,12 @@ public class StudentController {
    		return "student/noticecontent"; // 학생 게시판 페이지
 
    	 }
+
+    @RequestMapping("studentcontent")
+   	public String studentcontent(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
+   		return "student/studentcontent"; // 학생 게시판 페이지
+
+   	 }
 }

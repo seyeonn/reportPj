@@ -9,8 +9,10 @@
 
 <body class="bg-light">
 
-   <!-- Nav -->
-  <c:import url="../student/nav.jsp" />
+  <!-- Nav -->
+  <c:import url="../professor/nav.jsp" />
+
+
 
   <main role="main" class="main-container">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
@@ -19,7 +21,7 @@
     </div>
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
-		<c:import url="../common/menu.jsp" />
+        <c:import url="../common/menu.jsp" />
       </div>
 
       <div class="col-md-9 order-md-2">
@@ -36,46 +38,50 @@
                 <option>교양 러시아어</option>
               </optgroup>
             </select>
-            <hr>
-
-            <form class="form-inline mt-2 mt-md-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="게시글 이름으로 검색하기" aria-label="Search">
-              <button class="btn btn btn-primary my-2 my-sm-0" type="submit">검색</button>
-            </form>
           </div>
+          <hr>
 
           <form class="form">
-            <table class="table table-hover  text-center">
+            <table class="table table-bordered  text-center">
               <thead class="thead-light">
                 <tr>
                   <th>번호</th>
-                  <th>제목</th>
-                  <th>파일</th>
-                  <th>작성자</th>
-                  <th>작성일</th>
+                  <th>3</th>
                 </tr>
               </thead>
+
               <tbody>
-                <%-- <c:forEach var="" items="${  }">  --%>
-                <%-- <tr data-url="edtit?id=${ }"> --%>
-                <tr onClick = " location.href='studentcontent' ">
-                  <td>4 </td>
-                  <td>발표 주제</td>
-                  <td></td>
-                  <td>용동중</td>
-                  <td>2019-10-30</td>
+                <tr>
+                  <td class="table-active">제목 </td>
+                  <td> 발표 주제 확정 </td>
                 </tr>
-                <%-- </c:forEach> --%>
+                <tr>
+                  <td class="table-active">내용</td>
+                  <td> 데이터베이스의 오류 개선 ... <br><br><br></td>
+
+                </tr>
+                <tr>
+                  <td class="table-active">파일 </td>
+                  <td><button type="button" class="btn btn-outline-primary">열람</button></td>
+                </tr>
+                <tr>
+                  <td class="table-active">작성자</td>
+                  <td>장은애</td>
+                </tr>
+                <tr>
+                  <td class="table-active">작성일</td>
+                  <td>2019-10-22</td>
+                </tr>
               </tbody>
             </table>
+
+
+
             <div style="float: right; display:inline-block; width: 900px;">
-                <%--학생만--%>
-              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='studentposting'">작성</button>
+              <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='studentnotice'">목록</button>
+              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href=''">삭제</button>
             </div>
-            <div>
-			<label></label>
-			<label></label>
-            </div>
+            <label for=""><br></label>
           </form>
         </div>
       </div>
