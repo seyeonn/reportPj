@@ -7,4 +7,8 @@
 	<select id="findAll" resultType="Department">
 		SELECT * FROM Department
 	</select>
+
+	<select id="findByDepartmentNo" resultType="Department">
+	SELECT * FROM Department WHERE department_no = #{department_no}
+	</select>
 </mapper>

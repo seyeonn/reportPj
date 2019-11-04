@@ -12,6 +12,14 @@
 		SELECT * FROM Lecture WHERE lecture_name = #{lecture_name}
 	</select>
 
+	<select id="findStudentByLectureNo" resultType="Lecture">
+            SELECT l.lecture_no, s.*
+            FROM Lecture l
+            LEFT JOIN Student_lecture sl ON l.lecture_no = sl.lecture_no
+            LEFT JOIN Student s ON sl.student_no = s.student_no
+            WHERE lecture_no = #{lecture_no}
+	</select>
+
 	<select id="findAll" resultType="Lecture">
 		SELECT l.*, t.ta_no
 		FROM Lecture l LEFT JOIN Ta t ON l.ta_no = t.ta_no
