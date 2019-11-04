@@ -24,25 +24,7 @@
 
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <div class="my-2 ">
-            <select>
-              <optgroup label="전공">
-                <option>DB 캡스톤디자인</option>
-                <option>고급 웹프로그래밍2</option>
-                <option>모바일 프로그래밍</option>
-              </optgroup>
-              <optgroup label="교양">
-                <option>기초 영자신문 읽기</option>
-                <option>교양 러시아어</option>
-              </optgroup>
-            </select>
-            <hr>
-
-            <form class="form-inline mt-2 mt-md-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="게시글 이름으로 검색하기" aria-label="Search">
-              <button class="btn btn btn-primary my-2 my-sm-0" type="submit">검색</button>
-            </form>
-          </div>
+          
 
           <form class="form">
             <table class="table table-hover  text-center">
