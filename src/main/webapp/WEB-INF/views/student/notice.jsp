@@ -45,7 +45,7 @@
           </div>
           <form>
 
-            <table class="table table-striped  text-center">
+            <table class="table table-hover  text-center">
               <thead class="thead-light">
                 <tr>
                   <th>번호</th>
@@ -60,9 +60,9 @@
               </thead>
               <tbody>
                 <form class="form">
-                <c:forEach var="" items="${studentNotice.getTitle()}">
+                <%-- <c:forEach var="" items="${studentNotice.getTitle()}"> --%>
                 <%-- <tr data-url="edtit?id=${ }"> --%>
-				 <tr>
+				 <tr onClick = " location.href='noticecontent' ">
                   <td>1 </td>
                   <td>과제</td>
                   <td>캡스톤 디자인 과제 계획서 및 보고서</td>
@@ -72,7 +72,7 @@
                   <td> Y</td>
                   <td> 미부여</td>
                 </tr>
-                 </c:forEach> 
+                 <%-- </c:forEach> --%> 
               </tbody>
               
               </tbody>

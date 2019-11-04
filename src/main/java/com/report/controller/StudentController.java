@@ -52,39 +52,66 @@ public class StudentController {
 
 
     @RequestMapping("notice")
-  	public String notice(Model model) {
+  	public String notice(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
   		return "student/notice"; // 과제 및 공지 페이지
 
   	 }
 
     @RequestMapping("lecturefile")
-  	public String lecturefile(Model model) {
+  	public String lecturefile(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
   		return "student/lecturefile"; // 강의 자료 페이지
 
   	 }
 
     @RequestMapping("studentnotice")
-  	public String studentnotice(Model model) {
+  	public String studentnotice(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
   		return "student/studentnotice"; // 학생 게시판 페이지
 
   	 }
 
     @RequestMapping("studentposting")
-   	public String studentposting(Model model) {
+   	public String studentposting(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
    		return "student/studentposting"; // 학생 게시판게시물 작성 페이
 
    	 }
 
     @RequestMapping("mypage")
-   	public String mypage(Model model) {
+   	public String mypage(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
    		return "student/mypage"; // 학생 게시판 페이지
 
    	 }
 
     @RequestMapping("information")
-   	public String information(Model model) {
+   	public String information(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
    		return "student/information"; // 학생 게시판 페이지
 
    	 }
 
+    @RequestMapping("noticecontent")
+   	public String noticecontent(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
+   		return "student/noticecontent"; // 학생 게시판 페이지
+
+   	 }
+    
+    @RequestMapping("studentcontent")
+   	public String studentcontent(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
+   		return "student/studentcontent"; // 학생 게시판 페이지
+
+   	 }
 }
