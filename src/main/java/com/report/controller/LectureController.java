@@ -76,7 +76,7 @@ public class LectureController {
 			return "professor/createlecture";
 		}
 		
-		lectureService.save(lecture,professorLecture, professor);
+		lectureService.professorSave(lecture,professorLecture, professor);
 		return "professor/createlecture";
 	}
 
