@@ -13,9 +13,16 @@
 	  FROM ProfessorLecture pl LEFT JOIN professor p ON pl.professor_no = p.no
       WHERE professor_no = #{professor_no}
 	</select>
+	
     <select id="findByLectureNo" resultType="ProfessorLecture">
 	  SELECT * FROM ProfessorLecture
 	  FROM ProfessorLecture pl LEFT JOIN lecture l ON l.lecture_no = p.no
       WHERE lecture_no = #{lecture_no}
 	</select>
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="professor_lecture_no">
+		INSERT ProfessorLecture (professor_no, lecture_no)
+		VALUES (#{professor_no}, #{lecture_no})
+	</insert>
+	
 </mapper>

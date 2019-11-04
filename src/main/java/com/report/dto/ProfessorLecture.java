@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class ProfessorLecture {
 
-	Professor professor_no;
-	Lecture lecture_no;
 	int professor_lecture_no;
+	int professor_no;
+	int lecture_no;
 }

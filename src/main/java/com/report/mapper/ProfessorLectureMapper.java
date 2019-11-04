@@ -11,4 +11,5 @@ public interface ProfessorLectureMapper {
 	ProfessorLecture findOne(int professor_lecture_no);
 	ProfessorLecture findByProfessorNo(Professor professor_no);
 	ProfessorLecture findByLectureNo(Lecture lecture_no);
+	void insert(ProfessorLecture professorLecture);
 }
