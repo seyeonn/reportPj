@@ -30,6 +30,10 @@ public class ProfessorController {
       @RequestMapping("professorMain")
   	public String professorMain(Model model,Principal principal) {
     	Professor professor = professorMapper.findByProfessorId(principal.getName());
+    	List<Lecture> professorLecture1 = professorMapper.findByProfessorLecture1(principal.getName());
+    	List<Lecture> professorLecture2 = professorMapper.findByProfessorLecture2(principal.getName());
+    	model.addAttribute("professorLecture1", professorLecture1);
+    	model.addAttribute("professorLecture2", professorLecture2);
       	model.addAttribute("professor", professor);
   		return "professor/main"; // 로그인 한 교수를 위한 메인 페이지 URL
   	  }
