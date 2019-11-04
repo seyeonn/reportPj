@@ -30,7 +30,7 @@
           <%--  </c:forEach> --%>
           </div>
           <small class="d-block text-right mt-3">
-            <a href="lecture">강좌 편집</a>
+            <a href="createlecture">강좌 편집</a>
 
           </small>
         </div>

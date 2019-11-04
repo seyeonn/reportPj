@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.report.dto.Department;
+import com.report.dto.Lecture;
 import com.report.dto.Professor;
 import com.report.dto.Ta;
 import com.report.mapper.DepartmentMapper;
 import com.report.mapper.ProfessorMapper;
 import com.report.mapper.TaMapper;
+import com.report.service.TaService;
 
 @Controller
 @RequestMapping("professor")
@@ -23,6 +25,7 @@ public class ProfessorController {
       @Autowired ProfessorMapper professorMapper;
       @Autowired TaMapper taMapper;
       @Autowired DepartmentMapper departmentMapper;
+      @Autowired private TaService taService;
 
       @RequestMapping("professorMain")
   	public String professorMain(Model model,Principal principal) {
@@ -96,16 +99,14 @@ public class ProfessorController {
          return "professor/taapprove";
       }
 
+      @GetMapping("createlecture")
+    	public String registerLecture(Model model, Lecture lecture, Principal principal){
+      	  Professor professor = professorMapper.findByProfessorId(principal.getName());
+         	model.addAttribute("professor", professor);
+//    		ProfessorLecture professorlecture = professorlectureMapper.findByProfessorLectureName(principal.getName());
+//    		model.addAttribute("professorlecture", professorlecture);
+    		model.addAttribute("ta", taService.findAll());
+    		return "professor/createlecture";
 
-
-
-
-      @GetMapping(value="createlecture")
-      public String createlecture(Model model) {
-//         Professor professor = new Professor();
-//         List<ProfessorLecture>professorlectures = professorLectureMapper.findByProfessorLecture(model);
-//         model.addAttribute("professor", professor);
-//         model.addAttribute("professorlecture", professorlectures);
-         return "professor/createlecture";
       }
 }

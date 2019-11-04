@@ -26,7 +26,8 @@
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
               <%--교수랑 TA--%>
-              <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 11pt; font-weight: bold;" onclick="location.href='professorlecture1.html'">DB 캡스톤디자인</button>
+<%--              <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 11pt; font-weight: bold;" onclick="location.href='professorlecture1.html'">DB 캡스톤디자인</button> --%> 
+              ${ professorlecture.getLecture_name() }              
               <button type="button" class="btn btn-outline-primary" name="button">삭제</button>
             </div>
 
