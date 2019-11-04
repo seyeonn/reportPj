@@ -60,7 +60,7 @@
               </thead>
               <tbody>
                 <form class="form">
-                <c:forEach var="" items="${studentNotice.getTitle()}">
+                <%-- <c:forEach var="" items="${studentNotice.getTitle()}"> --%>
                 <%-- <tr data-url="edtit?id=${ }"> --%>
 				 <tr>
                   <td>1 </td>
@@ -72,7 +72,7 @@
                   <td> Y</td>
                   <td> 미부여</td>
                 </tr>
-                 </c:forEach> 
+                 <%-- </c:forEach> --%> 
               </tbody>
               
               </tbody>
