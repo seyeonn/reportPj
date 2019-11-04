@@ -16,79 +16,40 @@
 
   <main role="main" class="main-container">
     <div class="row">
-      <div class="col-md-4 order-md-1 mb-4">
-      <form:form method = "post" modelAttribute="lecture">
-      <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">전공</h6>
-        <%-- <c:forEach items="${} }"> --%>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <%--교수랑 TA--%>
-<%--              <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 11pt; font-weight: bold;" onclick="location.href='professorlecture1.html'">DB 캡스톤디자인</button> --%> 
-              ${ professorlecture.getLecture_name() }              
-              <button type="button" class="btn btn-outline-primary" name="button">삭제</button>
+    <div class="col-md-4 order-md-1 mb-4">
+    <form:form>
+		<div class="my-3 p-3 bg-white rounded shadow-sm">
+          <h6 class="border-bottom border-gray pb-2 mb-0">내 강좌</h6>
+          <div class="text-gray-dark"> 전공
+		  <c:forEach var="lecture" items="${professorLecture1}"> 
+            <div class="media text-muted pt-3">
+              <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong class="text-gray-dark">${lecture.getLecture_name()}<br /></strong>
+                  <button type="button" class="btn btn-outline-primary" name="button">삭제</button>
+                </div>
+              </div>
             </div>
+            </c:forEach> 
+          </div>
 
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-            	<%--학생--%>
-              <strong class="text-gray-dark">모바일 프로그래밍<br /><small> 이승진 교수님</small></strong>
-              <button type="button" class="btn btn-outline-primary" name="button">삭제</button>
+          <div class="text-gray-dark"> 교양
+         <c:forEach var="lecture" items="${professorLecture2}"> 
+            <div class="media text-muted pt-3">
+              <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong class="text-gray-dark">${lecture.getLecture_name()}<br /></strong>
+                  <button type="button" class="btn btn-outline-primary" name="button">삭제</button>
+                </div>
+              </div>
             </div>
-
+          </c:forEach> 
           </div>
         </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">알고리즘<br /><small> 이승진 교수님</small></strong>
-              <button type="button" class="btn btn-outline-primary" name="button">삭제</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">교양</h6>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">드로잉 워크샵<br /><small> 유상신 교수님</small></strong>
-              <button type="button" class="btn btn-outline-primary" name="button">삭제</button>
-            </div>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">기초영자신문읽기<br /><small> 노은하 교수님</small></strong>
-              <button type="button" class="btn btn-outline-primary" name="button">삭제</button>
-            </div>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">교양 러시아어<br /><small> 임형 교수님</small></strong>
-              <button type="button" class="btn btn-outline-primary" name="button">삭제</button>
-            </div>
-          </div>
-        </div>
- 
-      </div>
-      </form:form>
-        </div>
+        </form:form>
+</div>
         
 
 
@@ -102,7 +63,7 @@
                   <td><form:input path="lecture_name"/></td>
                 </tr>
               </thead>
-              <tboby>
+              <tbody>
                 <tr>
                   <td class="table-active">분류</td>
                   <td>
@@ -114,11 +75,9 @@
                       <form:radiobutton path="lecture_type" value="교양"/>
                       <label >교양</label>
                     </div>
-                  </td>
-  
-                  
-                </tr>
-              </tboby>
+                  </td>               
+             	</tr>
+              </tbody>
             </table>
             <div style="float: right; display:inline-block; width: 800px;">
               <button class="btn btn-primary mx-2 my-sm-0" type="submit" style="width: 100px; float: right">강좌 개설</button>
