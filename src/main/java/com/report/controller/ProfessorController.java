@@ -115,6 +115,5 @@ public class ProfessorController {
 //    		model.addAttribute("professorlecture", professorlecture);
     		model.addAttribute("ta", taService.findAll());
     		return "professor/createlecture";
-
       }
 }

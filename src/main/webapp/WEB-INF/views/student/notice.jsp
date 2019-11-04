@@ -45,7 +45,7 @@
           </div>
           <form>
 
-            <table class="table table-striped  text-center">
+            <table class="table table-hover  text-center">
               <thead class="thead-light">
                 <tr>
                   <th>번호</th>
