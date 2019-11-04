@@ -77,11 +77,6 @@ public class StudentController {
 	}
 
 
-
-
-
-
-
     @RequestMapping("notice")
   	public String notice(Model model, Principal principal, @RequestParam("id") int id) {
     	Lecture lecture = lectureMapper.findOne(id);
@@ -103,7 +98,14 @@ public class StudentController {
 	}
 
 	@RequestMapping("studentnotice")
-	public String studentnotice(Model model) {
+	public String studentnotice(Model model, Principal principal, @RequestParam("id") int id) {
+    	Lecture lecture = lectureMapper.findOne(id);
+    	ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
+    	Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
+    	model.addAttribute("lecture", lecture);
+    	model.addAttribute("professor", professor);
 		return "student/studentnotice"; // 학생 게시판 페이지
 
 	}
@@ -137,5 +139,19 @@ public class StudentController {
    		return "student/studentcontent"; // 학생 게시판 페이지
 
 
+    }
+
+    @RequestMapping("noticecontent")
+   	public String noticecontent(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
+   		return "student/noticecontent"; // 학생 게시판 페이지
+    }
+
+    @RequestMapping("worksubmit")
+   	public String worksubmit(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
+   		return "student/worksubmit"; // 학생 게시판 페이지
     }
 }

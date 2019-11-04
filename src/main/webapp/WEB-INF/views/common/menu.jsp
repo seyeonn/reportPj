@@ -11,7 +11,7 @@
 			class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
 			<div class="d-flex justify-content-between align-items-center w-100">
 				<button type="button" class="btn btn-block"
-					onclick="location.href='notice' ">과제 및 공지</button>
+					onclick="location.href='notice?id=${lecture.lecture_no}' ">과제 및 공지</button>
 			</div>
 		</div>
 	</div>
@@ -33,7 +33,7 @@
 			class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
 			<div class="d-flex justify-content-between align-items-center w-100">
 				<button type="button" class="btn btn-block"
-					onclick="location.href='studentnotice' ">학생 게시판</button>
+					onclick="location.href='studentnotice?id=${lecture.lecture_no}' ">학생 게시판</button>
 			</div>
 		</div>
 	</div>
