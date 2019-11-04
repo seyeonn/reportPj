@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.report.mapper.ProfessorNoticeMapper">
+
+    <select id="list" resultType="ProfessorNotice">
+        SELECT pn.notice_no, pn.title, pn.deadline, pn.deadline_add, pn.perfect_score
+        FROM professor_notice pn
+        WHERE pn.lecture_no = #{lecture_no}
+        order by pn.notice_no desc
+    </select>
+
+    <select id="findOne" resultType="ProfessorNotice">
+        SELECT pn.notice_no, pn.title, pn.perfect_score, pn.deadline, pn.deadline_add
+        FROM professor_notice pn
+        WHERE pn.noitice_no = #{notice_no}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="notice_no">
+        INSERT professor_notice(title, content, perfect_score, submitdate, deadline, deadline_add, lecture_no,
+        professor_no)
+        VALUES (#{title}, #{content}, #{perfect_score}, date_format(now(), '%Y-%m-%d'), #{deadline}, #{deadline_add},
+        #{lecture_no}, #{professor_no})
+    </insert>
+
+    <update id="update">
+        UPDATE professor_notice
+        SET title = #{title}
+        content = #{content}
+        perfect_score = #{perfect_score}
+        submitdate = date_format(now(), '%Y-%m-%d')
+        deadline = #{deadline}
+        deadline_add = #{deadline_add}
+        WHERE notice_no = #{notice_no}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM professor_notice
+        WHERE notice_no = #{notice_no}
+    </delete>
+
+</mapper>

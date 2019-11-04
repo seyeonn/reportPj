@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.report.service.StudentNoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,8 @@ public class StudentController {
 	@Autowired LectureMapper lectureMapper;
 	@Autowired private LectureService lectureService;
 	@Autowired ProfessorLectureMapper professorLectureMapper;
+	@Autowired
+	StudentNoticeService studentNoticeService;
 
 	@RequestMapping("studentMain")
 	public String studentMain(Model model, Principal principal) {
@@ -77,11 +80,6 @@ public class StudentController {
 	}
 
 
-
-
-
-
-
     @RequestMapping("notice")
   	public String notice(Model model, Principal principal, @RequestParam("id") int id) {
     	Lecture lecture = lectureMapper.findOne(id);
@@ -92,8 +90,18 @@ public class StudentController {
     	model.addAttribute("lecture", lecture);
     	model.addAttribute("professor", professor);
   		return "student/notice"; // 과제 및 공지 페이지
+	}
 
-
+	@RequestMapping("studentnotice")
+	public String list(Model model, Principal principal, @RequestParam("id") int id) {
+		Lecture lecture = lectureMapper.findOne(id);
+		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
+		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
+		Student student = studentMapper.findByStudentId(principal.getName());
+		model.addAttribute("student", student);
+		model.addAttribute("lecture", lecture);
+		model.addAttribute("professor", professor);
+		return "student/studentnotice";
 	}
 
 	@RequestMapping("lecturefile")
@@ -102,17 +110,6 @@ public class StudentController {
 
 	}
 
-	@RequestMapping("studentnotice")
-	public String studentnotice(Model model) {
-		return "student/studentnotice"; // 학생 게시판 페이지
-
-	}
-
-	@RequestMapping("studentposting")
-	public String studentposting(Model model) {
-		return "student/studentposting"; // 학생 게시판게시물 작성 페이
-
-	}
 
 	@RequestMapping("mypage")
 	public String mypage(Model model) {
@@ -126,16 +123,17 @@ public class StudentController {
 
 	}
 
-
-
-
-
-    @RequestMapping("studentcontent")
-   	public String studentcontent(Model model, Principal principal) {
+    @RequestMapping("noticecontent")
+   	public String noticecontent(Model model, Principal principal) {
     	Student student = studentMapper.findByStudentId(principal.getName());
     	model.addAttribute("student", student);
-   		return "student/studentcontent"; // 학생 게시판 페이지
+   		return "student/noticecontent"; // 학생 게시판 페이지
+    }
 
-
+    @RequestMapping("worksubmit")
+   	public String worksubmit(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
+   		return "student/worksubmit"; // 학생 게시판 페이지
     }
 }

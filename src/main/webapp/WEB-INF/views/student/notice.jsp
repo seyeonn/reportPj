@@ -13,10 +13,7 @@
   <c:import url="../student/nav.jsp" />
 
   <main role="main" class="main-container">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-    <strong>&nbsp&nbsp ${lecture.lecture_name} &nbsp&nbsp&nbsp&nbsp</strong>
-    <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ${professor.name } &nbsp&nbsp  &nbsp&nbsp </small>
-    </div>
+    <c:import url="../student/lecturename.jsp" />
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
 		<!-- Menu -->

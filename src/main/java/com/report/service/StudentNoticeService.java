@@ -1,5 +1,6 @@
 package com.report.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,10 @@ public class StudentNoticeService {
     }
 
     //get
-    public void insert(Model model,
-                       int lecture_no,
-                        int student_no) {
+    public void insert(Model model, int lecture_no, Principal principal) {
         StudentNotice studentNotice = new StudentNotice();
         Lecture lecture = lectureMapper.findOne(lecture_no);
-        Student student = studentMapper.findOne(student_no);
+        Student student = studentMapper.findByStudentId(principal.getName());
 
         model.addAttribute("lecture", lecture);
         model.addAttribute("student", student);
@@ -44,14 +43,11 @@ public class StudentNoticeService {
     }
 
     //get
-    public void update(Model model,
-                       int no,
-                       int student_no,
-                       int lecture_no) {
+    public void update(Model model, int no, Principal principal, int lecture_no) {
 
         StudentNotice studentNotice = studentNoticeMapper.findOne(no);
 
-        Student student = studentMapper.findOne(student_no);
+        Student student = studentMapper.findByStudentId(principal.getName());
 
         Lecture lecture = lectureMapper.findOne(lecture_no);
 
