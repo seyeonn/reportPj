@@ -58,6 +58,7 @@ public class GuestController {
 	}
 
 	//교수회원가입
+	@Transactional
 	@GetMapping(value="professorsignup")
 	public String professorcreate(Model model) {
 		Professor professor = new Professor();
@@ -73,6 +74,7 @@ public class GuestController {
 		return "professor/signup";
 	}
 
+	@Transactional
 	@PostMapping(value="professorsignup")
 	public String professorcreate(Model model, Professor professor, User user) {
 		professorMapper.insert(professor);
@@ -83,6 +85,7 @@ public class GuestController {
 
 
 	//학생회원가입
+	@Transactional
 	@GetMapping(value="studentsignup")
 	public String studentcreate(Model model) {
 		Student student = new Student();
@@ -98,6 +101,7 @@ public class GuestController {
 		return "student/signup";
 	}
 
+	
 	@PostMapping(value="studentsignup")
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public String studentcreate(Model model, Student student, User user) {
