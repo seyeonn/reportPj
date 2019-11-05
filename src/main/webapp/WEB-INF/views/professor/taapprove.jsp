@@ -37,12 +37,13 @@
 				</c:when>
 
 				<c:otherwise>
-					<div class="mb-3 mx-5">
-						<label>TA 비밀번호</label>
+				<h6 class="border-bottom border-gray pb-2 mb-0">Ta 정보</h6>
+				<label></label>
+					<div class="mb-1 mx-1">
 						<div class="student_number">
 							<button class="btn btn-primary  my-sm-0" type="button"
 								onclick="location='createta'" style="width: 140px;">TA
-								생성</button>
+								생성하기</button>
 						</div>
 					</div>
 				</c:otherwise>
