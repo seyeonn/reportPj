@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
+import com.report.dto.ProfessorNotice;
 import com.report.dto.Ta;
 import com.report.mapper.DepartmentMapper;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
+import com.report.mapper.ProfessorNoticeMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.TaMapper;
 import com.report.service.LectureService;
@@ -36,6 +38,7 @@ public class ProfessorController {
 	@Autowired TaMapper taMapper;
 	@Autowired DepartmentMapper departmentMapper;
 	@Autowired private TaService taService;
+	@Autowired ProfessorNoticeMapper professorNoticeMapper;
 
 	@RequestMapping("professorMain")
 	public String professorMain(Model model,Principal principal) {
@@ -52,8 +55,10 @@ public class ProfessorController {
 	public String notice(Model model, Principal principal, @RequestParam("id") int id) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
+		List<ProfessorNotice>  professorNotices = professorNoticeMapper.list(id);
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
+		model.addAttribute("professorNotices", professorNotices);
 		return "professor/notice"; // 과제 및 공지 페이지
 	}
 

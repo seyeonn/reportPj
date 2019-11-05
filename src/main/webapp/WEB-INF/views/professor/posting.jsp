@@ -25,32 +25,9 @@
 
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <div class="my-2 ">
-            <select>
-              <optgroup label="전공">
-                <option>DB 캡스톤디자인</option>
-                <option>고급 웹프로그래밍2</option>
-                <option>모바일 프로그래밍</option>
-              </optgroup>
-              <optgroup label="교양">
-                <option>기초 영자신문 읽기</option>
-                <option>교양 러시아어</option>
-              </optgroup>
-            </select>
-          </div>
           <hr>
-
           <form>
-
             <table class="table text-center table-bordered">
-              <thead class="thead-light">
-                <tr>
-                  <th>번호</th>
-                  <th style="width: 700px">4</th>
-                </tr>
-              </thead>
-
-              <tbody>
                 <form class="form">
                   <tr>
                     <td class="table-active">제목 </td>
@@ -81,7 +58,6 @@
                   <td class="table-active">연장기한</td>
                   <td><input type="text" id="per2" name="per2" style="width: 250px"></td>
                 </tr>
-              </tbody>
             </table>
 
 

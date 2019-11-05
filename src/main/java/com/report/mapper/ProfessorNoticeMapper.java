@@ -1,13 +1,14 @@
 package com.report.mapper;
 
-import com.report.dto.ProfessorNotice;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
+import com.report.dto.ProfessorNotice;
 
 @Mapper
 public interface ProfessorNoticeMapper {
-    List<ProfessorNotice> list(int lecture_no);
+	List<ProfessorNotice> list(int lecture_no);
 
     ProfessorNotice findOne(int notice_no);
 

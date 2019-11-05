@@ -100,7 +100,8 @@
               <%--교수랑 TA만--%>
               <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='inputscore'">점수부여</button>
               <%--교수만--%>
-              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='edit'">수정</button>
+              <button class="btn btn-primary my-sm-0" type="button" style="width: 100px; float: right">삭제</button>
+              <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='edit'">수정</button>
             </div>
             <label for=""><br></label>
           </form>
