@@ -14,5 +14,7 @@ public interface TaMapper {
 	void delete(int ta_no);
 	List<Ta> findAll();
 	Ta findByTaId(String taId);
+	Ta findOne(int ta_no);
+
 
 }

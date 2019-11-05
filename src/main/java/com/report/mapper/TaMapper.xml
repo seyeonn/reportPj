@@ -7,6 +7,10 @@
 		SELECT * FROM Ta
 	</select>
 	
+	 <select id="findOne" resultType="Student">
+    SELECT * FROM Ta WHERE ta_no = #{ta_no}
+  </select>
+	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="ta_no">
 		INSERT Ta (ta_id, professor_no, password)
 		VALUES (#{ta_id}, #{professor_no}, #{password})
@@ -27,4 +31,6 @@
 	<select id="findByTaId" resultType="Ta">
     SELECT * FROM Ta WHERE ta_id = #{ta_id}
   	</select> 
+  	
+  
 </mapper>

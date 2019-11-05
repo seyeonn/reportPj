@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.report.dto.Department;
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
 import com.report.dto.Ta;
@@ -117,12 +116,12 @@ public class ProfessorController {
 	}
 
 	@GetMapping(value="taapprove")
-	public String taapprove(Model model) {
-		Professor professor = new Professor();
-		Ta ta = new Ta();
-		List<Department> departments = departmentMapper.findAll();
+	public String taapprove(Model model,Principal principal) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		Ta ta = taMapper.findOne(professor.getTa_no());
+		model.addAttribute("ta", ta);
 		model.addAttribute("professor", professor);
-		model.addAttribute("departments", departments);
+
 		return "professor/taapprove";
 	}
 
