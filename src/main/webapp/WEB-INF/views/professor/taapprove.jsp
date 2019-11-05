@@ -42,7 +42,7 @@
 					<div class="mb-1 mx-1">
 						<div class="student_number">
 							<button class="btn btn-primary  my-sm-0" type="button"
-								onclick="location='createta'" style="width: 140px;">TA
+								onclick="location.href='createta'" style="width: 140px;">TA
 								생성하기</button>
 						</div>
 					</div>

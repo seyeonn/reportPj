@@ -121,8 +121,14 @@ public class ProfessorController {
 		Ta ta = taMapper.findOne(professor.getTa_no());
 		model.addAttribute("ta", ta);
 		model.addAttribute("professor", professor);
-
 		return "professor/taapprove";
+	}
+
+	@RequestMapping("createta")
+	public String createta(Model model,Principal principal) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		model.addAttribute("professor", professor);
+		return "professor/createta"; // 학생 게시판 페이지
 	}
 
 

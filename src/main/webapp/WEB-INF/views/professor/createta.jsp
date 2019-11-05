@@ -20,13 +20,11 @@
       <h4 class="mb-3">TA 생성</h4>
       <hr class="mb-4">
       아이디<label for="inputId" class="sr-only">아이디</label>
-      <input type="text" id="inputEmail" class="form-control" required autofocus>
+      <input type="text" id="inputEmail" class="form-control">
+      <label> </label>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">확인</button>
 
-        <label>
-
-        </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="location='professormypage'">확인</button>
     </form>
 
   <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
