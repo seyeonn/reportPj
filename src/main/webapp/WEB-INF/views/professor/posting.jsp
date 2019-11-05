@@ -26,9 +26,8 @@
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
           <hr>
-          <form>
+           <form class="form">
             <table class="table text-center table-bordered">
-                <form class="form">
                   <tr>
                     <td class="table-active">제목 </td>
                     <td><input type="text" id="name" name="name" style="width: 600px"></td>
@@ -59,16 +58,17 @@
                   <td><input type="text" id="per2" name="per2" style="width: 250px"></td>
                 </tr>
             </table>
+            </form>
 
 
             <div style="float: right; display:inline-block; width: 900px;">
               <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='notice'">목록보기</button>
               <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='notice'">등록</button>
             </div>
-            <label for=""><br></label>
+            <label><br></label>
         </div>
 
-        </form>
+
       </div>
     </div>
     </div>
