@@ -7,27 +7,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.report.dto.Department;
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
 import com.report.dto.Ta;
 import com.report.mapper.DepartmentMapper;
+import com.report.mapper.LectureMapper;
+import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
+import com.report.mapper.StudentMapper;
 import com.report.mapper.TaMapper;
+import com.report.service.LectureService;
+import com.report.service.StudentNoticeService;
 import com.report.service.TaService;
 
 @Controller
 @RequestMapping("professor")
 public class ProfessorController {
 
-
-      @Autowired ProfessorMapper professorMapper;
-      @Autowired TaMapper taMapper;
-      @Autowired DepartmentMapper departmentMapper;
-      @Autowired private TaService taService;
+	@Autowired StudentMapper studentMapper;
+	@Autowired ProfessorMapper professorMapper;
+	@Autowired LectureMapper lectureMapper;
+	@Autowired private LectureService lectureService;
+	@Autowired ProfessorLectureMapper professorLectureMapper;
+	@Autowired StudentNoticeService studentNoticeService;
+    @Autowired TaMapper taMapper;
+    @Autowired DepartmentMapper departmentMapper;
+    @Autowired private TaService taService;
 
       @RequestMapping("professorMain")
   	public String professorMain(Model model,Principal principal) {
@@ -41,8 +50,10 @@ public class ProfessorController {
   	  }
 
       @RequestMapping("notice")
-  	public String notice(Model model,Principal principal) {
+  	public String notice(Model model, Principal principal, @RequestParam("id") int id) {
     	Professor professor = professorMapper.findByProfessorId(principal.getName());
+    	Lecture lecture = lectureMapper.findOne(id);
+    	model.addAttribute("lecture", lecture);
       	model.addAttribute("professor", professor);
   		return "professor/notice"; // 과제 및 공지 페이지
   	  }

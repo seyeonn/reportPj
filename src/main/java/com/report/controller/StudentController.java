@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.report.service.StudentNoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +23,7 @@ import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
 import com.report.mapper.StudentMapper;
 import com.report.service.LectureService;
+import com.report.service.StudentNoticeService;
 
 @Controller
 
@@ -34,8 +34,7 @@ public class StudentController {
 	@Autowired LectureMapper lectureMapper;
 	@Autowired private LectureService lectureService;
 	@Autowired ProfessorLectureMapper professorLectureMapper;
-	@Autowired
-	StudentNoticeService studentNoticeService;
+	@Autowired StudentNoticeService studentNoticeService;
 
 	@RequestMapping("studentMain")
 	public String studentMain(Model model, Principal principal) {

@@ -14,8 +14,8 @@
 
   <main role="main" class="main-container">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-    <strong>&nbsp&nbsp DB 캡스톤디자인 &nbsp&nbsp&nbsp&nbsp</strong>
-    <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 홍은지 교수님 &nbsp&nbsp / &nbsp&nbsp 학생수 :26</small>
+    <strong>&nbsp&nbsp {lectrue.lecture_name} &nbsp&nbsp&nbsp&nbsp</strong>
+    <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </small>
     </div>
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
@@ -25,24 +25,7 @@
 
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <div class="my-2 ">
-            <select>
-              <optgroup label="전공">
-                <option>DB 캡스톤디자인</option>
-                <option>고급 웹프로그래밍2</option>
-                <option>모바일 프로그래밍</option>
-              </optgroup>
-              <optgroup label="교양">
-                <option>기초 영자신문 읽기</option>
-                <option>교양 러시아어</option>
-              </optgroup>
-            </select>
-            <hr>
-            <form class="form-inline mt-2 mt-md-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="게시글 이름으로 검색하기" aria-label="Search">
-              <button class="btn btn btn-primary my-2 my-sm-0" type="button">검색</button>
-            </form>
-          </div>
+          
           <form>
 
             <table class="table table-hover  text-center">
