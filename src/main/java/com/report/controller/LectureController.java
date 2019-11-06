@@ -78,7 +78,7 @@ public class LectureController {
 		}
 
 		lectureService.professorSave(lecture,professorLecture, professor);
-		return "professor/createlecture";
+		return "redirect:createlecture";
 	}
 
 
@@ -110,7 +110,7 @@ public class LectureController {
 		model.addAttribute("professorLecture2", professorLecture2);
 		model.addAttribute("professor", professor);
 		lectureService.deleteEntity(id);
-	    return "professor/createlecture";
+	    return "redirect:createlecture";
 	}
 
 //	@RequestMapping(value="createlecture", method=RequestMethod.POST, params="cmd=insert")
