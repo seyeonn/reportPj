@@ -19,10 +19,10 @@ public class LectureService {
 
     @Autowired
     public LectureMapper lectureMapper;
-    
+
     @Autowired
     public ProfessorLectureMapper professorLectureMapper;
-    
+
     @Autowired
     public StudentLectureMapper studentLectureMapper;
 
@@ -30,8 +30,8 @@ public class LectureService {
         return lectureMapper.findAll();
     }
 
-    public void deleteEntity(Lecture lecture) {
-    	lectureMapper.delete(lecture);
+    public void deleteEntity(int id) {
+    	lectureMapper.delete(id);
     }
 
 
@@ -42,8 +42,8 @@ public class LectureService {
 		professorLecture.setProfessor_no(professor.getProfessor_no());
     	professorLectureMapper.insert(professorLecture);
     }
-    
-    
+
+
     public void studentSave(Lecture newLecture, StudentLecture studentLecture, Student student){
     	Lecture lecture = createLecture(newLecture);
     	lectureMapper.insert(lecture);
@@ -52,7 +52,7 @@ public class LectureService {
     	studentLectureMapper.insert(studentLecture);
     }
 
-    
+
     public Lecture createLecture(Lecture newLecture){
         Lecture lecture = new Lecture();
 
