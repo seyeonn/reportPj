@@ -109,13 +109,6 @@ public class ProfessorController {
   	}
 
 
-      @RequestMapping("studentnotice")
-     	public String studentnotice(Model model,Principal principal) {
-       	Professor professor = professorMapper.findByProfessorId(principal.getName());
-         	model.addAttribute("professor", professor);
-     		return "professor/studentnotice"; // 학생 게시판 페이지
-     	  }
-
       @RequestMapping("inputscore")
      	public String inputscore(Model model,Principal principal) {
        	Professor professor = professorMapper.findByProfessorId(principal.getName());
