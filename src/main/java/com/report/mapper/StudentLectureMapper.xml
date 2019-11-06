@@ -11,7 +11,11 @@
 
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="student_lecture_no">
-		INSERT Student_Lecture (lecture_no, sutdent_no)
+		INSERT Student_Lecture (lecture_no, student_no)
 		VALUES (#{lecture_no}, #{student_no})
 	</insert>
+	
+	<delete id="delete">
+		DELETE FROM Student_Lecture WHERE lecture_no=#{lecture_no} and student_no=#{student_no}
+	</delete>
 </mapper>

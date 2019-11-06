@@ -34,6 +34,9 @@ public class LectureService {
     	lectureMapper.delete(id);
     }
 
+    public void studentLectureDelete(int id, int student_no) {
+    	studentLectureMapper.delete(id, student_no);
+    }
 
     public void professorSave(Lecture newLecture, ProfessorLecture professorLecture, Professor professor){
     	Lecture lecture = createLecture(newLecture);
@@ -44,11 +47,10 @@ public class LectureService {
     }
 
 
-    public void studentSave(Lecture newLecture, StudentLecture studentLecture, Student student){
-    	Lecture lecture = createLecture(newLecture);
-    	lectureMapper.insert(lecture);
-    	studentLecture.setLecture_no(lecture.getLecture_no());
-    	studentLecture.setStudent_no(student.getStudent_no());
+    public void studentSave(int lecture_no, int student_no){
+    	StudentLecture studentLecture = new StudentLecture();
+    	studentLecture.setLecture_no(lecture_no);
+    	studentLecture.setStudent_no(student_no);
     	studentLectureMapper.insert(studentLecture);
     }
 
