@@ -24,7 +24,7 @@
             <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
             <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
               <div class="d-flex justify-content-between align-items-center w-100">
-                <strong class="text-gray-dark">${lecture.getLecture_name()}<br /><small> 이승진 교수님</small></strong>
+                <strong class="text-gray-dark">${lecture.getLecture_name()}<br /><small></small></strong>
                 <button type="button" class="btn btn-outline-primary" name="button">삭제</button>
               </div>
             </div>
