@@ -14,6 +14,7 @@ public interface UserMapper {
 	List<User> findAll();
 	void studentInsert(User user);
 	void professorInsert(User user);
+	void taInsert(User user);
 	void update(User user);
 	void delete(int no);
 	void changeType(String id);

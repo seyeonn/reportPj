@@ -5,20 +5,25 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.report.dto.Department;
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
 import com.report.dto.Ta;
+import com.report.dto.User;
 import com.report.mapper.DepartmentMapper;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.TaMapper;
+import com.report.mapper.UserMapper;
 import com.report.service.LectureService;
 import com.report.service.StudentNoticeService;
 import com.report.service.TaService;
@@ -36,6 +41,7 @@ public class ProfessorController {
 	@Autowired TaMapper taMapper;
 	@Autowired DepartmentMapper departmentMapper;
 	@Autowired private TaService taService;
+	@Autowired UserMapper userMapper;
 
 	@RequestMapping("professorMain")
 	public String professorMain(Model model,Principal principal) {
@@ -124,11 +130,33 @@ public class ProfessorController {
 		return "professor/taapprove";
 	}
 
-	@RequestMapping("createta")
-	public String createta(Model model,Principal principal) {
+	
+	
+	@GetMapping(value="createta")
+	public String professorcreate(Model model, Principal principal) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
-		model.addAttribute("professor", professor);
-		return "professor/createta"; // 학생 게시판 페이지
+		model.addAttribute("ta", new Ta());
+		model.addAttribute("user", new User());
+		
+		return "professor/createta";
+	}
+
+	@PostMapping(value="createta")
+	public String professorcreate(Model model, Principal principal, Ta ta , User user) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		taMapper.insert(ta);
+		
+		user.setId(ta.getTa_id());
+		user.setPassword1(ta.getPassword());
+		userMapper.taInsert(user);
+		
+		professorMapper.taUpdate(ta.getTa_no(), professor.getProfessor_no());
+		
+		System.out.printf("%s %s\n", professor.getName(), professor.getPassword1());
+		System.out.printf("%d TA아이디 : %s, TA비밀번호 : %s\n", ta.getTa_no(),ta.getTa_id() ,ta.getPassword());
+		
+		System.out.printf("TA아이디 : %s, TA비밀번호 : %s\n", user.getId() ,user.getPassword1());
+		return "professor/main";
 	}
 
 

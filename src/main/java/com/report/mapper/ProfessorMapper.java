@@ -18,4 +18,5 @@ public interface ProfessorMapper {
 	void insert(Professor professor);
 	void update(Professor professor);
 	void delete(int professor_no);
+	void taUpdate(int ta_no, int professor_no);
 }
