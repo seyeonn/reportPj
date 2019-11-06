@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -27,7 +28,6 @@
             <table class="table table-hover  text-center">
               <thead class="thead-light">
                 <tr>
-                  <th>머리말</th>
                   <th>제목</th>
                   <th>제출기한</th>
                   <th>연장기한</th>
@@ -40,11 +40,9 @@
                 <form class="form">
                 <c:forEach var="professorNotice" items="${professorNotices}"> 
 				 <tr onClick = " location.href='noticecontent' ">
-
-                  <td>${professorNotice.header}</td>
                   <td>${professorNotice.title}</td>
-                  <td>${professorNotice.deadline}</td>
-                  <td>${professorNotice.deadline_add} </td>
+                  <td><fmt:formatDate value="${professorNotice.deadline}" pattern="yyyy-MM-dd HH:mm" /></td>
+                  <td><fmt:formatDate value="${professorNotice.deadline_add}" pattern="yyyy-MM-dd HH:mm" /></td>
                   <td><button type="button" class="btn btn-outline-primary">파일</button></td>
                   <td></td>
                   <td>${professorNotice.perfect_score}</td>
