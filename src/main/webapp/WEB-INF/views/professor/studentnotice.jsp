@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -13,9 +14,10 @@
   <c:import url="../professor/nav.jsp" />
 
   <main role="main" class="main-container">
+    <c:import url="../student/lecturename.jsp" />
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <strong>&nbsp&nbsp DB 캡스톤디자인 &nbsp&nbsp&nbsp&nbsp</strong>
-      <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 홍은지 교수님 &nbsp&nbsp / &nbsp&nbsp 학생수 :26</small>
+      <strong>&nbsp&nbsp ${lecture.lecture} &nbsp&nbsp&nbsp&nbsp</strong>
+      <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ${} &nbsp&nbsp / &nbsp&nbsp</small>
     </div>
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
@@ -56,16 +58,16 @@
                 </tr>
               </thead>
               <tbody>
-                <%-- <c:forEach var="" items="${  }">  --%>
-                <%-- <tr data-url="edtit?id=${ }"> --%>
-                <tr onClick = " location.href='studentcontent' ">
-                  <td>4 </td>
-                  <td>발표 주제</td>
+              <c:forEach var="StudentNotice" items="${studentNotices}">
+                <tr onClick = "location.href='studentcontent?${StudentNotice.studentnotice_no}'">
+                  <td>${StudentNotice.title}</td>
                   <td></td>
-                  <td>용동중</td>
-                  <td>2019-10-30</td>
+                  <td>${student.name}</td>
+                  <td>
+                    <fmt:formatDate value="${StudentNotice.submitdate}" pattern="yyyy-MM-dd HH:mm:ss" />
+                  </td>
                 </tr>
-                <%-- </c:forEach> --%>
+              </c:forEach>
               </tbody>
             </table>
             <div style="float: right; display:inline-block; width: 900px;">

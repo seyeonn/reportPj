@@ -18,13 +18,19 @@ import com.report.mapper.StudentNoticeMapper;
 public class StudentNoticeService {
     @Autowired
     StudentNoticeMapper studentNoticeMapper;
+
     @Autowired
     LectureMapper lectureMapper;
+
     @Autowired
     StudentMapper studentMapper;
 
-    public List<StudentNotice> list( int lecture_no) {
+    public List<StudentNotice> list(int lecture_no) {
         return studentNoticeMapper.list(lecture_no);
+    }
+
+    public StudentNotice findOne(int studentnotice_no){
+        return studentNoticeMapper.findOne(studentnotice_no);
     }
 
     //get
@@ -54,7 +60,6 @@ public class StudentNoticeService {
         model.addAttribute("studentNotice", studentNotice);
         model.addAttribute("student", student);
         model.addAttribute("lecture", lecture);
-
     }
 
     //post
@@ -66,4 +71,6 @@ public class StudentNoticeService {
     public void delete(Model model, int no) {
         studentNoticeMapper.delete(no);
     }
+
+
 }

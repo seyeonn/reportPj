@@ -62,7 +62,6 @@ public class LectureService {
         lecture.setTa_no(newLecture.getTa_no());
 
         return lecture;
-
     }
 
 
