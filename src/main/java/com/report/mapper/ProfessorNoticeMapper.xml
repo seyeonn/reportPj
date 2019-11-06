@@ -5,10 +5,10 @@
 <mapper namespace="com.report.mapper.ProfessorNoticeMapper">
 
     <select id="list" resultType="ProfessorNotice">
-        SELECT pn.notice_no, pn.title, pn.deadline, pn.deadline_add, pn.perfect_score
-        FROM professor_notice pn
-        WHERE pn.lecture_no = #{lecture_no}
-        order by pn.notice_no desc
+        SELECT *<!-- header,title,date_format(deadline, '%Y-%m-%d %H:%i'),date_format(deadline_add, '%Y-%m-%d %H:%i'),perfect_score -->
+        FROM professor_notice 
+        WHERE lecture_no = #{lecture_no}
+        order by notice_no desc
     </select>
 
     <select id="findOne" resultType="ProfessorNotice">

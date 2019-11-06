@@ -19,5 +19,5 @@ public class ProfessorNotice {
 	Date submitDate;
 	Date deadline;
 	Date deadline_add;
-	Date perfect_score;
+	int perfect_score;
 }

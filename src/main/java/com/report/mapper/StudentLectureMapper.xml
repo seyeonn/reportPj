@@ -11,7 +11,7 @@
 
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="student_lecture_no">
-		INSERT Professor_Lecture (lecture_no, sutdent_no)
+		INSERT Student_Lecture (lecture_no, sutdent_no)
 		VALUES (#{lecture_no}, #{student_no})
 	</insert>
 </mapper>

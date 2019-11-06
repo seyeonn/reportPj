@@ -13,13 +13,13 @@
 	</select>
 	
 	<select id="findByProfessorLecture1" resultType="Lecture">
-		SELECT l.lecture_name FROM professor p
+		SELECT l.* FROM professor p
 		join professor_lecture pl on p.professor_no = pl.professor_no and p.id=#{id}
 		join lecture l on pl.lecture_no = l.lecture_no and l.lecture_type = "전공";
 	</select>
 	
 	<select id="findByProfessorLecture2" resultType="Lecture">
-		SELECT l.lecture_name FROM professor p
+		SELECT l.* FROM professor p
 		join professor_lecture pl on p.professor_no = pl.professor_no and p.id=#{id}
 		join lecture l on pl.lecture_no = l.lecture_no and l.lecture_type = "교양";
 	</select>
@@ -54,5 +54,11 @@
 	<delete id="delete">
 		DELETE FROM Professor WHERE professor_no = #{professor_no}
 	</delete>
+	
+	<update id="taUpdate">
+		UPDATE Professor SET
+		ta_no = #{ta_no}
+		WHERE professor_no = #{professor_no}
+	</update>
 
 </mapper>

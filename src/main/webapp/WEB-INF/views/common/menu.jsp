@@ -22,7 +22,7 @@
 			class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
 			<div class="d-flex justify-content-between align-items-center w-100">
 				<button type="button" class="btn btn-block"
-					onclick="location.href='lecturefile' ">강의 자료</button>
+					onclick="location.href='lecturefile?id=${lecture.lecture_no}' ">강의 자료</button>
 			</div>
 		</div>
 	</div>

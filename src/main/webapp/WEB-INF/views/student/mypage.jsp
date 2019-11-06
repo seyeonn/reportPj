@@ -21,14 +21,14 @@
         <div class="mb-3">
           <label for="username">아이디</label>
           <div class="student_number">
-            <span class="student_number-text">201732032</span>
+            <span class="student_number-text"></span>
           </div>
         </div>
         <hr class="mb-4">
         <div class="mb-3">
           <label for="username">이름<span class="text-muted">&nbsp(반드시 실명이어야 합니다.)</span></label>
           <div class="input-group">
-            <input type="text" class="form-control" id="username" placeholder="장은애" required>
+            <input type="text" class="form-control" id="username" placeholder="이름" required>
           </div>
         </div>
 

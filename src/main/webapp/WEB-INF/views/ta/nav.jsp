@@ -24,7 +24,7 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <h7 class="mb-0 text-white lh-100">${ta.getTa_id()}&nbsp&nbsp</h7>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='/logout_processing'">로그아웃</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='/guest/login'">로그아웃</button>
       </form>
     </div>
   </nav>

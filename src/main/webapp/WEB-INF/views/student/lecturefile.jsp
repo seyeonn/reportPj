@@ -15,10 +15,7 @@
 
 
   <main role="main" class="main-container">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <strong>&nbsp&nbsp DB 캡스톤디자인 &nbsp&nbsp&nbsp&nbsp</strong>
-      <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 홍은지 교수님 &nbsp&nbsp / &nbsp&nbsp 학생수 :26</small>
-    </div>
+    <c:import url="../student/lecturename.jsp" />
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
 		<c:import url="../common/menu.jsp" />
@@ -26,19 +23,7 @@
 
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <div class="my-2 ">
-            <select>
-              <optgroup label="전공">
-                <option>DB 캡스톤디자인</option>
-                <option>고급 웹프로그래밍2</option>
-                <option>모바일 프로그래밍</option>
-              </optgroup>
-              <optgroup label="교양">
-                <option>기초 영자신문 읽기</option>
-                <option>교양 러시아어</option>
-              </optgroup>
-            </select>
-          </div>
+          
           <hr>
           <form>
 

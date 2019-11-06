@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -27,8 +28,6 @@
             <table class="table table-hover  text-center">
               <thead class="thead-light">
                 <tr>
-                  <th>번호</th>
-                  <th>머리말</th>
                   <th>제목</th>
                   <th>제출기한</th>
                   <th>연장기한</th>
@@ -39,19 +38,17 @@
               </thead>
               <tbody>
                 <form class="form">
-                <%-- <c:forEach var="" items="${studentNotice.getTitle()}"> --%>
-                <%-- <tr data-url="edtit?id=${ }"> --%>
+                <c:forEach var="professorNotice" items="${professorNotices}"> 
 				 <tr onClick = " location.href='noticecontent' ">
-                  <td>1 </td>
-                  <td>과제</td>
-                  <td>캡스톤 디자인 과제 계획서 및 보고서</td>
-                  <td>09/10 09:00</td>
-                  <td>09/13 09:00 </td>
+                  <td>${professorNotice.title}</td>
+                  <td><fmt:formatDate value="${professorNotice.deadline}" pattern="yyyy-MM-dd HH:mm" /></td>
+                  <td><fmt:formatDate value="${professorNotice.deadline_add}" pattern="yyyy-MM-dd HH:mm" /></td>
                   <td><button type="button" class="btn btn-outline-primary">파일</button></td>
-                  <td> Y</td>
-                  <td> 미부여</td>
-                </tr>
-                 <%-- </c:forEach> --%> 
+                  <td></td>
+                  <td>${professorNotice.perfect_score}</td>
+                 </tr>
+                </c:forEach>
+                </form>
               </tbody>
               
               </tbody>
