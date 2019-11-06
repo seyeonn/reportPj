@@ -54,5 +54,11 @@
 	<delete id="delete">
 		DELETE FROM Professor WHERE professor_no = #{professor_no}
 	</delete>
+	
+	<update id="taUpdate">
+		UPDATE Professor SET
+		ta_no = #{ta_no}
+		WHERE professor_no = #{professor_no}
+	</update>
 
 </mapper>
