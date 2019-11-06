@@ -28,7 +28,6 @@
             <table class="table table-hover  text-center">
               <thead class="thead-light">
                 <tr>
-                  <th>번호</th>
                   <th>머리말</th>
                   <th>제목</th>
                   <th>제출기한</th>
@@ -40,19 +39,19 @@
               </thead>
               <tbody>
                 <form class="form">
-                <%-- <c:forEach var="" items="${  }">  --%>
-                <%-- <tr data-url="edtit?id=${ }"> --%>
+                <c:forEach var="professorNotice" items="${professorNotices}"> 
 				 <tr onClick = " location.href='noticecontent' ">
-                  <td>1 </td>
-                  <td>과제</td>
-                  <td>캡스톤 디자인 과제 계획서 및 보고서</td>
-                  <td>09/10 09:00</td>
-                  <td>09/13 09:00 </td>
+
+                  <td>${professorNotice.header}</td>
+                  <td>${professorNotice.title}</td>
+                  <td>${professorNotice.deadline}</td>
+                  <td>${professorNotice.deadline_add} </td>
                   <td><button type="button" class="btn btn-outline-primary">파일</button></td>
-                  <td> Y</td>
-                  <td> 미부여</td>
-                </tr>
-                 <%-- </c:forEach> --%>
+                  <td></td>
+                  <td>${professorNotice.perfect_score}</td>
+                 </tr>
+                </c:forEach>
+                </form>
               </tbody>
               
               </tbody>
@@ -60,7 +59,7 @@
             <div style="float: right; display:inline-block; width: 900px;">
 
               <%--교수만--%>
-              <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right">삭제</button>
+              <!-- <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right">삭제</button> -->
               <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='posting'">작성</button>
             </div>
 			<label>

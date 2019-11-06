@@ -13,10 +13,7 @@
 	<c:import url="../professor/nav.jsp" />
 
   <main role="main" class="main-container">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <strong>&nbsp&nbsp DB 캡스톤디자인 &nbsp&nbsp&nbsp&nbsp</strong>
-      <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 홍은지 교수님 &nbsp&nbsp / &nbsp&nbsp 학생수 :26</small>
-    </div>
+   <c:import url="../professor/lecturename.jsp" />
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
         <!-- Menu -->
@@ -25,19 +22,6 @@
 
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <div class="my-2 ">
-            <select>
-              <optgroup label="전공">
-                <option>DB 캡스톤디자인</option>
-                <option>고급 웹프로그래밍2</option>
-                <option>모바일 프로그래밍</option>
-              </optgroup>
-              <optgroup label="교양">
-                <option>기초 영자신문 읽기</option>
-                <option>교양 러시아어</option>
-              </optgroup>
-            </select>
-          </div>
           <hr>
 
           <form class="form">
@@ -100,7 +84,8 @@
               <%--교수랑 TA만--%>
               <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='inputscore'">점수부여</button>
               <%--교수만--%>
-              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='edit'">수정</button>
+              <button class="btn btn-primary my-sm-0" type="button" style="width: 100px; float: right">삭제</button>
+              <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='edit'">수정</button>
             </div>
             <label for=""><br></label>
           </form>
