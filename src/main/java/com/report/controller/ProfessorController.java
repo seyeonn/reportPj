@@ -5,14 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.report.dto.Department;
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
@@ -109,8 +107,10 @@ public class ProfessorController {
 	}
 
 	@RequestMapping("studentnotice")
-	public String studentnotice(Model model,Principal principal) {
+	public String studentnotice(Model model,Principal principal, @RequestParam("id") int id) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		Lecture lecture = lectureMapper.findOne(id);
+		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
 		return "professor/studentnotice"; // 학생 게시판 페이지
 	}
@@ -138,14 +138,14 @@ public class ProfessorController {
 		return "professor/taapprove";
 	}
 
-	
-	
+
+
 	@GetMapping(value="createta")
 	public String professorcreate(Model model, Principal principal) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		model.addAttribute("ta", new Ta());
 		model.addAttribute("user", new User());
-		
+
 		return "professor/createta";
 	}
 
@@ -153,16 +153,16 @@ public class ProfessorController {
 	public String professorcreate(Model model, Principal principal, Ta ta , User user) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		taMapper.insert(ta);
-		
+
 		user.setId(ta.getTa_id());
 		user.setPassword1(ta.getPassword());
 		userMapper.taInsert(user);
-		
+
 		professorMapper.taUpdate(ta.getTa_no(), professor.getProfessor_no());
-		
+
 		System.out.printf("%s %s\n", professor.getName(), professor.getPassword1());
 		System.out.printf("%d TA아이디 : %s, TA비밀번호 : %s\n", ta.getTa_no(),ta.getTa_id() ,ta.getPassword());
-		
+
 		System.out.printf("TA아이디 : %s, TA비밀번호 : %s\n", user.getId() ,user.getPassword1());
 		return "professor/main";
 	}
