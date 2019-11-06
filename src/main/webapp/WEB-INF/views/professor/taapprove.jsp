@@ -20,17 +20,16 @@
 				<label></label>
 					<div class="row">
 						<div class="mb-3 order-md-1 mx-3">
-							<label for="username">TA 아이디</label>
+							<label>TA 아이디</label>
 							<div class="student_number">
-								<span class="student_number-text">hong123</span>
+								<span class="student_number-text">${ta.ta_id}</span>
 							</div>
 						</div>
 
 						<div class="mb-3 order-md-2 mx-5">
 							<label>TA 비밀번호</label>
 							<div class="student_number">
-								<button class="btn btn-primary  my-sm-0" type="submit"
-									style="width: 140px;">TA 비밀번호 리셋</button>
+								<span class="student_number-text">${ta.password}</span>
 							</div>
 						</div>
 					</div>

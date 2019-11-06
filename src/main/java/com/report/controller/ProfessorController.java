@@ -124,12 +124,13 @@ public class ProfessorController {
    	  }
 
       @GetMapping(value="taapprove")
-      public String taapprove(Model model) {
-         Professor professor = new Professor();
-         Ta ta = new Ta();
+      public String taapprove(Model model, Principal principal) {
+    	 Professor professor = professorMapper.findByProfessorId(principal.getName());
+         Ta ta = taMapper.findOne(professor.getTa_no());
          List<Department> departments = departmentMapper.findAll();
          model.addAttribute("professor", professor);
          model.addAttribute("departments", departments);
+         model.addAttribute("ta", ta);
          return "professor/taapprove";
       }
 
