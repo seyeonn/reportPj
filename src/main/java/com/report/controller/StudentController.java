@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.report.service.StudentNoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,16 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
 import com.report.dto.ProfessorLecture;
-import com.report.dto.ProfessorNotice;
 import com.report.dto.Student;
 import com.report.dto.StudentLecture;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
-import com.report.mapper.ProfessorNoticeMapper;
 import com.report.mapper.StudentMapper;
 import com.report.service.LectureService;
-import com.report.service.StudentNoticeService;
 
 @Controller
 
@@ -34,10 +32,10 @@ public class StudentController {
 	@Autowired StudentMapper studentMapper;
 	@Autowired ProfessorMapper professorMapper;
 	@Autowired LectureMapper lectureMapper;
-	@Autowired LectureService lectureService;
+	@Autowired private LectureService lectureService;
 	@Autowired ProfessorLectureMapper professorLectureMapper;
-	@Autowired StudentNoticeService studentNoticeService;
-	@Autowired ProfessorNoticeMapper professorNoticeMapper;
+	@Autowired
+	StudentNoticeService studentNoticeService;
 
 	@RequestMapping("studentMain")
 	public String studentMain(Model model, Principal principal) {
@@ -82,17 +80,15 @@ public class StudentController {
 	}
 
 
-	@RequestMapping("notice")
+    @RequestMapping("notice")
   	public String notice(Model model, Principal principal, @RequestParam("id") int id) {
     	Lecture lecture = lectureMapper.findOne(id);
-    	List<ProfessorNotice>  professorNotices = professorNoticeMapper.list(id);
     	ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
     	Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
     	Student student = studentMapper.findByStudentId(principal.getName());
     	model.addAttribute("student", student);
     	model.addAttribute("lecture", lecture);
     	model.addAttribute("professor", professor);
-    	model.addAttribute("professorNotices", professorNotices);
   		return "student/notice"; // 과제 및 공지 페이지
 	}
 
@@ -109,15 +105,9 @@ public class StudentController {
 	}
 
 	@RequestMapping("lecturefile")
-	public String lecturefile(Model model,Principal principal, @RequestParam("id") int id) {
-		Lecture lecture = lectureMapper.findOne(id);
-		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
-		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
-		Student student = studentMapper.findByStudentId(principal.getName());
-		model.addAttribute("student", student);
-		model.addAttribute("lecture", lecture);
-		model.addAttribute("professor", professor);
+	public String lecturefile(Model model) {
 		return "student/lecturefile"; // 강의 자료 페이지
+
 	}
 
 

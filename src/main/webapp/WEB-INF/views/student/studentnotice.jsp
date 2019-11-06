@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -27,7 +28,6 @@
             <table class="table table-hover  text-center">
               <thead class="thead-light">
                 <tr>
-                  <th>번호</th>
                   <th>제목</th>
                   <th>파일</th>
                   <th>작성자</th>
@@ -35,16 +35,16 @@
                 </tr>
               </thead>
               <tbody>
-                <%-- <c:forEach var="" items="${  }">  --%>
-                <%-- <tr data-url="edtit?id=${ }"> --%>
-                <tr onClick = " location.href='studentcontent' ">
-                  <td>4 </td>
-                  <td>발표 주제</td>
+                 <c:forEach var="StudentNotice" items="${studentNotices}">
+                <tr onClick = "location.href='studentcontent?${StudentNotice.studentnotice_no}'">
+                  <td>${StudentNotice.title}</td>
                   <td></td>
-                  <td>용동중</td>
-                  <td>2019-10-30</td>
+                  <td>${student.name}</td>
+                  <td>
+                    <fmt:formatDate value="${StudentNotice.submitdate}" pattern="yyyy-MM-dd HH:mm:ss" />
+                  </td>
                 </tr>
-                <%-- </c:forEach> --%>
+                 </c:forEach>
               </tbody>
             </table>
             <div style="float: right; display:inline-block; width: 900px;">

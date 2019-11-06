@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
- <mapper namespace="com.report.mapper.StudentNoticeMapper">
+<mapper namespace="com.report.mapper.StudentNoticeMapper">
 
- <select id="list" resultType="StudentNotice">
+    <select id="list" resultType="StudentNotice">
     SELECT sn.studentnotice_no, sn.title, s.name, sn.submitdate
     FROM student_notice sn
     LEFT JOIN student s ON sn.student_no = s.student_no
@@ -12,19 +12,19 @@
     order by sn.studentnotice_no desc
  </select>
 
- <select id="findOne" resultType="StudentNotice">
-    SELECT sn.studentnotice_no, sn.title, sn.content, s.name, sn.submitdate
-    FROM Student_notice sn
+    <select id="findOne" resultType="StudentNotice">
+    SELECT sn.title, sn.content, s.name, sn.submitdate
+    FROM student_notice sn
     LEFT JOIN student s ON sn.student_no = s.student_no
     WHERE sn.studentnotice_no = #{studentnotice_no}
  </select>
 
- <insert id="insert" useGeneratedKeys="true" keyProperty="studentnotice_no">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="studentnotice_no">
     INSERT student_notice(title, content, student_no, submitdate, lecture_no)
     VALUES (#{title}, #{content},#{student_no}, date_format(now(), '%Y-%m-%d'), #{lecture_no})
  </insert>
 
- <update id="update">
+    <update id="update">
     UPDATE student_notice
     SET title = #{title},
     content = #{content},
@@ -32,7 +32,7 @@
     WHERE studentnotice_no = #{studentnotice_no}
 </update>
 
- <delete id="delete">
+    <delete id="delete">
     DELETE FROM Student_notice
     WHERE studentnotice_no = #{studentnotice_no}
 </delete>
