@@ -17,7 +17,7 @@ public class ProfessorNotice {
 	String title;
 	String content;
 	Date submitDate;
-	Date deadline;
-	Date deadline_add;
+	String deadline;
+	String deadline_add;
 	int perfect_score;
 }

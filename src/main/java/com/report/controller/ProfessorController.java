@@ -69,12 +69,27 @@ public class ProfessorController {
   		return "professor/notice"; // 과제 및 공지 페이지
   	}
 
-      @RequestMapping("posting")
-  	public String posting(Model model,Principal principal) {
-    	Professor professor = professorMapper.findByProfessorId(principal.getName());
-      	model.addAttribute("professor", professor);
-  		return "professor/posting"; // 과제 및 공지 작성 페이지
-  	  }
+	@GetMapping("posting")
+	public String posting(Model model,Principal principal, @RequestParam("id") int id) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		Lecture lecture = lectureMapper.findOne(id);
+		model.addAttribute("lecture", lecture);
+		model.addAttribute("professor", professor);
+		model.addAttribute("professorNotice", new ProfessorNotice());
+		return "professor/posting"; // 과제 및 공지 작성 페이지
+	}
+
+	@PostMapping("posting")
+	public String posting(Model model,Principal principal, @RequestParam("id") int id, ProfessorNotice professorNotice) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		model.addAttribute("professor", professor);
+		Lecture lecture = lectureMapper.findOne(id);
+		model.addAttribute("lecture", lecture);
+		professorNotice.setLecture_no(id);
+		professorNotice.setProfessor_no(professor.getProfessor_no());
+		professorNoticeMapper.insert(professorNotice);
+		return "redirect:notice?id="+id; // 과제 및 공지 작성 페이지
+	}
 
   	@RequestMapping("lecturefile")
   	public String lecturefile(Model model, Principal principal, @RequestParam("id") int id) {

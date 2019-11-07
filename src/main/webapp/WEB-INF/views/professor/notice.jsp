@@ -42,8 +42,8 @@
                 <c:forEach var="professorNotice" items="${professorNotices}"> 
 				 <tr onClick = " location.href='noticecontent' ">				
                   <td>${professorNotice.title}</td>
-                  <td><fmt:formatDate value="${professorNotice.deadline}" pattern="yyyy-MM-dd HH:mm" /></td>
-                  <td><fmt:formatDate value="${professorNotice.deadline_add}" pattern="yyyy-MM-dd HH:mm" /></td>
+                  <td>${professorNotice.deadline}</td>
+                  <td>${professorNotice.deadline_add}</td>
                   <td><button type="button" class="btn btn-outline-primary">파일</button></td>
                   <td></td>
                   <td>${professorNotice.perfect_score}</td>
@@ -58,7 +58,7 @@
 
               <%--교수만--%>
               <!-- <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right">삭제</button> -->
-              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='posting'">작성</button>
+              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='posting?id=${lecture.lecture_no}'">작성</button>
             </div>
 			<label>
 			</label>

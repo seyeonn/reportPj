@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -22,16 +23,15 @@
 
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <hr>
-           <form class="form">
-            <table class="table text-center table-bordered">
+           <form:form method="post" modelAttribute="professorNotice">
+            <table class="table table-bordered">
                   <tr>
                     <td class="table-active">제목 </td>
-                    <td><input type="text" id="name" name="name" style="width: 600px"></td>
+                    <td><form:input path="title" class="form-control" /></td>
                   </tr>
                   <tr>
-                    <td class="table-active">내용</td>
-                    <td><input type="text" id="ctt" name="ctt" style="width: 600px; height: 200px"></td>
+                    <td class="table-active">내용</td>                    
+                    <td><form:textarea path="content" class="form-control" style="height: 300px; overflow:auto"/></td>
                   </tr>
                   <tr>
                     <td class="table-active">첨부파일 </td>
@@ -44,33 +44,64 @@
                   </tr>
                   <tr>
                     <td class="table-active">만점</td>
-                    <td><input type="text" id="sco" name="sco"></td>
+                    <td><form:input path="perfect_score" class="form-control" style="width: 50px"/></td>
                   </tr>
                 <tr>
-                  <td class="table-active">제출기한</td>
-                  <td><input type="text" id="per" name="per" style="width: 250px"></td>
+                  <td class="table-active">제출기한</td> 
+                  <td>             
+                 <input type="text" name="deadline" class="datetimepicker" />  
+                  </td>
                 </tr>
                 <tr>
                   <td class="table-active">연장기한</td>
-                  <td><input type="text" id="per2" name="per2" style="width: 250px"></td>
+                  <td>
+            
+                 <input type="text" name="deadline_add" class="datetimepicker" />  
+                  </td>
                 </tr>
             </table>
-            </form>
-
-
             <div style="float: right; display:inline-block; width: 900px;">
-              <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='notice'">목록보기</button>
-              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='notice'">등록</button>
+              <button class="btn btn-primary mx-2 my-sm-0" type="submit" style="width: 100px; float: right" onclick="location.href='notice?id=${lecture.lecture_no}'">목록보기</button>
+              <button class="btn btn-primary my-2 my-sm-0" type="submit" style="width: 100px; float: right" onclick="location.href='posting?id=${lecture.lecture_no}'">등록</button>
             </div>
-            <label><br></label>
+            <label></label>
+            <label></label>
+            </form:form>
         </div>
-
-
       </div>
-    </div>
     </div>
   </main>
 </body>
 
+<link rel="stylesheet" href="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
+
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+<script type="text/javaScript" language="javascript" defer="defer">
+
+$(document).ready(function() {
+
+ $("#advert_start").datepicker({
+
+  dateFormat: 'yy-mm-dd'
+
+ });
+
+ 
+
+ $("#advert_end").datepicker({
+
+  dateFormat: 'yy-mm-dd'
+
+ });
+
+});
+$(function(){
+    $('.datetimepicker').appendDtpicker({'locale':'ko', 'autodateOnStart' : false});
+});
+
+</script>
+
 </html>
-v
