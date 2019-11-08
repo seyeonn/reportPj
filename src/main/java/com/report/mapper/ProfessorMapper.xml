@@ -66,12 +66,12 @@
 	<select id="findBytaNO" resultType="Lecture">
 		SELECT l.* FROM professor p
 		join professor_lecture pl on p.professor_no = pl.professor_no and p.id=#{id}
-		join lecture l on pl.lecture_no = l.lecture_no and l.ta_no is null;
+		join lecture l on pl.lecture_no = l.lecture_no and l.ta_no IS NULL;
 	</select>
 	
 	<select id="findBytaYES" resultType="Lecture">
 		SELECT l.* FROM professor p
 		join professor_lecture pl on p.professor_no = pl.professor_no and p.id=#{id}
-		join lecture l on pl.lecture_no = l.lecture_no and l.ta_no is not null;
+		join lecture l on pl.lecture_no = l.lecture_no and l.ta_no IS NOT NULL;
 	</select>
 </mapper>

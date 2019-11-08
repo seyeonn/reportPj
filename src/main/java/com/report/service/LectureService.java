@@ -65,6 +65,14 @@ public class LectureService {
 
         return lecture;
     }
+    
+    public void taNoLecture(int lecture_no) {
+    	lectureMapper.taLectureNoUpdate(lecture_no);
+    }
+    
+    public void taYesLecture(int ta_no, int lecture_no) {
+    	lectureMapper.taLectureYesUpdate(ta_no, lecture_no);
+    }
 
 
 }

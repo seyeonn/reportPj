@@ -62,7 +62,10 @@
 					<div
 						class="d-flex justify-content-between align-items-center w-100">
 						<strong class="text-gray-dark">${lecture.lecture_name}</strong>
-						<button type="button" class="btn btn-primary" name="button">승인</button>
+						<form method="post">
+                  		<input type="hidden" name="id" value="${ lecture.lecture_no }" />
+                  		<button type="submit" name="cmd" value="yes" class="btn btn-outline-primary">승인</button>
+                  		</form>
 					</div>
 				</div>
 			</div>
@@ -81,8 +84,10 @@
 					<div
 						class="d-flex justify-content-between align-items-center w-100">
 						<strong class="text-gray-dark">${lecture.lecture_name}</strong>
-						<button type="button" class="btn btn-outline-primary"
-							name="button">취소</button>
+						<form method="post">
+                  		<input type="hidden" name="id" value="${ lecture.lecture_no }" />
+                  		<button type="submit" name="cmd" value="no" class="btn btn-outline-primary">취소</button>
+                  		</form>
 					</div>
 				</div>
 			</div>
