@@ -39,7 +39,7 @@
               <tbody>
                 <form class="form">
                 <c:forEach var="professorNotice" items="${professorNotices}"> 
-				 <tr onClick = " location.href='noticecontent' ">
+				 <tr onClick = " location.href='noticecontent?id=${professorNotice.notice_no}' ">
                   <td>${professorNotice.title}</td>
                   <td>${professorNotice.deadline}</td>
                   <td>${professorNotice.deadline_add}</td>

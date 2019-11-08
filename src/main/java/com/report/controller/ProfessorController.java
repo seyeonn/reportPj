@@ -91,6 +91,17 @@ public class ProfessorController {
 		return "redirect:notice?id="+id; // 과제 및 공지 작성 페이지
 	}
 
+	@GetMapping("noticecontent")
+	public String noticecontent(Model model,Principal principal, @RequestParam("id") int id) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		ProfessorNotice professorNoice = professorNoticeMapper.findOne(id);
+		Lecture lecture = lectureMapper.findOne(professorNoice.getLecture_no());
+		model.addAttribute("lecture", lecture);
+		model.addAttribute("professor", professor);
+		model.addAttribute("professorNotice", professorNoice);
+		return "professor/noticecontent"; // 과제 및 공지 작성 페이지
+	}
+
   	@RequestMapping("lecturefile")
   	public String lecturefile(Model model, Principal principal, @RequestParam("id") int id) {
   		Professor professor = professorMapper.findByProfessorId(principal.getName());
