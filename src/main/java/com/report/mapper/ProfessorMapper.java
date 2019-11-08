@@ -19,4 +19,6 @@ public interface ProfessorMapper {
 	void update(Professor professor);
 	void delete(int professor_no);
 	void taUpdate(int ta_no, int professor_no);
+	List<Lecture> findBytaNO(String id);
+	List<Lecture> findBytaYES(String id);
 }

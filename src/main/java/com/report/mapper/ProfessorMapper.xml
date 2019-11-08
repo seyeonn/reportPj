@@ -12,6 +12,7 @@
 		SELECT * FROM Professor WHERE professor_name = #{name}
 	</select>
 	
+	
 	<select id="findByProfessorLecture1" resultType="Lecture">
 		SELECT l.* FROM professor p
 		join professor_lecture pl on p.professor_no = pl.professor_no and p.id=#{id}
@@ -61,4 +62,16 @@
 		WHERE professor_no = #{professor_no}
 	</update>
 
+
+	<select id="findBytaNO" resultType="Lecture">
+		SELECT l.* FROM professor p
+		join professor_lecture pl on p.professor_no = pl.professor_no and p.id=#{id}
+		join lecture l on pl.lecture_no = l.lecture_no and l.ta_no is null;
+	</select>
+	
+	<select id="findBytaYES" resultType="Lecture">
+		SELECT l.* FROM professor p
+		join professor_lecture pl on p.professor_no = pl.professor_no and p.id=#{id}
+		join lecture l on pl.lecture_no = l.lecture_no and l.ta_no is not null;
+	</select>
 </mapper>

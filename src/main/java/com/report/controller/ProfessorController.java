@@ -152,11 +152,19 @@ public class ProfessorController {
       @GetMapping(value="taapprove")
       public String taapprove(Model model, Principal principal) {
     	 Professor professor = professorMapper.findByProfessorId(principal.getName());
+    	 List<Lecture> taNoLecture = professorMapper.findBytaNO(principal.getName());
+    	 List<Lecture> taYesLecture = professorMapper.findBytaYES(principal.getName());
          Ta ta = taMapper.findOne(professor.getTa_no());
          List<Department> departments = departmentMapper.findAll();
+         model.addAttribute("taNoLecture", taNoLecture);
+         model.addAttribute("taYesLecture", taYesLecture);
          model.addAttribute("professor", professor);
+         
          model.addAttribute("departments", departments);
          model.addAttribute("ta", ta);
+         
+         System.out.printf("%s %s\n", ta.getTa_id(),ta.getPassword());
+         
          return "professor/taapprove";
       }
 

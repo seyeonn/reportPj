@@ -52,7 +52,7 @@
 
 		<div class="my-3 p-3 bg-white rounded shadow-sm">
 			<h6 class="border-bottom border-gray pb-2 mb-0">미승인</h6>
-			<%-- <c:forEach var="" items="${}"> --%>
+			<c:forEach var="lecture" items="${taNoLecture}">
 			<div class="media text-muted pt-3">
 				<img
 					data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1"
@@ -61,17 +61,17 @@
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
 					<div
 						class="d-flex justify-content-between align-items-center w-100">
-						<strong class="text-gray-dark"> DB 캡스톤디자인</strong>
+						<strong class="text-gray-dark">${lecture.lecture_name}</strong>
 						<button type="button" class="btn btn-primary" name="button">승인</button>
 					</div>
 				</div>
 			</div>
-			<%-- </c:forEach> --%>
+			</c:forEach>
 		</div>
 	
 		<div class="my-3 p-3 bg-white rounded shadow-sm">
 			<h6 class="border-bottom border-gray pb-2 mb-0">승인</h6>
-			<%-- <c:forEach var="" items="${ }"> --%>
+			<c:forEach var="lecture" items="${taYesLecture}">
 			<div class="media text-muted pt-3">
 				<img
 					data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1"
@@ -80,13 +80,13 @@
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
 					<div
 						class="d-flex justify-content-between align-items-center w-100">
-						<strong class="text-gray-dark">대학생활세미나2(IT융합 1반)</strong>
+						<strong class="text-gray-dark">${lecture.lecture_name}</strong>
 						<button type="button" class="btn btn-outline-primary"
 							name="button">취소</button>
 					</div>
 				</div>
 			</div>
-			<%-- </c:forEach> --%>
+			</c:forEach>
 		</div>
 
 	</main>
