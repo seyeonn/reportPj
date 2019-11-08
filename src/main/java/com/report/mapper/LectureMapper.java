@@ -24,5 +24,7 @@ public interface LectureMapper {
 	
 	void taLectureYesUpdate(int ta_no, int lecture_no);
 	void taLectureNoUpdate(int lecture_no);
+	
+	List<Lecture> findByTaLecture(int ta_no);
 
 }

@@ -54,4 +54,9 @@
 		WHERE lecture_no=#{lecture_no}
 	</update>
 
+	<select id="findByTaLecture" resultType="Lecture">
+		SELECT *
+		FROM Lecture
+		WHERE ta_no = #{ta_no}
+	</select>
 </mapper>
