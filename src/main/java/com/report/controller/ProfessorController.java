@@ -113,6 +113,20 @@ public class ProfessorController {
 		System.out.print(notice_no);
 		return "redirect:notice?id="+lecture_no; // 과제 및 공지 작성 페이지
 	}
+	
+	@PostMapping(value = "noticecontent", params="cmd=update")
+	public String noticecontentupdate(Model model,Principal principal, @RequestParam("notice_no") int notice_no,@RequestParam("lecture_no") int lecture_no) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		model.addAttribute("professor", professor);
+		Lecture lecture = lectureMapper.findOne(lecture_no);
+		model.addAttribute("lecture", lecture);
+		professorNoticeMapper.delete(notice_no);
+		System.out.println(lecture_no);
+		System.out.print(notice_no);
+		return "redirect:noticecontent?id="+notice_no; // 과제 및 공지 작성 페이지
+	}
+	
+
 
 	@RequestMapping("lecturefile")
 	public String lecturefile(Model model, Principal principal, @RequestParam("id") int id) {
