@@ -6,7 +6,7 @@
 
    <select id="findOne" resultType="ProfessorLecture">
       SELECT * FROM Professor_Lecture
-      WHERE professor_lecture_no = #{professor_lecture_no}
+      WHERE lecture_no = #{lecture_no}
    </select>
    <select id="findByProfessorNo" resultType="ProfessorLecture">
 	  SELECT * FROM ProfessorLecture

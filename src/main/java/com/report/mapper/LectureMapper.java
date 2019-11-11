@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.report.dto.Lecture;
-import org.springframework.stereotype.Component;
 
 @Mapper
 public interface LectureMapper {
@@ -21,9 +20,11 @@ public interface LectureMapper {
 	void insert(Lecture lecture);
 
 	void update(Lecture lecture);
-
-	void delete(Lecture lecture);
-
 	void delete(int lecture_no);
+	
+	void taLectureYesUpdate(int ta_no, int lecture_no);
+	void taLectureNoUpdate(int lecture_no);
+	
+	List<Lecture> findByTaLecture(int ta_no);
 
 }

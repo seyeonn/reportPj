@@ -7,7 +7,7 @@
 		SELECT * FROM TA
 	</select>
 	
-	 <select id="findOne" resultType="Student">
+	 <select id="findOne" resultType="Ta">
     SELECT * FROM TA WHERE ta_no = #{ta_no}
   </select>
 	

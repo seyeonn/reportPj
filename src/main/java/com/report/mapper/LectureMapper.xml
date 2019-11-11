@@ -41,5 +41,22 @@
 	<delete id="delete">
 		DELETE FROM Lecture WHERE lecture_no = #{lecture_no}
 	</delete>
+	
+	<update id="taLectureYesUpdate">
+		UPDATE Lecture SET
+		ta_no=#{ta_no}
+		WHERE lecture_no=#{lecture_no}
+	</update>
+	
+	<update id="taLectureNoUpdate">
+		UPDATE Lecture SET
+		ta_no=NULL
+		WHERE lecture_no=#{lecture_no}
+	</update>
 
+	<select id="findByTaLecture" resultType="Lecture">
+		SELECT *
+		FROM Lecture
+		WHERE ta_no = #{ta_no}
+	</select>
 </mapper>

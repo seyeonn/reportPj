@@ -20,17 +20,16 @@
 				<label></label>
 					<div class="row">
 						<div class="mb-3 order-md-1 mx-3">
-							<label for="username">TA 아이디</label>
+							<label>TA 아이디</label>
 							<div class="student_number">
-								<span class="student_number-text">hong123</span>
+								<span class="student_number-text">${ta.ta_id}</span>
 							</div>
 						</div>
 
 						<div class="mb-3 order-md-2 mx-5">
 							<label>TA 비밀번호</label>
 							<div class="student_number">
-								<button class="btn btn-primary  my-sm-0" type="submit"
-									style="width: 140px;">TA 비밀번호 리셋</button>
+								<span class="student_number-text">${ta.password}</span>
 							</div>
 						</div>
 					</div>
@@ -53,7 +52,7 @@
 
 		<div class="my-3 p-3 bg-white rounded shadow-sm">
 			<h6 class="border-bottom border-gray pb-2 mb-0">미승인</h6>
-			<%-- <c:forEach var="" items="${}"> --%>
+			<c:forEach var="lecture" items="${taNoLecture}">
 			<div class="media text-muted pt-3">
 				<img
 					data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1"
@@ -62,17 +61,20 @@
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
 					<div
 						class="d-flex justify-content-between align-items-center w-100">
-						<strong class="text-gray-dark"> DB 캡스톤디자인</strong>
-						<button type="button" class="btn btn-primary" name="button">승인</button>
+						<strong class="text-gray-dark">${lecture.lecture_name}</strong>
+						<form method="post">
+                  		<input type="hidden" name="id" value="${ lecture.lecture_no }" />
+                  		<button type="submit" name="cmd" value="yes" class="btn btn-outline-primary">승인</button>
+                  		</form>
 					</div>
 				</div>
 			</div>
-			<%-- </c:forEach> --%>
+			</c:forEach>
 		</div>
 	
 		<div class="my-3 p-3 bg-white rounded shadow-sm">
 			<h6 class="border-bottom border-gray pb-2 mb-0">승인</h6>
-			<%-- <c:forEach var="" items="${ }"> --%>
+			<c:forEach var="lecture" items="${taYesLecture}">
 			<div class="media text-muted pt-3">
 				<img
 					data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1"
@@ -81,13 +83,15 @@
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
 					<div
 						class="d-flex justify-content-between align-items-center w-100">
-						<strong class="text-gray-dark">대학생활세미나2(IT융합 1반)</strong>
-						<button type="button" class="btn btn-outline-primary"
-							name="button">취소</button>
+						<strong class="text-gray-dark">${lecture.lecture_name}</strong>
+						<form method="post">
+                  		<input type="hidden" name="id" value="${ lecture.lecture_no }" />
+                  		<button type="submit" name="cmd" value="no" class="btn btn-outline-primary">취소</button>
+                  		</form>
 					</div>
 				</div>
 			</div>
-			<%-- </c:forEach> --%>
+			</c:forEach>
 		</div>
 
 	</main>

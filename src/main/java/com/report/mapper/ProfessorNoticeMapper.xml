@@ -12,16 +12,15 @@
     </select>
 
     <select id="findOne" resultType="ProfessorNotice">
-        SELECT pn.notice_no, pn.title, pn.perfect_score, pn.deadline, pn.deadline_add
-        FROM professor_notice pn
-        WHERE pn.noitice_no = #{notice_no}
+        SELECT *
+        FROM professor_notice 
+        WHERE notice_no = #{notice_no}
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="notice_no">
-        INSERT professor_notice(title, content, perfect_score, submitdate, deadline, deadline_add, lecture_no,
-        professor_no)
-        VALUES (#{title}, #{content}, #{perfect_score}, date_format(now(), '%Y-%m-%d'), #{deadline}, #{deadline_add},
-        #{lecture_no}, #{professor_no})
+        INSERT professor_notice(lecture_no, professor_no, header, title, content, submitdate, deadline, deadline_add, perfect_score)
+        VALUES (#{lecture_no}, #{professor_no}, "과제", #{title}, #{content}, now(), #{deadline}, #{deadline_add}
+        , #{perfect_score})
     </insert>
 
     <update id="update">
