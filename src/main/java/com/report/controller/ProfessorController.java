@@ -161,10 +161,13 @@ public class ProfessorController {
 		model.addAttribute("taNoLecture", taNoLecture);
 		model.addAttribute("taYesLecture", taYesLecture);
 		model.addAttribute("professor", professor);
-
-		//model.addAttribute("ta", ta);
-
-		//System.out.printf("%s %s\n", ta.getTa_id(),ta.getPassword());
+		
+		if(professor.getTa_no() > 0) {
+			Ta ta = taMapper.findOne(professor.getTa_no());
+			model.addAttribute("ta", ta);
+			System.out.printf("%s %s\n", ta.getTa_id(),ta.getPassword());
+		}
+		
 
 		return "professor/taapprove";
 	}
