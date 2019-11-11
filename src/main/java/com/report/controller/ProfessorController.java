@@ -151,20 +151,20 @@ public class ProfessorController {
 		return "professor/studentcontent"; // 학생 게시판 페이지
 	}
 
-	@GetMapping(value="taapprove")
+	@RequestMapping(value="taapprove", method=RequestMethod.GET)
 	public String taapprove(Model model, Principal principal) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		List<Lecture> taNoLecture = professorMapper.findBytaNO(principal.getName());
 		List<Lecture> taYesLecture = professorMapper.findBytaYES(principal.getName());
-		Ta ta = taMapper.findOne(professor.getTa_no());
-		List<Department> departments = departmentMapper.findAll();
+		//Ta ta = taMapper.findOne(professor.getTa_no());
+		
 		model.addAttribute("taNoLecture", taNoLecture);
 		model.addAttribute("taYesLecture", taYesLecture);
 		model.addAttribute("professor", professor);
 
-		model.addAttribute("ta", ta);
+		//model.addAttribute("ta", ta);
 
-		System.out.printf("%s %s\n", ta.getTa_id(),ta.getPassword());
+		//System.out.printf("%s %s\n", ta.getTa_id(),ta.getPassword());
 
 		return "professor/taapprove";
 	}
