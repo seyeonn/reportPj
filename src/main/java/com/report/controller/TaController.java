@@ -24,17 +24,18 @@ public class TaController {
 	@Autowired LectureMapper lectureMapper;
 	@Autowired ProfessorMapper professorMapper;
 
+
 	@RequestMapping("taMain")
 	public String taMain(Model model, Principal principal) {
 		Ta ta = taMapper.findByTaId(principal.getName());
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		List<Lecture> taLecture = lectureMapper.findByTaLecture(ta.getTa_no());
-		
+
 		model.addAttribute("ta", ta);
 		model.addAttribute("professor", professor);
 		model.addAttribute("taLecture", taLecture);
-		
-		
+
+
 		return "ta/main"; // 로그인 한 ta를 위한 메인 페이지 URL
 	}
 
@@ -42,11 +43,11 @@ public class TaController {
 	public String information(Model model) {
 		return "ta/information"; // 로그인 한 ta를 위한 메인 페이지 URL
 	}
-	
+
 	@RequestMapping("mypage")
 	public String mypage(Model model) {
 		return "ta/mypage"; // 로그인 한 ta를 위한 메인 페이지 URL
 	}
-	
-	
+
+
 }
