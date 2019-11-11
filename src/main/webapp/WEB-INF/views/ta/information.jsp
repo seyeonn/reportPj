@@ -10,11 +10,7 @@
 <body class="bg-light">
 
     <!-- Nav -->
-  <c:import url="../student/nav.jsp" />
-
-
-
-
+  <c:import url="../ta/nav.jsp" />
         <div class="my-3 p-3 bg-white rounded shadow-sm main-container" style="width: 850px; ">
 
             <table class="table text-center table-bordered">
