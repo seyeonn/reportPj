@@ -15,4 +15,5 @@ public class StudentNotice {
 	String title;
 	String content;
 	Date submitdate;
+
 }

@@ -3,13 +3,11 @@ package com.report.service;
 import java.security.Principal;
 import java.util.List;
 
+import com.report.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.report.dto.Lecture;
-import com.report.dto.Student;
-import com.report.dto.StudentNotice;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.StudentNoticeMapper;

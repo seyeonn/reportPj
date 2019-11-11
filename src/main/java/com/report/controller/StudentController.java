@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.report.dto.*;
 import com.report.service.StudentNoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.report.dto.Lecture;
-import com.report.dto.Professor;
-import com.report.dto.ProfessorLecture;
-import com.report.dto.Student;
-import com.report.dto.StudentLecture;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
@@ -92,22 +88,36 @@ public class StudentController {
   		return "student/notice"; // 과제 및 공지 페이지
 	}
 
-	@RequestMapping("studentnotice")
-	public String list(Model model, Principal principal, @RequestParam("id") int id) {
-		Lecture lecture = lectureMapper.findOne(id);
-		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
-		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
-		Student student = studentMapper.findByStudentId(principal.getName());
-		model.addAttribute("student", student);
-		model.addAttribute("lecture", lecture);
-		model.addAttribute("professor", professor);
-		return "student/studentnotice";
+    @GetMapping("studentnotice")
+    public String list(Model model, Principal principal, @RequestParam("id") int id){
+	    List<StudentNotice> studentNotices = studentNoticeService.list(id);
+	    Student student = studentMapper.findByStudentId(principal.getName());
+	    Lecture lecture = lectureMapper.findOne(id);
+
+	    model.addAttribute("studentNotices", studentNotices);
+	    model.addAttribute("student", student);
+	    model.addAttribute("lecture", lecture);
+
+	    return "student/studentnotice";
+    }//학생 게시판 목록
+
+	@RequestMapping("studentcontent")
+	public String findOne(Model model){
+		return "student";
 	}
+
+
+    @RequestMapping("delete")
+	public String delete(Model model, @RequestParam("studentnotice_no") int studentnotice_no){
+		studentNoticeService.delete(model, studentnotice_no);
+		return "student/studentnotice";
+	}//게시판 글 삭제
+
+
 
 	@RequestMapping("lecturefile")
 	public String lecturefile(Model model) {
 		return "student/lecturefile"; // 강의 자료 페이지
-
 	}
 
 

@@ -41,7 +41,7 @@
                   <td></td>
                   <td>${student.name}</td>
                   <td>
-                    <fmt:formatDate value="${StudentNotice.submitdate}" pattern="yyyy-MM-dd HH:mm:ss" />
+                    <fmt:formatDate value="${StudentNotice.submitdate}" pattern="yyyy-MM-dd" />
                   </td>
                 </tr>
                  </c:forEach>
