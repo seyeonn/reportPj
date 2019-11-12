@@ -1,5 +1,6 @@
 package com.report.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
@@ -26,6 +28,7 @@ import com.report.mapper.StudentMapper;
 import com.report.mapper.TaMapper;
 import com.report.mapper.UserMapper;
 import com.report.service.LectureService;
+import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
 import com.report.service.TaService;
 
@@ -42,6 +45,7 @@ public class ProfessorController {
 	@Autowired TaMapper taMapper;
 	@Autowired DepartmentMapper departmentMapper;
 	@Autowired private TaService taService;
+	@Autowired LecturefileService lecturefileService;
 
 	@Autowired UserMapper userMapper;
 
@@ -113,7 +117,7 @@ public class ProfessorController {
 		System.out.print(notice_no);
 		return "redirect:notice?id="+lecture_no; // 과제 및 공지 작성 페이지
 	}
-	
+
 	@PostMapping(value = "noticecontent", params="cmd=update")
 	public String noticecontentupdate(Model model,Principal principal, @RequestParam("notice_no") int notice_no,@RequestParam("lecture_no") int lecture_no) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
@@ -125,17 +129,29 @@ public class ProfessorController {
 		System.out.print(notice_no);
 		return "redirect:noticecontent?id="+notice_no; // 과제 및 공지 작성 페이지
 	}
-	
 
 
-	@RequestMapping("lecturefile")
-	public String lecturefile(Model model, Principal principal, @RequestParam("id") int id) {
+	@GetMapping("lecturefile")
+	public String lecturefile(Model model, Principal principal, @RequestParam(value="id") int id) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
+		System.out.println("강의번호"+id);
+		System.out.println("get강의번호"+lecture.getLecture_no());
+		model.addAttribute("files", lecturefileService.findAll()); // 업로드된 파일리스트
 		return "professor/lecturefile"; // 강의자료 페이지
 	}
+	@PostMapping(value="lecturefile",params="cmd=upload") // 파일 업로드
+    public String upload(Model model,@RequestParam("upload") MultipartFile[] upload, @RequestParam("id") int id) throws IOException {
+		System.out.println("강의번호2"+id);
+		for(MultipartFile multipartFile : upload) {
+            if (multipartFile.getSize() <= 0) continue;
+            lecturefileService.save(multipartFile, id);
+            System.out.println("돌아가니");
+        }
+        return "redirect:lecturefile?id="+id;
+    }
 
 	@RequestMapping("mypage")
 	public String mypage(Model model,Principal principal) {
