@@ -12,7 +12,14 @@ public class Homework {
 	int hw_no;
 	int student_no;
 	int notice_no;
-	String file_no;
+	String file_name;
+	int file_size;
 	Date submitdate;
 	Integer grade;
+	int rank;
+	
+	Student student;
+	
+	
+	
 }

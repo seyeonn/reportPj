@@ -18,4 +18,6 @@ public class Student {
 	String password_question;
 	String password_answer;
 	String userType="학생";
+	
+	Department department;
 }

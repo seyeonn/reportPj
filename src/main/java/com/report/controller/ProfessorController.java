@@ -12,14 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import com.report.dto.Department;
+import com.report.dto.Homework;
+
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
-import com.report.dto.ProfessorLecture;
 import com.report.dto.ProfessorNotice;
 import com.report.dto.Ta;
 import com.report.dto.User;
 import com.report.mapper.DepartmentMapper;
+import com.report.mapper.HomeworkMapper;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
@@ -44,6 +47,7 @@ public class ProfessorController {
 	@Autowired TaMapper taMapper;
 	@Autowired DepartmentMapper departmentMapper;
 	@Autowired private TaService taService;
+	@Autowired HomeworkMapper homeworkMapper;
 
 	@Autowired UserMapper userMapper;
 
@@ -104,6 +108,39 @@ public class ProfessorController {
 		return "professor/noticecontent"; // 과제 및 공지 작성 페이지
 	}
 
+	@PostMapping(value = "noticecontent", params="cmd=delete")
+	public String noticecontentdelete(Model model,Principal principal, @RequestParam("notice_no") int notice_no,@RequestParam("lecture_no") int lecture_no) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		model.addAttribute("professor", professor);
+		Lecture lecture = lectureMapper.findOne(lecture_no);
+		model.addAttribute("lecture", lecture);
+		professorNoticeMapper.delete(notice_no);
+		System.out.println(lecture_no);
+		System.out.print(notice_no);
+		return "redirect:notice?id="+lecture_no; // 과제 및 공지 작성 페이지
+	}
+
+	@GetMapping("noticecontentedit")
+	public String noticecontentedit1(Model model,Principal principal, @RequestParam("notice_no") int notice_no,@RequestParam("lecture_no") int lecture_no) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		model.addAttribute("professor", professor);
+		Lecture lecture = lectureMapper.findOne(lecture_no);
+		model.addAttribute("lecture", lecture);
+		ProfessorNotice professorNoice = professorNoticeMapper.findOne(notice_no);
+		model.addAttribute("professorNotice", professorNoice);
+		return "professor/noticecontentedit"; // 과제 및 공지 작성 페이지
+	}
+
+	@PostMapping(value = "noticecontentedit", params="cmd=edit")
+	public String noticecontentedit2(Model model,Principal principal, ProfessorNotice professorNoice, @RequestParam("notice_no") int notice_no,@RequestParam("lecture_no") int lecture_no) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		model.addAttribute("professor", professor);
+		Lecture lecture = lectureMapper.findOne(lecture_no);
+		model.addAttribute("lecture", lecture);
+		professorNoticeMapper.update(professorNoice);
+		return "redirect:noticecontent?id="+notice_no; // 과제 및 공지 작성 페이지
+	}
+
 	@RequestMapping("lecturefile")
 	public String lecturefile(Model model, Principal principal, @RequestParam("id") int id) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
@@ -138,9 +175,17 @@ public class ProfessorController {
 
 
 	@RequestMapping("inputscore")
-	public String inputscore(Model model,Principal principal) {
-		Professor professor = professorMapper.findByProfessorId(principal.getName());
-		model.addAttribute("professor", professor);
+	public String inputscore(Model model, Principal principal) {
+		ProfessorNotice notice = professorNoticeMapper.findByOne(principal.getName());
+		List<Homework> homeworks = homeworkMapper.findNotoiceStudents();
+		model.addAttribute("homeworks", homeworks);
+		model.addAttribute("notice", notice);
+
+		System.out.println(homeworks.size());
+		
+		for (Homework hw: homeworks) {
+			System.out.printf("%s\n",hw.getStudent().getName());
+		}
 		return "professor/inputscore"; // 학생 게시판 페이지
 	}
 
@@ -157,17 +202,17 @@ public class ProfessorController {
 		List<Lecture> taNoLecture = professorMapper.findBytaNO(principal.getName());
 		List<Lecture> taYesLecture = professorMapper.findBytaYES(principal.getName());
 		//Ta ta = taMapper.findOne(professor.getTa_no());
-		
+
 		model.addAttribute("taNoLecture", taNoLecture);
 		model.addAttribute("taYesLecture", taYesLecture);
 		model.addAttribute("professor", professor);
-		
+
 		if(professor.getTa_no() > 0) {
 			Ta ta = taMapper.findOne(professor.getTa_no());
 			model.addAttribute("ta", ta);
 			System.out.printf("%s %s\n", ta.getTa_id(),ta.getPassword());
 		}
-		
+
 
 		return "professor/taapprove";
 	}
@@ -178,37 +223,37 @@ public class ProfessorController {
 		List<Lecture> taNoLecture = professorMapper.findBytaNO(principal.getName());
 		List<Lecture> taYesLecture = professorMapper.findBytaYES(principal.getName());
 		Ta ta = taMapper.findOne(professor.getTa_no());
-		
+
 		model.addAttribute("taNoLecture", taNoLecture);
 		model.addAttribute("taYesLecture", taYesLecture);
 		model.addAttribute("professor", professor);
 		model.addAttribute("ta", ta);
-		
+
 		lectureService.taYesLecture(professor.getTa_no(), id);
-		
+
 		System.out.printf("%d\n", lecture.getTa_no());
 
 		return "redirect:taapprove";
 	}
-	
+
 	@RequestMapping(value="taapprove", method=RequestMethod.POST, params="cmd=no")
 	public String taLectureNo(Model model, @RequestParam("id") int id, Principal principal, Lecture lecture) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		List<Lecture> taNoLecture = professorMapper.findBytaNO(principal.getName());
 		List<Lecture> taYesLecture = professorMapper.findBytaYES(principal.getName());
 		Ta ta = taMapper.findOne(professor.getTa_no());
-		
+
 		model.addAttribute("taNoLecture", taNoLecture);
 		model.addAttribute("taYesLecture", taYesLecture);
 		model.addAttribute("professor", professor);
 		model.addAttribute("ta", ta);
-		
+
 		lectureService.taNoLecture(id);
 
 		return "redirect:taapprove";
 	}
-	
-	
+
+
 	@GetMapping(value="createta")
 	public String professorcreate(Model model, Principal principal) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());

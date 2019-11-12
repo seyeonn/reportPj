@@ -51,16 +51,15 @@
 
             <tbody>
               <form class="form">
-				<c:forEach var="homework" items="${HomeworkStudents}">
-                <tr data-url="edtit?id=${homework.hw_no }"> --%>
-                
-                  <td>${inputScoreModel.id } </td>
-                  <td>${inputScoreModel.name }</td>
-                  <td>${inputScoreModel.department_name}</td>
+				<c:forEach var="homework" items="${homeworks}">
+                <tr>
+                  <td>${homework.student.id } </td>
+                  <td>${homework.student.name }</td>
+                  <td>${homework.student.department.department_name}</td>
                   <td><button type="button" class="btn btn-outline-primary" >열람</button></td>
-                  <td>{homework.submitdate}</td>
-                  <td><input type="text" class="form-control" name="" value="" placeholder="" /></td>
-                  <td> <input type="text" class="form-control" name="grade" value="grade" placeholder="" style="width:50px"  /></td>
+                  <td>${homework.submitdate}</td>
+                  <td><input type="text" class="form-control" name="grade" value="${homework.grade}" placeholder="" /></td>
+                  <td> <input type="text" class="form-control" name="rank" value="${homework.rank}" placeholder="" style="width:50px"  /></td>
                   <td></td>
                 </tr>
                 </c:forEach>
@@ -68,8 +67,8 @@
             
           </table>
           <div style="float: right; display:inline-block; width: 900px;">
-            <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='noticecontent.html'">목록</button>
-            <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='noticecontent.html'">입력</button>
+            <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='noticecontent'">목록</button>
+            <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='noticecontent'">입력</button>
           </div>
           <label for=""><br></label>
           </form>

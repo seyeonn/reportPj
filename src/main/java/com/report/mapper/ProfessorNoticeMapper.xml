@@ -16,6 +16,12 @@
         FROM professor_notice 
         WHERE notice_no = #{notice_no}
     </select>
+    
+    <select id="findByOne" resultType="ProfessorNotice">
+        SELECT *
+        FROM professor_notice 
+        WHERE notice_no = #{notice_no}
+    </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="notice_no">
         INSERT professor_notice(lecture_no, professor_no, header, title, content, submitdate, deadline, deadline_add, perfect_score)
@@ -23,14 +29,14 @@
         , #{perfect_score})
     </insert>
 
-    <update id="update">
+	<update id="update">
         UPDATE professor_notice
         SET title = #{title}
-        content = #{content}
-        perfect_score = #{perfect_score}
-        submitdate = date_format(now(), '%Y-%m-%d')
-        deadline = #{deadline}
-        deadline_add = #{deadline_add}
+        ,content = #{content}
+        ,perfect_score = #{perfect_score}
+        ,submitdate = date_format(now(), '%Y-%m-%d')
+        ,deadline = #{deadline}
+        ,deadline_add = #{deadline_add}
         WHERE notice_no = #{notice_no}
     </update>
 
