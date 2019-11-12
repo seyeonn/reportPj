@@ -3,13 +3,29 @@ package com.report.controller;
 import java.security.Principal;
 import java.util.List;
 
-import com.report.dto.*;
-import com.report.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.report.dto.Lecture;
+import com.report.dto.Professor;
+import com.report.dto.ProfessorLecture;
+import com.report.dto.ProfessorNotice;
+import com.report.dto.Student;
+import com.report.dto.StudentLecture;
+import com.report.dto.StudentNotice;
+import com.report.mapper.LectureMapper;
+import com.report.mapper.ProfessorLectureMapper;
+import com.report.mapper.ProfessorMapper;
+import com.report.mapper.ProfessorNoticeMapper;
+import com.report.mapper.StudentLectureMapper;
+import com.report.mapper.StudentMapper;
+import com.report.mapper.StudentNoticeMapper;
 import com.report.service.LectureService;
 import com.report.service.StudentNoticeService;
 
@@ -176,11 +192,32 @@ public class StudentController {
 	}
 
 
-	@RequestMapping("mypage")
-	public String mypage(Model model) {
+	@GetMapping("mypage")
+	public String mypage(Model model, Principal principal) {
+		Student student = studentMapper.findByStudentId(principal.getName());
+		model.addAttribute("student", student);
 		return "student/mypage"; // 학생 게시판 페이지
 
 	}
+
+	@PostMapping("mypage")
+	public String mypage(Student student1, Model model, Principal principal) {
+		Student student = studentMapper.findByStudentId(principal.getName());
+		student.setName(student1.getName());
+		student.setDepartment_no(student1.getDepartment_no());
+		student.setStudent_email(student1.getStudent_email());
+		student.setStudent_phone(student1.getStudent_phone());
+		student.setPassword_question(student1.getPassword_question());
+		student.setPassword_answer(student1.getPassword_answer());
+		student.setPassword1(student1.getPassword1());
+		student.setPassword2(student1.getPassword2());
+
+		studentMapper.update(student);
+
+		return "redirect:mypage"; // 학생 게시판 페이지
+
+	}
+
 
 	@RequestMapping("information")
 	public String information(Model model) {

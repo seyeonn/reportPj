@@ -9,8 +9,11 @@
   </select>
   
   <select id="findByStudentId" resultType="Student">
-    SELECT * FROM Student WHERE id = #{id}
-  </select>   
+    SELECT s.*
+    FROM Student s 
+    JOIN department d on s.department_no = d.department_no
+    WHERE s.id = #{id};
+  </select>    
   
   <select id="findByStudentLecture1" resultType="Lecture">
     SELECT l.*
@@ -49,6 +52,7 @@
       student_email = #{student_email},
       student_phone = #{student_phone},
       password1 = #{password1},
+      password2 = #{password2},
       password_question = #{password_question},
       password_answer = #{password_answer}
     WHERE student_no = #{student_no}
