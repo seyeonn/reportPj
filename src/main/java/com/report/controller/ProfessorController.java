@@ -102,6 +102,18 @@ public class ProfessorController {
 		return "professor/noticecontent"; // 과제 및 공지 작성 페이지
 	}
 
+	@PostMapping(value = "noticecontent", params="cmd=delete")
+	public String noticecontentdelete(Model model,Principal principal, @RequestParam("notice_no") int notice_no,@RequestParam("lecture_no") int lecture_no) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		model.addAttribute("professor", professor);
+		Lecture lecture = lectureMapper.findOne(lecture_no);
+		model.addAttribute("lecture", lecture);
+		professorNoticeMapper.delete(notice_no);
+		System.out.println(lecture_no);
+		System.out.print(notice_no);
+		return "redirect:notice?id="+lecture_no; // 과제 및 공지 작성 페이지
+	}
+
 	@GetMapping("noticecontentedit")
 	public String noticecontentedit1(Model model,Principal principal, @RequestParam("notice_no") int notice_no,@RequestParam("lecture_no") int lecture_no) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
