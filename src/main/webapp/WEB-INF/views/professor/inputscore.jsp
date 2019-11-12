@@ -16,8 +16,8 @@
 
   <main role="main" class="main-container">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-    <strong>&nbsp&nbsp DB 캡스톤디자인 &nbsp&nbsp&nbsp&nbsp</strong>
-    <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 홍은지 교수님 &nbsp&nbsp / &nbsp&nbsp 학생수 :26</small>
+    <strong>&nbsp&nbsp ${lecture.lecture_name } &nbsp&nbsp&nbsp&nbsp</strong>
+    <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp / &nbsp&nbsp </small>
     </div>
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
@@ -41,7 +41,6 @@
                 <th>학번</th>
                 <th>이름</th>
                 <th>학과</th>
-                <th>학년</th>
                 <th>채점</th>
                 <th>제출정보</th>
                 <th>첨부글</th>
@@ -52,20 +51,19 @@
 
             <tbody>
               <form class="form">
-				<%-- <c:forEach var="" items="${  }">  --%>
-                <%-- <tr data-url="edtit?id=${ }"> --%>
-                <tr>
-                  <td>201332020 </td>
-                  <td>용동중</td>
-                  <td>소프트웨어공학</td>
-                  <td>3</td>
-                  <td><button type="button" class="btn btn-outline-primary">열람</button></td>
-                  <td>기한내제출</td>
+				<c:forEach var="homework" items="${HomeworkStudents}">
+                <tr data-url="edtit?id=${homework.hw_no }"> --%>
+                
+                  <td>${inputScoreModel.id } </td>
+                  <td>${inputScoreModel.name }</td>
+                  <td>${inputScoreModel.department_name}</td>
+                  <td><button type="button" class="btn btn-outline-primary" >열람</button></td>
+                  <td>{homework.submitdate}</td>
                   <td><input type="text" class="form-control" name="" value="" placeholder="" /></td>
-                  <td> <input type="text" class="form-control" name="" value="" placeholder="" style="width:50px"  /></td>
+                  <td> <input type="text" class="form-control" name="grade" value="grade" placeholder="" style="width:50px"  /></td>
                   <td></td>
                 </tr>
-                <%-- </c:forEach> --%>
+                </c:forEach>
             </tbody>
             
           </table>

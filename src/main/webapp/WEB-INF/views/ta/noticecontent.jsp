@@ -10,10 +10,10 @@
 <body class="bg-light">
 
   <!-- Nav -->
-	<c:import url="../professor/nav.jsp" />
+	<c:import url="../ta/nav.jsp" />
 
   <main role="main" class="main-container">
-   <c:import url="../professor/lecturename.jsp" />
+   <c:import url="../ta/lecturename.jsp" />
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
         <!-- Menu -->
@@ -24,6 +24,7 @@
         <div class="my-3 p-3 bg-white rounded shadow-sm">
        
 
+          <form class="form">
             <table class="table table-bordered  text-center">
               <tbody>
                 <tr>
@@ -69,19 +70,15 @@
 
 
             <div style="float: right; display:inline-block; width: 900px;">
-              <button class="btn btn-primary my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='notice?id=${lecture.lecture_no}'">목록보기</button>
+              <button class="btn btn-primary my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='notice'">목록보기</button>
               <%--교수랑 TA만--%>
               <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='inputscore'">점수부여</button>
               <%--교수만--%>
-			  <form method="post">
-              	<input type="hidden" name="notice_no" value="${ professorNotice.notice_no }" />
-              	<input type="hidden" name="lecture_no" value="${ lecture.lecture_no }" />
-              	<button class="btn btn-primary my-sm-0" type="submit" name="cmd" value="delete" style="width: 100px; float: right">삭제</button>
-              </form> 
-              <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='edit'">수정</button>
+<!--               <button class="btn btn-primary my-sm-0" type="button" style="width: 100px; float: right">삭제</button>
+              <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='edit'">수정</button> -->
             </div>
             <label for=""><br></label>
-
+          </form>
         </div>
       </div>
     </div>

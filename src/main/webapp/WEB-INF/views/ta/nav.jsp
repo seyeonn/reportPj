@@ -4,7 +4,7 @@
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
 
-    <a class="navbar-brand mr-auto mr-lg-0" href="/ta/taMain">성공회대학교 과제제출시스템</a>
+    <a class="navbar-brand mr-auto mr-lg-0" href="taMain">성공회대학교 과제제출시스템</a>
     <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,7 +12,7 @@
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/ta/taMain">초기화면</a>
+          <a class="nav-link" href="taMain">초기화면</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="mypage">마이페이지</a>
