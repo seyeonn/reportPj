@@ -23,8 +23,8 @@ public class StudentNoticeService {
     @Autowired
     StudentMapper studentMapper;
 
-    public List<StudentNotice> list(int lecture_no) {
-        return studentNoticeMapper.list(lecture_no);
+    public List<StudentNotice> list(int id) {
+        return studentNoticeMapper.list(id);
     }
 
     public StudentNotice findOne(int studentnotice_no){
@@ -32,18 +32,29 @@ public class StudentNoticeService {
     }
 
     //get
-    public void insert(Model model, int lecture_no, Principal principal) {
+    public void insert(Model model, int id, Principal principal) {
         StudentNotice studentNotice = new StudentNotice();
-        Lecture lecture = lectureMapper.findOne(lecture_no);
+        Lecture lecture = lectureMapper.findOne(id);
         Student student = studentMapper.findByStudentId(principal.getName());
 
+        model.addAttribute("studentNotice", studentNotice);
         model.addAttribute("lecture", lecture);
         model.addAttribute("student", student);
+        //System.out.println(lecture.getLecture_name());
     }
-
     //post
-    public void insert(Model model, StudentNotice newStudentNotice) {
+    public void insert(Model model, Principal principal, StudentNotice newStudentNotice, int id) {
+        Student student = studentMapper.findByStudentId(principal.getName());
+        Lecture lecture = lectureMapper.findOne(id);
+
+        newStudentNotice.setLecture_no(id);
+        newStudentNotice.setStudent_no(student.getStudent_no());
+
+        model.addAttribute("student", student);
+        model.addAttribute("lecture", lecture);
+
         studentNoticeMapper.insert(newStudentNotice);
+        //System.out.println(lecture.getLecture_name());
     }
 
     //get

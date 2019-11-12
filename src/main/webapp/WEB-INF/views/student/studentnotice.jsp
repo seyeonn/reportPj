@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
@@ -35,13 +35,13 @@
                 </tr>
               </thead>
               <tbody>
-                 <c:forEach var="StudentNotice" items="${studentNotices}">
-                <tr onClick = "location.href='studentcontent?${StudentNotice.studentnotice_no}'">
-                  <td>${StudentNotice.title}</td>
+                 <c:forEach var="studentNotice" items="${studentNotices}">
+                <tr onClick = "location.href='studentcontent?id=${studentNotice.studentnotice_no}'">
+                  <td>${studentNotice.title}</td>
                   <td></td>
                   <td>${student.name}</td>
                   <td>
-                    <fmt:formatDate value="${StudentNotice.submitdate}" pattern="yyyy-MM-dd" />
+                    <fmt:formatDate value="${studentNotice.submitdate}" pattern="yyyy-MM-dd" />
                   </td>
                 </tr>
                  </c:forEach>
@@ -49,7 +49,7 @@
             </table>
             <div style="float: right; display:inline-block; width: 900px;">
                 <%--학생만--%>
-              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='studentposting'">작성</button>
+              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='studentposting?id=${lecture.lecture_no}'">작성</button>
             </div>
             <div>
 			<label></label>

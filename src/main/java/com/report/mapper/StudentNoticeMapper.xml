@@ -21,7 +21,7 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="studentnotice_no">
     INSERT student_notice(title, content, student_no, submitdate, lecture_no)
-    VALUES (#{title}, #{content},#{student_no}, date_format(now(), '%Y-%m-%d'), #{lecture_no})
+    VALUES (#{title}, #{content}, #{student_no}, date_format(now(), '%Y-%m-%d'), #{lecture_no})
  </insert>
 
     <update id="update">
@@ -33,7 +33,7 @@
 </update>
 
     <delete id="delete">
-    DELETE FROM Student_notice
+    DELETE FROM student_notice
     WHERE studentnotice_no = #{studentnotice_no}
 </delete>
 </mapper>
