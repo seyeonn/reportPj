@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-import com.report.dto.Department;
 import com.report.dto.Homework;
-
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
@@ -150,11 +147,29 @@ public class ProfessorController {
 		return "professor/lecturefile"; // 강의자료 페이지
 	}
 
-	@RequestMapping("mypage")
-	public String mypage(Model model,Principal principal) {
+	@GetMapping("mypage")
+	public String mypage(Model model, Principal principal) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		model.addAttribute("professor", professor);
-		return "professor/mypage"; // 마이페이지
+		return "professor/mypage"; // 학생 게시판 페이지
+
+	}
+
+	@PostMapping("mypage")
+	public String mypage(Professor professor1, Model model, Principal principal) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		professor.setName(professor1.getName());
+		professor.setProfessor_email(professor1.getProfessor_email());
+		professor.setProfessor_phone(professor1.getProfessor_phone());
+		professor.setPassword_question(professor1.getPassword_question());
+		professor.setPassword_answer(professor1.getPassword_answer());
+		professor.setPassword1(professor1.getPassword1());
+		professor.setPassword2(professor1.getPassword2());
+		professorMapper.update(professor);
+		System.out.println(professor1.getPassword_answer());
+		System.out.println(professor1.getId());
+		return "redirect:mypage"; // 학생 게시판 페이지
+
 	}
 
 	@RequestMapping("information")
@@ -179,7 +194,7 @@ public class ProfessorController {
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents();
 
 		System.out.println(homeworks.size());
-		
+
 		model.addAttribute("homeworks", homeworks);
 		return "professor/inputscore"; // 학생 게시판 페이지
 	}
@@ -187,18 +202,18 @@ public class ProfessorController {
 	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")
 	public String inputscore2(Model model, Principal principal, @RequestParam List<Homework> homeworks) {
 		homeworks = homeworkMapper.findNotoiceStudents();
-		
+
 		for (Homework hw: homeworks) {
 			System.out.printf("%s\n",hw.getStudent().getName());
 			homeworkMapper.scoreUpdate(hw.getHw_no(), hw.getGrade());
 			System.out.println(hw.getGrade()+"**\n");
 		}
-		
+
 		model.addAttribute("homeworks", homeworks);
 		return "professor/inputscore"; // 학생 게시판 페이지
 	}
 
-	
+
 	@RequestMapping("studentcontent")
 	public String studentcontent(Model model,Principal principal) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());

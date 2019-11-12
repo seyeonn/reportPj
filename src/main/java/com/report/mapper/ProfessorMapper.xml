@@ -26,7 +26,10 @@
 	</select>
 	
 	<select id="findByProfessorId" resultType="Professor">
-		SELECT * FROM Professor WHERE id = #{id}
+		SELECT p.*
+        FROM Professor p 
+        JOIN department d on p.department_no = d.department_no
+        WHERE p.id = #{id};
 	</select>
 
 	<select id="findAll" resultType="Professor">
@@ -45,10 +48,10 @@
 		name = #{name},
 		professor_phone = #{professor_phone},
 		professor_email = #{professor_email},
-		department_no = #{department_no},
 		password1 = #{password1},
+		password2 = #{password2},
 		password_question = #{password_question},
-		password_answer = #{password_answer},
+		password_answer = #{password_answer}
 		WHERE professor_no = #{professor_no}
 	</update>
 
