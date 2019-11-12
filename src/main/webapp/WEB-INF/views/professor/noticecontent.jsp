@@ -78,7 +78,7 @@
               	<input type="hidden" name="lecture_no" value="${ lecture.lecture_no }" />
               	<button class="btn btn-primary my-sm-0" type="submit" name="cmd" value="delete" style="width: 100px; float: right">삭제</button>
               </form> 
-              <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='edit'">수정</button>
+              <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='noticecontentedit?notice_no=${ professorNotice.notice_no }&lecture_no=${ lecture.lecture_no }'">수정</button>
             </div>
             <label for=""><br></label>
 

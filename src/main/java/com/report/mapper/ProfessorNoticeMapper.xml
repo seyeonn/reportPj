@@ -23,14 +23,14 @@
         , #{perfect_score})
     </insert>
 
-    <update id="update">
+	<update id="update">
         UPDATE professor_notice
         SET title = #{title}
-        content = #{content}
-        perfect_score = #{perfect_score}
-        submitdate = date_format(now(), '%Y-%m-%d')
-        deadline = #{deadline}
-        deadline_add = #{deadline_add}
+        ,content = #{content}
+        ,perfect_score = #{perfect_score}
+        ,submitdate = date_format(now(), '%Y-%m-%d')
+        ,deadline = #{deadline}
+        ,deadline_add = #{deadline_add}
         WHERE notice_no = #{notice_no}
     </update>
 

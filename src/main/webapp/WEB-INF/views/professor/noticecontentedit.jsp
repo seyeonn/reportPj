@@ -23,7 +23,8 @@
 
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-           <form:form method="post" modelAttribute="professorNotice">
+           <form:form method="post" modelAttribute="professorNotice">	
+           <form method="post">									
             <table class="table table-bordered">
                   <tr>
                     <td class="table-active">제목 </td>
@@ -62,8 +63,13 @@
             </table>
             <div style="float: right; display:inline-block; width: 900px;">
               <button class="btn btn-primary mx-2 my-sm-0" type="submit" style="width: 100px; float: right" onclick="location.href='notice?id=${lecture.lecture_no}'">목록보기</button>
-              <button class="btn btn-primary my-2 my-sm-0" type="submit" style="width: 100px; float: right" onclick="location.href='posting?id=${lecture.lecture_no}'">등록</button>
+              
+              	<input type="hidden" name="notice_no" value="${ professorNotice.notice_no }" />
+              	<input type="hidden" name="lecture_no" value="${ lecture.lecture_no }" />
+              	<button class="btn btn-primary my-2 my-sm-0" type="submit" name="cmd" value="edit" style="width: 100px; float: right">저장</button>
+             
             </div>
+            </form>
             <label></label>
             <label></label>
             </form:form>
@@ -99,7 +105,7 @@ $(document).ready(function() {
 
 });
 $(function(){
-    $('.datetimepicker').appendDtpicker({'locale':'ko', 'autodateOnStart' : false});
+    $('.datetimepicker').appendDtpicker({'locale':'ko'});
 });
 
 </script>
