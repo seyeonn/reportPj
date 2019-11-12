@@ -79,9 +79,7 @@
                         <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right"
                                 onclick="location.href='studentnotice?id=${lecture.lecture_no}'">목록
                         </button>
-<%--                      <button class="btn btn-primary my-sm-0" type="button" style="width: 100px; float: right" --%>
-<%--                              onclick="location.href='notice?id=${lecture.lecture_no}'">목록보기--%>
-<%--                      </button>--%>
+
                         <button class="btn btn-primary my-2 my-sm-0" type="submit" style="width: 100px; float: right"
                                 onclick="location.href='delete?studentnotice_no=${studentNotice.studentnotice_no}'">삭제
                         </button>

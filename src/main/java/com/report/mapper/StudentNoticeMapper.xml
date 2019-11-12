@@ -13,9 +13,8 @@
  </select>
 
     <select id="findOne" resultType="StudentNotice">
-    SELECT sn.title, sn.content, s.name, sn.submitdate
+    SELECT *
     FROM student_notice sn
-    LEFT JOIN student s ON sn.student_no = s.student_no
     WHERE sn.studentnotice_no = #{studentnotice_no}
  </select>
 

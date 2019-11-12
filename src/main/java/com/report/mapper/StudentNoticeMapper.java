@@ -11,7 +11,7 @@ public interface StudentNoticeMapper {
 
     List<StudentNotice> list(int lecture_no);
 
-    StudentNotice findOne(int no);
+    StudentNotice findOne(int studentnotice_no);
 
     public void insert(StudentNotice studentNotice);
 

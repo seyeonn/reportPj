@@ -131,11 +131,13 @@ public class StudentController {
 		StudentNotice studentNotice = studentNoticeService.findOne(id);
 		Lecture lecture = lectureMapper.findOne(studentNotice.getLecture_no());
 
+		System.out.println(lecture.getLecture_name());
+
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("student", student);
 		model.addAttribute("studentNotice", studentNotice);
 
-		//System.out.println(lecture.getLecture_name());
+
 		return "student/studentcontent";
 	}//게시글 조회
 
@@ -152,7 +154,7 @@ public class StudentController {
 		return "redirect:studentnotice?id=" + id;
 	}//게시글 작성
 
-	@RequestMapping("delete")
+	@PostMapping("delete")
 	public String delete(Model model, @RequestParam("studentnotice_no") int studentnotice_no){
 		studentNoticeService.delete(model, studentnotice_no);
 		return "student/studentnotice";

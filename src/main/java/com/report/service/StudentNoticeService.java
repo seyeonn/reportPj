@@ -37,15 +37,19 @@ public class StudentNoticeService {
         Lecture lecture = lectureMapper.findOne(id);
         Student student = studentMapper.findByStudentId(principal.getName());
 
+        System.out.println(lecture.getLecture_name());
+
         model.addAttribute("studentNotice", studentNotice);
         model.addAttribute("lecture", lecture);
         model.addAttribute("student", student);
-        //System.out.println(lecture.getLecture_name());
+
     }
     //post
     public void insert(Model model, Principal principal, StudentNotice newStudentNotice, int id) {
         Student student = studentMapper.findByStudentId(principal.getName());
         Lecture lecture = lectureMapper.findOne(id);
+
+        System.out.println(lecture.getLecture_name());
 
         newStudentNotice.setLecture_no(id);
         newStudentNotice.setStudent_no(student.getStudent_no());
@@ -54,7 +58,7 @@ public class StudentNoticeService {
         model.addAttribute("lecture", lecture);
 
         studentNoticeMapper.insert(newStudentNotice);
-        //System.out.println(lecture.getLecture_name());
+
     }
 
     //get
@@ -77,8 +81,8 @@ public class StudentNoticeService {
     }
 
 
-    public void delete(Model model, int no) {
-        studentNoticeMapper.delete(no);
+    public void delete(Model model, int studentnotice_no) {
+        studentNoticeMapper.delete(studentnotice_no);
     }
 
 
