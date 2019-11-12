@@ -135,7 +135,14 @@ public class StudentController {
 	}
 
 	@RequestMapping("lecturefile")
-	public String lecturefile(Model model) {
+	public String lecturefile(Model model, Principal principal, @RequestParam("id") int id) {
+		Lecture lecture = lectureMapper.findOne(id);
+		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
+		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
+		Student student = studentMapper.findByStudentId(principal.getName());
+		model.addAttribute("student", student);
+		model.addAttribute("lecture", lecture);
+		model.addAttribute("professor", professor);
 		return "student/lecturefile"; // 강의 자료 페이지
 
 	}
