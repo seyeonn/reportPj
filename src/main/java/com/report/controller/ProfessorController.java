@@ -12,12 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+import com.report.dto.Department;
+import com.report.dto.Homework;
+
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
 import com.report.dto.Ta;
 import com.report.dto.User;
 import com.report.mapper.DepartmentMapper;
+import com.report.mapper.HomeworkMapper;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
@@ -42,6 +47,7 @@ public class ProfessorController {
 	@Autowired TaMapper taMapper;
 	@Autowired DepartmentMapper departmentMapper;
 	@Autowired private TaService taService;
+	@Autowired HomeworkMapper homeworkMapper;
 
 	@Autowired UserMapper userMapper;
 
@@ -102,6 +108,18 @@ public class ProfessorController {
 		return "professor/noticecontent"; // 과제 및 공지 작성 페이지
 	}
 
+	@PostMapping(value = "noticecontent", params="cmd=delete")
+	public String noticecontentdelete(Model model,Principal principal, @RequestParam("notice_no") int notice_no,@RequestParam("lecture_no") int lecture_no) {
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		model.addAttribute("professor", professor);
+		Lecture lecture = lectureMapper.findOne(lecture_no);
+		model.addAttribute("lecture", lecture);
+		professorNoticeMapper.delete(notice_no);
+		System.out.println(lecture_no);
+		System.out.print(notice_no);
+		return "redirect:notice?id="+lecture_no; // 과제 및 공지 작성 페이지
+	}
+
 	@GetMapping("noticecontentedit")
 	public String noticecontentedit1(Model model,Principal principal, @RequestParam("notice_no") int notice_no,@RequestParam("lecture_no") int lecture_no) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
@@ -157,9 +175,17 @@ public class ProfessorController {
 
 
 	@RequestMapping("inputscore")
-	public String inputscore(Model model,Principal principal) {
-		Professor professor = professorMapper.findByProfessorId(principal.getName());
-		model.addAttribute("professor", professor);
+	public String inputscore(Model model, Principal principal) {
+		ProfessorNotice notice = professorNoticeMapper.findByOne(principal.getName());
+		List<Homework> homeworks = homeworkMapper.findNotoiceStudents();
+		model.addAttribute("homeworks", homeworks);
+		model.addAttribute("notice", notice);
+
+		System.out.println(homeworks.size());
+		
+		for (Homework hw: homeworks) {
+			System.out.printf("%s\n",hw.getStudent().getName());
+		}
 		return "professor/inputscore"; // 학생 게시판 페이지
 	}
 
