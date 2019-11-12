@@ -174,21 +174,31 @@ public class ProfessorController {
 	}
 
 
-	@RequestMapping("inputscore")
-	public String inputscore(Model model, Principal principal) {
-		ProfessorNotice notice = professorNoticeMapper.findByOne(principal.getName());
+	@RequestMapping(value="inputscore", method=RequestMethod.GET)
+	public String inputscore1(Model model, Principal principal) {
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents();
-		model.addAttribute("homeworks", homeworks);
-		model.addAttribute("notice", notice);
 
 		System.out.println(homeworks.size());
 		
-		for (Homework hw: homeworks) {
-			System.out.printf("%s\n",hw.getStudent().getName());
-		}
+		model.addAttribute("homeworks", homeworks);
 		return "professor/inputscore"; // 학생 게시판 페이지
 	}
 
+	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")
+	public String inputscore2(Model model, Principal principal, @RequestParam List<Homework> homeworks) {
+		homeworks = homeworkMapper.findNotoiceStudents();
+		
+		for (Homework hw: homeworks) {
+			System.out.printf("%s\n",hw.getStudent().getName());
+			homeworkMapper.scoreUpdate(hw.getHw_no(), hw.getGrade());
+			System.out.println(hw.getGrade()+"**\n");
+		}
+		
+		model.addAttribute("homeworks", homeworks);
+		return "professor/inputscore"; // 학생 게시판 페이지
+	}
+
+	
 	@RequestMapping("studentcontent")
 	public String studentcontent(Model model,Principal principal) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());

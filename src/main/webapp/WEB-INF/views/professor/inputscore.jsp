@@ -58,8 +58,10 @@
                   <td>${homework.student.department.department_name}</td>
                   <td><button type="button" class="btn btn-outline-primary" >열람</button></td>
                   <td>${homework.submitdate}</td>
-                  <td><input type="text" class="form-control" name="grade" value="${homework.grade}" placeholder="" /></td>
-                  <td> <input type="text" class="form-control" name="rank" value="${homework.rank}" placeholder="" style="width:50px"  /></td>
+                  <td>
+                  	<input type="text" class="form-control" name="" value="" placeholder="" />
+                  </td>
+                  <td> <input type="text" class="form-control" name="grade" value="${homework.grade}" placeholder="" style="width:50px"  /></td>
                   <td></td>
                 </tr>
                 </c:forEach>
@@ -68,7 +70,11 @@
           </table>
           <div style="float: right; display:inline-block; width: 900px;">
             <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='noticecontent'">목록</button>
-            <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='noticecontent'">입력</button>
+            <form method="post">
+            	<input type="hidden" name="no" value="${homework.hw_no }" />
+                <input type="hidden" name="grade" value="${ homework.grade }" />
+            	<button type="submit"class="btn btn-primary my-2 my-sm-0" name="cmd" value="input" style="width: 100px; float: right" onclick="location.href='noticecontent'">입력</button>
+          	</form>
           </div>
           <label for=""><br></label>
           </form>

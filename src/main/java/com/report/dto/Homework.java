@@ -14,7 +14,7 @@ public class Homework {
 	int notice_no;
 	String file_name;
 	int file_size;
-	Date submitdate;
+	String submitdate;
 	Integer grade;
 	int rank;
 	

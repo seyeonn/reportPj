@@ -11,7 +11,8 @@ public interface ProfessorNoticeMapper {
 	List<ProfessorNotice> list(int lecture_no);
 
     ProfessorNotice findOne(int notice_no);
-    ProfessorNotice findByOne(String notice_id);
+    ProfessorNotice findByOne(String title);
+    
     public void insert(ProfessorNotice professorNotice);
 
     public void update(ProfessorNotice professorNotice);

@@ -20,8 +20,9 @@
     <select id="findByOne" resultType="ProfessorNotice">
         SELECT *
         FROM professor_notice 
-        WHERE notice_no = #{notice_no}
+        WHERE title = #{title}
     </select>
+    
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="notice_no">
         INSERT professor_notice(lecture_no, professor_no, header, title, content, submitdate, deadline, deadline_add, perfect_score)

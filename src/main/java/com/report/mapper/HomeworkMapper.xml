@@ -24,4 +24,9 @@
 		</association>
 	</resultMap>
 	
+	<update id="scoreUpdate">
+		update set Homework
+		score = #{score}
+		WHERE hw_no = #{hw_no}
+	</update>
 </mapper>

@@ -10,4 +10,5 @@ import com.report.dto.Homework;
 public interface HomeworkMapper {
 	
 	List<Homework> findNotoiceStudents();
+	void scoreUpdate(int hw_no, Integer score);
 }
