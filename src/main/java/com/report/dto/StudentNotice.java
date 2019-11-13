@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class StudentNotice {
-	
+
 	int studentnotice_no;
 	int lecture_no;
 	int student_no;
@@ -16,4 +16,5 @@ public class StudentNotice {
 	String content;
 	Date submitdate;
 
+	Student student;
 }

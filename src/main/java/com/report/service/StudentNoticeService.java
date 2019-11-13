@@ -29,6 +29,10 @@ public class StudentNoticeService {
         return studentNoticeMapper.list(id);
     }
 
+    public List<StudentNotice> listWithStudentName(int id){
+        return studentNoticeMapper.listWithStudentName(id);
+    }
+
     public StudentNotice findOne(int studentnotice_no){
         return studentNoticeMapper.findOne(studentnotice_no);
     }

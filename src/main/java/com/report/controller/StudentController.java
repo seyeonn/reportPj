@@ -143,7 +143,7 @@ public class StudentController {
 
     @RequestMapping("studentnotice")
     public String list(Model model, Principal principal, @RequestParam("id") int id) {
-        List<StudentNotice> studentNotices = studentNoticeService.list(id);
+        List<StudentNotice> studentNotices = studentNoticeService.listWithStudentName(id);
         Student student = studentMapper.findByStudentId(principal.getName());
         Lecture lecture = lectureMapper.findOne(id);
         ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());

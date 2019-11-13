@@ -57,7 +57,7 @@
                         </tr>
                         <tr>
                             <td class="table-active">작성자</td>
-                            <td>${student.name}</td>
+                            <td>${studentNotice.student.name}</td>
                         </tr>
                         <tr>
                             <td class="table-active">작성일</td>

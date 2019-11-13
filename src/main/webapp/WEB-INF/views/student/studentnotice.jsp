@@ -37,7 +37,7 @@
                  <c:forEach var="studentNotice" items="${studentNotices}">
                 <tr onClick = "location.href='studentcontent?id=${studentNotice.studentnotice_no}'">
                   <td>${studentNotice.title}</td>
-                  <td>${student.name}</td>
+                  <td>${studentNotice.student.name}</td>
                   <td>
                     <fmt:formatDate value="${studentNotice.submitdate}" pattern="yyyy-MM-dd" />
                   </td>

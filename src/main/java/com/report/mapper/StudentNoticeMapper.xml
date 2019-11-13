@@ -12,11 +12,44 @@
     order by sn.studentnotice_no desc
  </select>
 
-    <select id="findOne" resultType="StudentNotice">
-    SELECT *
-    FROM student_notice
+    <select id="listWithStudentName" resultMap="resultMap1">
+        SELECT sn.studentnotice_no, sn.title, s.name, sn.submitdate
+        FROM student_notice sn
+        LEFT JOIN student s ON sn.student_no = s.student_no
+        WHERE lecture_no = #{lecture_no}
+        order by sn.studentnotice_no desc
+    </select>
+
+    <resultMap id="resultMap1" type="StudentNotice">
+        <id property="studentnotice_no" column="studentnotice_no" />
+        <result property="title" column="title"/>
+        <result property="submitdate" column="submitdate"/>
+        <association property="student" javaType="Student">
+            <id property="student_no" column="student_no"/>
+            <result property="name" column="name" />
+        </association>
+    </resultMap>
+
+
+
+    <select id="findOne" resultMap="resultMap2">
+    SELECT *, s.name
+    FROM student_notice sn
+    LEFT JOIN student s ON sn.student_no = s.student_no
     WHERE studentnotice_no = #{studentnotice_no}
  </select>
+
+    <resultMap id="resultMap2" type="StudentNotice">
+        <id property="studentnotice_no" column="studentnotice_no"/>
+        <result property="lecture_no" column="lecture_no"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="submitdate" column="submitdate"/>
+        <association property="student" javaType="Student">
+            <id property="student_no" column="student_no"/>
+            <result property="name" column="name"/>
+        </association>
+    </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="studentnotice_no">
     INSERT student_notice(title, content, student_no, submitdate, lecture_no)
