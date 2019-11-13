@@ -143,10 +143,13 @@ public class StudentController {
         List<StudentNotice> studentNotices = studentNoticeService.list(id);
         Student student = studentMapper.findByStudentId(principal.getName());
         Lecture lecture = lectureMapper.findOne(id);
+        ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
+		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
 
         model.addAttribute("studentNotices", studentNotices);
         model.addAttribute("student", student);
         model.addAttribute("lecture", lecture);
+        model.addAttribute("professor", professor);
 
         return "student/studentnotice";
     }//학생 게시판 목록
