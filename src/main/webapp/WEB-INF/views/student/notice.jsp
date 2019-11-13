@@ -28,7 +28,7 @@
             <table class="table table-hover  text-center">
               <thead class="thead-light">
                 <tr>
-                  <th>제목</th>
+                  <th style="width: 350px">제목</th>
                   <th>제출기한</th>
                   <th>연장기한</th>
                   <th>파일</th>

@@ -14,8 +14,8 @@
 
     <select id="findOne" resultType="StudentNotice">
     SELECT *
-    FROM student_notice sn
-    WHERE sn.studentnotice_no = #{studentnotice_no}
+    FROM student_notice
+    WHERE studentnotice_no = #{studentnotice_no}
  </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="studentnotice_no">
