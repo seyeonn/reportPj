@@ -3,11 +3,13 @@ package com.report.service;
 import java.security.Principal;
 import java.util.List;
 
-import com.report.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.report.dto.Lecture;
+import com.report.dto.Student;
+import com.report.dto.StudentNotice;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.StudentNoticeMapper;
@@ -49,7 +51,6 @@ public class StudentNoticeService {
         Student student = studentMapper.findByStudentId(principal.getName());
         Lecture lecture = lectureMapper.findOne(id);
 
-        System.out.println(lecture.getLecture_name());
 
         newStudentNotice.setLecture_no(id);
         newStudentNotice.setStudent_no(student.getStudent_no());
@@ -65,9 +66,7 @@ public class StudentNoticeService {
     public void update(Model model, int no, Principal principal, int lecture_no) {
 
         StudentNotice studentNotice = studentNoticeMapper.findOne(no);
-
         Student student = studentMapper.findByStudentId(principal.getName());
-
         Lecture lecture = lectureMapper.findOne(lecture_no);
 
         model.addAttribute("studentNotice", studentNotice);
@@ -76,12 +75,12 @@ public class StudentNoticeService {
     }
 
     //post
-    public void update(Model model, StudentNotice newStudentNotice) {
+    public void update(StudentNotice newStudentNotice) {
         studentNoticeMapper.update(newStudentNotice);
     }
 
 
-    public void delete(Model model, int studentnotice_no) {
+    public void delete(int studentnotice_no) {
         studentNoticeMapper.delete(studentnotice_no);
     }
 

@@ -16,9 +16,9 @@
 
 <main role="main" class="main-container">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <strong>&nbsp&nbsp DB 캡스톤디자인 &nbsp&nbsp&nbsp&nbsp</strong>
-        <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 홍은지 교수님 &nbsp&nbsp
-            / &nbsp&nbsp 학생수 :26</small>
+        <strong>&nbsp&nbsp ${lecture.lecture_name} &nbsp&nbsp&nbsp&nbsp</strong>
+        <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ${professor.professor_name}님 &nbsp&nbsp
+            / &nbsp&nbsp </small>
     </div>
     <div class="row">
         <div class="col-md-3 order-md-1 mb-4">
@@ -42,7 +42,7 @@
                 </div>
                 <hr>
 
-                <form class="form">
+
                     <table class="table table-bordered  text-center">
 
                         <tbody>
@@ -54,12 +54,6 @@
                             <td class="table-active">내용</td>
                             <td style="white-space:pre;">${studentNotice.content}</td>
 
-                        </tr>
-                        <tr>
-                            <td class="table-active">파일</td>
-                            <td>
-                                <button type="button" class="btn btn-outline-primary">열람</button>
-                            </td>
                         </tr>
                         <tr>
                             <td class="table-active">작성자</td>
@@ -80,12 +74,21 @@
                                 onclick="location.href='studentnotice?id=${lecture.lecture_no}'">목록
                         </button>
 
-                        <button class="btn btn-primary my-2 my-sm-0" type="submit" style="width: 100px; float: right"
-                                onclick="location.href='delete?studentnotice_no=${studentNotice.studentnotice_no}'">삭제
+                        <form method="post">
+                            <input type="hidden" name="studentnotice_no" value="${studentNotice.studentnotice_no}" />
+                            <input type="hidden" name="lecture_no" value="${lecture.lecture_no}" />
+                            <button class="btn btn-primary my-sm-0" type="submit" name="cmd" value="delete" style="width: 100px; float: right">삭제</button>
+                        </form>
+<%--                        <form method="post">--%>
+<%--                            <input type="hidden" name="notice_no" value="${ professorNotice.notice_no }" />--%>
+<%--                            <input type="hidden" name="lecture_no" value="${ lecture.lecture_no }" />--%>
+<%--                            <button class="btn btn-primary my-sm-0" type="submit" name="cmd" value="delete" style="width: 100px; float: right">삭제</button>--%>
+<%--                        </form>--%>
+                        <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right"
+                                onclick="location.href='studentcontentedit?studentnotice_no=${studentNotice.studentnotice_no}&lecture_no=${ lecture.lecture_no }'">수정
                         </button>
                     </div>
                     <label for=""><br></label>
-                </form>
             </div>
         </div>
     </div>
