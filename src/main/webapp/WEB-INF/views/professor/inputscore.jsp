@@ -43,7 +43,6 @@
                 <th>학과</th>
                 <th>채점</th>
                 <th>제출정보</th>
-                <th>첨부글</th>
                 <th>성적</th>
                 <th>등수</th>
               </tr>
@@ -57,10 +56,7 @@
                   <td>${homework.student.name }</td>
                   <td>${homework.student.department.department_name}</td>
                   <td><button type="button" class="btn btn-outline-primary" >열람</button></td>
-                  <td>${homework.submitdate}</td>
-                  <td>
-                  	<input type="text" class="form-control" name="" value="" placeholder="" />
-                  </td>
+                  <td>${homework.date}</td>
                   <td> <input type="text" class="form-control" name="grade" value="${homework.grade}" placeholder="" style="width:50px"  /></td>
                   <td></td>
                 </tr>
@@ -73,7 +69,7 @@
             <form method="post">
             	<input type="hidden" name="no" value="${homework.hw_no }" />
                 <input type="hidden" name="grade" value="${ homework.grade }" />
-            	<button type="submit"class="btn btn-primary my-2 my-sm-0" name="cmd" value="input" style="width: 100px; float: right" onclick="location.href='noticecontent'">입력</button>
+            	<button type="submit"class="btn btn-primary my-2 my-sm-0" name="cmd" value="input" style="width: 100px; float: right" onclick="location.href='/professor/noticecontent'">입력</button>
           	</form>
           </div>
           <label for=""><br></label>

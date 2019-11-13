@@ -9,6 +9,6 @@ import com.report.dto.Homework;
 @Mapper
 public interface HomeworkMapper {
 	
-	List<Homework> findNotoiceStudents();
+	List<Homework> findNotoiceStudents(int notice_no);
 	void scoreUpdate(int hw_no, Integer score);
 }

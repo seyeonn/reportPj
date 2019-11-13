@@ -3,16 +3,20 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.report.mapper.HomeworkMapper">
+
 	<select id="findNotoiceStudents" resultMap="resultMap_Homework">
 		SELECT h.*, s.name, s.id, d.*
 		FROM homework h
 		LEFT JOIN student s ON s.student_no = h.student_no
 		LEFT JOIN department d ON d.department_no = s.department_no
 		LEFT JOIN professor_notice n ON n.notice_no = h.notice_no
+		WHERE h.notice_no = #{notice_no}
+		ORDER BY h.date
 	</select>
 
 	<resultMap id="resultMap_Homework" type="Homework">
 		<id property="hw_no" column="hw_no" />
+		<result property="date" column="date" />
 		<association property="student" javaType="Student">
 			<id property="student_no" column="student_no" />
 			<result property="id" column="id"/>
@@ -30,3 +34,4 @@
 		WHERE hw_no = #{hw_no}
 	</update>
 </mapper>
+

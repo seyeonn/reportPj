@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.report.dto.Homework;
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
+import com.report.dto.ProfessorLecture;
 import com.report.dto.ProfessorNotice;
 import com.report.dto.Ta;
 import com.report.dto.User;
@@ -190,18 +191,22 @@ public class ProfessorController {
 
 
 	@RequestMapping(value="inputscore", method=RequestMethod.GET)
-	public String inputscore1(Model model, Principal principal) {
-		List<Homework> homeworks = homeworkMapper.findNotoiceStudents();
-
-		System.out.println(homeworks.size());
-
+	public String inputscore1(Model model, Principal principal, @RequestParam("notice_no") int notice_no) {
+		// id notice_no를 받아와야함.... 지금 임의의 값을 주고 있음
+		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
+		for (Homework hw: homeworks) {
+			System.out.println(hw.getDate());
+		}
+		
 		model.addAttribute("homeworks", homeworks);
-		return "professor/inputscore"; // 학생 게시판 페이지
+		
+		
+		return "professor/inputscore"; 
 	}
 
 	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")
-	public String inputscore2(Model model, Principal principal, @RequestParam List<Homework> homeworks) {
-		homeworks = homeworkMapper.findNotoiceStudents();
+	public String inputscore2(Model model, Principal principal, List<Homework> homeworks , @RequestParam("notice_no") int notice_no) {
+		homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 
 		for (Homework hw: homeworks) {
 			System.out.printf("%s\n",hw.getStudent().getName());
