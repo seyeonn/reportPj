@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.report.dto.Homework;
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
-import com.report.dto.ProfessorLecture;
 import com.report.dto.ProfessorNotice;
 import com.report.dto.Ta;
 import com.report.dto.User;
@@ -167,8 +166,13 @@ public class ProfessorController {
 		professor.setPassword1(professor1.getPassword1());
 		professor.setPassword2(professor1.getPassword2());
 		professorMapper.update(professor);
-		System.out.println(professor1.getPassword_answer());
-		System.out.println(professor1.getId());
+		User user = userMapper.findByLoginId(principal.getName());
+		user.setName(professor.getName());
+		user.setDepartment_no(professor.getDepartment_no());
+		user.setEmail(professor.getProfessor_email());
+		user.setPassword1(professor.getPassword1());
+
+		userMapper.update(user);
 		return "redirect:mypage"; // 학생 게시판 페이지
 
 	}
@@ -197,11 +201,11 @@ public class ProfessorController {
 		for (Homework hw: homeworks) {
 			System.out.println(hw.getDate());
 		}
-		
+
 		model.addAttribute("homeworks", homeworks);
-		
-		
-		return "professor/inputscore"; 
+
+
+		return "professor/inputscore";
 	}
 
 	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")
