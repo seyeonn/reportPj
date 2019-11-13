@@ -52,88 +52,91 @@ public class StudentController {
     @Autowired
     StudentNoticeMapper studentNoticeMapper;
 
-    @RequestMapping("studentMain")
-    public String studentMain(Model model, Principal principal) {
-        Student student = studentMapper.findByStudentId(principal.getName());
-        List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
-        List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
-        model.addAttribute("studentlectures1", studentlectures1);
-        model.addAttribute("studentlectures2", studentlectures2);
-        model.addAttribute("student", student);
-        return "student/main"; // 로그인 한 학생을 위한 메인 페이지 URL
+	@RequestMapping("studentMain")
+	public String studentMain(Model model, Principal principal) {
+		Student student = studentMapper.findByStudentId(principal.getName());
+		List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
+		List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
+		model.addAttribute("studentlectures1",studentlectures1);
+		model.addAttribute("studentlectures2",studentlectures2);
+		model.addAttribute("student", student);
+		return "student/main"; // 로그인 한 학생을 위한 메인 페이지 URL
 
-    }
+	}
 
-    @RequestMapping(value = "lecture", method = RequestMethod.GET)
-    public String studentlecture(Model model, Lecture lecture, Principal principal) {
-        Student student = studentMapper.findByStudentId(principal.getName());
-        List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
-        List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
-        List<Lecture> lectures = lectureService.findAll();
-        model.addAttribute("studentlectures1", studentlectures1);
-        model.addAttribute("studentlectures2", studentlectures2);
-        model.addAttribute("lectures", lectures);
+	@RequestMapping(value="lecture", method=RequestMethod.GET)
+	public String studentlecture(Model model, Lecture lecture, Principal principal) {
+		Student student = studentMapper.findByStudentId(principal.getName());
+		List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
+		List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
+		//List<Lecture> lectures = lectureService.findAll();
+		model.addAttribute("studentlectures1",studentlectures1);
+		model.addAttribute("studentlectures2",studentlectures2);
+		//model.addAttribute("lectures", lectures);
 
-        model.addAttribute("studentLecture", new StudentLecture());
-        model.addAttribute("student", student);
-        model.addAttribute("lecture", lecture);
-        return "student/lecture"; // 로그인 한 학생을 위한 메인 페이지 URL
+		List<Lecture> lectures = lectureMapper.findA(student.getStudent_no());
+		model.addAttribute("lectures", lectures);
 
-    }
+		model.addAttribute("studentLecture", new StudentLecture());
+		model.addAttribute("student", student);
+		model.addAttribute("lecture", lecture);
+		return "student/lecture"; // 로그인 한 학생을 위한 메인 페이지 URL
 
-    @RequestMapping(value = "lecture", method = RequestMethod.POST, params = "cmd=delete")
-    public String studentlecture1(Model model, @RequestParam("id") int id, Principal principal, Lecture lecture, StudentLecture studentLecture) {
-        System.out.printf("%d\n", id);
-        Student student = studentMapper.findByStudentId(principal.getName());
-        List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
-        List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
-        List<Lecture> lectures = lectureService.findAll();
-        model.addAttribute("studentlectures1", studentlectures1);
-        model.addAttribute("studentlectures2", studentlectures2);
-        model.addAttribute("lectures", lectures);
-        model.addAttribute("student", student);
-        model.addAttribute("studentLecture", studentLecture);
+	}
 
-        lectureService.studentLectureDelete(id, student.getStudent_no());
+	@RequestMapping(value="lecture", method=RequestMethod.POST, params="cmd=delete")
+	public String studentlecture1(Model model, @RequestParam("id") int id, Principal principal, Lecture lecture, StudentLecture studentLecture) {
+		System.out.printf("%d\n", id);
+		Student student = studentMapper.findByStudentId(principal.getName());
+		List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
+		List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
+		List<Lecture> lectures = lectureService.findAll();
+		model.addAttribute("studentlectures1",studentlectures1);
+		model.addAttribute("studentlectures2",studentlectures2);
+		model.addAttribute("lectures", lectures);
+		model.addAttribute("student", student);
+		model.addAttribute("studentLecture", studentLecture);
 
-        System.out.printf("%s, %s\n", student.getName(), lecture.getLecture_name());
-        return "redirect:lecture"; // 로그인 한 학생을 위한 메인 페이지 URL
+		lectureService.studentLectureDelete(id, student.getStudent_no());
 
-    }
+		System.out.printf("%s, %s\n", student.getName(), lecture.getLecture_name());
+		return "redirect:lecture"; // 로그인 한 학생을 위한 메인 페이지 URL
 
-    @RequestMapping(value = "lecture", method = RequestMethod.POST, params = "cmd=insert")
-    public String studentlecture2(Model model, @RequestParam("id") int id, Principal principal, Lecture lecture, StudentLecture studentLecture) {
-        System.out.printf("%d\n", id);
-        Student student = studentMapper.findByStudentId(principal.getName());
-        List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
-        List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
-        List<Lecture> lectures = lectureService.findAll();
-        model.addAttribute("studentlectures1", studentlectures1);
-        model.addAttribute("studentlectures2", studentlectures2);
-        model.addAttribute("lectures", lectures);
-        model.addAttribute("student", student);
-        model.addAttribute("studentLecture", studentLecture);
+	}
 
-        lectureService.studentSave(id, student.getStudent_no());
+	@RequestMapping(value="lecture", method=RequestMethod.POST, params="cmd=insert")
+	public String studentlecture2(Model model, @RequestParam("id") int id, Principal principal, Lecture lecture, StudentLecture studentLecture) {
+		System.out.printf("%d\n", id);
+		Student student = studentMapper.findByStudentId(principal.getName());
+		List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
+		List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
+		List<Lecture> lectures = lectureService.findAll();
+		model.addAttribute("studentlectures1",studentlectures1);
+		model.addAttribute("studentlectures2",studentlectures2);
+		model.addAttribute("lectures", lectures);
+		model.addAttribute("student", student);
+		model.addAttribute("studentLecture", studentLecture);
 
-        System.out.printf("%s, %s\n", student.getName(), lecture.getLecture_name());
-        return "redirect:lecture"; // 로그인 한 학생을 위한 메인 페이지 URL
+		lectureService.studentSave(id, student.getStudent_no());
 
-    }
+		System.out.printf("%s, %s\n", student.getName(), lecture.getLecture_name());
+		return "redirect:lecture"; // 로그인 한 학생을 위한 메인 페이지 URL
+
+	}
 
     @RequestMapping("notice")
-    public String notice(Model model, Principal principal, @RequestParam("id") int id) {
-        Lecture lecture = lectureMapper.findOne(id);
-        ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
-        Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
-        Student student = studentMapper.findByStudentId(principal.getName());
-        List<ProfessorNotice> professorNotices = professorNoticeMapper.list(id);
-        model.addAttribute("student", student);
-        model.addAttribute("lecture", lecture);
-        model.addAttribute("professor", professor);
-        model.addAttribute("professorNotices", professorNotices);
-        return "student/notice"; // 과제 및 공지 페이지
-    }
+  	public String notice(Model model, Principal principal, @RequestParam("id") int id) {
+    	Lecture lecture = lectureMapper.findOne(id);
+		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
+		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
+		Student student = studentMapper.findByStudentId(principal.getName());
+    	List<ProfessorNotice>  professorNotices = professorNoticeMapper.list(id);
+    	model.addAttribute("student", student);
+    	model.addAttribute("lecture", lecture);
+    	model.addAttribute("professor", professor);
+    	model.addAttribute("professorNotices", professorNotices);
+  		return "student/notice"; // 과제 및 공지 페이지
+	}
 
     @RequestMapping("studentnotice")
     public String list(Model model, Principal principal, @RequestParam("id") int id) {
@@ -175,14 +178,14 @@ public class StudentController {
         return "student/studentposting";
     }//게시글 작성
 
-
     @PostMapping("studentposting")
     public String studentPosting(Model model, Principal principal, @RequestParam("id") int id, StudentNotice newStudentNotice) {
         studentNoticeService.insert(model, principal, newStudentNotice, id);
         return "redirect:studentnotice?id=" + id;
     }//게시글 작성
 
-	@PostMapping(value = "studentcontent", params="cmd=delete")
+
+    @PostMapping(value = "studentcontent", params="cmd=delete")
 	public String studentContentDelete(Model model,Principal principal,
 									  @RequestParam("studentnotice_no") int studentnotice_no,
 									  @RequestParam("lecture_no") int lecture_no) {
@@ -190,7 +193,7 @@ public class StudentController {
 		System.out.println("여기까지2");
 
         Student student = studentMapper.findByStudentId(principal.getName());
-		model.addAttribute("student", student);
+        model.addAttribute("student", student);
         Lecture lecture = lectureMapper.findOne(lecture_no);
         model.addAttribute("lecture", lecture);
 
@@ -225,18 +228,19 @@ public class StudentController {
         return "redirect:studentcontent?id=" + studentnotice_no; // 과제 및 공지 작성 페이지
     }
 
-    @RequestMapping("lecturefile")
-    public String lecturefile(Model model, Principal principal, @RequestParam("id") int id) {
-        Lecture lecture = lectureMapper.findOne(id);
-        ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
-        Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
-        Student student = studentMapper.findByStudentId(principal.getName());
-        model.addAttribute("student", student);
-        model.addAttribute("lecture", lecture);
-        model.addAttribute("professor", professor);
-        return "student/lecturefile"; // 강의 자료 페이지
+	@RequestMapping("lecturefile")
+	public String lecturefile(Model model, Principal principal, @RequestParam("id") int id) {
+		Lecture lecture = lectureMapper.findOne(id);
+		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
+		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
+		Student student = studentMapper.findByStudentId(principal.getName());
+		model.addAttribute("student", student);
+		model.addAttribute("lecture", lecture);
+		model.addAttribute("professor", professor);
+		return "student/lecturefile"; // 강의 자료 페이지
 
-    }
+	}
+
 
     @GetMapping("mypage")
     public String mypage(Model model, Principal principal) {
@@ -257,36 +261,32 @@ public class StudentController {
        student.setPassword_answer(student1.getPassword_answer());
        student.setPassword1(student1.getPassword1());
        student.setPassword2(student1.getPassword2());
-
        studentMapper.update(student);
 
-       return "redirect:mypage"; // 학생 게시판 페이지
+       return "redirect:mypage"; // 학생 마이페이지
+	}
 
-    }
+	@RequestMapping("information")
+	public String information(Model model) {
+		return "student/information"; // 학생 게시판 페이지
 
-    @RequestMapping("information")
-    public String information(Model model) {
-        return "student/information"; // 학생 게시판 페이지
-
-    }
+	}
 
     @GetMapping("noticecontent")
-    public String noticecontent(Model model, Principal principal, @RequestParam("id") int id) {
-        Student student = studentMapper.findByStudentId(principal.getName());
-        ProfessorNotice professorNoice = professorNoticeMapper.findOne(id);
-        Lecture lecture = lectureMapper.findOne(professorNoice.getLecture_no());
-
-        model.addAttribute("lecture", lecture);
-        model.addAttribute("professorNotice", professorNoice);
-        model.addAttribute("student", student);
-
-        return "student/noticecontent"; // 과제 및 공지 내용 페이지
+   	public String noticecontent(Model model, Principal principal, @RequestParam("id") int id) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	ProfessorNotice professorNoice = professorNoticeMapper.findOne(id);
+    	Lecture lecture = lectureMapper.findOne(professorNoice.getLecture_no());
+    	model.addAttribute("lecture", lecture);
+    	model.addAttribute("professorNotice", professorNoice);
+    	model.addAttribute("student", student);
+   		return "student/noticecontent"; // 과제 및 공지 내용 페이지
     }
 
     @RequestMapping("worksubmit")
-    public String worksubmit(Model model, Principal principal) {
-        Student student = studentMapper.findByStudentId(principal.getName());
-        model.addAttribute("student", student);
-        return "student/worksubmit"; // 학생 게시판 페이지
+   	public String worksubmit(Model model, Principal principal) {
+    	Student student = studentMapper.findByStudentId(principal.getName());
+    	model.addAttribute("student", student);
+   		return "student/worksubmit"; // 학생 게시판 페이지
     }
 }

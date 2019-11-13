@@ -21,10 +21,13 @@ public interface LectureMapper {
 
 	void update(Lecture lecture);
 	void delete(int lecture_no);
-	
+
 	void taLectureYesUpdate(int ta_no, int lecture_no);
 	void taLectureNoUpdate(int lecture_no);
-	
+
 	List<Lecture> findByTaLecture(int ta_no);
+
+	List<Lecture> findA(int studnet_no);
+	Lecture findO(int lecture_no);
 
 }

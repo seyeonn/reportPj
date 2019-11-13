@@ -14,4 +14,7 @@ public class Lecture {
 	String lecture_type;
 	Ta ta_no;
 	List<ProfessorLecture> professorLectureList = new ArrayList<>();
+	ProfessorLecture professor_lecture;
+	Professor professor;
+
 }
