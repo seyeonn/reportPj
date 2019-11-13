@@ -19,6 +19,7 @@ import com.report.dto.ProfessorNotice;
 import com.report.dto.Student;
 import com.report.dto.StudentLecture;
 import com.report.dto.StudentNotice;
+import com.report.dto.User;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
@@ -26,6 +27,7 @@ import com.report.mapper.ProfessorNoticeMapper;
 import com.report.mapper.StudentLectureMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.StudentNoticeMapper;
+import com.report.mapper.UserMapper;
 import com.report.service.LectureService;
 import com.report.service.StudentNoticeService;
 
@@ -51,6 +53,7 @@ public class StudentController {
     ProfessorNoticeMapper professorNoticeMapper;
     @Autowired
     StudentNoticeMapper studentNoticeMapper;
+    @Autowired UserMapper userMapper;
 
 	@RequestMapping("studentMain")
 	public String studentMain(Model model, Principal principal) {
@@ -266,6 +269,13 @@ public class StudentController {
        student.setPassword2(student1.getPassword2());
        studentMapper.update(student);
 
+       User user = userMapper.findByLoginId(principal.getName());
+		user.setName(student.getName());
+		user.setDepartment_no(student.getDepartment_no());
+		user.setEmail(student.getStudent_email());
+		user.setPassword1(student.getPassword1());
+
+		userMapper.update(user);
        return "redirect:mypage"; // 학생 마이페이지
 	}
 

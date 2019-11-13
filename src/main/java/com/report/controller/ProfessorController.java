@@ -183,8 +183,13 @@ public class ProfessorController {
 		professor.setPassword1(professor1.getPassword1());
 		professor.setPassword2(professor1.getPassword2());
 		professorMapper.update(professor);
-		System.out.println(professor1.getPassword_answer());
-		System.out.println(professor1.getId());
+		User user = userMapper.findByLoginId(principal.getName());
+		user.setName(professor.getName());
+		user.setDepartment_no(professor.getDepartment_no());
+		user.setEmail(professor.getProfessor_email());
+		user.setPassword1(professor.getPassword1());
+
+		userMapper.update(user);
 		return "redirect:mypage"; // 학생 게시판 페이지
 
 	}

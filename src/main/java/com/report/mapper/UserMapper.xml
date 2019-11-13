@@ -36,10 +36,10 @@
 
 	<update id="update">
 		UPDATE User SET
-		id = #{id},
 		password1 = #{password1},
 		name = #{name},
-		department_no = #{department_no},
+		email = #{email},
+		department_no = #{department_no}
 		WHERE no = #{no}
 	</update>
 
