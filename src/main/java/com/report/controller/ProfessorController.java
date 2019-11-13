@@ -187,6 +187,8 @@ public class ProfessorController {
 		user.setName(professor.getName());
 		user.setDepartment_no(professor.getDepartment_no());
 		user.setEmail(professor.getProfessor_email());
+		user.setPassword_question(professor.getPassword_question());
+		user.setPassword_answer(professor.getPassword_answer());
 		user.setPassword1(professor.getPassword1());
 
 		userMapper.update(user);

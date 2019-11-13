@@ -69,8 +69,11 @@ public class GuestController {
 		user.setId(professor.getId());
 		user.setPassword1(professor.getPassword1());
 		user.setName(professor.getName());
+		user.setEmail(professor.getProfessor_email());
 		user.setUserType(professor.getUserType());
 		user.setDepartment_no(professor.getDepartment_no());
+		user.setPassword_question(professor.getPassword_question());
+		user.setPassword_answer(professor.getPassword_answer());
 		return "professor/signup";
 	}
 
@@ -96,12 +99,15 @@ public class GuestController {
 		user.setId(student.getId());
 		user.setPassword1(student.getPassword1());
 		user.setName(student.getName());
+		user.setEmail(student.getStudent_email());
 		user.setUserType(student.getUserType());
 		user.setDepartment_no(student.getDepartment_no());
+		user.setPassword_question(student.getPassword_question());
+		user.setPassword_answer(student.getPassword_answer());
 		return "student/signup";
 	}
 
-	
+
 	@PostMapping(value="studentsignup")
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public String studentcreate(Model model, Student student, User user) {
