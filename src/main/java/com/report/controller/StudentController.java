@@ -1,5 +1,6 @@
 package com.report.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.report.dto.Homework;
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
 import com.report.dto.ProfessorLecture;
@@ -30,6 +33,7 @@ import com.report.mapper.StudentNoticeMapper;
 import com.report.mapper.UserMapper;
 import com.report.service.LectureService;
 import com.report.service.StudentNoticeService;
+import com.report.service.StudentUploadedFileService;
 
 @Controller
 
@@ -54,6 +58,7 @@ public class StudentController {
     @Autowired
     StudentNoticeMapper studentNoticeMapper;
     @Autowired UserMapper userMapper;
+    @Autowired StudentUploadedFileService studentUploadedFileService;
 
 	@RequestMapping("studentMain")
 	public String studentMain(Model model, Principal principal) {
@@ -297,9 +302,37 @@ public class StudentController {
     }
 
     @RequestMapping("worksubmit")
-   	public String worksubmit(Model model, Principal principal) {
-    	Student student = studentMapper.findByStudentId(principal.getName());
-    	model.addAttribute("student", student);
-   		return "student/worksubmit"; // 학생 게시판 페이지
-    }
+	public String worksubmit(Model model, Principal principal, @RequestParam("id") int id,
+			@RequestParam("id2") int id2) {
+		ProfessorNotice professorNotice = professorNoticeMapper.findOne(id);
+		Student student = studentMapper.findByStudentId(principal.getName());
+		System.out.println(id+" 나와라 개새꺄 "+id2);
+		Student student2 = studentMapper.findOne(id2);
+
+		List<Homework> list1 = studentUploadedFileService.findAll(id, id2);
+//		System.out.println(list1.get(0).getFile_name());
+
+		model.addAttribute("student2",student2);
+		model.addAttribute("student", student);
+		model.addAttribute("professorNotice", professorNotice);
+		model.addAttribute("files", list1);
+
+
+		System.out.println(studentMapper.findOne(id2).toString());
+		return "student/worksubmit"; // 학생 게시판 페이지
+	}
+
+	@PostMapping(value = "worksubmit", params = "cmd=upload")
+	public String upload(Model model, Principal principal, @RequestParam("upload") MultipartFile[] multipartFiles,
+			@RequestParam("id") int id, @RequestParam("id2") int id2) throws IOException {
+		Student student = studentMapper.findByStudentId(principal.getName());
+		System.out.println("업로드 번호는 "+id+id2);
+		for (MultipartFile multipartFile : multipartFiles) {
+			if (multipartFile.getSize() <= 0)
+				continue;
+			studentUploadedFileService.insert(multipartFile, id, id2);
+		}
+		return "redirect:worksubmit?id=" + id+"&id2="+id2;
+	}
+
 }
