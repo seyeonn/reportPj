@@ -278,6 +278,8 @@ public class StudentController {
 		user.setName(student.getName());
 		user.setDepartment_no(student.getDepartment_no());
 		user.setEmail(student.getStudent_email());
+		user.setPassword_question(student.getPassword_question());
+	    user.setPassword_answer(student.getPassword_answer());
 		user.setPassword1(student.getPassword1());
 
 		userMapper.update(user);

@@ -13,5 +13,7 @@ public class User {
 	String email;
 	String userType;
 	int department_no;
+	String password_question;
+    String password_answer;
 
 }

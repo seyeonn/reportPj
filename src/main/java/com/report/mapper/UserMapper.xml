@@ -20,13 +20,13 @@
 	</select>
 
 	<insert id="studentInsert" useGeneratedKeys="true" keyProperty="no">
-		INSERT USER (id, password1, name, userType, department_no)
-		VALUES (#{id}, #{password1}, #{name}, '학생', #{department_no})
+		INSERT USER (id, password1, name, email, userType, department_no, password_question, password_answer)
+		VALUES (#{id}, #{password1}, #{name}, #{email}, '학생', #{department_no}, #{password_question}, #{password_answer})
 	</insert>
 	
 	<insert id="professorInsert" useGeneratedKeys="true" keyProperty="no">
-		INSERT USER (id, password1, name, userType, department_no)
-		VALUES (#{id}, #{password1}, #{name}, '교수', #{department_no})
+		INSERT USER (id, password1, name, email, userType, department_no, password_question, password_answer)
+		VALUES (#{id}, #{password1}, #{name}, #{email}, '교수', #{department_no}, #{password_question}, #{password_answer})
 	</insert>
 	
 	<insert id="taInsert" useGeneratedKeys="true" keyProperty="no">
@@ -39,6 +39,8 @@
 		password1 = #{password1},
 		name = #{name},
 		email = #{email},
+		password_question = #{password_question},
+        password_answer = #{password_answer},
 		department_no = #{department_no}
 		WHERE no = #{no}
 	</update>
