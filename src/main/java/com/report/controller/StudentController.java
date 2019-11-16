@@ -1,8 +1,12 @@
 package com.report.controller;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -334,7 +338,27 @@ public class StudentController {
 				continue;
 			studentUploadedFileService.insert(multipartFile, id, id2);
 		}
-		return "redirect:worksubmit?id=" + id+"&id2="+id2;
+		return "redirect:/student/worksubmit?id=" + id+"&id2="+id2;
+	}
+
+	@RequestMapping("worksubmit/delete")
+	public String delete(Model model, @RequestParam("hw_no") int hw_no, @RequestParam("id") int id, @RequestParam("id2") int id2) throws Exception {
+		studentUploadedFileService.delete(hw_no);
+		System.out.println(hw_no+" tlqkf"+id);
+		return "redirect:?id="+id+"&id2="+id2;
+	}
+
+	@RequestMapping("worksubmit/download")
+	public void download(@RequestParam("hw_no") int hw_no, HttpServletResponse response) throws Exception {
+		Homework homework = studentUploadedFileService.getUploadedFile(hw_no);
+		if (homework == null)
+			return;
+		String fileName = URLEncoder.encode(homework.getFile_name(), "UTF-8");
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ";");
+		try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+			output.write(homework.getData());
+		}
 	}
 
 }

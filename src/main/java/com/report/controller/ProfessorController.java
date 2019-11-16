@@ -1,8 +1,12 @@
 package com.report.controller;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.report.dto.Homework;
 import com.report.dto.Lecture;
+import com.report.dto.Lecturefile;
 import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
 import com.report.dto.Ta;
@@ -142,27 +147,44 @@ public class ProfessorController {
 	}
 
 	@GetMapping("lecturefile")
-	public String lecturefile(Model model, Principal principal, @RequestParam(value="id") int id) {
+	public String lecturefile(Model model, Principal principal, @RequestParam(value = "id") int id) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
-		System.out.println("강의번호"+id);
-		System.out.println("get강의번호"+lecture.getLecture_no());
 		model.addAttribute("files", lecturefileService.findAll()); // 업로드된 파일리스트
 		return "professor/lecturefile"; // 강의자료 페이지
 	}
-	@PostMapping(value="lecturefile",params="cmd=upload") // 파일 업로드
-    public String upload(Model model,@RequestParam("upload") MultipartFile[] upload,
- @RequestParam("id") int id) throws IOException {
-		System.out.println("강의번호2"+id);
-		for(MultipartFile multipartFile : upload) {
-            if (multipartFile.getSize() <= 0) continue;
-            lecturefileService.save(multipartFile, id);
-            System.out.println("돌아가니");
-        }
-        return "redirect:lecturefile?id="+id;
-    }
+
+	@PostMapping(value = "lecturefile", params = "cmd=upload") // 파일 업로드
+	public String upload(Model model, @RequestParam("upload") MultipartFile[] upload, @RequestParam("id") int id)
+			throws IOException {
+		for (MultipartFile multipartFile : upload) {
+			if (multipartFile.getSize() <= 0)
+				continue;
+			lecturefileService.save(multipartFile, id);
+		}
+		return "redirect:?id=" + id;
+	}
+
+	@RequestMapping(value = "lecturefile/deletefile") // 파일 삭제
+	public String delete(Model model, @RequestParam(value = "no") int no, @RequestParam(value = "id") int id) throws Exception {
+		lecturefileService.delete(no);
+		return "redirect:?id="+id;
+	}
+
+	@RequestMapping(value = "lecturefile/download")
+	public void download(@RequestParam("no") int no, HttpServletResponse response) throws Exception {
+		Lecturefile lecturefile = lecturefileService.getUploadedFile(no);
+		if (lecturefile == null)
+			return;
+		String fileName = URLEncoder.encode(lecturefile.getFile_name(), "UTF-8");
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ";");
+		try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+			output.write(lecturefile.getData());
+		}
+	}
 
 	@GetMapping("mypage")
 	public String mypage(Model model, Principal principal) {
