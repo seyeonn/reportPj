@@ -42,9 +42,11 @@
         	  <td>
           		<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${ Lecturefile.file_time }" /></td>
         	  <td>
-          		<a class="btn btn-default btn-xs" href="download?no=${Lecturefile.no}">다운로드</a></td>
+          		<a class="btn btn-default btn-xs" href="/professor/lecturefile/download?no=${Lecturefile.no}">다운로드</a></td>
           		<td>
-          		<a class="btn btn-default btn-xs" href="delete?no=${Lecturefile.no}">삭제</a>
+          		
+          		<a class="btn btn-default btn-xs" href="/professor/lecturefile/deletefile?no=${Lecturefile.no}&id=${lecture.lecture_no}">삭제</a> 
+                
         	  </td>
       		</tr>
     	 </c:forEach>
