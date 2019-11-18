@@ -164,7 +164,7 @@ public class ProfessorController {
 				continue;
 			lecturefileService.save(multipartFile, id);
 		}
-		return "redirect:?id=" + id;
+		return "redirect:lecturefile?id=" + id;
 	}
 
 	@RequestMapping(value = "lecturefile/deletefile") // 파일 삭제
@@ -239,7 +239,7 @@ public class ProfessorController {
 	public String inputscore1(Model model, Principal principal, @RequestParam("notice_no") int notice_no) {
 		// id notice_no를 받아와야함.... 지금 임의의 값을 주고 있음
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
-		
+
 		model.addAttribute("homeworks", homeworks);
 
 
@@ -251,10 +251,10 @@ public class ProfessorController {
 			@RequestParam("notice_no") int notice_no,
 			@RequestParam("hw_no") int[] hw_no,
 			@RequestParam("grade") int[] grade ) {
-		
-		
+
+
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
-		
+
 		int sum=0;
 
 		for (int i=0; i < hw_no.length ;++i) {

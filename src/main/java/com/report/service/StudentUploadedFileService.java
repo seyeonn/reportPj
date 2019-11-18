@@ -22,9 +22,6 @@ public class StudentUploadedFileService {
     	System.out.println("되라 개새꺄");
     	List<Homework> temp = studentUploadedFileMapper.findAll(id, id2);
 
-    	if(temp.get(0).getFile_name() == null)
-			System.out.println("탁희윤바보2");
-
         return temp; // uploadedFile 테이블의 모든 레코드를 조회
     }
 
