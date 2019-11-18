@@ -217,6 +217,7 @@ public class ProfessorController {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
 		List<StudentNotice> studentNotices = studentNoticeService.listWithStudentName(id);
+
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
 		model.addAttribute("studentNotices", studentNotices);
@@ -249,7 +250,7 @@ public class ProfessorController {
 		for (int i=0; i < hw_no.length ;++i) {
 			System.out.println("========== update 전 ============");
 			System.out.printf("점수 : %d, 과제번호 :%d\n", grade[i], hw_no[i]);
-			homeworkMapper.gradeUpdate(hw_no[i], grade[i]);
+//			homeworkMapper.gradeUpdate(hw_no[i], grade[i]);
 			sum = sum + grade[i];
 			System.out.printf("점수 : %d, 과제번호 :%d\n", grade[i], hw_no[i]);
 			System.out.println("========== update 후 ============\n\n");
@@ -263,12 +264,12 @@ public class ProfessorController {
 
 	@GetMapping("studentcontent")
 	public String studentcontent(Model model, Principal principal, @RequestParam("id") int id ){
-		Lecture lecture = lectureMapper.findOne(id);
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		StudentNotice studentNotice = studentNoticeMapper.findOne(id);
+        Lecture lecture = lectureMapper.findOne(studentNotice.getLecture_no());
 
-		System.out.println(id);
-		System.out.println(principal.getName());
+		System.out.println(studentNotice.getStudent_no());
+//		System.out.println(principal.getName());
 
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
