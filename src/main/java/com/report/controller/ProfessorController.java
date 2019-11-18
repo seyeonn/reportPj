@@ -250,20 +250,28 @@ public class ProfessorController {
 	}
 
 	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")
-	public String inputscore2(Model model, List<Homework> homeworks ,
+	public String inputscore2(Model model,
 			@RequestParam("notice_no") int notice_no,
 			@RequestParam("hw_no") int[] hw_no,
 			@RequestParam("grade") int[] grade ) {
 		
 		
-		homeworks = homeworkMapper.findNotoiceStudents(notice_no);
+		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
+		
+		int sum=0;
 
-		for (int i=0; i < homeworks.size() ;++i) {
+		for (int i=0; i < hw_no.length ;++i) {
+			System.out.println("========== update 전 ============");
+			System.out.printf("점수 : %d, 과제번호 :%d\n", grade[i], hw_no[i]);
 			homeworkMapper.gradeUpdate(hw_no[i], grade[i]);
+			sum = sum + grade[i];
+			System.out.printf("점수 : %d, 과제번호 :%d\n", grade[i], hw_no[i]);
+			System.out.println("========== update 후 ============\n\n");
 		}
 
+		System.out.println("친구들 점수 총합 -> "+sum);
 		model.addAttribute("homeworks", homeworks);
-		return "professor/inputscore"; // 학생 게시판 페이지
+		return "redirect:inputscore?notice_no="+notice_no; // 학생 게시판 페이지
 	}
 
 

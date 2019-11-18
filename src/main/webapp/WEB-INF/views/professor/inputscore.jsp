@@ -36,10 +36,11 @@
         </div>
        
         
-          <form class="form">
+          <form method="post">
           <table class="table table-striped  text-center">
             <thead class="thead-light">
               <tr>
+              	<th>과제번호</th>
                 <th>학번</th>
                 <th>이름</th>
                 <th>학과</th>
@@ -53,31 +54,35 @@
             <tbody>
             <c:forEach var="homework" items="${homeworks}">
                 <tr>
+                  <td>
+                  	<input type="hidden" name="hw_no" value="${ homework.hw_no }" />
+                  	${homework.hw_no}
+                  </td>           
                   <td>${homework.student.id } </td>
-                  <td>${homework.student.name }</td>
+                  <td>${homework.student.name } </td>
                   <td>${homework.student.department.department_name}</td>
                   <td><button type="button" class="btn btn-outline-primary" >열람</button></td>
                   <td>${homework.date}</td>
-                  <td> <input type="text" class="form-control" name="grade" value="${homework.grade}" placeholder="" style="width:50px"  /></td>
+                  <td>
+                  	<input type="text" class="form-control" name="grade" value="${homework.grade}" style="width:50px"  />
+                  </td>
                   <td></td>
                 </tr>
                 </c:forEach>
             </tbody>
           </table>
-          </form>
-          </div>
-          <div style="float: right; display:inline-block; width: 900px;">
-            <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='noticecontent'">목록</button>
-            <form method="post">
-               <input type="hidden" name="no" value="${homework.hw_no }" />
-                <input type="hidden" name="grade" value="${ homework.grade }" />
-               <button type="submit"class="btn btn-primary my-2 my-sm-0" name="cmd" value="input" style="width: 100px; float: right" >입력</button>
-             </form>
-          </div>
+		
+			<div style="float: right; display:inline-block; width: 900px;">
+            	<button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='noticecontent'">목록</button>
+            	<button type="submit"class="btn btn-primary my-2 my-sm-0" name="cmd" value="input" style="width: 100px; float: right" >입력</button>
+          	</div>
+		</form>
+         
           
-          </div>
+        </div>
+        
 	</div>
-
+	</div>
 
   </main>
 </body>

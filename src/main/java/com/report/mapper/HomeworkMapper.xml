@@ -29,8 +29,9 @@
 		</association>
 	</resultMap>
 	
-	<update id="scoreUpdate">
-		update set Homework
+	
+	<update id="gradeUpdate">
+		update Homework set
 		grade = #{grade}
 		WHERE hw_no = #{hw_no}
 	</update>
