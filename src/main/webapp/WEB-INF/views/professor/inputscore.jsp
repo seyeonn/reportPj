@@ -67,7 +67,7 @@
                   	<input type="text" class="form-control" name="grade" value="${homework.grade}" style="width:50px"  />
                   </td>
                   <td>
-                  	<input type="text" class="form-control" name="rank" value="${homework.rank}" style="width:50px"  />
+                  	<input type="text" class="form-control" name="ranking" value="${homework.ranking}" style="width:50px"  />
                   </td>
                 </tr>
                 </c:forEach>
