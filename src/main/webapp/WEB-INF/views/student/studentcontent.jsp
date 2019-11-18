@@ -17,7 +17,7 @@
 <main role="main" class="main-container">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
         <strong>&nbsp&nbsp ${lecture.lecture_name} &nbsp&nbsp&nbsp&nbsp</strong>
-        <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ${professor.professor_name}님 &nbsp&nbsp
+        <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ${professor.name}님 &nbsp&nbsp
             / &nbsp&nbsp </small>
     </div>
     <div class="row">

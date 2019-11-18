@@ -305,6 +305,8 @@ public class StudentController {
     	ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
     	Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
 
+		System.out.println(id);
+
     	model.addAttribute("professor", professor);
     	model.addAttribute("lecture", lecture);
     	model.addAttribute("professorNotice", professorNotice);

@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.report.dto.*;
+import com.report.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,22 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.report.dto.Homework;
-import com.report.dto.Lecture;
-import com.report.dto.Lecturefile;
-import com.report.dto.Professor;
-import com.report.dto.ProfessorNotice;
-import com.report.dto.Ta;
-import com.report.dto.User;
-import com.report.mapper.DepartmentMapper;
-import com.report.mapper.HomeworkMapper;
-import com.report.mapper.LectureMapper;
-import com.report.mapper.ProfessorLectureMapper;
-import com.report.mapper.ProfessorMapper;
-import com.report.mapper.ProfessorNoticeMapper;
-import com.report.mapper.StudentMapper;
-import com.report.mapper.TaMapper;
-import com.report.mapper.UserMapper;
 import com.report.service.LectureService;
 import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
@@ -55,7 +41,8 @@ public class ProfessorController {
 	@Autowired HomeworkMapper homeworkMapper;
 	@Autowired LecturefileService lecturefileService;
 	@Autowired UserMapper userMapper;
-
+	@Autowired
+	StudentNoticeMapper studentNoticeMapper;
 	@Autowired ProfessorNoticeMapper professorNoticeMapper;
 
 	@RequestMapping("professorMain")
@@ -229,8 +216,10 @@ public class ProfessorController {
 	public String studentnotice(Model model,Principal principal, @RequestParam("id") int id) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
+		List<StudentNotice> studentNotices = studentNoticeService.listWithStudentName(id);
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
+		model.addAttribute("studentNotices", studentNotices);
 		return "professor/studentnotice"; // 학생 게시판 페이지
 	}
 
@@ -272,10 +261,19 @@ public class ProfessorController {
 	}
 
 
-	@RequestMapping("studentcontent")
-	public String studentcontent(Model model,Principal principal) {
+	@GetMapping("studentcontent")
+	public String studentcontent(Model model, Principal principal, @RequestParam("id") int id ){
+		Lecture lecture = lectureMapper.findOne(id);
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		StudentNotice studentNotice = studentNoticeMapper.findOne(id);
+
+		System.out.println(id);
+		System.out.println(principal.getName());
+
+		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
+		model.addAttribute("studentNotice", studentNotice);
+
 		return "professor/studentcontent"; // 학생 게시판 페이지
 	}
 

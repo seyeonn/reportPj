@@ -23,7 +23,6 @@
 
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-          
           <form>
 
             <table class="table table-hover  text-center">
