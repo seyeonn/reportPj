@@ -170,7 +170,7 @@ public class ProfessorController {
 	@RequestMapping(value = "lecturefile/deletefile") // 파일 삭제
 	public String delete(Model model, @RequestParam(value = "no") int no, @RequestParam(value = "id") int id) throws Exception {
 		lecturefileService.delete(no);
-		return "redirect:lecturefile?id=" + id;
+		return "redirect:?id=" + id;
 	}
 
 	@RequestMapping(value = "lecturefile/download")
