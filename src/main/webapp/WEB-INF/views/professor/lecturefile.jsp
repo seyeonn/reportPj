@@ -19,7 +19,7 @@
     <c:import url="../professor/lecturename.jsp" />
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
-		<c:import url="../common/menu.jsp" />
+      <c:import url="../common/menu.jsp" />
       </div>
 
       <div class="col-md-9 order-md-2">
@@ -35,33 +35,33 @@
                 </tr>
               </thead>
           <c:forEach var="Lecturefile" items="${ files }">
-      		<tr>
-        	  <td style="min-width:200px">${ Lecturefile.file_name }</td>
-        	  <td class="text-right">
-          		<fmt:formatNumber type = "number" value="${ Lecturefile.file_size }" /> bytes</td>
-        	  <td>
-          		<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${ Lecturefile.file_time }" /></td>
-        	  <td>
-          		<a class="btn btn-default btn-xs" href="/professor/lecturefile/download?no=${Lecturefile.no}">다운로드</a></td>
-          		<td>
-          		
-          		<a class="btn btn-default btn-xs" href="/professor/lecturefile/deletefile?no=${Lecturefile.no}&id=${lecture.lecture_no}">삭제</a> 
+            <tr>
+             <td style="min-width:200px">${ Lecturefile.file_name }</td>
+             <td class="text-right">
+                <fmt:formatNumber type = "number" value="${ Lecturefile.file_size }" /> bytes</td>
+             <td>
+                <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${ Lecturefile.file_time }" /></td>
+             <td>
+                <a class="btn btn-default btn-xs" href="/professor/lecturefile/download?no=${Lecturefile.no}">다운로드</a></td>
+                <td>
                 
-        	  </td>
-      		</tr>
-    	 </c:forEach>
-      		</table>
+                <a class="btn btn-default btn-xs" href="/professor/lecturefile/deletefile?no=${Lecturefile.no}&id=${lecture.lecture_no}">삭제</a> 
+                
+             </td>
+            </tr>
+        </c:forEach>
+            </table>
           <hr>
        
 
             <%--교수만--%>
-			<form method="post" enctype="multipart/form-data">
+         <form method="post" enctype="multipart/form-data">
               <input type="file" name="upload" multiple> 
               <input type="hidden" name="id" value="${lecture.lecture_no}">
               <button type="submit" name="cmd" value="upload" class="btn btn-primary">업로드</button>
               <!-- <input type="submit"> -->
             </form>
-		
+      
         </div>
       </div>
     </div>

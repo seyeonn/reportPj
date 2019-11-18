@@ -70,7 +70,7 @@
 
             <div style="float: right; display:inline-block; width: 900px;">
               <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='lecture1'">목록보기</button>
-              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='worksubmit'">제출</button>
+              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='worksubmit?id=${professorNotice.notice_no}&id2=${student.student_no}'">제출</button>
             </div>
             <label for=""><br></label>
           </form>
