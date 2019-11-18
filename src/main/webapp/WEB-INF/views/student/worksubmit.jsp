@@ -83,7 +83,7 @@
 							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
 									value="${ Homework.submitdate }" /></td>
 							<td><a class="btn btn-default btn-xs"
-								href="worksubmit/download?hw_no=${Homework.hw_no}">다운로드</a></td>
+								href="/student/worksubmit/download?hw_no=${Homework.hw_no}">다운로드</a></td>
 							<td><a class="btn btn-default btn-xs"
 								href="/student/worksubmit/delete?hw_no=${Homework.hw_no}&id=${professorNotice.notice_no}&id2=${student.student_no}">삭제</a></td>
 						</tr>

@@ -164,7 +164,7 @@ public class ProfessorController {
 				continue;
 			lecturefileService.save(multipartFile, id);
 		}
-		return "redirect:lecturefile?id=" + id;
+		return "redirect:?id=" + id;
 	}
 
 	@RequestMapping(value = "lecturefile/deletefile") // 파일 삭제
