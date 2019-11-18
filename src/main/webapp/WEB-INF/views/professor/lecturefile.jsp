@@ -53,14 +53,14 @@
             </table>
           <hr>
        
-
-            <%--교수만--%>
+       
+          <%--교수만--%>
          <form method="post" enctype="multipart/form-data">
               <input type="file" name="upload" multiple> 
               <input type="hidden" name="id" value="${lecture.lecture_no}">
               <button type="submit" name="cmd" value="upload" class="btn btn-primary">업로드</button>
               <!-- <input type="submit"> -->
-            </form>
+         	</form>
       
         </div>
       </div>
