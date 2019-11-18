@@ -11,7 +11,6 @@ public class Homework {
 
     int hw_no;
     int student_no;
-	int notice_no;
     int professornotice_no;
 
     String file_name;
@@ -19,7 +18,6 @@ public class Homework {
     Date submitdate;
 
     int grade;
-    Date date;
     int rank;
 
     Student student;

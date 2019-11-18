@@ -239,10 +239,7 @@ public class ProfessorController {
 	public String inputscore1(Model model, Principal principal, @RequestParam("notice_no") int notice_no) {
 		// id notice_no를 받아와야함.... 지금 임의의 값을 주고 있음
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
-		for (Homework hw: homeworks) {
-			System.out.println(hw.getDate());
-		}
-
+		
 		model.addAttribute("homeworks", homeworks);
 
 
