@@ -50,6 +50,16 @@ public class TaController {
 		return "ta/information"; // 로그인 한 ta를 위한 메인 페이지 URL
 	}
 
+	@RequestMapping("studentnotice")
+	public String studentnotice(Model model,Principal principal, @RequestParam("id") int id) {
+		Ta ta = taMapper.findByTaId(principal.getName());
+		Lecture lecture = lectureMapper.findOne(id);
+		model.addAttribute("lecture", lecture);
+		model.addAttribute("ta", ta);
+		return "professor/studentnotice"; // 학생 게시판 페이지
+	}
+
+
 	@RequestMapping("mypage")
 	public String mypage(Model model, Principal principal) {
 		Ta ta = taMapper.findByTaId(principal.getName());

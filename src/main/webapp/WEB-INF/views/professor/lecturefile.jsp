@@ -30,8 +30,7 @@
                   <th>파일이름</th>
                   <th>Size</th>
                   <th>제출시간</th>
-                  <th>다운로드</th>
-                  <th>삭제</th>
+                  <th>다운로드 / 삭제</th>
                 </tr>
               </thead>
           <c:forEach var="Lecturefile" items="${ files }">
@@ -42,25 +41,31 @@
              <td>
                 <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${ Lecturefile.file_time }" /></td>
              <td>
-                <a class="btn btn-default btn-xs" href="/professor/lecturefile/download?no=${Lecturefile.no}">다운로드</a></td>
-                <td>
+             <form method="post" enctype="multipart/form-data">
+             	<button type="submit" name="cmd" value="download" class="btn btn-primary">다운로드</button>
+             	<input type="hidden" name="id" value="${lecture.lecture_no}">
+             	<input type="hidden" name="no" value="${Lecturefile.no}">
+             	<button type="submit" name="cmd" value="deletefile" class="btn btn-primary">삭제</button>
+             </form>
+                <%-- <a class="btn btn-default btn-xs" href="/professor/lecturefile/download?no=${Lecturefile.no}">다운로드</a></td>
+                <td> --%>
                 
-                <a class="btn btn-default btn-xs" href="/professor/lecturefile/deletefile?no=${Lecturefile.no}&id=${lecture.lecture_no}">삭제</a> 
-                
+<%--                 <a class="btn btn-default btn-xs" href="lecturefile/deletefile?no=${Lecturefile.no}&id=${lecture.lecture_no}">삭제</a> 
+ --%>                
              </td>
             </tr>
         </c:forEach>
             </table>
           <hr>
        
-
-            <%--교수만--%>
+       
+          <%--교수만--%>
          <form method="post" enctype="multipart/form-data">
               <input type="file" name="upload" multiple> 
               <input type="hidden" name="id" value="${lecture.lecture_no}">
               <button type="submit" name="cmd" value="upload" class="btn btn-primary">업로드</button>
               <!-- <input type="submit"> -->
-            </form>
+         	</form>
       
         </div>
       </div>
