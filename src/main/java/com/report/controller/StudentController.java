@@ -299,10 +299,15 @@ public class StudentController {
     @GetMapping("noticecontent")
    	public String noticecontent(Model model, Principal principal, @RequestParam("id") int id) {
     	Student student = studentMapper.findByStudentId(principal.getName());
-    	ProfessorNotice professorNoice = professorNoticeMapper.findOne(id);
-    	Lecture lecture = lectureMapper.findOne(professorNoice.getLecture_no());
+    	ProfessorNotice professorNotice = professorNoticeMapper.findOne(id);
+
+    	Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
+    	ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
+    	Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
+
+    	model.addAttribute("professor", professor);
     	model.addAttribute("lecture", lecture);
-    	model.addAttribute("professorNotice", professorNoice);
+    	model.addAttribute("professorNotice", professorNotice);
     	model.addAttribute("student", student);
    		return "student/noticecontent"; // 과제 및 공지 내용 페이지
     }
@@ -311,6 +316,9 @@ public class StudentController {
 	public String worksubmit(Model model, Principal principal, @RequestParam("id") int id,
 			@RequestParam("id2") int id2) {
 		ProfessorNotice professorNotice = professorNoticeMapper.findOne(id);
+		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
+		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
+		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
 		Student student = studentMapper.findByStudentId(principal.getName());
 		System.out.println(id+" 나와라 개새꺄 "+id2);
 		Student student2 = studentMapper.findOne(id2);
@@ -322,7 +330,8 @@ public class StudentController {
 		model.addAttribute("student", student);
 		model.addAttribute("professorNotice", professorNotice);
 		model.addAttribute("files", list1);
-
+		model.addAttribute("professor", professor);
+		model.addAttribute("lecture", lecture);
 
 		System.out.println(studentMapper.findOne(id2).toString());
 		return "student/worksubmit"; // 학생 게시판 페이지
