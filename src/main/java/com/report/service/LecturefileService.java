@@ -20,8 +20,8 @@ public class LecturefileService {
     @Autowired LecturefileMapper lecturefileMapper;
 
     // 파일 목록 조회
-    public List<Lecturefile> findAll() {
-        return lecturefileMapper.findAll(); // uploadedFile 테이블의 모든 레코드를 조회
+    public List<Lecturefile> findAll(int id) {
+        return lecturefileMapper.findAll(id); // uploadedFile 테이블의 모든 레코드를 조회
     }
 
     // 파일 저장

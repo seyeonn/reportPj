@@ -152,7 +152,7 @@ public class ProfessorController {
 		Lecture lecture = lectureMapper.findOne(id);
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
-		model.addAttribute("files", lecturefileService.findAll()); // 업로드된 파일리스트
+		model.addAttribute("files", lecturefileService.findAll(id)); // 업로드된 파일리스트
 		return "professor/lecturefile"; // 강의자료 페이지
 	}
 
