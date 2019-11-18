@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ㄹ<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -16,8 +16,8 @@
 	<c:import url="../student/nav.jsp" />
 
 
-	<main role="main" class="main-container">
-	 <c:import url="../student/lecturename.jsp" />
+	<main role="main" class="main-container"> <c:import
+		url="../student/lecturename.jsp" />
 	<div class="row">
 		<div class="col-md-3 order-md-1 mb-4">
 			<c:import url="../common/menu.jsp" />
@@ -26,33 +26,32 @@
 		<div class="col-md-9 order-md-2">
 			<div class="my-3 p-3 bg-white rounded shadow-sm">
 
-				
-					<table class="table table-bordered text-center">
-						<tbody>
-							<tr>
-								<td class="table-active">강좌</td>
-								<td>${lecture.lecture_name}</td>
-							</tr>
-							<tr>
-								<td class="table-active">과제 제목</td>
-								<td>${professorNotice.title}</td>
-							</tr>
-							<tr>
-								<td class="table-active">첨부파일</td>
-								<td>
-									<form method="post" enctype="multipart/form-data">
-										<input type="file" name="upload" multiple> <input
-											type="hidden" name="id" value="${professorNotice.notice_no}">
-											<input
-											type="hidden" name="id2" value="${student.student_no}">
-										<button type="submit" name="cmd" value="upload"
-											class="btn btn-primary">과제제출</button>
-									</form>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				
+
+				<table class="table table-bordered text-center">
+					<tbody>
+						<tr>
+							<td class="table-active">강좌</td>
+							<td>${lecture.lecture_name}</td>
+						</tr>
+						<tr>
+							<td class="table-active">과제 제목</td>
+							<td>${professorNotice.title}</td>
+						</tr>
+						<tr>
+							<td class="table-active">첨부파일</td>
+							<td>
+								<form method="post" enctype="multipart/form-data">
+									<input type="file" name="upload" multiple> <input
+										type="hidden" name="id" value="${professorNotice.notice_no}">
+									<input type="hidden" name="id2" value="${student.student_no}">
+									<button type="submit" name="cmd" value="upload"
+										class="btn btn-primary">과제제출</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
 
 				<!--                   <td class="table-active">제출된 파일</td>-->
 				<table class="table table-hover text-center">
@@ -61,8 +60,7 @@
 							<th>파일이름</th>
 							<th>Size</th>
 							<th>제출시간</th>
-							<th>다운로드</th>
-							<th>삭제</th>
+							<th>다운로드 / 삭제</th>
 						</tr>
 					</thead>
 					<c:forEach var="Homework" items="${ files }">
@@ -72,11 +70,19 @@
 									value="${ Homework.file_size }" /> bytes</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
 									value="${ Homework.submitdate }" /></td>
-							<td><a class="btn btn-default btn-xs"
+							<td><form method="post" enctype="multipart/form-data">
+										<button type="submit" name="cmd" value="download" class="btn btn-primary">다운로드</button>
+             							<input type="hidden" name="id" value="${professorNotice.notice_no}">
+             							<input type="hidden" name="id2" value="${student.student_no}">
+             							<input type="hidden" name="hw_no" value="${Homework.hw_no}">
+             							<button type="submit" name="cmd" value="delete" class="btn btn-primary">삭제</button>
+									</form></td>	
+							<%-- <td><a class="btn btn-default btn-xs"
 								href="/student/worksubmit/download?hw_no=${Homework.hw_no}">다운로드</a></td>
 							<td><a class="btn btn-default btn-xs"
-								href="/student/worksubmit/delete?hw_no=${Homework.hw_no}&id=${professorNotice.notice_no}&id2=${student.student_no}">삭제</a></td>
+								href="/student/worksubmit/delete?hw_no=${Homework.hw_no}&id=${professorNotice.notice_no}&id2=${student.student_no}">삭제</a></td> --%>
 						</tr>
+						
 					</c:forEach>
 				</table>
 

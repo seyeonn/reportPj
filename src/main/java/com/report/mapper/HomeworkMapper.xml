@@ -18,6 +18,7 @@
 		<id property="hw_no" column="hw_no" />
 		<result property="submitdate" column="submitdate" />
 		<result property="grade" column="grade" />
+		<result property="ranking" column="ranking" />
 		<association property="student" javaType="Student">
 			<id property="student_no" column="student_no" />
 			<result property="id" column="id"/>
@@ -31,9 +32,12 @@
 	
 	
 	<update id="gradeUpdate">
-		update Homework set
-		grade = #{grade}
-		WHERE hw_no = #{hw_no}
+		UPDATE Homework SET
+		grade=#{grade},
+		ranking=#{ranking}
+		WHERE hw_no=#{hw_no}
 	</update>
+	
+	
 </mapper>
 

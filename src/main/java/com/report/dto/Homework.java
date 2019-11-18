@@ -18,7 +18,7 @@ public class Homework {
     Date submitdate;
 
     int grade;
-    int rank;
+    int ranking;
 
     Student student;
 
