@@ -18,7 +18,7 @@ public class Homework {
     int file_size;
     Date submitdate;
 
-    Integer grade;
+    int grade;
     Date date;
     int rank;
 

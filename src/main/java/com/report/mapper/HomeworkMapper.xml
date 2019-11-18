@@ -17,6 +17,7 @@
 	<resultMap id="resultMap_Homework" type="Homework">
 		<id property="hw_no" column="hw_no" />
 		<result property="date" column="date" />
+		<result property="grade" column="grade" />
 		<association property="student" javaType="Student">
 			<id property="student_no" column="student_no" />
 			<result property="id" column="id"/>
@@ -30,7 +31,7 @@
 	
 	<update id="scoreUpdate">
 		update set Homework
-		score = #{score}
+		grade = #{grade}
 		WHERE hw_no = #{hw_no}
 	</update>
 </mapper>

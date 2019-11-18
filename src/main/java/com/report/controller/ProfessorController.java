@@ -250,13 +250,16 @@ public class ProfessorController {
 	}
 
 	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")
-	public String inputscore2(Model model, Principal principal, List<Homework> homeworks , @RequestParam("notice_no") int notice_no) {
+	public String inputscore2(Model model, List<Homework> homeworks ,
+			@RequestParam("notice_no") int notice_no,
+			@RequestParam("hw_no") int[] hw_no,
+			@RequestParam("grade") int[] grade ) {
+		
+		
 		homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 
-		for (Homework hw: homeworks) {
-			System.out.printf("%s\n",hw.getStudent().getName());
-			homeworkMapper.scoreUpdate(hw.getHw_no(), hw.getGrade());
-			System.out.println(hw.getGrade()+"**\n");
+		for (int i=0; i < homeworks.size() ;++i) {
+			homeworkMapper.gradeUpdate(hw_no[i], grade[i]);
 		}
 
 		model.addAttribute("homeworks", homeworks);
