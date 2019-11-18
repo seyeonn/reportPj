@@ -16,10 +16,7 @@
 
   <main role="main" class="main-container">
     <c:import url="../student/lecturename.jsp" />
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <strong>&nbsp&nbsp DB 캡스톤디자인 &nbsp&nbsp&nbsp&nbsp</strong>
-      <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 홍은지 교수님 &nbsp&nbsp / &nbsp&nbsp</small>
-    </div>
+     <c:import url="../student/lecturename.jsp" />
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
         <c:import url="../common/menu.jsp" />
