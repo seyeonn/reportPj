@@ -350,14 +350,14 @@ public class StudentController {
 		return "redirect:/student/worksubmit?id=" + id+"&id2="+id2;
 	}
 
-	@RequestMapping("worksubmit/delete")
+	@RequestMapping(value = "worksubmit", params = "cmd=delete")
 	public String delete(Model model, @RequestParam("hw_no") int hw_no, @RequestParam("id") int id, @RequestParam("id2") int id2) throws Exception {
 		studentUploadedFileService.delete(hw_no);
 		System.out.println(hw_no+" tlqkf"+id);
-		return "redirect:?id="+id+"&id2="+id2;
+		return "redirect:worksubmit?id="+id+"&id2="+id2;
 	}
 
-	@RequestMapping("worksubmit/download")
+	@RequestMapping(value="worksubmit", params = "cmd=download")
 	public void download(@RequestParam("hw_no") int hw_no, HttpServletResponse response) throws Exception {
 		Homework homework = studentUploadedFileService.getUploadedFile(hw_no);
 		if (homework == null)
