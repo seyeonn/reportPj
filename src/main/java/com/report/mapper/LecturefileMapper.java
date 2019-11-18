@@ -10,7 +10,7 @@ import com.report.dto.Lecturefile;
 public interface LecturefileMapper {
 
 	Lecturefile findByNo(int no);
-	List<Lecturefile> findAll();
+	List<Lecturefile> findAll(int id);
 	void insert(Lecturefile uploadedFile);
 	void deleteByNo(int id);
 }

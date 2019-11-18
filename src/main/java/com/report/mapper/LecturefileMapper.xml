@@ -19,8 +19,8 @@
 	  
 	<select id="findAll" resultType="Lecturefile">
 		SELECT L.*
-		FROM LectureFile L LEFT JOIN Lecture le ON L.lecture_no = le.lecture_no
-		AND L.lecture_no= #{lecture_no}
+		FROM LectureFile L <!-- LEFT JOIN Lecture le ON L.lecture_no = le.lecture_no -->
+		WHERE L.lecture_no= #{id}
 	</select>
 	
 </mapper>
