@@ -16,7 +16,6 @@
 
   <main role="main" class="main-container">
     <c:import url="../student/lecturename.jsp" />
-     <c:import url="../student/lecturename.jsp" />
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
         <c:import url="../common/menu.jsp" />
