@@ -46,12 +46,7 @@
              	<input type="hidden" name="id" value="${lecture.lecture_no}">
              	<input type="hidden" name="no" value="${Lecturefile.no}">
              	<button type="submit" name="cmd" value="deletefile" class="btn btn-primary">삭제</button>
-             </form>
-                <%-- <a class="btn btn-default btn-xs" href="/professor/lecturefile/download?no=${Lecturefile.no}">다운로드</a></td>
-                <td> --%>
-                
-<%--                 <a class="btn btn-default btn-xs" href="lecturefile/deletefile?no=${Lecturefile.no}&id=${lecture.lecture_no}">삭제</a> 
- --%>                
+             </form>     
              </td>
             </tr>
         </c:forEach>

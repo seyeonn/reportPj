@@ -20,9 +20,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
+import com.report.dto.Homework;
+import com.report.dto.Lecture;
+import com.report.dto.Lecturefile;
+import com.report.dto.Professor;
+import com.report.dto.ProfessorNotice;
+import com.report.dto.StudentNotice;
+import com.report.dto.Ta;
+import com.report.dto.User;
+import com.report.mapper.DepartmentMapper;
+import com.report.mapper.HomeworkMapper;
+import com.report.mapper.LectureMapper;
+import com.report.mapper.ProfessorLectureMapper;
+import com.report.mapper.ProfessorMapper;
+import com.report.mapper.ProfessorNoticeMapper;
+import com.report.mapper.StudentMapper;
+import com.report.mapper.StudentNoticeMapper;
+import com.report.mapper.TaMapper;
+import com.report.mapper.UserMapper;
 import com.report.service.LectureService;
 import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
+import com.report.service.StudentUploadedFileService;
 import com.report.service.TaService;
 
 @Controller
@@ -41,9 +61,9 @@ public class ProfessorController {
 	@Autowired HomeworkMapper homeworkMapper;
 	@Autowired LecturefileService lecturefileService;
 	@Autowired UserMapper userMapper;
-	@Autowired
-	StudentNoticeMapper studentNoticeMapper;
+	@Autowired StudentNoticeMapper studentNoticeMapper;
 	@Autowired ProfessorNoticeMapper professorNoticeMapper;
+    @Autowired StudentUploadedFileService studentUploadedFileService;
 
 	@RequestMapping("professorMain")
 	public String professorMain(Model model,Principal principal) {
@@ -232,8 +252,20 @@ public class ProfessorController {
 
 		model.addAttribute("homeworks", homeworks);
 
-
 		return "professor/inputscore";
+	}
+	
+	@RequestMapping(value="inputscore", params ="cmd=downloadHomework")
+	public void downloadHomework(@RequestParam("hw_no") int hw_no, HttpServletResponse response) throws Exception {
+		Homework homework = studentUploadedFileService.getUploadedFile(hw_no);
+		if (homework == null)
+			return;
+		String fileName = URLEncoder.encode(homework.getFile_name(), "UTF-8");
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ";");
+		try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+			output.write(homework.getData());
+		}
 	}
 
 	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")
@@ -258,12 +290,13 @@ public class ProfessorController {
 
 
 	@GetMapping("studentcontent")
-	public String studentcontent(Model model, Principal principal, @RequestParam("id") int id ){
+	public String studentcontent(Model model, Principal principal,
+								 @RequestParam("id") int id ){
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		StudentNotice studentNotice = studentNoticeMapper.findOne(id);
         Lecture lecture = lectureMapper.findOne(studentNotice.getLecture_no());
 
-		System.out.println(studentNotice.getStudent_no());
+//		System.out.println(studentNotice.getStudent_no());
 //		System.out.println(principal.getName());
 
 		model.addAttribute("lecture", lecture);
@@ -273,6 +306,8 @@ public class ProfessorController {
 		return "professor/studentcontent"; // 학생 게시판 페이지
 	}
 
+	
+	
 	@RequestMapping(value="taapprove", method=RequestMethod.GET)
 	public String taapprove(Model model, Principal principal) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
