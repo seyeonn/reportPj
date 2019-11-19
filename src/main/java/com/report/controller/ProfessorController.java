@@ -23,6 +23,7 @@ import com.report.dto.Lecture;
 import com.report.dto.Lecturefile;
 import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
+import com.report.dto.StudentNotice;
 import com.report.dto.Ta;
 import com.report.dto.User;
 import com.report.mapper.DepartmentMapper;
@@ -32,6 +33,7 @@ import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
 import com.report.mapper.ProfessorNoticeMapper;
 import com.report.mapper.StudentMapper;
+import com.report.mapper.StudentNoticeMapper;
 import com.report.mapper.TaMapper;
 import com.report.mapper.UserMapper;
 import com.report.service.LectureService;
@@ -56,6 +58,7 @@ public class ProfessorController {
 	@Autowired LecturefileService lecturefileService;
 	@Autowired UserMapper userMapper;
 	@Autowired ProfessorNoticeMapper professorNoticeMapper;
+	@Autowired StudentNoticeMapper studentNoticeMapper;
 
 	@RequestMapping("professorMain")
 	public String professorMain(Model model,Principal principal) {
@@ -228,8 +231,11 @@ public class ProfessorController {
 	public String studentnotice(Model model,Principal principal, @RequestParam("id") int id) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
+		List<StudentNotice> studentNotices = studentNoticeService.listWithStudentName(id);
+
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
+		model.addAttribute("studentNotices", studentNotices);
 		return "professor/studentnotice"; // 학생 게시판 페이지
 	}
 
@@ -241,7 +247,6 @@ public class ProfessorController {
 
 		model.addAttribute("homeworks", homeworks);
 
-
 		return "professor/inputscore";
 	}
 
@@ -252,31 +257,39 @@ public class ProfessorController {
 			@RequestParam("grade") int[] grade,
 			@RequestParam("ranking") int[] ranking) {
 
-		
-		
-		
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 		
 		for (int i=0; i < hw_no.length ;++i) {
 			System.out.println("======================");
-			homeworkMapper.gradeUpdate(grade[i], ranking[i],hw_no[i]);
+			homeworkMapper.gradeUpdate(grade[i], ranking[i], hw_no[i]);
 			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
 			System.out.println("======================\n\n");
 		}
 		
 		
 		model.addAttribute("homeworks", homeworks);
-		return "redirect:inputscore?notice_no="+notice_no; // 학생 게시판 페이지
+		return "redirect:inputscore?notice_no="+notice_no;
 	}
 
 
-	@RequestMapping("studentcontent")
-	public String studentcontent(Model model,Principal principal) {
+	@GetMapping("studentcontent")
+	public String studentcontent(Model model, Principal principal,
+								 @RequestParam("id") int id ){
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		StudentNotice studentNotice = studentNoticeMapper.findOne(id);
+        Lecture lecture = lectureMapper.findOne(studentNotice.getLecture_no());
+
+//		System.out.println(studentNotice.getStudent_no());
+//		System.out.println(principal.getName());
+
+		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
+		model.addAttribute("studentNotice", studentNotice);
+
 		return "professor/studentcontent"; // 학생 게시판 페이지
 	}
 
+	
 	@RequestMapping(value="taapprove", method=RequestMethod.GET)
 	public String taapprove(Model model, Principal principal) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
