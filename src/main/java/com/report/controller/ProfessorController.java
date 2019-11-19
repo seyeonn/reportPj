@@ -42,6 +42,7 @@ import com.report.mapper.UserMapper;
 import com.report.service.LectureService;
 import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
+import com.report.service.StudentUploadedFileService;
 import com.report.service.TaService;
 
 @Controller
@@ -62,6 +63,7 @@ public class ProfessorController {
 	@Autowired UserMapper userMapper;
 	@Autowired StudentNoticeMapper studentNoticeMapper;
 	@Autowired ProfessorNoticeMapper professorNoticeMapper;
+    @Autowired StudentUploadedFileService studentUploadedFileService;
 
 	@RequestMapping("professorMain")
 	public String professorMain(Model model,Principal principal) {
@@ -251,6 +253,19 @@ public class ProfessorController {
 		model.addAttribute("homeworks", homeworks);
 
 		return "professor/inputscore";
+	}
+	
+	@RequestMapping(value="inputscore", params ="cmd=downloadHomework")
+	public void downloadHomework(@RequestParam("hw_no") int hw_no, HttpServletResponse response) throws Exception {
+		Homework homework = studentUploadedFileService.getUploadedFile(hw_no);
+		if (homework == null)
+			return;
+		String fileName = URLEncoder.encode(homework.getFile_name(), "UTF-8");
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ";");
+		try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+			output.write(homework.getData());
+		}
 	}
 
 	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")

@@ -1,4 +1,4 @@
-ㄹ<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -77,10 +77,6 @@
              							<input type="hidden" name="hw_no" value="${Homework.hw_no}">
              							<button type="submit" name="cmd" value="delete" class="btn btn-primary">삭제</button>
 									</form></td>	
-							<%-- <td><a class="btn btn-default btn-xs"
-								href="/student/worksubmit/download?hw_no=${Homework.hw_no}">다운로드</a></td>
-							<td><a class="btn btn-default btn-xs"
-								href="/student/worksubmit/delete?hw_no=${Homework.hw_no}&id=${professorNotice.notice_no}&id2=${student.student_no}">삭제</a></td> --%>
 						</tr>
 						
 					</c:forEach>
