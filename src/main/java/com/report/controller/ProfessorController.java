@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.report.dto.*;
+import com.report.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import com.report.dto.Homework;
 import com.report.dto.Lecture;
@@ -57,8 +60,8 @@ public class ProfessorController {
 	@Autowired HomeworkMapper homeworkMapper;
 	@Autowired LecturefileService lecturefileService;
 	@Autowired UserMapper userMapper;
-	@Autowired ProfessorNoticeMapper professorNoticeMapper;
 	@Autowired StudentNoticeMapper studentNoticeMapper;
+	@Autowired ProfessorNoticeMapper professorNoticeMapper;
 
 	@RequestMapping("professorMain")
 	public String professorMain(Model model,Principal principal) {
@@ -169,13 +172,13 @@ public class ProfessorController {
 		return "redirect:lecturefile?id=" + id;
 	}
 
-	@PostMapping(value = "lecturefile", params = "cmd=deletefile") // 파일 삭제
+	@RequestMapping(value = "lecturefile/deletefile") // 파일 삭제
 	public String delete(Model model, @RequestParam(value = "no") int no, @RequestParam(value = "id") int id) throws Exception {
 		lecturefileService.delete(no);
-		return "redirect:lecturefile?id=" + id;
+		return "redirect:?id=" + id;
 	}
 
-	@PostMapping(value = "lecturefile", params = "cmd=download")
+	@RequestMapping(value = "lecturefile/download")
 	public void download(@RequestParam("no") int no, HttpServletResponse response) throws Exception {
 		Lecturefile lecturefile = lecturefileService.getUploadedFile(no);
 		if (lecturefile == null)
@@ -266,7 +269,6 @@ public class ProfessorController {
 			System.out.println("======================\n\n");
 		}
 		
-		
 		model.addAttribute("homeworks", homeworks);
 		return "redirect:inputscore?notice_no="+notice_no;
 	}
@@ -289,6 +291,7 @@ public class ProfessorController {
 		return "professor/studentcontent"; // 학생 게시판 페이지
 	}
 
+	
 	
 	@RequestMapping(value="taapprove", method=RequestMethod.GET)
 	public String taapprove(Model model, Principal principal) {
