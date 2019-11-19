@@ -64,7 +64,7 @@
 						<strong class="text-gray-dark">${lecture.lecture_name}</strong>
 						<form method="post">
                   		<input type="hidden" name="id" value="${ lecture.lecture_no }" />
-                  		<button type="submit" name="cmd" value="yes" class="btn btn-outline-primary">승인</button>
+                  		<button type="submit" name="cmd" value="yes" class="btn btn-primary">승인</button>
                   		</form>
 					</div>
 				</div>
