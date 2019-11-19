@@ -12,4 +12,5 @@ public class Pagination {
         return String.format("pg=%d&sz=%d", pg, sz);
     }
 
+
 }
