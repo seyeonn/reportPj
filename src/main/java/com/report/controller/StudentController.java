@@ -35,6 +35,7 @@ import com.report.mapper.StudentLectureMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.StudentNoticeMapper;
 import com.report.mapper.UserMapper;
+import com.report.model.Pagination;
 import com.report.service.LectureService;
 import com.report.service.StudentNoticeService;
 import com.report.service.StudentUploadedFileService;
@@ -77,7 +78,7 @@ public class StudentController {
 	}
 
 	@RequestMapping(value="lecture", method=RequestMethod.GET)
-	public String studentlecture(Model model, Lecture lecture, Principal principal) {
+	public String studentlecture(Model model, Lecture lecture, Principal principal, Pagination pagination) {
 		Student student = studentMapper.findByStudentId(principal.getName());
 		List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
 		List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
@@ -86,7 +87,8 @@ public class StudentController {
 		model.addAttribute("studentlectures2",studentlectures2);
 		//model.addAttribute("lectures", lectures);
 
-		List<Lecture> lectures = lectureMapper.findA(student.getStudent_no());
+		List<Lecture> lectures = lectureMapper.findA(student.getStudent_no(),pagination);
+        pagination.setRecordCount(lectureMapper.count(student.getStudent_no()));
 		model.addAttribute("lectures", lectures);
 
 		model.addAttribute("studentLecture", new StudentLecture());
