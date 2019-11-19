@@ -75,7 +75,7 @@
           </table>
 		
 			<div style="float: right; display:inline-block; width: 900px;">
-            	<button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='noticecontent?id=#{professorNotice.notice_no}'">목록</button>
+            	<button type="button" class="btn btn-primary mx-2 my-sm-0" style="width: 100px; float: right" onclick="location.href='noticecontent?id=#{professorNotice.notice_no}'">목록</button>
             	<button type="submit"class="btn btn-primary my-2 my-sm-0" name="cmd" value="input" style="width: 100px; float: right" >입력</button>
           	</div>
 		</form>

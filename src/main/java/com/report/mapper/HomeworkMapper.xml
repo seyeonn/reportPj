@@ -19,6 +19,7 @@
 		<result property="submitdate" column="submitdate" />
 		<result property="grade" column="grade" />
 		<result property="ranking" column="ranking" />
+		<result property="professornotice_no" column="professornotice_no" />
 		<association property="student" javaType="Student">
 			<id property="student_no" column="student_no" />
 			<result property="id" column="id"/>
