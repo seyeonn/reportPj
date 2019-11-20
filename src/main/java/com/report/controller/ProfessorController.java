@@ -174,13 +174,13 @@ public class ProfessorController {
 		return "redirect:lecturefile?id=" + id;
 	}
 
-	@RequestMapping(value = "lecturefile/deletefile") // 파일 삭제
+	@RequestMapping(value = "lecturefile",params="cmd=deletefile") // 파일 삭제
 	public String delete(Model model, @RequestParam(value = "no") int no, @RequestParam(value = "id") int id) throws Exception {
 		lecturefileService.delete(no);
-		return "redirect:?id=" + id;
+		return "redirect:lecturefile?id=" + id;
 	}
 
-	@RequestMapping(value = "lecturefile/download")
+	@RequestMapping(value = "lecturefile", params="cmd=download")
 	public void download(@RequestParam("no") int no, HttpServletResponse response) throws Exception {
 		Lecturefile lecturefile = lecturefileService.getUploadedFile(no);
 		if (lecturefile == null)

@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.report.dto.Homework;
 import com.report.dto.Lecture;
+import com.report.dto.Lecturefile;
 import com.report.dto.Professor;
 import com.report.dto.ProfessorLecture;
 import com.report.dto.ProfessorNotice;
@@ -37,6 +38,7 @@ import com.report.mapper.StudentNoticeMapper;
 import com.report.mapper.UserMapper;
 import com.report.model.Pagination;
 import com.report.service.LectureService;
+import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
 import com.report.service.StudentUploadedFileService;
 
@@ -64,6 +66,7 @@ public class StudentController {
     StudentNoticeMapper studentNoticeMapper;
     @Autowired UserMapper userMapper;
     @Autowired StudentUploadedFileService studentUploadedFileService;
+	@Autowired LecturefileService lecturefileService;
 
 	@RequestMapping("studentMain")
 	public String studentMain(Model model, Principal principal) {
@@ -254,10 +257,23 @@ public class StudentController {
 		model.addAttribute("student", student);
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
+		model.addAttribute("files", lecturefileService.findAll(id)); // 업로드된 파일리스트
+
 		return "student/lecturefile"; // 강의 자료 페이지
 
 	}
-
+	@RequestMapping(value = "lecturefile", params="cmd=downloadLecturefile")
+	public void downloadLecturefile(@RequestParam("no") int no, HttpServletResponse response) throws Exception {
+		Lecturefile lecturefile = lecturefileService.getUploadedFile(no);
+		if (lecturefile == null)
+			return;
+		String fileName = URLEncoder.encode(lecturefile.getFile_name(), "UTF-8");
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ";");
+		try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+			output.write(lecturefile.getData());
+		}
+	}
 
     @GetMapping("mypage")
     public String mypage(Model model, Principal principal) {
@@ -324,7 +340,6 @@ public class StudentController {
 		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
 		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
 		Student student = studentMapper.findByStudentId(principal.getName());
-		System.out.println(id+" 나와라 개새꺄 "+id2);
 		Student student2 = studentMapper.findOne(id2);
 
 		List<Homework> list1 = studentUploadedFileService.findAll(id, id2);
@@ -354,14 +369,14 @@ public class StudentController {
 		return "redirect:/student/worksubmit?id=" + id+"&id2="+id2;
 	}
 
-	@RequestMapping("worksubmit/delete")
+	@RequestMapping(value = "worksubmit", params="cmd=delete")
 	public String delete(Model model, @RequestParam("hw_no") int hw_no, @RequestParam("id") int id, @RequestParam("id2") int id2) throws Exception {
 		studentUploadedFileService.delete(hw_no);
 		System.out.println(hw_no+" tlqkf"+id);
-		return "redirect:?id="+id+"&id2="+id2;
+		return "redirect:worksubmit?id="+id+"&id2="+id2;
 	}
 
-	@RequestMapping("worksubmit/download")
+	@RequestMapping(value="worksubmit", params="cmd=download")
 	public void download(@RequestParam("hw_no") int hw_no, HttpServletResponse response) throws Exception {
 		Homework homework = studentUploadedFileService.getUploadedFile(hw_no);
 		if (homework == null)
