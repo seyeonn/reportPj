@@ -29,6 +29,7 @@ import com.report.dto.User;
 import com.report.mapper.DepartmentMapper;
 import com.report.mapper.HomeworkMapper;
 import com.report.mapper.LectureMapper;
+import com.report.mapper.LecturefileMapper;
 import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
 import com.report.mapper.ProfessorNoticeMapper;
@@ -62,6 +63,7 @@ public class ProfessorController {
 	@Autowired StudentNoticeMapper studentNoticeMapper;
 	@Autowired ProfessorNoticeMapper professorNoticeMapper;
     @Autowired StudentUploadedFileService studentUploadedFileService;
+    @Autowired LecturefileMapper lecturefileMapper;
 
 	@RequestMapping("professorMain")
 	public String professorMain(Model model,Principal principal) {
@@ -153,12 +155,14 @@ public class ProfessorController {
 	}
 
 	@GetMapping("lecturefile")
-	public String lecturefile(Model model, Principal principal, @RequestParam(value = "id") int id) {
+	public String lecturefile(Model model, Principal principal, @RequestParam(value = "id") int id, Pagination pagination) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
+		List<Lecturefile> lecturefiles = lecturefileService.findAll(id,pagination);
+		pagination.setRecordCount(lecturefileMapper.count(id));
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
-		model.addAttribute("files", lecturefileService.findAll(id)); // 업로드된 파일리스트
+		model.addAttribute("files", lecturefiles); // 업로드된 파일리스트 // 업로드된 파일리스트
 		return "professor/lecturefile"; // 강의자료 페이지
 	}
 

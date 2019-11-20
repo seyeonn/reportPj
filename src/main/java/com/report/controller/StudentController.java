@@ -29,6 +29,7 @@ import com.report.dto.StudentLecture;
 import com.report.dto.StudentNotice;
 import com.report.dto.User;
 import com.report.mapper.LectureMapper;
+import com.report.mapper.LecturefileMapper;
 import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
 import com.report.mapper.ProfessorNoticeMapper;
@@ -67,6 +68,7 @@ public class StudentController {
     @Autowired UserMapper userMapper;
     @Autowired StudentUploadedFileService studentUploadedFileService;
 	@Autowired LecturefileService lecturefileService;
+	@Autowired LecturefileMapper lecturefileMapper;
 
 	@RequestMapping("studentMain")
 	public String studentMain(Model model, Principal principal) {
@@ -250,15 +252,17 @@ public class StudentController {
     }
 
 	@RequestMapping("lecturefile")
-	public String lecturefile(Model model, Principal principal, @RequestParam("id") int id) {
+	public String lecturefile(Model model, Principal principal, @RequestParam("id") int id, Pagination pagination) {
 		Lecture lecture = lectureMapper.findOne(id);
 		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
 		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
 		Student student = studentMapper.findByStudentId(principal.getName());
+		List<Lecturefile> lecturefiles = lecturefileService.findAll(id,pagination);
+		pagination.setRecordCount(lecturefileMapper.count(id));
 		model.addAttribute("student", student);
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
-		model.addAttribute("files", lecturefileService.findAll(id)); // 업로드된 파일리스트
+		model.addAttribute("files", lecturefiles);// 업로드된 파일리스트
 
 		return "student/lecturefile"; // 강의 자료 페이지
 

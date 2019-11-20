@@ -13,15 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.report.dto.Homework;
 import com.report.dto.Lecture;
+import com.report.dto.Lecturefile;
 import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
 import com.report.dto.Ta;
 import com.report.mapper.HomeworkMapper;
 import com.report.mapper.LectureMapper;
+import com.report.mapper.LecturefileMapper;
 import com.report.mapper.ProfessorMapper;
 import com.report.mapper.ProfessorNoticeMapper;
 import com.report.mapper.TaMapper;
 import com.report.model.Pagination;
+import com.report.service.LecturefileService;
 
 @Controller
 
@@ -33,6 +36,8 @@ public class TaController {
 	@Autowired ProfessorMapper professorMapper;
 	@Autowired ProfessorNoticeMapper professorNoticeMapper;
 	@Autowired HomeworkMapper homeworkMapper;
+	@Autowired LecturefileMapper lecturefileMapper;
+	@Autowired LecturefileService lecturefileService;
 
 	@RequestMapping("taMain")
 	public String taMain(Model model, Principal principal) {
@@ -85,11 +90,14 @@ public class TaController {
 	}
 
 	@RequestMapping("lecturefile")
-	public String lecturefile(Model model, Principal principal, @RequestParam("id") int id) {
+	public String lecturefile(Model model, Principal principal, @RequestParam("id") int id, Pagination pagination) {
 		Ta ta = taMapper.findByTaId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
+		List<Lecturefile> lecturefiles = lecturefileService.findAll(id,pagination);
+		pagination.setRecordCount(lecturefileMapper.count(id));
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("ta", ta);
+		model.addAttribute("files", lecturefiles); // 업로드된 파일리스트
 		return "ta/lecturefile"; // 강의자료 페이지
 	}
 

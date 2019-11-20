@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.report.dto.Lecturefile;
 import com.report.mapper.LecturefileMapper;
+import com.report.model.Pagination;
 
 
 
@@ -20,8 +21,8 @@ public class LecturefileService {
     @Autowired LecturefileMapper lecturefileMapper;
 
     // 파일 목록 조회
-    public List<Lecturefile> findAll(int id) {
-        return lecturefileMapper.findAll(id); // uploadedFile 테이블의 모든 레코드를 조회
+    public List<Lecturefile> findAll(int id, Pagination pagination) {
+        return lecturefileMapper.findAll(id, pagination); // uploadedFile 테이블의 모든 레코드를 조회
     }
 
     // 파일 저장
