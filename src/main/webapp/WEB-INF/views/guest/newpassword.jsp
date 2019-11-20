@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!doctype html>
 <html lang="en">
 
@@ -14,7 +16,7 @@
     <form class="form-signin my-3 p-3 bg-white rounded shadow-sm">
       <h4 class="mb-3">비밀번호 변경</h4>
       <hr class="mb-4">
-      <div class="my-3 p-3 bg-white rounded shadow-sm">
+
       <div class="mb-3">
         <label for="address">비밀번호</label>
         <input type="password" class="form-control" id="password" placeholder="password" required>
@@ -30,14 +32,14 @@
           비밀번호 확인을 입력해주세요.
         </div>
       </div>
-    </div>
+
       <div class="checkbox">
         <label>
 
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">확인</button>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">로그인 하러 가기</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="location.href='login' ">확인</button>
+      <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">로그인 하러 가기</button> -->
 
     </form>
   </div>

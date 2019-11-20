@@ -57,6 +57,17 @@ public class GuestController {
 		return "guest/findpassword"; //비민번호 찾
 	}
 
+	@RequestMapping("newpassword")
+	public String newpassword(Model model) {
+
+		return "guest/newpassword"; //비민번호 찾
+	}
+
+	@RequestMapping("passwordquestion")
+	public String passwordquestion(Model model) {
+
+		return "guest/passwordquestion"; //비민번호 찾
+	}
 	//교수회원가입
 	@Transactional
 	@GetMapping(value="professorsignup")

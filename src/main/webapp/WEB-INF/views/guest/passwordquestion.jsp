@@ -17,20 +17,19 @@
     <form class="form-signin my-3 p-3 bg-white rounded shadow-sm">
       <h4 class="mb-3">비밀번호 찾기</h4>
       <hr class="mb-4">
-      아이디<label for="inputId" class="sr-only">아이디</label>
-      <input type="text" id="inputEmail" class="form-control" placeholder="아이디는 학번입니다." required autofocus>
+      질문<label for="inputId" class="sr-only">질문</label>
       <br>
-      이름<label for="inputName" class="sr-only">이름</label>
-      <input type="text" id="inputEmail" class="form-control" placeholder="이름을 입력해주세요." required autofocus>
+       <br>
+      디비에 있는 질문!!
+<br>
       <br>
-      이메일<label for="inputEmail" class="sr-only">이메일</label>
-      <input type="email" id="inputemail" class="form-control" placeholder="이메일 형식에 맞게 입력해주세요." required>
-      <div class="checkbox">
+      답<label for="inputName" class="sr-only">답</label>
+      <input type="text" id="inputEmail" class="form-control" placeholder="질문에 맞는 답을 입력해주세요." required autofocus>
+      <br>
         <label>
 
         </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="location.href='passwordquestion' ">다음</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="location.href='newpassword' ">다음</a></button>
      <!--  <button class="btn btn-lg btn-primary btn-block" type="submit">로그인 하러 가기</button> -->
 
     </form>
