@@ -13,6 +13,7 @@ import com.report.dto.StudentNotice;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.StudentNoticeMapper;
+import com.report.model.Pagination;
 
 @Service
 public class StudentNoticeService {
@@ -29,8 +30,8 @@ public class StudentNoticeService {
         return studentNoticeMapper.list(id);
     }
 
-    public List<StudentNotice> listWithStudentName(int id){
-        return studentNoticeMapper.listWithStudentName(id);
+    public List<StudentNotice> listWithStudentName(int id, Pagination pagination){
+        return studentNoticeMapper.listWithStudentName(id, pagination);
     }
 
     public StudentNotice findOne(int studentnotice_no){

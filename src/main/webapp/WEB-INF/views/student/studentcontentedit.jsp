@@ -31,7 +31,7 @@
 
               <tbody>
                 <tr>
-                  <td class="table-active">제목 </td>
+                  <td class="table-active" width="15%">제목 </td>
                   <td><form:input path="title" class="form-control" /></td>
                 </tr>
                 <tr>

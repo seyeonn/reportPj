@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <!doctype html>
 <html lang="en">
 
@@ -45,6 +46,7 @@
                  </c:forEach>
               </tbody>
             </table>
+            <my:pagination pageSize="${ pagination.sz }" recordCount="${ pagination.recordCount }" queryStringName="pg" />
             <div style="float: right; display:inline-block; width: 900px;">
                 <%--학생만--%>
               <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='studentposting?id=${lecture.lecture_no}'">작성</button>

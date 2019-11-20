@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -23,28 +25,25 @@
         <div class="my-3 p-3 bg-white rounded shadow-sm">
           <form class="form">
             <table class="table table-hover  text-center">
-              <thead class="thead-light">
-                <tr>
-                  <th>번호</th>
-                  <th>제목</th>
-                  <th>파일</th>
-                  <th>작성자</th>
-                  <th>작성일</th>
-                </tr>
-              </thead>
-              <tbody>
-                <%-- <c:forEach var="" items="${  }">  --%>
-                <%-- <tr data-url="edtit?id=${ }"> --%>
-                <tr onClick = " location.href='studentcontent' ">
-                  <td>4 </td>
-                  <td>발표 주제</td>
-                  <td></td>
-                  <td>용동중</td>
-                  <td>2019-10-30</td>
-                </tr>
-                <%-- </c:forEach> --%>
-              </tbody>
-            </table>
+            <thead class="thead-light">
+            <tr>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>작성일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="studentNotice" items="${studentNotices}">
+              <tr onClick = "location.href='studentcontent?id=${studentNotice.studentnotice_no}'">
+                <td>${studentNotice.title}</td>
+                <td>${studentNotice.student.name}</td>
+                <td>
+                  <fmt:formatDate value="${studentNotice.submitdate}" pattern="yyyy-MM-dd" />
+                </td>
+              </tr>
+            </c:forEach>
+            </tbody>
+          </table>
             <div style="float: right; display:inline-block; width: 900px;">
   
               

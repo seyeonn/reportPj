@@ -11,11 +11,11 @@
 <body class="bg-light">
 
 <!-- Nav -->
-<c:import url="../professor/nav.jsp"/>
+<c:import url="../ta/nav.jsp"/>
 
 
 <main role="main" class="main-container">
-  <c:import url="../professor/lecturename.jsp"/>
+  <c:import url="../ta/lecturename.jsp"/>
   <div class="row">
     <div class="col-md-3 order-md-1 mb-4">
       <c:import url="../common/menu.jsp"/>
@@ -30,7 +30,7 @@
 
           <tbody>
           <tr>
-            <td class="table-active" width="15%">제목</td>
+            <td class="table-active">제목</td>
             <td> ${studentNotice.title} </td>
           </tr>
           <tr>

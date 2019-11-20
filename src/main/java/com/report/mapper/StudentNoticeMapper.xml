@@ -11,13 +11,22 @@
     WHERE lecture_no = #{lecture_no}
     order by sn.studentnotice_no desc
  </select>
+ 	
+ <select id="count" resultType="int">
+ SELECT (*)
+    FROM student_notice sn
+    LEFT JOIN student s ON sn.student_no = s.student_no
+    WHERE lecture_no = #{lecture_no}
+ </select>
 
     <select id="listWithStudentName" resultMap="resultMap1">
+    <bind name="start" value="(pagination.pg - 1) * pagination.sz" />
         SELECT sn.studentnotice_no, sn.title, s.name, sn.submitdate
         FROM student_notice sn
         LEFT JOIN student s ON sn.student_no = s.student_no
         WHERE lecture_no = #{lecture_no}
         order by sn.studentnotice_no desc
+        LIMIT #{start}, #{pagination.sz}
     </select>
 
     <resultMap id="resultMap1" type="StudentNotice">

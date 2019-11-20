@@ -33,15 +33,7 @@
                             <td><form:textarea path="content" class="form-control"
                                                style="height: 300px; overflow:auto"/></td>
                         </tr>
-                        <tr>
-                            <td class="table-active">첨부파일</td>
-                            <td>
-                                <form action="http://localhost/upload.php" method="post" enctype="multipart/form-data">
-                                    <input type="file" name="profile">
-                                    <input type="submit">
-                                </form>
-                            </td>
-                        </tr>
+                        
                     </table>
                     <div style="float: right; display:inline-block; width: 900px;">
                         <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right"

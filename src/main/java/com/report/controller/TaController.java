@@ -16,15 +16,18 @@ import com.report.dto.Lecture;
 import com.report.dto.Lecturefile;
 import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
+import com.report.dto.StudentNotice;
 import com.report.dto.Ta;
 import com.report.mapper.HomeworkMapper;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.LecturefileMapper;
 import com.report.mapper.ProfessorMapper;
 import com.report.mapper.ProfessorNoticeMapper;
+import com.report.mapper.StudentNoticeMapper;
 import com.report.mapper.TaMapper;
 import com.report.model.Pagination;
 import com.report.service.LecturefileService;
+import com.report.service.StudentNoticeService;
 
 @Controller
 
@@ -38,6 +41,8 @@ public class TaController {
 	@Autowired HomeworkMapper homeworkMapper;
 	@Autowired LecturefileMapper lecturefileMapper;
 	@Autowired LecturefileService lecturefileService;
+	@Autowired StudentNoticeService studentNoticeService;
+	@Autowired StudentNoticeMapper studentNoticeMapper;
 
 	@RequestMapping("taMain")
 	public String taMain(Model model, Principal principal) {
@@ -61,14 +66,33 @@ public class TaController {
 	}
 
 	@RequestMapping("studentnotice")
-	public String studentnotice(Model model,Principal principal, @RequestParam("id") int id) {
+	public String studentnotice(Model model,Principal principal, @RequestParam("id") int id, Pagination pagination) {
 		Ta ta = taMapper.findByTaId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
+		List<StudentNotice> studentNotices = studentNoticeService.listWithStudentName(id,pagination);
+		pagination.setRecordCount(lecturefileMapper.count(id));
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("ta", ta);
-		return "professor/studentnotice"; // 학생 게시판 페이지
+		model.addAttribute("studentNotices", studentNotices);
+		return "ta/studentnotice"; // 학생 게시판 페이지
 	}
 
+	@GetMapping("studentcontent")
+	public String studentcontent(Model model, Principal principal,
+								 @RequestParam("id") int id ){
+		Ta ta = taMapper.findByTaId(principal.getName());
+		StudentNotice studentNotice = studentNoticeMapper.findOne(id);
+        Lecture lecture = lectureMapper.findOne(studentNotice.getLecture_no());
+
+//		System.out.println(studentNotice.getStudent_no());
+//		System.out.println(principal.getName());
+
+		model.addAttribute("lecture", lecture);
+		model.addAttribute("ta", ta);
+		model.addAttribute("studentNotice", studentNotice);
+
+		return "ta/studentcontent"; // 학생 게시판 페이지
+	}
 
 	@RequestMapping("mypage")
 	public String mypage(Model model, Principal principal) {
@@ -130,6 +154,9 @@ public class TaController {
 			@RequestParam("hw_no") int[] hw_no,
 			@RequestParam("grade") int[] grade,
 			@RequestParam("ranking") int[] ranking) {
+
+
+
 
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 
