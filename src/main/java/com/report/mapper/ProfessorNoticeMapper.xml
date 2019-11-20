@@ -5,10 +5,18 @@
 <mapper namespace="com.report.mapper.ProfessorNoticeMapper">
 
     <select id="list" resultType="ProfessorNotice">
-        SELECT *<!-- header,title,date_format(deadline, '%Y-%m-%d %H:%i'),date_format(deadline_add, '%Y-%m-%d %H:%i'),perfect_score -->
+        <bind name="start" value="(pagination.pg - 1) * pagination.sz" />
+        SELECT *
         FROM professor_notice 
         WHERE lecture_no = #{lecture_no}
         order by notice_no desc
+        LIMIT #{start}, #{pagination.sz}
+    </select>
+    
+    <select id="count" resultType="int">
+    	SELECT count(*)
+        FROM professor_notice 
+        WHERE lecture_no = #{lecture_no}
     </select>
 
     <select id="findOne" resultType="ProfessorNotice">

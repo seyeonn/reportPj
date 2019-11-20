@@ -21,6 +21,7 @@ import com.report.mapper.LectureMapper;
 import com.report.mapper.ProfessorMapper;
 import com.report.mapper.ProfessorNoticeMapper;
 import com.report.mapper.TaMapper;
+import com.report.model.Pagination;
 
 @Controller
 
@@ -72,11 +73,12 @@ public class TaController {
 	}
 
 	@RequestMapping("notice")
-	public String notice(Model model, Principal principal, @RequestParam("id") int id) {
+	public String notice(Model model, Principal principal, @RequestParam("id") int id,Pagination pagination) {
 		Ta ta = taMapper.findByTaId(principal.getName());
 		model.addAttribute("ta", ta);
 		Lecture lecture = lectureMapper.findOne(id);
-		List<ProfessorNotice>  professorNotices = professorNoticeMapper.list(id);
+		List<ProfessorNotice>  professorNotices = professorNoticeMapper.list(id, pagination);
+		pagination.setRecordCount(professorNoticeMapper.count(id));
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professorNotices", professorNotices);
 		return "ta/notice"; // 과제 및 공지 페이지
@@ -102,7 +104,7 @@ public class TaController {
 		return "ta/noticecontent"; // 과제 및 공지 작성 페이지
 	}
 
-	
+
 	@RequestMapping(value="inputscore", method=RequestMethod.GET)
 	public String inputscore1(Model model, Principal principal, @RequestParam("notice_no") int notice_no) {
 		// id notice_no를 받아와야함.... 지금 임의의 값을 주고 있음
@@ -112,25 +114,25 @@ public class TaController {
 		return "professor/inputscore";
 	}
 
-	
-	
+
+
 	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")
 	public String inputscore2(Model model,
 			@RequestParam("notice_no") int notice_no,
 			@RequestParam("hw_no") int[] hw_no,
 			@RequestParam("grade") int[] grade,
-			@RequestParam("ranking") int[] ranking) {	
-		
+			@RequestParam("ranking") int[] ranking) {
+
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
-		
+
 		for (int i=0; i < hw_no.length ;++i) {
 			System.out.println("======================");
 			homeworkMapper.gradeUpdate(grade[i], ranking[i],hw_no[i]);
 			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
 			System.out.println("======================\n\n");
 		}
-		
-		
+
+
 		model.addAttribute("homeworks", homeworks);
 		return "redirect:inputscore?notice_no="+notice_no; // 학생 게시판 페이지
 	}

@@ -8,8 +8,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.report.dto.*;
-import com.report.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 
 import com.report.dto.Homework;
 import com.report.dto.Lecture;
@@ -39,6 +36,7 @@ import com.report.mapper.StudentMapper;
 import com.report.mapper.StudentNoticeMapper;
 import com.report.mapper.TaMapper;
 import com.report.mapper.UserMapper;
+import com.report.model.Pagination;
 import com.report.service.LectureService;
 import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
@@ -77,10 +75,11 @@ public class ProfessorController {
 	}
 
 	@RequestMapping("notice")
-	public String notice(Model model, Principal principal, @RequestParam("id") int id) {
+	public String notice(Model model, Principal principal, @RequestParam("id") int id,Pagination pagination) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
-		List<ProfessorNotice>  professorNotices = professorNoticeMapper.list(id);
+		List<ProfessorNotice>  professorNotices = professorNoticeMapper.list(id, pagination);
+		pagination.setRecordCount(professorNoticeMapper.count(id));
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
 		model.addAttribute("professorNotices", professorNotices);
@@ -252,16 +251,16 @@ public class ProfessorController {
 		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
-		
+
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("homeworks", homeworks);
 		model.addAttribute("professor", professor);
 		model.addAttribute("professorNotice", professorNotice);
-		
+
 		return "professor/inputscore";
 	}
-	
-	
+
+
 	@RequestMapping(value="inputscore", params ="cmd=downloadHomework")
 	public void downloadHomework(@RequestParam("hw_no") int hw_no, HttpServletResponse response) throws Exception {
 		Homework homework = studentUploadedFileService.getUploadedFile(hw_no);
@@ -281,24 +280,24 @@ public class ProfessorController {
 			@RequestParam("hw_no") int[] hw_no,
 			@RequestParam("grade") int[] grade,
 			@RequestParam("ranking") int[] ranking) {
-		
+
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
-		
+
 		for (int i=0; i < hw_no.length ;++i) {
 			System.out.println("======================");
 			homeworkMapper.gradeUpdate(grade[i], ranking[i], hw_no[i]);
 			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
 			System.out.println("======================\n\n");
 		}
-		
+
 		model.addAttribute("professor", professor);
 		model.addAttribute("professorNotice", professorNotice);
 		model.addAttribute("homeworks", homeworks);
 		model.addAttribute("lecture", lecture);
-		
+
 		return "redirect:inputscore?notice_no="+notice_no;
 	}
 
@@ -320,8 +319,8 @@ public class ProfessorController {
 		return "professor/studentcontent"; // 학생 게시판 페이지
 	}
 
-	
-	
+
+
 	@RequestMapping(value="taapprove", method=RequestMethod.GET)
 	public String taapprove(Model model, Principal principal) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());

@@ -142,12 +142,13 @@ public class StudentController {
 	}
 
     @RequestMapping("notice")
-  	public String notice(Model model, Principal principal, @RequestParam("id") int id) {
+  	public String notice(Model model, Principal principal, @RequestParam("id") int id, Pagination pagination) {
     	Lecture lecture = lectureMapper.findOne(id);
 		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
 		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
 		Student student = studentMapper.findByStudentId(principal.getName());
-    	List<ProfessorNotice>  professorNotices = professorNoticeMapper.list(id);
+		List<ProfessorNotice>  professorNotices = professorNoticeMapper.list(id, pagination);
+		pagination.setRecordCount(professorNoticeMapper.count(id));
     	model.addAttribute("student", student);
     	model.addAttribute("lecture", lecture);
     	model.addAttribute("professor", professor);

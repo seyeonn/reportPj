@@ -1,17 +1,19 @@
 package com.report.service;
 
+import java.security.Principal;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
 import com.report.dto.Lecture;
 import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.ProfessorMapper;
 import com.report.mapper.ProfessorNoticeMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-
-import java.security.Principal;
-import java.util.List;
+import com.report.model.Pagination;
 
 @Service
 public class ProfessorNoticeService {
@@ -22,8 +24,8 @@ public class ProfessorNoticeService {
     @Autowired
     LectureMapper lectureMapper;
 
-    public List<ProfessorNotice> list(int lecture_no) {
-        return professorNoticeMapper.list(lecture_no);
+    public List<ProfessorNotice> list(int lecture_no,Pagination pagination) {
+        return professorNoticeMapper.list(lecture_no, pagination);
     }
 
     //get
