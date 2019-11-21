@@ -36,6 +36,7 @@ import com.report.mapper.ProfessorNoticeMapper;
 import com.report.mapper.StudentLectureMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.StudentNoticeMapper;
+import com.report.mapper.TimelineMapper;
 import com.report.mapper.UserMapper;
 import com.report.model.Pagination;
 import com.report.service.LectureService;
@@ -69,12 +70,16 @@ public class StudentController {
     @Autowired StudentUploadedFileService studentUploadedFileService;
 	@Autowired LecturefileService lecturefileService;
 	@Autowired LecturefileMapper lecturefileMapper;
+	@Autowired TimelineMapper timelineMapper;
 
 	@RequestMapping("studentMain")
-	public String studentMain(Model model, Principal principal) {
+	public String studentMain(Model model, Principal principal, Pagination pagination) {
 		Student student = studentMapper.findByStudentId(principal.getName());
 		List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
 		List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
+		List<Lecture> timeline = timelineMapper.findAllByStudent(student.getStudent_no(), pagination);
+		pagination.setRecordCount(timelineMapper.countByStudent(student.getStudent_no()));
+		model.addAttribute("timeline",  timeline);
 		model.addAttribute("studentlectures1",studentlectures1);
 		model.addAttribute("studentlectures2",studentlectures2);
 		model.addAttribute("student", student);
