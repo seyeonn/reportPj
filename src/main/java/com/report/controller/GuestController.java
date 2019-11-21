@@ -79,6 +79,7 @@ public class GuestController {
 		model.addAttribute("departments", departments);
 		user.setId(professor.getId());
 		user.setPassword1(professor.getPassword1());
+		user.setPassword2(professor.getPassword2());
 		user.setName(professor.getName());
 		user.setEmail(professor.getProfessor_email());
 		user.setUserType(professor.getUserType());
@@ -109,6 +110,7 @@ public class GuestController {
 		model.addAttribute("departments", departments);
 		user.setId(student.getId());
 		user.setPassword1(student.getPassword1());
+		user.setPassword2(student.getPassword2());
 		user.setName(student.getName());
 		user.setEmail(student.getStudent_email());
 		user.setUserType(student.getUserType());

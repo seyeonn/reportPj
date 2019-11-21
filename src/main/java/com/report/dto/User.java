@@ -9,6 +9,7 @@ public class User {
 	int no;
 	String id;
 	String password1;
+	String password2;
 	String name;
 	String email;
 	String userType;

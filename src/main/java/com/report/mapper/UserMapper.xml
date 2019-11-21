@@ -20,13 +20,13 @@
 	</select>
 
 	<insert id="studentInsert" useGeneratedKeys="true" keyProperty="no">
-		INSERT USER (id, password1, name, email, userType, department_no, password_question, password_answer)
-		VALUES (#{id}, #{password1}, #{name}, #{email}, '학생', #{department_no}, #{password_question}, #{password_answer})
+		INSERT USER (id, password1, password2, name, email, userType, department_no, password_question, password_answer)
+		VALUES (#{id}, #{password1}, #{password2}, #{name}, #{email}, '학생', #{department_no}, #{password_question}, #{password_answer})
 	</insert>
 	
 	<insert id="professorInsert" useGeneratedKeys="true" keyProperty="no">
-		INSERT USER (id, password1, name, email, userType, department_no, password_question, password_answer)
-		VALUES (#{id}, #{password1}, #{name}, #{email}, '교수', #{department_no}, #{password_question}, #{password_answer})
+		INSERT USER (id, password1, password2, name, email, userType, department_no, password_question, password_answer)
+		VALUES (#{id}, #{password1}, #{password2}, #{name}, #{email}, '교수', #{department_no}, #{password_question}, #{password_answer})
 	</insert>
 	
 	<insert id="taInsert" useGeneratedKeys="true" keyProperty="no">
@@ -37,6 +37,7 @@
 	<update id="update">
 		UPDATE User SET
 		password1 = #{password1},
+		password2 = #{password2},
 		name = #{name},
 		email = #{email},
 		password_question = #{password_question},

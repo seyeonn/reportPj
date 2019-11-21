@@ -330,6 +330,7 @@ public class StudentController {
 		user.setPassword_question(student.getPassword_question());
 	    user.setPassword_answer(student.getPassword_answer());
 		user.setPassword1(student.getPassword1());
+		user.setPassword2(student.getPassword2());
 
 		userMapper.update(user);
        return "redirect:mypage"; // 학생 마이페이지
