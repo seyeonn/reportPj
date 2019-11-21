@@ -40,10 +40,10 @@
             <label for="country">학과</label>
             <select class="custom-select d-block w-100" id="department_no" name="department_no" required >
             
-              <option value= "9" ${student.department_no == 9 ? "selected" :""}>소프트웨어공학과</option>
-              <option value="10" ${student.department_no == 10 ? "selected" :""}>정보통신공학과</option>
-              <option value="11" ${student.department_no == 11 ? "selected" :""}>글로컬IT학과</option>
-              <option value="12" ${student.department_no == 12 ? "selected" :""}>컴퓨터공학과</option>
+              <option value= "1" ${student.department_no == 1 ? "selected" :""}>소프트웨어공학과</option>
+              <option value="2" ${student.department_no == 2 ? "selected" :""}>컴퓨터공학과</option>
+              <option value="3" ${student.department_no == 3 ? "selected" :""}>정보통신학과</option>
+              <option value="4" ${student.department_no == 4 ? "selected" :""}>글로컬IT학과</option>
             </select>
           </div>
 
