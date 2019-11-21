@@ -9,8 +9,8 @@
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="no">
-		INSERT LectureFile (file_name, file_size, file_time, data, lecture_no)
-		VALUES ( #{file_name}, #{file_size}, #{file_time}, #{data}, #{lecture_no})
+		INSERT LectureFile (file_name, file_size, file_time, data, lecture_no, header)
+		VALUES ( #{file_name}, #{file_size}, #{file_time}, #{data}, #{lecture_no}, "강의 자료")
 	</insert>
 	
 	<delete id="deleteByNo">

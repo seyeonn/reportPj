@@ -6,21 +6,21 @@
 
 	<select id="findAllByStudent" resultMap="resultMap_Student">
 		<bind name="start" value="(pagination.pg - 1) * pagination.sz" />
-		SELECT l.lecture_name, pn.title, pn.submitdate
+		SELECT l.lecture_name, pn.title, pn.submitdate, pn.notice_no, header
 		FROM student_lecture sl 
 		JOIN lecture l on sl.lecture_no = l.lecture_no and sl.student_no = #{student_no}
 		JOIN professor_notice pn on l.lecture_no = pn.lecture_no
 		
  		UNION ALL
  		
-		SELECT l.lecture_name, sn.title, sn.submitdate
+		SELECT l.lecture_name, sn.title, sn.submitdate, sn.studentnotice_no, header
 		FROM student_lecture sl 
 		JOIN lecture l on sl.lecture_no = l.lecture_no and sl.student_no = #{student_no}
 		JOIN student_notice sn on l.lecture_no = sn.lecture_no
 		
 		UNION ALL
 		
-		SELECT l.lecture_name, lf.file_name, lf.file_time
+		SELECT l.lecture_name, lf.file_name, lf.file_time, lf.no, header
 		FROM student_lecture sl 
 		JOIN lecture l on sl.lecture_no = l.lecture_no and sl.student_no = #{student_no}
 		JOIN lecturefile lf on l.lecture_no = lf.lecture_no
@@ -60,6 +60,10 @@
 		<result property="lecture_name" column="lecture_name"/>
 		<result property="title" column="title"/>
 		<result property="file_name" column="file_name"/>	
+		<result property="notice_no" column="notice_no"/>	
+		<result property="studentnotice_no" column="studentnotice_no"/>	
+		<result property="no" column="no"/>	
+		<result property="header" column="header"/>	
 	</resultMap>
 	
 </mapper>

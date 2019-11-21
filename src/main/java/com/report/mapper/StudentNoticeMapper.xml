@@ -61,8 +61,8 @@
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="studentnotice_no">
-    INSERT student_notice(title, content, student_no, submitdate, lecture_no)
-    VALUES (#{title}, #{content}, #{student_no}, date_format(now(), '%Y-%m-%d'), #{lecture_no})
+    INSERT student_notice(title, content, student_no, submitdate, lecture_no, header)
+    VALUES (#{title}, #{content}, #{student_no}, date_format(now(), '%Y-%m-%d'), #{lecture_no}, "학생 게시판")
  </insert>
 
     <update id="update">

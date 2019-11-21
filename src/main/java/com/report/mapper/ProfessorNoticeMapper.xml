@@ -34,7 +34,7 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="notice_no">
         INSERT professor_notice(lecture_no, professor_no, header, title, content, submitdate, deadline, deadline_add, perfect_score)
-        VALUES (#{lecture_no}, #{professor_no}, "과제", #{title}, #{content}, now(), #{deadline}, #{deadline_add}
+        VALUES (#{lecture_no}, #{professor_no}, "과제 및 공지", #{title}, #{content}, now(), #{deadline}, #{deadline_add}
         , #{perfect_score})
     </insert>
 

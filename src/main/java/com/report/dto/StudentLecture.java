@@ -14,4 +14,9 @@ public class StudentLecture {
 	String title;
 	String lecture_name;
 	String file_name;
+	int no;
+	int studentnotice_no;
+	int notice_no;
+	String header;
+
 }

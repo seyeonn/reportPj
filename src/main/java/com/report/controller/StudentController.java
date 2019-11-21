@@ -87,6 +87,19 @@ public class StudentController {
 
 	}
 
+	@RequestMapping(value = "studentMain", params="cmd=downloadLecturefile")
+	public void studentMaindownloadLecturefile(@RequestParam("no") int no, HttpServletResponse response) throws Exception {
+		Lecturefile lecturefile = lecturefileService.getUploadedFile(no);
+		if (lecturefile == null)
+			return;
+		String fileName = URLEncoder.encode(lecturefile.getFile_name(), "UTF-8");
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ";");
+		try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+			output.write(lecturefile.getData());
+		}
+	}
+
 	@RequestMapping(value="lecture", method=RequestMethod.GET)
 	public String studentlecture(Model model, Lecture lecture, Principal principal, Pagination pagination) {
 		Student student = studentMapper.findByStudentId(principal.getName());
@@ -191,10 +204,13 @@ public class StudentController {
         Lecture lecture = lectureMapper.findOne(studentNotice.getLecture_no());
 		System.out.println(lecture.getLecture_name());
 
+		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
+		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
 
         model.addAttribute("lecture", lecture);
         model.addAttribute("student", student);
         model.addAttribute("studentNotice", studentNotice);
+        model.addAttribute("professor", professor);
 
 		System.out.println("여기까지1");
 

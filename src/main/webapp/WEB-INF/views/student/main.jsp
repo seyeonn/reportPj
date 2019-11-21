@@ -55,16 +55,41 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
             <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
             <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
               <div class="d-flex justify-content-between align-items-center w-100">
-                <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" onclick="location.href='lecture1.html'">${student_lecture.title}
-                <span class="d-block" style="font-weight: normal">${student_lecture.lecture_name}</span></button>
+                
+                
+                <c:choose>
+                	<c:when test="${student_lecture.header eq '과제 및 공지'}">
+                	<button class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" 
+                		type="button" onclick="location.href='noticecontent?id=${student_lecture.notice_no}'">
+                		&lsqb;${student_lecture.header}&rsqb; &nbsp;&nbsp;${student_lecture.title}
+                		<span class="d-block" style="font-weight: normal">${student_lecture.lecture_name}</span></button>
+					</c:when>
+					<c:when test="${student_lecture.header eq '강의 자료'}">
+						<form method="post" enctype="multipart/form-data">
+							<button class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" 
+                			type="submit" name="cmd" value="downloadLecturefile">
+                			&lsqb;${student_lecture.header}&rsqb; &nbsp;&nbsp;${student_lecture.title}
+                			<span class="d-block" style="font-weight: normal">${student_lecture.lecture_name}</span></button>
+                			<input type="hidden" name="no" value="${student_lecture.notice_no}">
+                		</form>
+					</c:when>
+					<c:when test="${student_lecture.header eq '학생 게시판'}">
+						<button class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" 
+                		type="button" onclick="location.href='studentcontent?id=${student_lecture.notice_no}'">
+                		&lsqb;${student_lecture.header}&rsqb; &nbsp;&nbsp;${student_lecture.title}
+                		<span class="d-block" style="font-weight: normal">${student_lecture.lecture_name}</span></button>
+					</c:when>
+                </c:choose>   
               </div>
             </div>
           </div>
          </c:forEach>
           <small class="d-block text-right mt-3">
+
+            <a href="#"> </a>
+
           </small>
            <my:pagination pageSize="${ pagination.sz }" recordCount="${ pagination.recordCount }" queryStringName="pg" />
-
         </div>
       </div>
       
