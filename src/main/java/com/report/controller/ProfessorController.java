@@ -407,7 +407,7 @@ public class ProfessorController {
 		System.out.printf("%d TA아이디 : %s, TA비밀번호 : %s\n", ta.getTa_no(),ta.getTa_id() ,ta.getPassword());
 
 		System.out.printf("TA아이디 : %s, TA비밀번호 : %s\n", user.getId() ,user.getPassword1());
-		return "professor/main";
+		return "professor/taapprove";
 	}
 
 

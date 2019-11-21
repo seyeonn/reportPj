@@ -1,7 +1,11 @@
 package com.report.controller;
 
+import java.io.BufferedOutputStream;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +29,7 @@ import com.report.mapper.ProfessorMapper;
 import com.report.mapper.ProfessorNoticeMapper;
 import com.report.mapper.StudentNoticeMapper;
 import com.report.mapper.TaMapper;
+import com.report.mapper.TimelineMapper;
 import com.report.model.Pagination;
 import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
@@ -43,19 +48,36 @@ public class TaController {
 	@Autowired LecturefileService lecturefileService;
 	@Autowired StudentNoticeService studentNoticeService;
 	@Autowired StudentNoticeMapper studentNoticeMapper;
-
+	@Autowired TimelineMapper timelineMapper;
 	@RequestMapping("taMain")
-	public String taMain(Model model, Principal principal) {
+
+
+	public String taMain(Model model, Principal principal, Pagination pagination) {
 		Ta ta = taMapper.findByTaId(principal.getName());
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		List<Lecture> taLecture = lectureMapper.findByTaLecture(ta.getTa_no());
-
+		List<Lecture> timeline = timelineMapper.findAllByTa(ta.getTa_no(), pagination);
+		pagination.setRecordCount(timelineMapper.countByTa(ta.getTa_no()));
+		model.addAttribute("timeline",  timeline);
 		model.addAttribute("ta", ta);
 		model.addAttribute("professor", professor);
 		model.addAttribute("taLecture", taLecture);
 
 
 		return "ta/main"; // 로그인 한 ta를 위한 메인 페이지 URL
+	}
+
+	@RequestMapping(value = "taMain", params="cmd=downloadLecturefile")
+	public void taMaindownloadLecturefile(@RequestParam("no") int no, HttpServletResponse response) throws Exception {
+		Lecturefile lecturefile = lecturefileService.getUploadedFile(no);
+		if (lecturefile == null)
+			return;
+		String fileName = URLEncoder.encode(lecturefile.getFile_name(), "UTF-8");
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ";");
+		try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+			output.write(lecturefile.getData());
+		}
 	}
 
 	@RequestMapping("information")

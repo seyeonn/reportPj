@@ -66,4 +66,62 @@
 		<result property="header" column="header"/>	
 	</resultMap>
 	
+	<select id="findAllByTa" resultMap="resultMap_Ta">
+		<bind name="start" value="(pagination.pg - 1) * pagination.sz" />
+		SELECT l.lecture_name, pn.title, pn.submitdate, pn.notice_no, header
+		FROM lecture l
+		JOIN professor_notice pn on l.lecture_no = pn.lecture_no and l.ta_no = ${ta_no}
+		
+		
+ 		UNION ALL
+ 		
+		SELECT l.lecture_name, sn.title, sn.submitdate, sn.studentnotice_no, header
+		FROM lecture l
+		JOIN student_notice sn on l.lecture_no = sn.lecture_no and l.ta_no = ${ta_no}
+		
+		UNION ALL
+		
+		SELECT l.lecture_name, lf.file_name, lf.file_time, lf.no, header
+		FROM lecture l
+		JOIN lecturefile lf on l.lecture_no = lf.lecture_no and l.ta_no = ${ta_no}
+		
+		ORDER BY submitdate DESC 
+		LIMIT #{start}, #{pagination.sz}
+	</select>
+	
+	<select id="countByTa" resultType="int">
+	SELECT	COUNT(*)
+	FROM(
+		SELECT l.lecture_name, pn.title, pn.submitdate, pn.notice_no, header
+		FROM lecture l
+		JOIN professor_notice pn on l.lecture_no = pn.lecture_no and l.ta_no = ${ta_no}
+		
+		
+ 		UNION ALL
+ 		
+		SELECT l.lecture_name, sn.title, sn.submitdate, sn.studentnotice_no, header
+		FROM lecture l
+		JOIN student_notice sn on l.lecture_no = sn.lecture_no and l.ta_no = ${ta_no}
+		
+		UNION ALL
+		
+		SELECT l.lecture_name, lf.file_name, lf.file_time, lf.no, header
+		FROM lecture l
+		JOIN lecturefile lf on l.lecture_no = lf.lecture_no and l.ta_no = ${ta_no}
+        
+		ORDER BY submitdate DESC 
+	) AS tem
+	</select>
+	
+	<resultMap id="resultMap_Ta" type="Lecture">
+		<id property="lecture_no" column="lecture_no"/>
+		<result property="lecture_name" column="lecture_name"/>
+		<result property="title" column="title"/>
+		<result property="file_name" column="file_name"/>	
+		<result property="notice_no" column="notice_no"/>	
+		<result property="studentnotice_no" column="studentnotice_no"/>	
+		<result property="no" column="no"/>	
+		<result property="header" column="header"/>	
+	</resultMap>
+	
 </mapper>

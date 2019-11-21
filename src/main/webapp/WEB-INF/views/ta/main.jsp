@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%
@@ -46,41 +47,51 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
  		<c:import url="../ta/lecturemenu.jsp" />
       </div>
       
-        <div class="col-md-6 order-md-2">
-          <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">타임 라인</h6>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" onclick="location.href='talecture1.html'">DB 캡스톤디자인
-              <span class="d-block" style="font-weight: normal">[과제]사용자 인터페이스</span></button>
+      <div class="col-md-6 order-md-2">
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+          <h6 class="border-bottom border-gray pb-2 mb-0">타임 라인</h6>
+          <c:forEach var="lecture" items="${timeline}">
+          <div class="media text-muted pt-3">
+            <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+              <div class="d-flex justify-content-between align-items-center w-100">
+                
+                
+                <c:choose>
+                	<c:when test="${lecture.header eq '과제 및 공지'}">
+                	<button class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" 
+                		type="button" onclick="location.href='noticecontent?id=${lecture.notice_no}'">
+                		&lsqb;${lecture.header}&rsqb; &nbsp;&nbsp;${lecture.title}
+                		<span class="d-block" style="font-weight: normal">${lecture.lecture_name}</span></button>
+					</c:when>
+					<c:when test="${lecture.header eq '강의 자료'}">
+						<form method="post" enctype="multipart/form-data">
+							<button class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" 
+                			type="submit" name="cmd" value="downloadLecturefile">
+                			&lsqb;${lecture.header}&rsqb; &nbsp;&nbsp;${lecture.title}
+                			<span class="d-block" style="font-weight: normal">${lecture.lecture_name}</span></button>
+                			<input type="hidden" name="no" value="${lecture.notice_no}">
+                		</form>
+					</c:when>
+					<c:when test="${lecture.header eq '학생 게시판'}">
+						<button class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" 
+                		type="button" onclick="location.href='studentcontent?id=${lecture.notice_no}'">
+                		&lsqb;${lecture.header}&rsqb; &nbsp;&nbsp;${lecture.title}
+                		<span class="d-block" style="font-weight: normal">${lecture.lecture_name}</span></button>
+					</c:when>
+                </c:choose>   
+              </div>
             </div>
           </div>
+         </c:forEach>
+          <small class="d-block text-right mt-3">
+
+            <a href="#"> </a>
+
+          </small>
+           <my:pagination pageSize="${ pagination.sz }" recordCount="${ pagination.recordCount }" queryStringName="pg" />
         </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" onclick="location.href=''">Python 프로그래밍
-              <span class="d-block" style="font-weight: normal">[과제] 교재 60페이지 구현해보기</span></button>
-            </div>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" onclick="location.href=''">C프로그래밍
-              <span class="d-block" style="font-weight: normal">[공지] 고정 자리 지정하기</span></button>
-            </div>
-          </div>
-        </div>
-        <small class="d-block text-right mt-3">
-          <a href="#"> </a>
-        </small>
       </div>
-        </div>
       <div class="col-md-3 order-md-3">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
           <h6 class="border-bottom border-gray pb-2 mb-0">달력</h6>
