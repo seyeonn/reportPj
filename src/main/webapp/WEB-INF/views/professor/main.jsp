@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%
@@ -48,23 +49,30 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 
       <div class="col-md-6 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <h6 class="border-bottom border-gray pb-2 mb-0">타임 라인</h6>
-          <%--         <c:forEach var="" items="${  }"> --%>
+                    <h6 class="border-bottom border-gray pb-2 mb-0">타임 라인</h6>
+          <c:forEach var="professor_lecture" items="${timeline}">
           <div class="media text-muted pt-3">
             <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
             <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
               <div class="d-flex justify-content-between align-items-center w-100">
-                <button type="button" class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" onclick="location.href='lecture1.html'">DB 캡스톤디자인
-                <span class="d-block" style="font-weight: normal">사용자 인터페이스</span></button>
+                
+                
+                
+						<button class="btn btn-block" style="color: #6f6f6f; text-align: left; font-size: 10pt; font-weight: bold;" 
+                		type="button" onclick="location.href='studentcontent?id=${professor_lecture.studentnotice_no}'">
+                		${professor_lecture.title}
+                		<span class="d-block" style="font-weight: normal">${professor_lecture.lecture_name}</span></button>
+	
               </div>
             </div>
           </div>
-          <%--  </c:forEach> --%>
+         </c:forEach>
           <small class="d-block text-right mt-3">
 
             <a href="#"> </a>
 
           </small>
+           <my:pagination pageSize="${ pagination.sz }" recordCount="${ pagination.recordCount }" queryStringName="pg" />
         </div>
       </div>
       

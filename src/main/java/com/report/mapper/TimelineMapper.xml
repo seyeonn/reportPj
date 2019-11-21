@@ -66,6 +66,37 @@
 		<result property="header" column="header"/>	
 	</resultMap>
 	
+	<select id="findAllByProfessor" resultMap="resultMap_Professor">
+		<bind name="start" value="(pagination.pg - 1) * pagination.sz" />
+		SELECT l.lecture_name, sn.title, sn.submitdate, sn.studentnotice_no, header
+		FROM professor_lecture fl 
+		JOIN lecture l on fl.lecture_no = l.lecture_no and fl.professor_no = ${professor_no}
+		JOIN student_notice sn on l.lecture_no = sn.lecture_no
+		
+		ORDER BY submitdate DESC 
+	</select>
+	
+	<select id="countByProfessor" resultType="int">
+		SELECT	COUNT(*)
+		FROM(
+			SELECT l.lecture_name, sn.title, sn.submitdate, sn.studentnotice_no, header
+			FROM professor_lecture fl 
+			JOIN lecture l on fl.lecture_no = l.lecture_no and fl.professor_no = ${professor_no}
+			JOIN student_notice sn on l.lecture_no = sn.lecture_no
+		
+			ORDER BY submitdate DESC 
+       	 ) AS tem
+	</select>
+	
+	<resultMap id="resultMap_Professor" type="ProfessorLecture">
+		<id property="professor_lecture_no" column="professor_lecture_no"/>
+		<result property="lecture_name" column="lecture_name"/>
+		<result property="title" column="title"/>
+		<result property="studentnotice_no" column="studentnotice_no"/>	
+	</resultMap>
+	
+	
+	
 	<select id="findAllByTa" resultMap="resultMap_Ta">
 		<bind name="start" value="(pagination.pg - 1) * pagination.sz" />
 		SELECT l.lecture_name, pn.title, pn.submitdate, pn.notice_no, header

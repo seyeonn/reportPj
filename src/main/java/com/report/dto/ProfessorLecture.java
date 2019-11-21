@@ -13,4 +13,8 @@ public class ProfessorLecture {
 	int professor_lecture_no;
 	Professor professor;
 
+	String lecture_name;
+	String title;
+	int studentnotice_no;
+
 }

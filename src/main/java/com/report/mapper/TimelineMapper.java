@@ -17,5 +17,8 @@ public interface TimelineMapper {
 	List<Lecture> findAllByTa(@Param("ta_no") int ta_no, @Param("pagination") Pagination pagination);
 	int countByTa(int ta_no);
 
+	List<Lecture> findAllByProfessor(@Param("professor_no") int professor_no, @Param("pagination") Pagination pagination);
+	int countByProfessor(int professor_no);
+
 
 }
