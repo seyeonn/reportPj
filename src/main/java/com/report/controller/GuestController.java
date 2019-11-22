@@ -28,10 +28,8 @@ import com.report.mapper.ProfessorMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.TaMapper;
 import com.report.mapper.UserMapper;
-<<<<<<< HEAD
 import com.report.service.DepartmentService;
-=======
->>>>>>> 10ea0dc0f7448ef6816650ba79e104e52852d45d
+
 import com.report.service.UserService;
 
 //아직 로그인 하지 않은 사용자를 위한 페이지를 구현한다.
@@ -45,12 +43,8 @@ public class GuestController {
 	@Autowired StudentMapper studentMapper;
 	@Autowired UserMapper userMapper;
 	@Autowired UserService userService;
-<<<<<<< HEAD
 	@Autowired DepartmentService departmentService;
-=======
 
-
->>>>>>> 10ea0dc0f7448ef6816650ba79e104e52852d45d
 	@RequestMapping({"/", "index"})
 	public String index() {
 		return "guest/index"; //로그인 하지 않은 사용자를 위한 첫 페이지 URL

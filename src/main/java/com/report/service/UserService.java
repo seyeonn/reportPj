@@ -4,15 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-<<<<<<< HEAD
 import com.report.dto.Student;
 import com.report.dto.User;
-=======
 import com.report.dto.Professor;
 import com.report.dto.Student;
 import com.report.dto.User;
 import com.report.mapper.ProfessorMapper;
->>>>>>> 10ea0dc0f7448ef6816650ba79e104e52852d45d
 import com.report.mapper.StudentMapper;
 import com.report.mapper.UserMapper;
 
@@ -21,12 +18,9 @@ public class UserService {
 
 	@Autowired UserMapper userMapper;
 	@Autowired StudentMapper studentMapper;
-<<<<<<< HEAD
-	
-=======
+
 	@Autowired ProfessorMapper professorMapper;
 
->>>>>>> 10ea0dc0f7448ef6816650ba79e104e52852d45d
 	public User login(String loginId, String password) {
 		User user = userMapper.findByLoginId(loginId);
 		if(user == null) {
@@ -38,7 +32,6 @@ public class UserService {
 		}
 		return user;
 	}
-<<<<<<< HEAD
 	public boolean hasErrors(User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return true;
@@ -53,8 +46,6 @@ public class UserService {
         }
         return false;
     }
-=======
-
 	public Boolean findPassword(String loginId, String name, String email) {
 	      User user = userMapper.findByLoginId(loginId);
 
@@ -79,6 +70,5 @@ public class UserService {
 
 	      return false;
 	   }
->>>>>>> 10ea0dc0f7448ef6816650ba79e104e52852d45d
 
 }
