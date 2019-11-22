@@ -80,6 +80,19 @@
 		LIMIT #{start}, #{pagination.sz}
 	</select>
 	
+	<select id="findSearch" resultMap="resultMap_Lecture">
+		<bind name="start" value="(pagination.pg - 1) * pagination.sz" />
+		SELECT l.*, p.name
+		FROM lecture l 
+		JOIN professor_lecture pl ON l.lecture_no = pl.lecture_no and l.lecture_name not in (select lecture_name from lecture l
+		join student_lecture sl on l.lecture_no = sl.lecture_no
+		join student s on sl.student_no = s.student_no and s.student_no=#{student_no} )
+		JOIN professor p ON pl.professor_no = p.professor_no 
+		WHERE l.lecture_name LIKE CONCAT('%',#{search},'%')
+		ORDER BY l.lecture_no
+		LIMIT #{start}, #{pagination.sz}
+	</select>
+	
 	<select id="count" resultType="int">
 		SELECT count(*)
 		FROM lecture l 
@@ -102,6 +115,13 @@
 	</resultMap>
 	
 	
+	<select id="search" resultMap="resultMap_Lecture">
+		SELECT l.lecture_name , p.name
+		FROM lecture l join professor_lecture pl on l.lecture_no = pl.lecture_no
+		join professor p on pl.professor_no = p.professor_no
+		WHERE l.lecture_name LIKE '%#{search}%'
+		
+	</select>
 	
 	
 </mapper>

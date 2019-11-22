@@ -31,7 +31,10 @@ public interface LectureMapper {
 	List<Lecture> findByTaLecture(int ta_no);
 
 	List<Lecture> findA(@Param("student_no") int student_no, @Param("pagination") Pagination pagination);
+	List<Lecture> findSearch(@Param("student_no") int student_no, @Param("pagination") Pagination pagination, String search);
 	Lecture findO(int lecture_no);
 	int count(int studnet_no);
+	
+	List<Lecture> search(String name);
 
 }
