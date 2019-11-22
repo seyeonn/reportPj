@@ -10,7 +10,7 @@ import com.report.dto.UploadedFile;
 public interface UploadedFileMapper {
 
 	UploadedFile findByNo(int no);
-	List<UploadedFile> findAll();
+	List<UploadedFile> findAllInPosting(int id);
 	void insert(UploadedFile uploadedFile);
 	void deleteByNo(int no);
 	

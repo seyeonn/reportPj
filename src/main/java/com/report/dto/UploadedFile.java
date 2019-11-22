@@ -16,4 +16,7 @@ public class UploadedFile {
     Date file_time;
 
     byte[] data; // 업로드된 파일의 내용을 저장하기 위한 멤버 변수 선언
+    
+    int lecture_no;
+    Integer notice_no;
 }

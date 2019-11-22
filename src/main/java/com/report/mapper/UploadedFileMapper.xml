@@ -9,16 +9,17 @@
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="no">
-		INSERT UploadedFile (file_name, file_size, file_time, data)
-		VALUES ( #{file_name}, #{file_size}, #{file_time}, #{data})
+		INSERT UploadedFile (file_name, file_size, file_time, data, lecture_no)
+		VALUES ( #{file_name}, #{file_size}, #{file_time}, #{data}, #{lecture_no})
 	</insert>
 	
 	<delete id="deleteByNo">
 		DELETE FROM UplodedFile WHERE no = #{no}
 	</delete>
 	  
-	<select id="findAll" resultType="UploadedFile">
+	<select id="findAllInPosting" resultType="UploadedFile">
 		SELECT * FROM UplodedFile
+		WHERE lecture_no=#{id}
 	</select>
 	
 </mapper>

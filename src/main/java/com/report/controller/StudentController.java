@@ -369,10 +369,7 @@ public class StudentController {
 		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
 		Student student = studentMapper.findByStudentId(principal.getName());
 		Student student2 = studentMapper.findOne(id2);
-
 		List<Homework> list1 = studentUploadedFileService.findAll(id, id2);
-//		System.out.println(list1.get(0).getFile_name());
-
 		model.addAttribute("student2",student2);
 		model.addAttribute("student", student);
 		model.addAttribute("professorNotice", professorNotice);
@@ -387,8 +384,6 @@ public class StudentController {
 	@PostMapping(value = "worksubmit", params = "cmd=upload")
 	public String upload(Model model, Principal principal, @RequestParam("upload") MultipartFile[] multipartFiles,
 			@RequestParam("id") int id, @RequestParam("id2") int id2) throws IOException {
-		Student student = studentMapper.findByStudentId(principal.getName());
-		System.out.println("업로드 번호는 "+id+id2);
 		for (MultipartFile multipartFile : multipartFiles) {
 			if (multipartFile.getSize() <= 0)
 				continue;
@@ -400,7 +395,6 @@ public class StudentController {
 	@RequestMapping(value = "worksubmit", params="cmd=delete")
 	public String delete(Model model, @RequestParam("hw_no") int hw_no, @RequestParam("id") int id, @RequestParam("id2") int id2) throws Exception {
 		studentUploadedFileService.delete(hw_no);
-		System.out.println(hw_no+" tlqkf"+id);
 		return "redirect:worksubmit?id="+id+"&id2="+id2;
 	}
 

@@ -61,7 +61,6 @@
               <input type="file" name="upload" multiple> 
               <input type="hidden" name="id" value="${lecture.lecture_no}">
               <button type="submit" name="cmd" value="upload" class="btn btn-primary">업로드</button>
-              <!-- <input type="submit"> -->
          	</form>
       
         </div>

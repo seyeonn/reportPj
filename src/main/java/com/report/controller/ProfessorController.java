@@ -25,6 +25,7 @@ import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
 import com.report.dto.StudentNotice;
 import com.report.dto.Ta;
+import com.report.dto.UploadedFile;
 import com.report.dto.User;
 import com.report.mapper.DepartmentMapper;
 import com.report.mapper.HomeworkMapper;
@@ -44,6 +45,7 @@ import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
 import com.report.service.StudentUploadedFileService;
 import com.report.service.TaService;
+import com.report.service.UploadedFileService;
 
 @Controller
 @RequestMapping("professor")
@@ -66,7 +68,8 @@ public class ProfessorController {
     @Autowired StudentUploadedFileService studentUploadedFileService;
     @Autowired LecturefileMapper lecturefileMapper;
     @Autowired TimelineMapper timelineMapper;
-
+    @Autowired UploadedFileService uploadedFileService;
+    
 	@RequestMapping("professorMain")
 	public String professorMain(Model model,Principal principal, Pagination pagination) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
@@ -97,9 +100,14 @@ public class ProfessorController {
 	public String posting(Model model,Principal principal, @RequestParam("id") int id) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
+		
+		List<UploadedFile> uploadedfiles = uploadedFileService.findAllInPosting(id);
+		model.addAttribute("files", uploadedfiles); // 업로드된 파일리스트 // 업로드된 파일리스트
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
 		model.addAttribute("professorNotice", new ProfessorNotice());
+		System.out.println(id);
+		System.out.println(lecture.getLecture_no());
 		return "professor/posting"; // 과제 및 공지 작성 페이지
 	}
 
@@ -113,6 +121,17 @@ public class ProfessorController {
 		professorNotice.setProfessor_no(professor.getProfessor_no());
 		professorNoticeMapper.insert(professorNotice);
 		return "redirect:notice?id="+id; // 과제 및 공지 작성 페이지
+	}
+	
+	@PostMapping(value = "posting", params = "cmd=uploadHomework")
+	public String upload(Model model, Principal principal, @RequestParam("upload") MultipartFile[] multipartFiles,
+			@RequestParam("id") int id) throws IOException {
+		for (MultipartFile multipartFile : multipartFiles) {
+			if (multipartFile.getSize() <= 0)
+				continue;
+			uploadedFileService.save(multipartFile, id);
+		}
+		return "redirect:posting?id=" + id;
 	}
 
 	@GetMapping("noticecontent")
@@ -133,8 +152,6 @@ public class ProfessorController {
 		Lecture lecture = lectureMapper.findOne(lecture_no);
 		model.addAttribute("lecture", lecture);
 		professorNoticeMapper.delete(notice_no);
-		System.out.println(lecture_no);
-		System.out.print(notice_no);
 		return "redirect:notice?id="+lecture_no; // 과제 및 공지 작성 페이지
 	}
 
