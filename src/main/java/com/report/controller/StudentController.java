@@ -101,7 +101,9 @@ public class StudentController {
 	}
 
 	@RequestMapping(value="lecture", method=RequestMethod.GET)
-	public String studentlecture(Model model, Lecture lecture, Principal principal, Pagination pagination) {
+	public String studentlecture(Model model, Lecture lecture, Principal principal, 
+			Pagination pagination) {
+		
 		Student student = studentMapper.findByStudentId(principal.getName());
 		List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
 		List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
@@ -122,7 +124,8 @@ public class StudentController {
 	}
 
 	@RequestMapping(value="lecture", method=RequestMethod.POST, params="cmd=delete")
-	public String studentlecture1(Model model, @RequestParam("id") int id, Principal principal, Lecture lecture, StudentLecture studentLecture) {
+	public String studentlecture1(Model model, @RequestParam("id") int id, Principal principal,
+			Lecture lecture, StudentLecture studentLecture) {
 		System.out.printf("%d\n", id);
 		Student student = studentMapper.findByStudentId(principal.getName());
 		List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
@@ -140,6 +143,8 @@ public class StudentController {
 		return "redirect:lecture"; // 로그인 한 학생을 위한 메인 페이지 URL
 
 	}
+	
+	
 
 	@RequestMapping(value="lecture", method=RequestMethod.POST, params="cmd=insert")
 	public String studentlecture2(Model model, @RequestParam("id") int id, Principal principal, Lecture lecture, StudentLecture studentLecture) {
@@ -160,6 +165,31 @@ public class StudentController {
 		return "redirect:lecture"; // 로그인 한 학생을 위한 메인 페이지 URL
 
 	}
+	
+	@RequestMapping(value="lecture", method=RequestMethod.POST, params="cmd=search")
+	public String studentlecture3(Model model, Lecture lecture, Principal principal, 
+			Pagination pagination, @RequestParam("search") String search) {
+		
+		Student student = studentMapper.findByStudentId(principal.getName());
+		List<Lecture> studentlectures1 = studentMapper.findByStudentLecture1(principal.getName());
+		List<Lecture> studentlectures2 = studentMapper.findByStudentLecture2(principal.getName());
+		//List<Lecture> lectures = lectureService.findAll();
+		model.addAttribute("studentlectures1",studentlectures1);
+		model.addAttribute("studentlectures2",studentlectures2);
+		//model.addAttribute("lectures", lectures);
+
+		List<Lecture> lectures = lectureMapper.findSearch(student.getStudent_no(),pagination,search);
+        pagination.setRecordCount(lectureMapper.count(student.getStudent_no()));
+		model.addAttribute("lectures", lectures);
+
+		System.out.println(search+"  "+lectures.size());
+		model.addAttribute("studentLecture", new StudentLecture());
+		model.addAttribute("student", student);
+		model.addAttribute("lecture", lecture);
+		return "student/lecture"; // 로그인 한 학생을 위한 메인 페이지 URL
+
+	}
+	
 
     @RequestMapping("notice")
   	public String notice(Model model, Principal principal, @RequestParam("id") int id, Pagination pagination) {
@@ -167,12 +197,15 @@ public class StudentController {
 		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
 		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
 		Student student = studentMapper.findByStudentId(principal.getName());
-		List<ProfessorNotice>  professorNotices = professorNoticeMapper.list(id, pagination);
+		List<ProfessorNotice>  professorNotices = professorNoticeMapper.studentlist(id, pagination, student.getStudent_no());
 		pagination.setRecordCount(professorNoticeMapper.count(id));
     	model.addAttribute("student", student);
     	model.addAttribute("lecture", lecture);
     	model.addAttribute("professor", professor);
     	model.addAttribute("professorNotices", professorNotices);
+    	for(ProfessorNotice p : professorNotices) {
+    		System.out.printf("%s -> %d ", student.getName(), p.getHomework().getGrade());
+    	}
   		return "student/notice"; // 과제 및 공지 페이지
 	}
 

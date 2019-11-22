@@ -58,9 +58,9 @@
       <div class="col-md-8 order-md-2">
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="강좌 검색하기" aria-label="Search">
-        <button class="btn btn-primary my-2 my-sm-0" type="submit">검색</button>
+      <form method="post" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" name="search" value="${search}" placeholder="강좌 검색하기" aria-label="Search">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit" name="cmd" value="search">검색</button>
       </form>
     </div>
 

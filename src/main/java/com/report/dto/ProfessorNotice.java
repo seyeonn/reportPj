@@ -20,4 +20,6 @@ public class ProfessorNotice {
 	String deadline;
 	String deadline_add;
 	int perfect_score;
+	
+	Homework homework; // 학생들이 점수를 볼수 있게 하기 위한 변수 선언
 }

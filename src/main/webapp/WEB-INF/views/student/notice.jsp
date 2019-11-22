@@ -46,7 +46,7 @@
                   <td>${professorNotice.deadline_add}</td>
                   <td><button type="button" class="btn btn-outline-primary">파일</button></td>
                   <td></td>
-                  <td>${professorNotice.perfect_score}</td>
+                  <td>${professorNotice.homework.grade}/${professorNotice.perfect_score}</td>
                  </tr>
                 </c:forEach>
                 </form>
