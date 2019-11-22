@@ -9,9 +9,33 @@
         SELECT *
         FROM professor_notice 
         WHERE lecture_no = #{lecture_no}
-        order by notice_no desc
+        order by notice_no DESC
         LIMIT #{start}, #{pagination.sz}
     </select>
+    
+    <select id="studentlist" resultMap="resultMap_ProfessorNotice">
+        <bind name="start" value="(pagination.pg - 1) * pagination.sz" />
+        SELECT p.*, h.grade
+    	FROM professor_notice p
+    	LEFT JOIN homework h ON h.professornotice_no = p.notice_no
+        WHERE lecture_no = #{lecture_no}
+        AND h.student_no = #{student_no}
+        order by notice_no DESC
+        LIMIT #{start}, #{pagination.sz}
+    </select>
+    
+    
+    <resultMap id="resultMap_ProfessorNotice" type="ProfessorNotice">
+    	<id property="notice_no" column="notice_no"/>
+    	<result property="title" column="title"/>
+    	<result property="deadline" column="deadline"/>
+    	<result property="deadline_add" column="deadline_add"/>
+    	<result property="perfect_score" column="perfect_score"/>
+    	<association property="homework" javaType="Homework">
+    		<id property="hw_no" column="hw_no"/>
+    		<result property="grade" column="grade"/>
+    	</association>
+    </resultMap>
     
     <select id="count" resultType="int">
     	SELECT count(*)
@@ -53,5 +77,6 @@
         DELETE FROM professor_notice
         WHERE notice_no = #{notice_no}
     </delete>
-
+    
+ 
 </mapper>
