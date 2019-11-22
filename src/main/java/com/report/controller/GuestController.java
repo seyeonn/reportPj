@@ -22,6 +22,7 @@ import com.report.mapper.ProfessorMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.TaMapper;
 import com.report.mapper.UserMapper;
+import com.report.service.UserService;
 
 //아직 로그인 하지 않은 사용자를 위한 페이지를 구현한다.
 @Controller
@@ -33,6 +34,7 @@ public class GuestController {
 	@Autowired DepartmentMapper departmentMapper;
 	@Autowired StudentMapper studentMapper;
 	@Autowired UserMapper userMapper;
+	@Autowired UserService userService;
 
 
 	@RequestMapping({"/", "index"})
@@ -51,11 +53,44 @@ public class GuestController {
 		return "guest/option";
 	}
 
-	@RequestMapping("findpassword")
-	public String findpassword(Model model) {
+	@GetMapping("findpassword")
+	   public String findpassword(Model model, User user) {
+	      User users = userMapper.findByLoginId(user.getId());
 
-		return "guest/findpassword"; //비민번호 찾
-	}
+	      return "guest/findpassword";
+	   }
+
+	   @PostMapping("findpassword")
+	   public String findpassword2(Model model, User user) {
+
+//	      User users = userMapper.findByLoginId(user.getId());
+	//
+//	      if(user.getId() == null) {
+//	         return null;
+//	      }
+//	      String gname = user.getName();
+//	      if(!users.getName().equals(gname)) {
+//	         return null;
+//	      }
+//	      String gemail = user.getEmail();
+//	      if(!users.getEmail().equals(gemail)) {
+//	         return null;
+//	      }
+	      if(userService.findPassword(user.getId(), user.getName(), user.getEmail())) {
+	            model.addAttribute("findError", false);
+	            model.addAttribute("loginError", false);
+	            return "guest/login";
+	        }else {
+	            model.addAttribute("findError", true);
+	            model.addAttribute("loginError", false);
+	            return null;
+	        }
+
+	       //비민번호 찾
+
+	   }
+
+
 
 	@RequestMapping("newpassword")
 	public String newpassword(Model model) {
