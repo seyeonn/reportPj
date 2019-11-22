@@ -28,7 +28,10 @@ import com.report.mapper.ProfessorMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.TaMapper;
 import com.report.mapper.UserMapper;
+<<<<<<< HEAD
 import com.report.service.DepartmentService;
+=======
+>>>>>>> 10ea0dc0f7448ef6816650ba79e104e52852d45d
 import com.report.service.UserService;
 
 //아직 로그인 하지 않은 사용자를 위한 페이지를 구현한다.
@@ -42,7 +45,12 @@ public class GuestController {
 	@Autowired StudentMapper studentMapper;
 	@Autowired UserMapper userMapper;
 	@Autowired UserService userService;
+<<<<<<< HEAD
 	@Autowired DepartmentService departmentService;
+=======
+
+
+>>>>>>> 10ea0dc0f7448ef6816650ba79e104e52852d45d
 	@RequestMapping({"/", "index"})
 	public String index() {
 		return "guest/index"; //로그인 하지 않은 사용자를 위한 첫 페이지 URL
@@ -59,11 +67,44 @@ public class GuestController {
 		return "guest/option";
 	}
 
-	@RequestMapping("findpassword")
-	public String findpassword(Model model) {
+	@GetMapping("findpassword")
+	   public String findpassword(Model model, User user) {
+	      User users = userMapper.findByLoginId(user.getId());
 
-		return "guest/findpassword"; //비민번호 찾
-	}
+	      return "guest/findpassword";
+	   }
+
+	   @PostMapping("findpassword")
+	   public String findpassword2(Model model, User user) {
+
+//	      User users = userMapper.findByLoginId(user.getId());
+	//
+//	      if(user.getId() == null) {
+//	         return null;
+//	      }
+//	      String gname = user.getName();
+//	      if(!users.getName().equals(gname)) {
+//	         return null;
+//	      }
+//	      String gemail = user.getEmail();
+//	      if(!users.getEmail().equals(gemail)) {
+//	         return null;
+//	      }
+	      if(userService.findPassword(user.getId(), user.getName(), user.getEmail())) {
+	            model.addAttribute("findError", false);
+	            model.addAttribute("loginError", false);
+	            return "guest/login";
+	        }else {
+	            model.addAttribute("findError", true);
+	            model.addAttribute("loginError", false);
+	            return null;
+	        }
+
+	       //비민번호 찾
+
+	   }
+
+
 
 	@RequestMapping("newpassword")
 	public String newpassword(Model model) {
