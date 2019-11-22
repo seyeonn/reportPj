@@ -10,8 +10,8 @@
   
   <select id="findByStudentId" resultType="Student">
     SELECT s.*
-    FROM Student s 
-    JOIN department d on s.department_no = d.department_no
+    FROM Student s <!-- 
+    JOIN department d on s.department_no = d.department_no -->
     WHERE s.id = #{id};
   </select>    
   
