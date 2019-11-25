@@ -79,22 +79,6 @@
         </div>
 
         <div class="mb-3">
-          <label>질문</label>
-          <form:input path="password_question" class="form-control" placeholder="비밀번호 재발급을 위한 질문 예) 가장 좋아하는 음식"/>
-          <div class="invalid-feedback">
-            비밀번호 재발급을 위한 질문을 입력해주세요.
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label>답</label>
-          <form:input path="password_answer" class="form-control" placeholder="패스워드 재발급을 위한 답    예) 치킨"/>
-          <div class="invalid-feedback">
-            비밀번호 재발급을 위한 답을 입력해주세요.
-          </div>
-        </div>
-
-        <div class="mb-3">
           <label>비밀번호</label>
           <input type="password" name="password1" id="pwd1" class="form-control" placeholder="password" />
           <div class="invalid-feedback">
