@@ -164,7 +164,12 @@ public class TaController {
 		// id notice_no를 받아와야함.... 지금 임의의 값을 주고 있음
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 		model.addAttribute("homeworks", homeworks);
-
+		Ta ta = taMapper.findByTaId(principal.getName());
+		ProfessorNotice professorNoice = professorNoticeMapper.findOne(notice_no);
+		Lecture lecture = lectureMapper.findOne(professorNoice.getLecture_no());
+		model.addAttribute("lecture", lecture);
+		model.addAttribute("ta", ta);
+		model.addAttribute("professorNotice", professorNoice);
 		return "professor/inputscore";
 	}
 
