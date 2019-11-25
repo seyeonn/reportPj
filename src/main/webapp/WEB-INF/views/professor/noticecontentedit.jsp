@@ -34,7 +34,7 @@
                     <td class="table-active">내용</td>                    
                     <td><form:textarea path="content" class="form-control" style="height: 300px; overflow:auto"/></td>
                   </tr>
-                  <tr>
+                  <%-- <tr>
                     <td class="table-active">첨부파일 </td>
                     <td>
                       <form action="http://localhost/upload.php" method="post" enctype="multipart/form-data">
@@ -42,7 +42,7 @@
                         <input type="submit">
                       </form>
                     </td>
-                  </tr>
+                  </tr> --%>
                   <tr>
                     <td class="table-active">만점</td>
                     <td><form:input path="perfect_score" class="form-control" style="width: 50px"/></td>
