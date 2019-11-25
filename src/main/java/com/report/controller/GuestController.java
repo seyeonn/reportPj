@@ -3,6 +3,7 @@ package com.report.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 //import org.hibernate.validator.internal.util.logging.Log_.logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,7 +152,7 @@ public class GuestController {
 
 	@PostMapping(value="studentsignup")
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public String studentcreate(Model model, Student student, User user, BindingResult bindingResult) {
+	public String studentcreate(Model model, Student student,@Valid User user, BindingResult bindingResult) {
 		studentMapper.insert(student);
 		userMapper.studentInsert(user);
 //		if (userService.hasErrors(user, bindingResult)) {
@@ -164,6 +165,7 @@ public class GuestController {
     public String registerSuccess() {
         return "guest/login";
     }
+
 
 	// 회원 확인
 	@ResponseBody
@@ -181,7 +183,6 @@ public class GuestController {
 
 	 return result;
 	}
-
 
 }
 
