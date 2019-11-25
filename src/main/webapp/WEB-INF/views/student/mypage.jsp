@@ -62,21 +62,7 @@
           <input type="text" class="form-control" name="student_phone" value="${student.student_phone}" placeholder="01012341234" required>
         </div>
 
-        <div class="mb-3">
-          <label for="question">질문</label>
-          <input type="text" class="form-control" name="password_question" value="${student.password_question}" placeholder="가장 좋아하는 음식" required>
-          <div class="invalid-feedback">
-            비밀번호 재발급을 위한 질문을 입력해주세요.
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label for="answer">답</label>
-          <input type="text" class="form-control" name="password_answer" value="${student.password_answer}" placeholder="치킨" required>
-          <div class="invalid-feedback">
-            비밀번호 재발급을 위한 답을 입력해주세요.
-          </div>
-        </div>
+        
 
         <div class="mb-3">
           <label for="address">비밀번호</label>

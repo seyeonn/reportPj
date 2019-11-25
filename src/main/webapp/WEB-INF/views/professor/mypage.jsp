@@ -44,17 +44,6 @@
 					<input type="text" class="form-control" name="professor_phone" value="${professor.professor_phone}" placeholder="01012341234" required>
 				</div>
 
-				<%--교수랑 학생만--%>
-				<div class="mb-3">
-					<label for="question">질문</label> 
-					<input type="text" class="form-control" name="password_question" value="${professor.password_question}" placeholder="가장 좋아하는 음식" required>
-					<div class="invalid-feedback">비밀번호 재발급을 위한 질문을 입력해주세요.</div>
-				</div>
-				<div class="mb-3">
-					<label for="answer">답</label> 
-					<input type="text" class="form-control" name="password_answer" value="${professor.password_answer}" placeholder="치킨" required>
-					<div class="invalid-feedback">비밀번호 재발급을 위한 답을 입력해주세요.</div>
-				</div>
 
 
 				<div class="mb-3">
