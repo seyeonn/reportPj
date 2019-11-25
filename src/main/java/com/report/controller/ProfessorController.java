@@ -105,8 +105,8 @@ public class ProfessorController {
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
 		model.addAttribute("professorNotice", new ProfessorNotice());
-		System.out.println(id);
-		System.out.println(lecture.getLecture_no());
+//		System.out.println(id);
+//		System.out.println(lecture.getLecture_no());
 		return "professor/posting"; // 과제 및 공지 작성 페이지
 	}
 
@@ -312,10 +312,10 @@ public class ProfessorController {
 		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
 
 		for (int i=0; i < hw_no.length ;++i) {
-			System.out.println("======================");
+//			System.out.println("======================");
 			homeworkMapper.gradeUpdate(grade[i], ranking[i], hw_no[i]);
-			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
-			System.out.println("======================\n\n");
+//			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
+//			System.out.println("======================\n\n");
 		}
 
 		model.addAttribute("professor", professor);
@@ -360,7 +360,7 @@ public class ProfessorController {
 		if(professor.getTa_no() > 0) {
 			Ta ta = taMapper.findOne(professor.getTa_no());
 			model.addAttribute("ta", ta);
-			System.out.printf("%s %s\n", ta.getTa_id(),ta.getPassword());
+//			System.out.printf("%s %s\n", ta.getTa_id(),ta.getPassword());
 		}
 
 
@@ -381,7 +381,7 @@ public class ProfessorController {
 
 		lectureService.taYesLecture(professor.getTa_no(), id);
 
-		System.out.printf("%d\n", lecture.getTa_no());
+//		System.out.printf("%d\n", lecture.getTa_no());
 
 		return "redirect:taapprove";
 	}
@@ -424,10 +424,10 @@ public class ProfessorController {
 
 		professorMapper.taUpdate(ta.getTa_no(), professor.getProfessor_no());
 
-		System.out.printf("%s %s\n", professor.getName(), professor.getPassword1());
-		System.out.printf("%d TA아이디 : %s, TA비밀번호 : %s\n", ta.getTa_no(),ta.getTa_id() ,ta.getPassword());
-
-		System.out.printf("TA아이디 : %s, TA비밀번호 : %s\n", user.getId() ,user.getPassword1());
+//		System.out.printf("%s %s\n", professor.getName(), professor.getPassword1());
+//		System.out.printf("%d TA아이디 : %s, TA비밀번호 : %s\n", ta.getTa_no(),ta.getTa_id() ,ta.getPassword());
+//
+//		System.out.printf("TA아이디 : %s, TA비밀번호 : %s\n", user.getId() ,user.getPassword1());
 		return "redirect:taapprove";
 	}
 
