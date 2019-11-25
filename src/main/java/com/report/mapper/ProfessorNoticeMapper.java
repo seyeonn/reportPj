@@ -21,10 +21,10 @@ public interface ProfessorNoticeMapper {
     public void delete(int notice_no);
 
     List<ProfessorNotice> list(@Param("lecture_no") int lecture_no, @Param("pagination") Pagination pagination);
-    
+
     //학생들이 교수님이 입력한 점수 볼 수 있도록 student/notice 부분 의 jsp 수정을 위해 변경
     List<ProfessorNotice> studentlist(@Param("lecture_no") int lecture_no, @Param("pagination") Pagination pagination, int student_no);
-    
-    
+
+
 	int count(int lecture_no);
 }
