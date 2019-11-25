@@ -38,8 +38,8 @@
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="professor_no">
-		INSERT Professor (id, name, professor_phone, professor_email, password1, password2 ,password_question, password_answer, department_no, userType)
-		VALUES ( #{id}, #{name}, #{professor_phone}, #{professor_email}, #{password1}, #{password2}, #{password_question}, #{password_answer}, #{department_no}, '교수')
+		INSERT Professor (id, name, professor_phone, professor_email, password1, password2, department_no, userType)
+		VALUES ( #{id}, #{name}, #{professor_phone}, #{professor_email}, #{password1}, #{password2}, #{department_no}, '교수')
 	</insert>
 
 	<update id="update">
@@ -49,9 +49,7 @@
 		professor_phone = #{professor_phone},
 		professor_email = #{professor_email},
 		password1 = #{password1},
-		password2 = #{password2},
-		password_question = #{password_question},
-		password_answer = #{password_answer}
+		password2 = #{password2}
 		WHERE professor_no = #{professor_no}
 	</update>
 

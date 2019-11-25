@@ -60,33 +60,30 @@
 				</div>
 
 
+				<!-- -
 				<div class="mb-3">
 					<label>이메일</label>
 					<form:input path="student_email" class="form-control"
 						placeholder="you@example.com" />
 					<div class="invalid-feedback">이메일을 입력해주세요.</div>
 				</div>
-
-
+				-->
+				<div class="mb-3">
+					<label>이메일</label> <input type="email" name="student_email"
+						id="email" placeholder="올바른 이메일 형식을 입력해 주세요" class="form-control" />
+					<div class="invalid-feedback">이메일을 입력해주세요.</div>
+				</div>
+				<div class="alert alert-success" id="email-alert-success">이메일 형식이
+					일치합니다.</div>
+				<div class="alert alert-danger" id="email-alert-danger">이메일 형식이 일치하지
+					않습니다.</div>
+				
+				
 				<div class="mb-3">
 					<label>전화번호</label>
 					<form:input path="student_phone" class="form-control"
 						placeholder="-없이 숫자만 입력해주세요." />
 					<div class="invalid-feedback">전화번호를 입력해주세요.</div>
-				</div>
-
-				<div class="mb-3">
-					<label>질문</label>
-					<form:input path="password_question" class="form-control"
-						placeholder="비밀번호 재발급을 위한 질문 예) 가장 좋아하는 음식" />
-					<div class="invalid-feedback">비밀번호 재발급을 위한 질문을 입력해주세요.</div>
-				</div>
-
-				<div class="mb-3">
-					<label>답</label>
-					<form:input path="password_answer" class="form-control"
-						placeholder="패스워드 재발급을 위한 답    예) 치킨" />
-					<div class="invalid-feedback">비밀번호 재발급을 위한 답을 입력해주세요.</div>
 				</div>
 
 				<div class="mb-3">
@@ -163,7 +160,37 @@
   }); 
   }); 
   </script>
+<<<<<<< HEAD
 <!-- 	<script> 
+=======
+  
+  
+ <script type="text/javascript"> 
+  $(function(){ $("#email-alert-success").hide(); 
+  $("#email-alert-danger").hide(); 
+  $("input").keyup(function(){ var email=$("#email").val(); 
+  var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+  if(email != "" ){ 
+	  if(regex.test(email)){ $("#email-alert-success").show(); 
+	  $("#email-alert-danger").hide(); 
+	  $("#submit").removeAttr("disabled"); 
+	  }
+	  else{ 
+		  $("#email-alert-success").hide(); 
+		  $("#email-alert-danger").show(); 
+		  $("#submit").attr("disabled", "disabled"); 
+		  } 
+	  } 
+  }); 
+  }); 
+  </script>
+
+
+ 
+	<script> 
+
+	
+>>>>>>> 2c73e507d4e592ef4eb2fca9dafb7699c922cc9c
 $(".idCheck").click(function(){
  
  var query = {id : $("#id").val()};

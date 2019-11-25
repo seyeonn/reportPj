@@ -2,9 +2,7 @@ package com.report.controller;
 
 import java.util.List;
 
-
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 //import org.hibernate.validator.internal.util.logging.Log_.logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.report.dto.Department;
@@ -29,7 +26,6 @@ import com.report.mapper.StudentMapper;
 import com.report.mapper.TaMapper;
 import com.report.mapper.UserMapper;
 import com.report.service.DepartmentService;
-
 import com.report.service.UserService;
 
 //아직 로그인 하지 않은 사용자를 위한 페이지를 구현한다.
@@ -98,19 +94,6 @@ public class GuestController {
 
 	   }
 
-
-
-	@RequestMapping("newpassword")
-	public String newpassword(Model model) {
-
-		return "guest/newpassword"; //비민번호 찾
-	}
-
-	@RequestMapping("passwordquestion")
-	public String passwordquestion(Model model) {
-
-		return "guest/passwordquestion"; //비민번호 찾
-	}
 	//교수회원가입
 	@Transactional
 	@GetMapping(value="professorsignup")
@@ -160,7 +143,7 @@ public class GuestController {
 		user.setDepartment_no(student.getDepartment_no());
 		user.setPassword_question(student.getPassword_question());
 		user.setPassword_answer(student.getPassword_answer());
-		
+
 
 		return "student/signup";
 	}
@@ -181,6 +164,7 @@ public class GuestController {
     public String registerSuccess() {
         return "guest/login";
     }
+<<<<<<< HEAD
 	
 //	// 회원 확인
 //	@ResponseBody
@@ -198,6 +182,25 @@ public class GuestController {
 //	 
 //	 return result;
 //	}
+=======
+
+	// 회원 확인
+	@ResponseBody
+	@PostMapping(value = "idCheck")
+	public int postIdCheck(HttpServletRequest req) throws Exception {
+//	 logger.info("post idCheck");
+
+	 String id = req.getParameter("id");
+
+	 int result = 0;
+
+	 if(studentMapper.findByStudentId(id) != null) {
+	  result = 1;
+	 }
+
+	 return result;
+	}
+>>>>>>> 2c73e507d4e592ef4eb2fca9dafb7699c922cc9c
 
 
 }

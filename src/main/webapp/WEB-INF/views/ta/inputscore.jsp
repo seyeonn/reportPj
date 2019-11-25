@@ -15,10 +15,7 @@
 
 
   <main role="main" class="main-container">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-    <strong>&nbsp&nbsp ${lecture.lecture_name } &nbsp&nbsp&nbsp&nbsp</strong>
-    <small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp / &nbsp&nbsp </small>
-    </div>
+    <c:import url="../ta/lecturename.jsp" />
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
         <!-- Menu -->
@@ -28,12 +25,7 @@
 
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <div class="my-2 ">
-        <form class="form-inline mt-2 mt-md-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="학생 이름으로 검색하기" aria-label="Search">
-          <button class="btn btn btn-primary my-2 my-sm-0" type="submit">검색</button>
-        </form>
-        </div>
+       
        
         
           <form method="post">
@@ -75,11 +67,12 @@
           </table>
 		
 			<div style="float: right; display:inline-block; width: 900px;">
-            	<button type="button" class="btn btn-primary mx-2 my-sm-0" style="width: 100px; float: right" onclick="location.href='noticecontent?id=#{professorNotice.notice_no}'">목록</button>
+            	<button type="button" class="btn btn-primary mx-2 my-sm-0" style="width: 100px; float: right" onclick="location.href='noticecontent?id=${professorNotice.notice_no}'">목록</button>
             	<button type="submit"class="btn btn-primary my-2 my-sm-0" name="cmd" value="input" style="width: 100px; float: right" >입력</button>
           	</div>
 		</form>
-         
+         <label></label>
+         <label></label>
           
         </div>
         

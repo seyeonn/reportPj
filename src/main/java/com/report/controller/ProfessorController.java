@@ -69,7 +69,7 @@ public class ProfessorController {
     @Autowired LecturefileMapper lecturefileMapper;
     @Autowired TimelineMapper timelineMapper;
     @Autowired UploadedFileService uploadedFileService;
-    
+
 	@RequestMapping("professorMain")
 	public String professorMain(Model model,Principal principal, Pagination pagination) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
@@ -100,7 +100,7 @@ public class ProfessorController {
 	public String posting(Model model,Principal principal, @RequestParam("id") int id) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
-		
+
 		List<UploadedFile> uploadedfiles = uploadedFileService.findAllInPosting(id);
 		model.addAttribute("files", uploadedfiles); // 업로드된 파일리스트 // 업로드된 파일리스트
 		model.addAttribute("lecture", lecture);
@@ -122,7 +122,7 @@ public class ProfessorController {
 		professorNoticeMapper.insert(professorNotice);
 		return "redirect:notice?id="+id; // 과제 및 공지 작성 페이지
 	}
-	
+
 	@PostMapping(value = "posting", params = "cmd=uploadHomework")
 	public String upload(Model model, Principal principal, @RequestParam("upload") MultipartFile[] multipartFiles,
 			@RequestParam("id") int id) throws IOException {
@@ -429,7 +429,7 @@ public class ProfessorController {
 		System.out.printf("%d TA아이디 : %s, TA비밀번호 : %s\n", ta.getTa_no(),ta.getTa_id() ,ta.getPassword());
 
 		System.out.printf("TA아이디 : %s, TA비밀번호 : %s\n", user.getId() ,user.getPassword1());
-		return "professor/taapprove";
+		return "redirect:taapprove";
 	}
 
 
