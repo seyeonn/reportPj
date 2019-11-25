@@ -5,7 +5,7 @@
 <mapper namespace="com.report.mapper.UploadedFileMapper">
 
 	<select id="findByNo" resultType="UploadedFile">
-		SELECT * FROM UplodedFile WHERE no = #{no}
+		SELECT * FROM UploadedFile WHERE no = #{no}
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="no">
@@ -14,11 +14,11 @@
 	</insert>
 	
 	<delete id="deleteByNo">
-		DELETE FROM UplodedFile WHERE no = #{no}
+		DELETE FROM UploadedFile WHERE no = #{no}
 	</delete>
 	  
 	<select id="findAllInPosting" resultType="UploadedFile">
-		SELECT * FROM UplodedFile
+		SELECT * FROM UploadedFile
 		WHERE lecture_no=#{id}
 	</select>
 	
