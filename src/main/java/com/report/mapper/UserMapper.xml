@@ -9,7 +9,7 @@
 	</select>
 
 	<select id="findByLoginId" resultType="User">
-		SELECT id
+		SELECT *
 		FROM User
 		WHERE id = #{id}
 	</select>

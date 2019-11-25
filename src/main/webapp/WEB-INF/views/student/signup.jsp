@@ -28,7 +28,7 @@
 						<form:input path="id" class="form-control"
 							placeholder="반드시 학번이어야 합니다. ex)201732032" />
 						<form:errors path="id" class="error" />
-<!-- 
+						<!-- 
 						<button type="button" class="idCheck">ID중복확인</button>
 
  -->
@@ -73,12 +73,12 @@
 						id="email" placeholder="올바른 이메일 형식을 입력해 주세요" class="form-control" />
 					<div class="invalid-feedback">이메일을 입력해주세요.</div>
 				</div>
-				<div class="alert alert-success" id="email-alert-success">이메일 형식이
-					일치합니다.</div>
-				<div class="alert alert-danger" id="email-alert-danger">이메일 형식이 일치하지
-					않습니다.</div>
-				
-				
+				<div class="alert alert-success" id="email-alert-success">이메일
+					형식이 일치합니다.</div>
+				<div class="alert alert-danger" id="email-alert-danger">이메일
+					형식이 일치하지 않습니다.</div>
+
+
 				<div class="mb-3">
 					<label>전화번호</label>
 					<form:input path="student_phone" class="form-control"
@@ -160,8 +160,8 @@
   }); 
   }); 
   </script>
-<<<<<<< HEAD
-<!-- 	<script> 
+	<<<<<<< HEAD
+	<!-- 	<script> 
 =======
   
   

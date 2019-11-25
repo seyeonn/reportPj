@@ -3,6 +3,7 @@ package com.report.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 //import org.hibernate.validator.internal.util.logging.Log_.logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,25 +165,7 @@ public class GuestController {
     public String registerSuccess() {
         return "guest/login";
     }
-<<<<<<< HEAD
-	
-//	// 회원 확인
-//	@ResponseBody
-//	@PostMapping(value = "idCheck")
-//	public int postIdCheck(HttpServletRequest req) throws Exception {
-////	 logger.info("post idCheck");
-//	 
-//	 String id = req.getParameter("id");
-//	 
-//	 int result = 0;
-//	 
-//	 if(studentMapper.findByStudentId(id) != null) {
-//	  result = 1;
-//	 } 
-//	 
-//	 return result;
-//	}
-=======
+
 
 	// 회원 확인
 	@ResponseBody
@@ -200,8 +183,6 @@ public class GuestController {
 
 	 return result;
 	}
->>>>>>> 2c73e507d4e592ef4eb2fca9dafb7699c922cc9c
-
 
 }
 
