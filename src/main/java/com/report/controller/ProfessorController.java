@@ -302,10 +302,10 @@ public class ProfessorController {
 
 	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")
 	public String inputscore2(Model model, Principal principal,
-			@RequestParam("notice_no") int notice_no,
-			@RequestParam("hw_no") int[] hw_no,
-			@RequestParam("grade") int[] grade,
-			@RequestParam("ranking") int[] ranking) {
+			@RequestParam(value="notice_no", required = false, defaultValue = "notice_no") int notice_no,
+			@RequestParam(value="hw_no", required = false, defaultValue = "hw_no")  Integer[] hw_no,
+			@RequestParam(value="grade", required = false, defaultValue = "grade")  Integer[] grade,
+			@RequestParam(value="ranking", required = false, defaultValue = "ranking")  Integer[] ranking) {
 
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
