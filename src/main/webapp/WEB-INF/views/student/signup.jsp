@@ -27,18 +27,18 @@
 					<div class="input-group">
 						<form:input path="id" class="form-control"
 							placeholder="반드시 학번이어야 합니다. ex)201732032" />
-						<%-- <form:errors path="id" class="error" /> --%>
-
+						<form:errors path="id" class="error" />
+<!-- 
 						<button type="button" class="idCheck">ID중복확인</button>
 
-
+ -->
 
 					</div>
-					<div>
+					<!-- <div>
 					<p class="result">
 						<span class="msg">ID를 확인하세요</span>
 					</p>
-					</div>
+					</div> -->
 				</div>
 
 				<div class="mb-3">
@@ -163,7 +163,7 @@
   }); 
   }); 
   </script>
-	<script> 
+<!-- 	<script> 
 $(".idCheck").click(function(){
  
  var query = {id : $("#id").val()};
@@ -184,7 +184,7 @@ $(".idCheck").click(function(){
   }
  });  // ajax 끝
 });
-</script>
+</script> -->
 </body>
 
 </html>
