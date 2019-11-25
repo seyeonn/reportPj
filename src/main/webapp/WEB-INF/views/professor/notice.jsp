@@ -32,7 +32,7 @@
                   <th style="width: 350px">제목</th>
                   <th>제출기한</th>
                   <th>연장기한</th>
-                  <th>파일</th>
+                  <!-- <th>파일</th> -->
                   <th>제출여부</th>
                   <th>성적/만점</th>
                 </tr>
@@ -44,7 +44,7 @@
                   <td>${professorNotice.title}</td>
                   <td>${professorNotice.deadline}</td>
                   <td>${professorNotice.deadline_add}</td>
-                  <td><button type="button" class="btn btn-outline-primary">파일</button></td>
+                  <!-- <td><button type="button" class="btn btn-outline-primary">파일</button></td> -->
                   <td></td>
                   <td>${professorNotice.perfect_score}</td>
                  </tr>
