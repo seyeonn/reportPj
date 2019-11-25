@@ -176,26 +176,33 @@ public class TaController {
 
 
 	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")
-	public String inputscore2(Model model,
+	public String inputscore2(Model model, Principal principal,
 			@RequestParam("notice_no") int notice_no,
 			@RequestParam("hw_no") int[] hw_no,
 			@RequestParam("grade") int[] grade,
 			@RequestParam("ranking") int[] ranking) {
 
-
-
-
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
+		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
 
 		for (int i=0; i < hw_no.length ;++i) {
 			System.out.println("======================");
-			homeworkMapper.gradeUpdate(grade[i], ranking[i],hw_no[i]);
+			homeworkMapper.gradeUpdate(grade[i], ranking[i], hw_no[i]);
 			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
 			System.out.println("======================\n\n");
 		}
 
-
+		model.addAttribute("professor", professor);
+		model.addAttribute("professorNotice", professorNotice);
 		model.addAttribute("homeworks", homeworks);
-		return "redirect:inputscore?notice_no="+notice_no; // 학생 게시판 페이지
+		model.addAttribute("lecture", lecture);
+
+		return "redirect:inputscore?notice_no="+notice_no;
 	}
+
+
+	
+	
 }
