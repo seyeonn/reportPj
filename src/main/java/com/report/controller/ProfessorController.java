@@ -25,7 +25,6 @@ import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
 import com.report.dto.StudentNotice;
 import com.report.dto.Ta;
-import com.report.dto.UploadedFile;
 import com.report.dto.User;
 import com.report.mapper.DepartmentMapper;
 import com.report.mapper.HomeworkMapper;
@@ -101,8 +100,8 @@ public class ProfessorController {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		Lecture lecture = lectureMapper.findOne(id);
 
-		List<UploadedFile> uploadedfiles = uploadedFileService.findAllInPosting(id);
-		model.addAttribute("files", uploadedfiles); // 업로드된 파일리스트 // 업로드된 파일리스트
+//		List<UploadedFile> uploadedfiles = uploadedFileService.findAllInPosting(id);
+//		model.addAttribute("files", uploadedfiles); // 업로드된 파일리스트 // 업로드된 파일리스트
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
 		model.addAttribute("professorNotice", new ProfessorNotice());

@@ -10,14 +10,7 @@
 		FROM student_lecture sl 
 		JOIN lecture l on sl.lecture_no = l.lecture_no and sl.student_no = #{student_no}
 		JOIN professor_notice pn on l.lecture_no = pn.lecture_no
-		
- 		UNION ALL
- 		
-		SELECT l.lecture_name, sn.title, sn.submitdate, sn.studentnotice_no, header
-		FROM student_lecture sl 
-		JOIN lecture l on sl.lecture_no = l.lecture_no and sl.student_no = #{student_no}
-		JOIN student_notice sn on l.lecture_no = sn.lecture_no
-		
+
 		UNION ALL
 		
 		SELECT l.lecture_name, lf.file_name, lf.file_time, lf.no, header
@@ -36,13 +29,6 @@
 			FROM student_lecture sl 
 			JOIN lecture l on sl.lecture_no = l.lecture_no and sl.student_no = #{student_no}
 			JOIN professor_notice pn on l.lecture_no = pn.lecture_no
-			
- 			UNION ALL
- 		
-			SELECT l.lecture_name, sn.title, sn.submitdate
-			FROM student_lecture sl 
-			JOIN lecture l on sl.lecture_no = l.lecture_no and sl.student_no = #{student_no}
-			JOIN student_notice sn on l.lecture_no = sn.lecture_no
 		
 			UNION ALL
 		
@@ -102,13 +88,7 @@
 		SELECT l.lecture_name, pn.title, pn.submitdate, pn.notice_no, header
 		FROM lecture l
 		JOIN professor_notice pn on l.lecture_no = pn.lecture_no and l.ta_no = ${ta_no}
-		
-		
- 		UNION ALL
- 		
-		SELECT l.lecture_name, sn.title, sn.submitdate, sn.studentnotice_no, header
-		FROM lecture l
-		JOIN student_notice sn on l.lecture_no = sn.lecture_no and l.ta_no = ${ta_no}
+
 		
 		UNION ALL
 		
@@ -126,13 +106,6 @@
 		SELECT l.lecture_name, pn.title, pn.submitdate, pn.notice_no, header
 		FROM lecture l
 		JOIN professor_notice pn on l.lecture_no = pn.lecture_no and l.ta_no = ${ta_no}
-		
-		
- 		UNION ALL
- 		
-		SELECT l.lecture_name, sn.title, sn.submitdate, sn.studentnotice_no, header
-		FROM lecture l
-		JOIN student_notice sn on l.lecture_no = sn.lecture_no and l.ta_no = ${ta_no}
 		
 		UNION ALL
 		
