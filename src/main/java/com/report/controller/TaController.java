@@ -177,17 +177,24 @@ public class TaController {
 
 	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")
 	public String inputscore2(Model model, Principal principal,
-			@RequestParam("notice_no") int notice_no,
+			@RequestParam(value="notice_no", required = false, defaultValue = "notice_no") int notice_no,
 			@RequestParam(value="hw_no", required = false, defaultValue = "hw_no") int[] hw_no,
 			@RequestParam(value="grade", required = false, defaultValue = "grade") int[] grade,
 			@RequestParam(value="ranking", required = false, defaultValue = "ranking") int[] ranking) {
 
+		
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
 
 		
+		model.addAttribute("professor", professor);
+		model.addAttribute("professorNotice", professorNotice);
+		model.addAttribute("homeworks", homeworks);
+		model.addAttribute("lecture", lecture);
+		
+	
 	
 		for (int i=0; i < hw_no.length ;++i) {
 			System.out.println("======================");
@@ -197,10 +204,6 @@ public class TaController {
 
 		}
 		
-		model.addAttribute("professor", professor);
-		model.addAttribute("professorNotice", professorNotice);
-		model.addAttribute("homeworks", homeworks);
-		model.addAttribute("lecture", lecture);
 
 		return "redirect:inputscore?notice_no="+notice_no;
 	}
