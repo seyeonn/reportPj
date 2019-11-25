@@ -18,7 +18,7 @@
               <a class="nav-link" href="mypage">마이페이지</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="taapprove">TA 승인</a>
+              <a class="nav-link" href="taapprove">TA 관리</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="information">도움말</a>
