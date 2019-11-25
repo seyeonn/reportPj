@@ -150,11 +150,11 @@ public class TaController {
 	@GetMapping("noticecontent")
 	public String noticecontent(Model model,Principal principal, @RequestParam("id") int id) {
 		Ta ta = taMapper.findByTaId(principal.getName());
-		ProfessorNotice professorNoice = professorNoticeMapper.findOne(id);
-		Lecture lecture = lectureMapper.findOne(professorNoice.getLecture_no());
+		ProfessorNotice professorNotice = professorNoticeMapper.findOne(id);
+		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("ta", ta);
-		model.addAttribute("professorNotice", professorNoice);
+		model.addAttribute("professorNotice", professorNotice);
 		return "ta/noticecontent"; // 과제 및 공지 작성 페이지
 	}
 
@@ -165,12 +165,12 @@ public class TaController {
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 		model.addAttribute("homeworks", homeworks);
 		Ta ta = taMapper.findByTaId(principal.getName());
-		ProfessorNotice professorNoice = professorNoticeMapper.findOne(notice_no);
-		Lecture lecture = lectureMapper.findOne(professorNoice.getLecture_no());
+		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
+		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("ta", ta);
-		model.addAttribute("professorNotice", professorNoice);
-		return "professor/inputscore";
+		model.addAttribute("professorNotice", professorNotice);
+		return "ta/inputscore";
 	}
 
 
