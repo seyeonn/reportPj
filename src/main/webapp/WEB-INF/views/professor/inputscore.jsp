@@ -124,7 +124,7 @@
 									<td>${homework.student.department.department_name}</td>
 									<td><button type="submit" name="cmd"
 											value="downloadHomework" class="btn btn-outline-primary">과제열람</button></td>
-									<td>${homework.submitdate}</td>
+									<td><fmt:formatDate value="${homework.submitdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 									<td><input type="text" class="form-control" name="grade"
 										value="${homework.grade}" style="width: 50px" /></td>
 									<td><input type="text" class="form-control" name="ranking"

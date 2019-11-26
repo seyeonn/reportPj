@@ -17,8 +17,8 @@
             <table class="table text-center table-bordered">
 
                 <tr>
-                  <th class="table-active" colspan="2">제목</th>
-                  <td style="width: 670px">부여된 과제에 대한 제목입니다. 클릭하여 세부내용을 볼 수 있습니다.  아이콘은 '공지사항' 임을 나타냅니다.</th>
+                  <th class="table-active" colspan="2" width="30%">타임라인</th>
+                  <td>각 강좌마다 올라온 학생게시판의 게시글들을 보여준다.</th>
                 </tr>
 
 
