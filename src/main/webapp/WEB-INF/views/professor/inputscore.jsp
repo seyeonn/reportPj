@@ -72,8 +72,12 @@
 		
 			<div style="float: right; display:inline-block; width: 900px;">
             	<button type="button" class="btn btn-primary mx-2 my-sm-0" style="width: 100px; float: right" onclick="location.href='noticecontent?id=${professorNotice.notice_no}'">목록</button>
-            	<button type="submit"class="btn btn-primary my-2 my-sm-0" name="cmd" value="input" style="width: 100px; float: right" >입력</button>
+            	<button type="submit"class="btn btn-primary my-2 my-sm-0" name="cmd" value="input" style="width: 100px; float: right" >점수입력</button>
+          		<button type="submit"class="btn btn-primary mx-2 my-sm-0" name="cmd" value="rank" style="width: 100px; float: right" >등수산출</button>
           	</div>
+          	<label></label>
+         <label></label>
+          	
 		</form>
 		
          <label></label>
@@ -124,7 +128,7 @@
 									<td>${homework.student.department.department_name}</td>
 									<td><button type="submit" name="cmd"
 											value="downloadHomework" class="btn btn-outline-primary">과제열람</button></td>
-									<td>${homework.submitdate}</td>
+									<td><fmt:formatDate value="${homework.submitdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 									<td><input type="text" class="form-control" name="grade"
 										value="${homework.grade}" style="width: 50px" /></td>
 									<td><input type="text" class="form-control" name="ranking"
