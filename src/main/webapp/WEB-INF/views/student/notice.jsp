@@ -46,7 +46,7 @@
                   <td>${professorNotice.deadline}</td>
                   <td>${professorNotice.deadline_add}</td>
                   <c:choose>
-					<c:when test="${ professorNotice.homework.hw_no eq null}">
+					<c:when test="${ professorNotice.homework.ranking eq '0'}">
 						<td>N</td>
 					</c:when>
 					<c:otherwise>
