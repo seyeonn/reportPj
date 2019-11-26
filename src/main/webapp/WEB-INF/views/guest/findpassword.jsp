@@ -35,7 +35,6 @@
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit" >로그인 하러 가기</button>
      <!--  <button class="btn btn-lg btn-primary btn-block" type="submit">로그인 하러 가기</button> -->
-     
     </form>
   </div>
 

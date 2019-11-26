@@ -3,6 +3,7 @@ package com.report.controller;
 import java.io.BufferedOutputStream;
 import java.net.URLEncoder;
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,7 @@ import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
 import com.report.dto.StudentNotice;
 import com.report.dto.Ta;
+import com.report.dto.User;
 import com.report.mapper.HomeworkMapper;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.LecturefileMapper;
@@ -30,6 +33,7 @@ import com.report.mapper.ProfessorNoticeMapper;
 import com.report.mapper.StudentNoticeMapper;
 import com.report.mapper.TaMapper;
 import com.report.mapper.TimelineMapper;
+import com.report.mapper.UserMapper;
 import com.report.model.Pagination;
 import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
@@ -49,6 +53,7 @@ public class TaController {
 	@Autowired StudentNoticeService studentNoticeService;
 	@Autowired StudentNoticeMapper studentNoticeMapper;
 	@Autowired TimelineMapper timelineMapper;
+	@Autowired UserMapper userMapper;
 	@RequestMapping("taMain")
 
 
@@ -123,6 +128,19 @@ public class TaController {
 		model.addAttribute("ta", ta);
 		model.addAttribute("professor", professor);
 		return "ta/mypage"; // 로그인 한 ta를 위한 메인 페이지 URL
+	}
+
+	@PostMapping("mypage")
+    public String mypage(Ta ta1, Model model, Principal principal) {
+       Ta ta = taMapper.findByTaId(principal.getName());
+       ta.setPassword(ta1.getPassword());
+
+       taMapper.update(ta);
+
+       User user = userMapper.findByLoginId(principal.getName());
+		user.setPassword1(ta.getPassword());
+		userMapper.update(user);
+       return "redirect:mypage"; // 학생 마이페이지
 	}
 
 	@RequestMapping("notice")
@@ -200,7 +218,7 @@ public class TaController {
 	
 		for (int i=0; i < hw_no.length ;++i) {
 			System.out.println("======================");
-			homeworkMapper.gradeUpdate(grade[i], ranking[i], hw_no[i]);
+			//homeworkMapper.gradeUpdate(grade[i], ranking[i], hw_no[i]);
 			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
 			System.out.println("======================\n\n");		
 
@@ -210,6 +228,57 @@ public class TaController {
 		return "redirect:inputscore?notice_no="+notice_no;
 	}
 
+	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=rank")
+	public String inputscore3(Model model, Principal principal,
+			@RequestParam(value="notice_no", required = false, defaultValue = "notice_no") int notice_no,
+			@RequestParam(value="hw_no", required = false, defaultValue = "hw_no")  Integer[] hw_no,
+			@RequestParam(value="grade", required = false, defaultValue = "grade")  Integer[] grade,
+			@RequestParam(value="ranking", required = false, defaultValue = "ranking")  Integer[] ranking) {
+
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
+		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
+		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
+
+
+		int[] score = new int[grade.length];
+		int[] rank = new int [grade.length];
+		
+		for(int i=0 ; i<grade.length; i++) {
+			score[i]=grade[i];
+		}
+		
+
+		for(int x=0; x<grade.length; x++) {
+			rank[x]=1;
+			for(int y=0; y<grade.length; y++) {
+				if(score[x]<score[y])
+					rank[x]++;
+			}
+		}
+		
+		Arrays.sort(rank);
+		
+		for(int i=0; i<hw_no.length; ++i) {
+			System.out.printf("%d %d %s\n", score[i], rank[i], homeworks.get(i).getStudent().getName());
+		}
+		
+		for (int i=0; i < hw_no.length ;++i) {
+			
+			System.out.printf("[%d] : %s	-> %d\n======================\n",homeworks.get(i).getRanking(), homeworks.get(i).getStudent().getName(), homeworks.get(i).getGrade());
+			homeworkMapper.rankUpdate(rank[i], hw_no[i]);
+//			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
+//			System.out.println("======================\n\n");
+		}
+	
+		
+		model.addAttribute("professor", professor);
+		model.addAttribute("professorNotice", professorNotice);
+		model.addAttribute("homeworks", homeworks);
+		model.addAttribute("lecture", lecture);
+
+		return "redirect:inputscore?notice_no="+notice_no;
+	}
 
 	
 	
