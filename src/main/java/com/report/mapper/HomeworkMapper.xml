@@ -11,7 +11,7 @@
 		LEFT JOIN department d ON d.department_no = s.department_no
 		LEFT JOIN professor_notice n ON n.notice_no = h.professornotice_no
 		WHERE h.professornotice_no = #{professornotice_no}
-		ORDER BY h.submitdate
+		ORDER BY h.grade DESC
 	</select>
 
 	<resultMap id="resultMap_Homework" type="Homework">
@@ -34,7 +34,12 @@
 	
 	<update id="gradeUpdate">
 		UPDATE Homework SET
-		grade=#{grade},
+		grade=#{grade}
+		WHERE hw_no=#{hw_no}
+	</update>
+	
+	<update id="rankUpdate">
+		UPDATE Homework SET
 		ranking=#{ranking}
 		WHERE hw_no=#{hw_no}
 	</update>
