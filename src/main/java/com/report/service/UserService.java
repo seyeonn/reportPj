@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-import com.report.dto.Student;
-import com.report.dto.User;
 import com.report.dto.Professor;
 import com.report.dto.Student;
 import com.report.dto.User;
@@ -47,6 +45,7 @@ public class UserService {
         return false;
     }
 	public Boolean findPassword(String loginId, String name, String email) {
+		try {
 	      User user = userMapper.findByLoginId(loginId);
 
 	      if(user.getName().equals(name) && user.getEmail().equals(email)) {
@@ -69,6 +68,10 @@ public class UserService {
 	        }
 
 	      return false;
+		}
+		catch(NullPointerException e) {
+			return false;
+		}
 	   }
 
 }

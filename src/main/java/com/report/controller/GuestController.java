@@ -59,41 +59,49 @@ public class GuestController {
 	}
 
 	@GetMapping("findpassword")
-	   public String findpassword(Model model, User user) {
-	      User users = userMapper.findByLoginId(user.getId());
+	public String findpassword(Model model, User user) {
+		User users = userMapper.findByLoginId(user.getId());
 
-	      return "guest/findpassword";
-	   }
+		return "guest/findpassword";
+	}
 
-	   @PostMapping("findpassword")
-	   public String findpassword2(Model model, User user) {
+	@PostMapping("findpassword")
+	public String findpassword2(Model model, User user) {
 
-//	      User users = userMapper.findByLoginId(user.getId());
-	//
-//	      if(user.getId() == null) {
-//	         return null;
-//	      }
-//	      String gname = user.getName();
-//	      if(!users.getName().equals(gname)) {
-//	         return null;
-//	      }
-//	      String gemail = user.getEmail();
-//	      if(!users.getEmail().equals(gemail)) {
-//	         return null;
-//	      }
-	      if(userService.findPassword(user.getId(), user.getName(), user.getEmail())) {
-	            model.addAttribute("findError", false);
-	            model.addAttribute("loginError", false);
-	            return "guest/login";
-	        }else {
-	            model.addAttribute("findError", true);
-	            model.addAttribute("loginError", false);
-	            return null;
-	        }
+		//	      User users = userMapper.findByLoginId(user.getId());
+		//
+		//	      if(user.getId() == null) {
+		//	         return null;
+		//	      }
+		//	      String gname = user.getName();
+		//	      if(!users.getName().equals(gname)) {
+		//	         return null;
+		//	      }
+		//	      String gemail = user.getEmail();
+		//	      if(!users.getEmail().equals(gemail)) {
+		//	         return null;
+		//	      }
+		if(user == null) {
+			return null;
+		}
 
-	       //비민번호 찾
+		if(user.getId().equals(null)) {
+			return null;
+		}
+		if(userService.findPassword(user.getId(), user.getName(), user.getEmail())) {
+			model.addAttribute("findError", false);
+			model.addAttribute("loginError", false);
+			return "guest/login";
+		}else {
+			model.addAttribute("findError", true);
+			model.addAttribute("loginError", false);
+			return null;
+		}
 
-	   }
+
+		//비민번호 찾
+
+	}
 
 	//교수회원가입
 	@Transactional
@@ -155,33 +163,33 @@ public class GuestController {
 	public String studentcreate(Model model, Student student,@Valid User user, BindingResult bindingResult) {
 		studentMapper.insert(student);
 		userMapper.studentInsert(user);
-//		if (userService.hasErrors(user, bindingResult)) {
-//            model.addAttribute("departments", departmentService.findAll());
-//            return "redirect:studentsignup";
-//        }
+		//		if (userService.hasErrors(user, bindingResult)) {
+		//            model.addAttribute("departments", departmentService.findAll());
+		//            return "redirect:studentsignup";
+		//        }
 		return "redirect:signupSuccess";
 	}
 	@RequestMapping("signupSuccess")
-    public String registerSuccess() {
-        return "guest/login";
-    }
+	public String registerSuccess() {
+		return "guest/login";
+	}
 
 
 	// 회원 확인
 	@ResponseBody
 	@PostMapping(value = "idCheck")
 	public int postIdCheck(HttpServletRequest req) throws Exception {
-//	 logger.info("post idCheck");
+		//	 logger.info("post idCheck");
 
-	 String id = req.getParameter("id");
+		String id = req.getParameter("id");
 
-	 int result = 0;
+		int result = 0;
 
-	 if(studentMapper.findByStudentId(id) != null) {
-	  result = 1;
-	 }
+		if(studentMapper.findByStudentId(id) != null) {
+			result = 1;
+		}
 
-	 return result;
+		return result;
 	}
 
 }

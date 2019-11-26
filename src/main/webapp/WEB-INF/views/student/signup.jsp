@@ -186,7 +186,7 @@
 
 
  
-	<script> 
+<!-- 	<script> 
 
 
 $(".idCheck").click(function(){
