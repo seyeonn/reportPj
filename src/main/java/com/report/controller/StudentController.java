@@ -197,7 +197,7 @@ public class StudentController {
 		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
 		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
 		Student student = studentMapper.findByStudentId(principal.getName());
-		List<ProfessorNotice>  professorNotices = professorNoticeMapper.list(id, pagination);
+		List<ProfessorNotice>  professorNotices = professorNoticeMapper.studentlist(lecture.getLecture_no(), pagination,student.getStudent_no());
 		pagination.setRecordCount(professorNoticeMapper.count(id));
     	model.addAttribute("student", student);
     	model.addAttribute("lecture", lecture);
@@ -205,7 +205,10 @@ public class StudentController {
     	model.addAttribute("professorNotices", professorNotices);
 //    	for(ProfessorNotice p : professorNotices) {
 //    		System.out.printf("%s -> %d ", student.getName(), p.getHomework().getGrade());
+    	
 //    	}
+    	
+    	System.out.println(professorNotices.size());
   		return "student/notice"; // 과제 및 공지 페이지
 	}
 
