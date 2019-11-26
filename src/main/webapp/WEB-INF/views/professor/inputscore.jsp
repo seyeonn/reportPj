@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!doctype html>
 <html lang="en">
 
@@ -72,8 +73,10 @@
 		
 			<div style="float: right; display:inline-block; width: 900px;">
             	<button type="button" class="btn btn-primary mx-2 my-sm-0" style="width: 100px; float: right" onclick="location.href='noticecontent?id=${professorNotice.notice_no}'">목록</button>
+            	<c:if test="${fn:length(homeworks) > 0}">
             	<button type="submit"class="btn btn-primary my-2 my-sm-0" name="cmd" value="input" style="width: 100px; float: right" >점수입력</button>
           		<button type="submit"class="btn btn-primary mx-2 my-sm-0" name="cmd" value="rank" style="width: 100px; float: right" >등수산출</button>
+          		</c:if>
           	</div>
           	<label></label>
          <label></label>
