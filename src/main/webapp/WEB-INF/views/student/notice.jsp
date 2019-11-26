@@ -46,11 +46,11 @@
                   <td>${professorNotice.deadline}</td>
                   <td>${professorNotice.deadline_add}</td>
                   <c:choose>
-					<c:when test="${ professorNotice.homework.ranking eq '0'}">
-						<td>N</td>
+					<c:when test="${ professorNotice.homework.hw_no > 0}">
+						<td>Y</td>
 					</c:when>
 					<c:otherwise>
-						<td>Y</td>
+						<td>N</td>
 					</c:otherwise>
 				  </c:choose>
                   <td>${professorNotice.homework.grade}/${professorNotice.perfect_score}</td>

@@ -6,9 +6,8 @@
 
     <select id="list" resultType="ProfessorNotice">
         <bind name="start" value="(pagination.pg - 1) * pagination.sz" />
-        SELECT p.*, h.grade, h.ranking
+        SELECT p.*
     	FROM professor_notice p
-    	LEFT JOIN homework h ON h.professornotice_no = p.notice_no
         WHERE lecture_no = #{lecture_no}
         order by notice_no DESC
         LIMIT #{start}, #{pagination.sz}
@@ -16,9 +15,9 @@
     
     <select id="studentlist" resultMap="resultMap_ProfessorNotice">
         <bind name="start" value="(pagination.pg - 1) * pagination.sz" />
-        SELECT p.*, h.grade, h.ranking
+        SELECT p.*, h.grade, h.ranking, h.hw_no
     	FROM professor_notice p
-    	JOIN homework h ON h.professornotice_no = p.notice_no
+    	LEFT JOIN homework h ON h.professornotice_no = p.notice_no
     	WHERE lecture_no = #{lecture_no}
         order by p.notice_no DESC
         LIMIT #{start}, #{pagination.sz}
