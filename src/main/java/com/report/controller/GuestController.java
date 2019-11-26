@@ -163,10 +163,6 @@ public class GuestController {
             return "student/signup";
         }
 		System.out.println("나왔냐");
-		//		if (userService.hasErrors(user, bindingResult)) {
-		//            model.addAttribute("departments", departmentService.findAll());
-		//            return "redirect:studentsignup";
-		//        }
 		return "redirect:signupSuccess";
 	}
 	@RequestMapping("signupSuccess")
@@ -193,22 +189,22 @@ public class GuestController {
 //	}
 
 
-	// 회원 확인
-	@ResponseBody
-	@PostMapping(value = "idCheck")
-	public int postIdCheck(HttpServletRequest req) throws Exception {
-		//	 logger.info("post idCheck");
-
-		String id = req.getParameter("id");
-
-		int result = 0;
-
-		if(studentMapper.findByStudentId(id) != null) {
-			result = 1;
-		}
-
-		return result;
-	}
+//	// 회원 확인
+//	@ResponseBody
+//	@PostMapping(value = "idCheck")
+//	public int postIdCheck(HttpServletRequest req) throws Exception {
+//		//	 logger.info("post idCheck");
+//
+//		String id = req.getParameter("id");
+//
+//		int result = 0;
+//
+//		if(studentMapper.findByStudentId(id) != null) {
+//			result = 1;
+//		}
+//
+//		return result;
+//	}
 
 }
 

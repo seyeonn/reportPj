@@ -40,7 +40,8 @@ public class UserService {
 		if (bindingResult.hasErrors()) {
 			return true;
 		}
-		if(studentMapper.findByStudentId(student.getId())!=null) {
+		Student student1 =studentMapper.findByStudentId(student.getId());
+		if(student1!=null) {
 			bindingResult.rejectValue("id", null, "이미 존재하는 ID입니다.");
 			return true;
 		}
