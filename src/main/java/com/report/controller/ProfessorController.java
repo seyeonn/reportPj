@@ -4,6 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -317,7 +319,32 @@ public class ProfessorController {
 //			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
 //			System.out.println("======================\n\n");
 		}
-
+		
+		int[] sortGrade = new int[grade.length];
+		int[] rank = new int [grade.length];
+		for(int a : rank)
+			a = 1 ;
+		
+		Arrays.sort(sortGrade);
+		
+		for(int b =0; b<grade.length; ++b) {
+			sortGrade[b]= grade[b];
+		}
+		
+		
+		for(int x=0; x<grade.length-1; x++) {
+			if(sortGrade[x]>sortGrade[x+1])
+				rank[x+1]++;
+			else if(sortGrade[x]==sortGrade[x+1]) {
+				rank[x+1]=rank[x];
+				
+			}
+			
+			
+			
+		}
+		
+		
 		model.addAttribute("professor", professor);
 		model.addAttribute("professorNotice", professorNotice);
 		model.addAttribute("homeworks", homeworks);
