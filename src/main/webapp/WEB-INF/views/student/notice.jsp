@@ -34,6 +34,7 @@
                   <th>연장기한</th>                 
                   <th>제출여부</th>
                   <th>성적/만점</th>
+                  <th>등수</th>
                 </tr>
               </thead>
               <tbody>
@@ -45,6 +46,7 @@
                   <td>${professorNotice.deadline_add}</td>
                   <td></td>
                   <td>${professorNotice.homework.grade}/${professorNotice.perfect_score}</td>
+                  <td>${professorNotice.homework.ranking}</td>
                  </tr>
                 </c:forEach>
 
