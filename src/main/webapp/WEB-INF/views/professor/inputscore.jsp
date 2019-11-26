@@ -54,7 +54,7 @@
                   <td>${homework.student.id } </td>
                   <td>${homework.student.name } </td>
                   <td>${homework.student.department.department_name}</td>
-                  <td><button type="button" class="btn btn-outline-primary" >열람</button></td>
+                  <td><button type="submit" name="cmd" value="downloadHomework" class="btn btn-outline-primary" >과제열람</button></td>
                   <td>${homework.submitdate}</td>
                   <td>
                   	<input type="text" class="form-control" name="grade" value="${homework.grade}" style="width:50px"  />
