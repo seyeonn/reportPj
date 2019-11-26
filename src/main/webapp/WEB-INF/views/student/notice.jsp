@@ -38,7 +38,7 @@
                 </tr>
               </thead>
               <tbody>
-                <form class="form">
+
                 <c:forEach var="professorNotice" items="${professorNotices}"> 
 				 <tr onClick = " location.href='noticecontent?id=${professorNotice.notice_no}' ">
                   <td>${professorNotice.title}</td>
@@ -49,7 +49,7 @@
                   <td>${professorNotice.homework.grade}/${professorNotice.perfect_score}</td>
                  </tr>
                 </c:forEach>
-                </form>
+
               </tbody>
             </table>
             
