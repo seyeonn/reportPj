@@ -15,6 +15,12 @@
     WHERE s.id = #{id};
   </select>    
   
+  <select id="findStudentId" resultType="Student">
+  	SELECT id
+  	FROM Student
+  	WHERE id=#{id}
+  </select>
+  
   <select id="findByStudentLecture1" resultType="Lecture">
     SELECT l.*
 	FROM student_lecture sl 

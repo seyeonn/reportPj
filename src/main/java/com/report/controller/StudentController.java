@@ -2,6 +2,7 @@ package com.report.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.List;
@@ -347,7 +348,7 @@ public class StudentController {
     }
 
     @PostMapping("mypage")
-    public String mypage(Student student1, Model model, Principal principal) {
+    public String mypage(Student student1, Model model, Principal principal, HttpServletResponse response) throws IOException {
        Student student = studentMapper.findByStudentId(principal.getName());
        student.setName(student1.getName());
        student.setDepartment_no(student1.getDepartment_no());
@@ -369,6 +370,11 @@ public class StudentController {
 		user.setPassword2(student.getPassword2());
 
 		userMapper.update(user);
+
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('마이페이지 수정 완료.'); history.go(-1);</script>");
+        out.flush();
        return "redirect:mypage"; // 학생 마이페이지
 	}
 

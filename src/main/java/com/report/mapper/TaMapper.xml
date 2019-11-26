@@ -19,7 +19,6 @@
 	<update id="update">
 		UPDATE TA SET
 		ta_id = #{ta_id},
-		professor_no = #{professor_no},
 		password = #{password}
 		where ta_no = #{ta_no}
 	</update>
