@@ -15,13 +15,14 @@
 
 
     <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <form method="post" class="needs-validation" novalidate>
       <h4 class="mb-3">마이페이지</h4>
-      <form class="needs-validation" novalidate>
+
         <hr class="mb-4">
         <div class="mb-3">
           <label for="username">아이디</label>
-          <div class="student_number">
-            <span class="student_number-text">201732032</span>
+          <div class="ta_number">
+            <span class="ta_number-text">${ta.ta_id}</span>
           </div>
         </div>
         <hr class="mb-4">
@@ -32,38 +33,17 @@
           </div>
         </div>
 
-        <hr class="mb-4">
-        <div class="mb-3">
-          <label for="username">이름<span class="text-muted">&nbsp(반드시 실명이어야 합니다.)</span></label>
-          <div class="input-group">
-            <input type="text" class="form-control" id="username" placeholder="안세연" required>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label for="email">이메일</label>
-          <input type="email" class="form-control" id="email" placeholder="dmsdo1234@gmail.com">
-        </div>
-
-
-        <div class="mb-3">
-          <label for="address">전화번호<span class="text-muted">&nbsp(-없이 숫자만 입력해주세요.)</span></label>
-          <input type="text" class="form-control" id="phonenumber" placeholder="01012341234" required>
-        </div>
-
         <div class="mb-3">
           <label for="address">비밀번호</label>
-          <input type="password" class="form-control" id="password" placeholder="password" required>
+          <input type="password" class="form-control" name="password" value="${ta.password}" placeholder="password" required>
         </div>
-        <div class="mb-3">
-          <label for="address">비밀번호 확인</label>
-          <input type="password" class="form-control" id="password" placeholder="password" required>
-        </div>
+        
         <button class="btn btn-primary btn-lg btn-block" type="submit" >수정</button>
+      </form>
     </div>
 
 
-    </form>
+  
 
 
 
