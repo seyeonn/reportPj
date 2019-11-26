@@ -184,33 +184,33 @@ public class TaController {
 			@RequestParam(value="grade", required = false, defaultValue = "grade") int[] grade,
 			@RequestParam(value="ranking", required = false, defaultValue = "ranking") int[] ranking) {
 
-
+		
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
 
-
+		
 		model.addAttribute("professor", professor);
 		model.addAttribute("professorNotice", professorNotice);
 		model.addAttribute("homeworks", homeworks);
 		model.addAttribute("lecture", lecture);
-
-
-
+		
+	
+	
 		for (int i=0; i < hw_no.length ;++i) {
 			System.out.println("======================");
 			homeworkMapper.gradeUpdate(grade[i], ranking[i], hw_no[i]);
 			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
-			System.out.println("======================\n\n");
+			System.out.println("======================\n\n");		
 
 		}
-
+		
 
 		return "redirect:inputscore?notice_no="+notice_no;
 	}
 
 
-
-
+	
+	
 }
