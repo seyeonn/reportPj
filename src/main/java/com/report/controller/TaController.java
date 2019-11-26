@@ -3,6 +3,7 @@ package com.report.controller;
 import java.io.BufferedOutputStream;
 import java.net.URLEncoder;
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -201,6 +202,38 @@ public class TaController {
 			@RequestParam(value="grade", required = false, defaultValue = "grade") int[] grade,
 			@RequestParam(value="ranking", required = false, defaultValue = "ranking") int[] ranking) {
 
+		
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
+		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
+		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
+
+		
+		model.addAttribute("professor", professor);
+		model.addAttribute("professorNotice", professorNotice);
+		model.addAttribute("homeworks", homeworks);
+		model.addAttribute("lecture", lecture);
+		
+	
+	
+		for (int i=0; i < hw_no.length ;++i) {
+			System.out.println("======================");
+			//homeworkMapper.gradeUpdate(grade[i], ranking[i], hw_no[i]);
+			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
+			System.out.println("======================\n\n");		
+
+		}
+		
+
+		return "redirect:inputscore?notice_no="+notice_no;
+	}
+
+	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=rank")
+	public String inputscore3(Model model, Principal principal,
+			@RequestParam(value="notice_no", required = false, defaultValue = "notice_no") int notice_no,
+			@RequestParam(value="hw_no", required = false, defaultValue = "hw_no")  Integer[] hw_no,
+			@RequestParam(value="grade", required = false, defaultValue = "grade")  Integer[] grade,
+			@RequestParam(value="ranking", required = false, defaultValue = "ranking")  Integer[] ranking) {
 
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
@@ -208,26 +241,45 @@ public class TaController {
 		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
 
 
+		int[] score = new int[grade.length];
+		int[] rank = new int [grade.length];
+		
+		for(int i=0 ; i<grade.length; i++) {
+			score[i]=grade[i];
+		}
+		
+
+		for(int x=0; x<grade.length; x++) {
+			rank[x]=1;
+			for(int y=0; y<grade.length; y++) {
+				if(score[x]<score[y])
+					rank[x]++;
+			}
+		}
+		
+		Arrays.sort(rank);
+		
+		for(int i=0; i<hw_no.length; ++i) {
+			System.out.printf("%d %d %s\n", score[i], rank[i], homeworks.get(i).getStudent().getName());
+		}
+		
+		for (int i=0; i < hw_no.length ;++i) {
+			
+			System.out.printf("[%d] : %s	-> %d\n======================\n",homeworks.get(i).getRanking(), homeworks.get(i).getStudent().getName(), homeworks.get(i).getGrade());
+			homeworkMapper.rankUpdate(rank[i], hw_no[i]);
+//			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
+//			System.out.println("======================\n\n");
+		}
+	
+		
 		model.addAttribute("professor", professor);
 		model.addAttribute("professorNotice", professorNotice);
 		model.addAttribute("homeworks", homeworks);
 		model.addAttribute("lecture", lecture);
 
-
-
-		for (int i=0; i < hw_no.length ;++i) {
-			System.out.println("======================");
-			//homeworkMapper.gradeUpdate(grade[i], ranking[i], hw_no[i]);
-			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
-			System.out.println("======================\n\n");
-
-		}
-
-
 		return "redirect:inputscore?notice_no="+notice_no;
 	}
 
-
-
-
+	
+	
 }
