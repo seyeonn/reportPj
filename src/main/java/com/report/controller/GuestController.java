@@ -1,8 +1,10 @@
 package com.report.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 //import org.hibernate.validator.internal.util.logging.Log_.logger;
@@ -66,29 +68,15 @@ public class GuestController {
 	}
 
 	@PostMapping("findpassword")
-	public String findpassword2(Model model, User user) {
-
-		//	      User users = userMapper.findByLoginId(user.getId());
-		//
-		//	      if(user.getId() == null) {
-		//	         return null;
-		//	      }
-		//	      String gname = user.getName();
-		//	      if(!users.getName().equals(gname)) {
-		//	         return null;
-		//	      }
-		//	      String gemail = user.getEmail();
-		//	      if(!users.getEmail().equals(gemail)) {
-		//	         return null;
-		//	      }
+	public String findpassword2(Model model, User user, HttpServletResponse response) throws IOException {
 		if(user == null) {
 			return null;
 		}
 
-		if(user.getId().equals(null)) {
+		if(user.getId().equals(null)) {  //id가 null일 경우 null 리턴
 			return null;
 		}
-		if(userService.findPassword(user.getId(), user.getName(), user.getEmail())) {
+		if(userService.findPassword(user.getId(), user.getName(), user.getEmail(), response)) {
 			model.addAttribute("findError", false);
 			model.addAttribute("loginError", false);
 			return "guest/login";
@@ -97,9 +85,7 @@ public class GuestController {
 			model.addAttribute("loginError", false);
 			return null;
 		}
-
-
-		//비민번호 찾
+		//비민번호 찾기
 
 	}
 

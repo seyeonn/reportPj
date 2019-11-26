@@ -1,5 +1,10 @@
 package com.report.service;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -33,18 +38,14 @@ public class UserService {
 	public boolean hasErrors(User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return true;
-//        if (userModel.getPasswd1().equals(userModel.getPasswd2()) == false) {
-//            bindingResult.rejectValue("passwd2", null, "비밀번호가 일치하지 않습니다.");
-//            return true;
-////        }
-//        Student student1 = studentMapper.findByStudentId(user.getId());
+
         if (userMapper.findByLoginId(user.getId()) != null) {
             bindingResult.rejectValue("id", null, "사용자 아이디가 중복됩니다.");
             return true;
         }
         return false;
     }
-	public Boolean findPassword(String loginId, String name, String email) {
+	public Boolean findPassword(String loginId, String name, String email, HttpServletResponse response) throws IOException {
 		try {
 	      User user = userMapper.findByLoginId(loginId);
 
@@ -66,10 +67,17 @@ public class UserService {
 	            }
 	            return true;
 	        }
-
+	      response.setContentType("text/html; charset=UTF-8");
+          PrintWriter out = response.getWriter();
+          out.println("<script>alert('이름이나 이메일이 일치하지 않습니다.'); history.go(-1);</script>");
+          out.flush();
 	      return false;
 		}
 		catch(NullPointerException e) {
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('아이디를 다시 확인해주세요.'); history.go(-1);</script>");
+            out.flush();
 			return false;
 		}
 	   }
