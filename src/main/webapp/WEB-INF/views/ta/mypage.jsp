@@ -28,7 +28,7 @@
         <div class="mb-3">
           <label for="username">담당 교수 이름<span class="text-muted"></span></label>
           <div class="input-group">
-            <span class="student_number-text">홍은지</span>
+            <span class="student_number-text">${professor.name}</span>
           </div>
         </div>
 
