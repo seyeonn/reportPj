@@ -11,16 +11,14 @@
 
 <body class="bg-light">
 
-<<<<<<< HEAD
 	<!-- Nav -->
 	<c:import url="../professor/nav.jsp" />
-=======
      <!-- Nav -->
    <c:import url="../professor/nav.jsp" />
 
 
 
-  <main role="main" class="main-container">
+ <%--  <main role="main" class="main-container">
     <c:import url="../professor/lecturename.jsp" />
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
@@ -59,7 +57,7 @@
                   <td>${homework.student.id } </td>
                   <td>${homework.student.name } </td>
                   <td>${homework.student.department.department_name}</td>
-                  <td><button type="button" class="btn btn-outline-primary" >열람</button></td>
+                  <td><button type="submit" name="cmd" value="downloadHomework" class="btn btn-outline-primary" >열람</button></td>
                   <td><fmt:formatDate value="${homework.submitdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
                   <td>
                   	<input type="text" class="form-control" name="grade" value="${homework.grade}" style="width:50px"  />
@@ -83,8 +81,7 @@
           
         </div>
         
-	</div>
->>>>>>> a8192f1228bf1539389d8fae614d2e941ccd4b57
+	</div> --%>
 
 
 
