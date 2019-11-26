@@ -11,6 +11,7 @@ import com.report.dto.Student;
 public interface StudentMapper {
     Student findOne(int student_no);
     Student findByStudentId(String student_id);
+    Student findStudentId(String id);
     List<Lecture>  findByStudentLecture1(String student_id);
     List<Lecture>  findByStudentLecture2(String student_id);
     List<Student> findAll();

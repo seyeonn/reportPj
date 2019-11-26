@@ -121,7 +121,7 @@ public class GuestController {
 	public String professorcreate(Model model, Professor professor, User user) {
 		professorMapper.insert(professor);
 		userMapper.professorInsert(user);
-		return "guest/login";
+		return "redirect:signupSuccess";
 	}
 
 
@@ -152,13 +152,15 @@ public class GuestController {
 
 	@PostMapping(value="studentsignup")
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public String studentcreate(Model model, Student student,@Valid User user, BindingResult bindingResult) {
+	public String studentcreate(Model model,@Valid Student student, User user, BindingResult bindingResult) {
 		studentMapper.insert(student);
 		userMapper.studentInsert(user);
-//		if (userService.hasErrors(user, bindingResult)) {
-//            model.addAttribute("departments", departmentService.findAll());
-//            return "redirect:studentsignup";
-//        }
+		if (userService.hasErrorsInStudent(student, bindingResult)==true) {
+            model.addAttribute("departments", departmentService.findAll());
+            System.out.println("나와라");
+            return "student/signup";
+        }
+		System.out.println("나왔냐");
 		return "redirect:signupSuccess";
 	}
 	@RequestMapping("signupSuccess")
@@ -166,23 +168,23 @@ public class GuestController {
         return "guest/login";
     }
 
-
-	// 회원 확인
-	@ResponseBody
-	@PostMapping(value = "idCheck")
-	public int postIdCheck(HttpServletRequest req) throws Exception {
-//	 logger.info("post idCheck");
-
-	 String id = req.getParameter("id");
-
-	 int result = 0;
-
-	 if(studentMapper.findByStudentId(id) != null) {
-	  result = 1;
-	 }
-
-	 return result;
-	}
+//
+//	// 회원 확인
+//	@ResponseBody
+//	@PostMapping(value = "idCheck")
+//	public int postIdCheck(HttpServletRequest req) throws Exception {
+////	 logger.info("post idCheck");
+//
+//	 String id = req.getParameter("id");
+//
+//	 int result = 0;
+//
+//	 if(studentMapper.findByStudentId(id) != null) {
+//	  result = 1;
+//	 }
+//
+//	 return result;
+//	}
 
 }
 
