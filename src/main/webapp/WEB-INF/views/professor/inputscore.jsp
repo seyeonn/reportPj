@@ -103,7 +103,7 @@
 					<table class="table table-striped  text-center">
 						<thead class="thead-light">
 							<tr>
-								<th>과제번호</th>
+								<!-- <th>과제번호</th> -->
 								<th>학번</th>
 								<th>이름</th>
 								<th>학과</th>
@@ -117,8 +117,8 @@
 						<tbody>
 							<c:forEach var="homework" items="${homeworks}">
 								<tr>
-									<td><input type="hidden" name="hw_no"
-										value="${ homework.hw_no }" /> ${homework.hw_no}</td>
+									<%-- <td><input type="hidden" name="hw_no"
+										value="${ homework.hw_no }" /> ${homework.hw_no}</td> --%>
 									<td>${homework.student.id }</td>
 									<td>${homework.student.name }</td>
 									<td>${homework.student.department.department_name}</td>
