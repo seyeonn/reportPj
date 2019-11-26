@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
 import com.report.dto.StudentNotice;
 import com.report.dto.Ta;
+import com.report.dto.User;
 import com.report.mapper.HomeworkMapper;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.LecturefileMapper;
@@ -30,6 +32,7 @@ import com.report.mapper.ProfessorNoticeMapper;
 import com.report.mapper.StudentNoticeMapper;
 import com.report.mapper.TaMapper;
 import com.report.mapper.TimelineMapper;
+import com.report.mapper.UserMapper;
 import com.report.model.Pagination;
 import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
@@ -49,6 +52,7 @@ public class TaController {
 	@Autowired StudentNoticeService studentNoticeService;
 	@Autowired StudentNoticeMapper studentNoticeMapper;
 	@Autowired TimelineMapper timelineMapper;
+	@Autowired UserMapper userMapper;
 	@RequestMapping("taMain")
 
 
@@ -123,6 +127,19 @@ public class TaController {
 		model.addAttribute("ta", ta);
 		model.addAttribute("professor", professor);
 		return "ta/mypage"; // 로그인 한 ta를 위한 메인 페이지 URL
+	}
+
+	@PostMapping("mypage")
+    public String mypage(Ta ta1, Model model, Principal principal) {
+       Ta ta = taMapper.findByTaId(principal.getName());
+       ta.setPassword(ta1.getPassword());
+
+       taMapper.update(ta);
+
+       User user = userMapper.findByLoginId(principal.getName());
+		user.setPassword1(ta.getPassword());
+		userMapper.update(user);
+       return "redirect:mypage"; // 학생 마이페이지
 	}
 
 	@RequestMapping("notice")
