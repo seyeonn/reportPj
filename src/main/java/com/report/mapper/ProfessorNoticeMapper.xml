@@ -34,6 +34,7 @@
     	<association property="homework" javaType="Homework">
     		<id property="hw_no" column="hw_no"/>
     		<result property="grade" column="grade"/>
+    		<result property="ranking" column="ranking"/>
     	</association>
     </resultMap>
     

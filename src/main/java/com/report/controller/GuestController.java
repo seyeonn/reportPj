@@ -1,8 +1,10 @@
 package com.report.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 //import org.hibernate.validator.internal.util.logging.Log_.logger;
@@ -59,13 +61,13 @@ public class GuestController {
 	}
 
 	@GetMapping("findpassword")
-	   public String findpassword(Model model, User user) {
-	      User users = userMapper.findByLoginId(user.getId());
+	public String findpassword(Model model, User user) {
+		User users = userMapper.findByLoginId(user.getId());
 
-	      return "guest/findpassword";
-	   }
+		return "guest/findpassword";
+	}
 
-	   @PostMapping("findpassword")
+	 @PostMapping("findpassword")
 	   public String findpassword2(Model model, User user) {
 
 //	      User users = userMapper.findByLoginId(user.getId());
@@ -161,12 +163,16 @@ public class GuestController {
             return "student/signup";
         }
 		System.out.println("나왔냐");
+		//		if (userService.hasErrors(user, bindingResult)) {
+		//            model.addAttribute("departments", departmentService.findAll());
+		//            return "redirect:studentsignup";
+		//        }
 		return "redirect:signupSuccess";
 	}
 	@RequestMapping("signupSuccess")
-    public String registerSuccess() {
-        return "guest/login";
-    }
+	public String registerSuccess() {
+		return "guest/login";
+	}
 
 //
 //	// 회원 확인
@@ -185,6 +191,24 @@ public class GuestController {
 //
 //	 return result;
 //	}
+
+
+	// 회원 확인
+	@ResponseBody
+	@PostMapping(value = "idCheck")
+	public int postIdCheck(HttpServletRequest req) throws Exception {
+		//	 logger.info("post idCheck");
+
+		String id = req.getParameter("id");
+
+		int result = 0;
+
+		if(studentMapper.findByStudentId(id) != null) {
+			result = 1;
+		}
+
+		return result;
+	}
 
 }
 

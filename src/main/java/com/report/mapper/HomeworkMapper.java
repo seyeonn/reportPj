@@ -11,7 +11,9 @@ public interface HomeworkMapper {
 	
 	List<Homework> findNotoiceStudents(int notice_no);
 	
-	void gradeUpdate(int grade, int ranking, int hw_no);
+	void gradeUpdate(int grade, int hw_no);
+	
+	void rankUpdate(int ranking, int hw_no);
 	
 
 }

@@ -44,7 +44,12 @@
 		WHERE no = #{no}
 	</update>
 
-
+	<update id="taupdate">
+		UPDATE User SET
+		password1 = #{password1}
+		WHERE no = #{no}
+	</update>
+	
 	<delete id="delete">
 		DELETE FROM User WHERE no = #{no}
 	</delete>

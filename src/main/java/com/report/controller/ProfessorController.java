@@ -2,9 +2,9 @@ package com.report.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -228,7 +228,7 @@ public class ProfessorController {
 	}
 
 	@PostMapping("mypage")
-	public String mypage(Professor professor1, Model model, Principal principal) {
+	public String mypage(Professor professor1, Model model, Principal principal, HttpServletResponse response) throws IOException {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		professor.setName(professor1.getName());
 		professor.setProfessor_email(professor1.getProfessor_email());
@@ -247,6 +247,11 @@ public class ProfessorController {
 		user.setPassword1(professor.getPassword1());
 
 		userMapper.update(user);
+
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('마이페이지 수정 완료.'); history.go(-1);</script>");
+        out.flush();
 		return "redirect:mypage"; // 학생 게시판 페이지
 
 	}
@@ -313,38 +318,71 @@ public class ProfessorController {
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
 
+
 		for (int i=0; i < hw_no.length ;++i) {
 //			System.out.println("======================");
-			homeworkMapper.gradeUpdate(grade[i], ranking[i], hw_no[i]);
+			homeworkMapper.gradeUpdate(grade[i], hw_no[i]);
 //			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
 //			System.out.println("======================\n\n");
 		}
-		
-		int[] sortGrade = new int[grade.length];
+
+
+
+		model.addAttribute("professor", professor);
+		model.addAttribute("professorNotice", professorNotice);
+		model.addAttribute("homeworks", homeworks);
+		model.addAttribute("lecture", lecture);
+
+
+		return "redirect:inputscore?notice_no="+notice_no;
+	}
+
+
+
+	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=rank")
+	public String inputscore3(Model model, Principal principal,
+			@RequestParam(value="notice_no", required = false, defaultValue = "notice_no") int notice_no,
+			@RequestParam(value="hw_no", required = false, defaultValue = "hw_no")  Integer[] hw_no,
+			@RequestParam(value="grade", required = false, defaultValue = "grade")  Integer[] grade,
+			@RequestParam(value="ranking", required = false, defaultValue = "ranking")  Integer[] ranking) {
+
+		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
+		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
+		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
+
+
+		int[] score = new int[grade.length];
 		int[] rank = new int [grade.length];
-		for(int a : rank)
-			a = 1 ;
-		
-		Arrays.sort(sortGrade);
-		
-		for(int b =0; b<grade.length; ++b) {
-			sortGrade[b]= grade[b];
+
+		for(int i=0 ; i<grade.length; i++) {
+			score[i]=grade[i];
 		}
-		
-		
-		for(int x=0; x<grade.length-1; x++) {
-			if(sortGrade[x]>sortGrade[x+1])
-				rank[x+1]++;
-			else if(sortGrade[x]==sortGrade[x+1]) {
-				rank[x+1]=rank[x];
-				
+
+
+		for(int x=0; x<grade.length; x++) {
+			rank[x]=1;
+			for(int y=0; y<grade.length; y++) {
+				if(score[x]<score[y])
+					rank[x]++;
 			}
-			
-			
-			
 		}
-		
-		
+
+		Arrays.sort(rank);
+
+		for(int i=0; i<hw_no.length; ++i) {
+			System.out.printf("%d %d %s\n", score[i], rank[i], homeworks.get(i).getStudent().getName());
+		}
+
+		for (int i=0; i < hw_no.length ;++i) {
+
+			System.out.printf("[%d] : %s	-> %d\n======================\n",homeworks.get(i).getRanking(), homeworks.get(i).getStudent().getName(), homeworks.get(i).getGrade());
+			homeworkMapper.rankUpdate(rank[i], hw_no[i]);
+//			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
+//			System.out.println("======================\n\n");
+		}
+
+
 		model.addAttribute("professor", professor);
 		model.addAttribute("professorNotice", professorNotice);
 		model.addAttribute("homeworks", homeworks);

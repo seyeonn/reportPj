@@ -75,12 +75,12 @@
 						<tr>
 							<td class="table-active">제출기한</td>
 							<td><input type="text" name="deadline"
-								class="datetimepicker" /></td>
+								class="datetimepicker" autocomplete="off"/></td>
 						</tr>
 						<tr>
 							<td class="table-active">연장기한</td>
 							<td><input type="text" name="deadline_add"
-								class="datetimepicker" /></td>
+								class="datetimepicker" autocomplete="off"/></td>
 						</tr>
 					</table>
 					<div style="float: right; display: inline-block; width: 900px;">

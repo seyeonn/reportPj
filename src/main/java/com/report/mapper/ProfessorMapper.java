@@ -21,4 +21,5 @@ public interface ProfessorMapper {
 	void taUpdate(int ta_no, int professor_no);
 	List<Lecture> findBytaNO(String id);
 	List<Lecture> findBytaYES(String id);
+	Professor findByTa(int ta_no);
 }
