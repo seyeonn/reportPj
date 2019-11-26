@@ -138,7 +138,7 @@ public class TaController {
 
        User user = userMapper.findByLoginId(principal.getName());
 		user.setPassword1(ta.getPassword());
-		userMapper.update(user);
+		userMapper.taupdate(user);
        return "redirect:mypage"; // 학생 마이페이지
 	}
 
