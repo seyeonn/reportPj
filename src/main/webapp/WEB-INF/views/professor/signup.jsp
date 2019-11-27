@@ -19,15 +19,17 @@
 			<h4 class="mb-3">회원가입</h4>
 
 			<form:form method="post" modelAttribute="professor"
-				class="needs-validation" novalidate="novalidate">
+				class="needs-validation">
 				<hr class="mb-4">
 				<div class="mb-3">
 					<label>아이디</label>
 					<div class="input-group">
 						<form:input path="id" class="form-control"
 							placeholder="사용할 아이디를 입력주세요." required="required" />
-						<form:errors path="id" class="error" />
 						<div class="invalid-feedback">아이디를 입력해주세요.</div>
+					</div>
+					<div>
+						<form:errors path="*" class="error" />
 					</div>
 				</div>
 

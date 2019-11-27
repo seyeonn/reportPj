@@ -120,7 +120,11 @@ public class GuestController {
 
 	@Transactional
 	@PostMapping(value="professorsignup")
-	public String professorcreate(Model model, Professor professor, User user) {
+	public String professorcreate(Model model, User user,@Valid Professor professor, BindingResult bindingResult) {
+		if (userService.hasErrorsInProfessor(professor, bindingResult)) {
+            model.addAttribute("departments", departmentService.findAll());
+            return "professor/signup";
+        }
 		professorMapper.insert(professor);
 		userMapper.professorInsert(user);
 		return "redirect:signupSuccess";

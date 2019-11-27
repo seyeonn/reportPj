@@ -48,6 +48,17 @@ public class UserService {
 		}
 		return false;
 	}
+	public boolean hasErrorsInProfessor(Professor professor, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return true;
+		}
+		Professor professor1 =professorMapper.findByProfessorId(professor.getId());
+		if(professor1!=null) {
+			bindingResult.rejectValue("id", null, "이미 존재하는 ID입니다.");
+			return true;
+		}
+		return false;
+	}
 
 	public Boolean findPassword(String loginId, String name, String email) {
 		User user = userMapper.findByLoginId(loginId);

@@ -20,33 +20,25 @@
 			<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 
 			<form:form method="post" modelAttribute="student"
-				class="needs-validation" >
+				class="needs-validation">
 				<hr class="mb-4">
 				<div class="mb-3">
 					<label>아이디</label>
 					<div class="input-group">
 						<form:input path="id" class="form-control"
-							placeholder="반드시 학번이어야 합니다. ex)201732032" required="required"/>
-							<div class="invalid-feedback">학번을 입력해주세요.</div>
-						<form:errors path="*" class="error" />
-						<!-- 
-						<button type="button" class="idCheck">ID중복확인</button>
-
- -->
-
+							placeholder="반드시 학번이어야 합니다. ex)201732032" required="required" />
+						<div class="invalid-feedback">학번을 입력해주세요.</div>
 					</div>
-					<!-- <div>
-					<p class="result">
-						<span class="msg">ID를 확인하세요</span>
-					</p>
-					</div> -->
+					<div>
+						<form:errors path="*" class="error" />
+					</div>
 				</div>
 
 				<div class="mb-3">
 					<label>이름</label>
 					<div class="input-group">
 						<form:input path="name" class="form-control"
-							placeholder="반드시 실명이어야 합니다. ex)홍길동" required="required"/>
+							placeholder="반드시 실명이어야 합니다. ex)홍길동" required="required" />
 						<div class="invalid-feedback">이름을 입력해주세요.</div>
 					</div>
 				</div>
@@ -56,7 +48,8 @@
 					<label>학과</label>
 					<form:select path="department_no"
 						class="custom-select d-block w-100" itemValue="department_no"
-						itemLabel="department_name" items="${ departments }" required="required"/>
+						itemLabel="department_name" items="${ departments }"
+						required="required" />
 					<div class="invalid-feedback">학과를 선택해주세요.</div>
 				</div>
 
@@ -71,7 +64,8 @@
 				-->
 				<div class="mb-3">
 					<label>이메일</label> <input type="email" name="student_email"
-						id="email" placeholder="올바른 이메일 형식을 입력해 주세요" class="form-control" required="required"/>
+						id="email" placeholder="올바른 이메일 형식을 입력해 주세요" class="form-control"
+						required="required" />
 					<div class="invalid-feedback">이메일을 입력해주세요.</div>
 				</div>
 				<div class="alert alert-success" id="email-alert-success">이메일
@@ -83,13 +77,14 @@
 				<div class="mb-3">
 					<label>전화번호</label>
 					<form:input path="student_phone" class="form-control"
-						placeholder="-없이 숫자만 입력해주세요." required="required"/>
+						placeholder="-없이 숫자만 입력해주세요." required="required" />
 					<div class="invalid-feedback">전화번호를 입력해주세요.</div>
 				</div>
 
 				<div class="mb-3">
 					<label>비밀번호</label> <input type="password" name="password1"
-						id="pwd1" class="form-control" placeholder="password" required="required"/>
+						id="pwd1" class="form-control" placeholder="password"
+						required="required" />
 					<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 				</div>
 
@@ -113,12 +108,14 @@
 		</footer>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/vendor/holder.min.js"></script>
-    <script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+	<script src="../../assets/js/vendor/popper.min.js"></script>
+	<script src="../../dist/js/bootstrap.min.js"></script>
+	<script src="../../assets/js/vendor/holder.min.js"></script>
+	<script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {
         'use strict';
@@ -162,9 +159,9 @@
 
 
 
-  
-  
- <script type="text/javascript"> 
+
+
+	<script type="text/javascript"> 
   $(function(){ $("#email-alert-success").hide(); 
   $("#email-alert-danger").hide(); 
   $("input").keyup(function(){ var email=$("#email").val(); 
@@ -185,8 +182,8 @@
   </script>
 
 
- 
-<!-- 	<script> 
+
+	<!-- 	<script> 
 
 
 $(".idCheck").click(function(){
