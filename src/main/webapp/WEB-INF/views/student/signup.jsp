@@ -30,7 +30,7 @@
 						<div class="invalid-feedback">학번을 입력해주세요.</div>
 					</div>
 					<div>
-						<form:errors path="*" class="error" />
+					<font color=red><form:errors path="*" class="error" /></font>	
 					</div>
 				</div>
 

@@ -29,7 +29,7 @@
 						<div class="invalid-feedback">아이디를 입력해주세요.</div>
 					</div>
 					<div>
-						<form:errors path="*" class="error" />
+						<font color=red><form:errors path="*" class="error" /></font>
 					</div>
 				</div>
 
