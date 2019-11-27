@@ -154,14 +154,16 @@ public class GuestController {
 
 	@PostMapping(value="studentsignup")
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public String studentcreate(Model model,@Valid Student student, User user, BindingResult bindingResult) {
-		studentMapper.insert(student);
-		userMapper.studentInsert(user);
-		if (userService.hasErrorsInStudent(student, bindingResult)==true) {
+	public String studentcreate(Model model, User user,@Valid Student student, BindingResult bindingResult) {
+//		studentMapper.insert(student);
+//		userMapper.studentInsert(user);
+		if (userService.hasErrorsInStudent(student, bindingResult)) {
             model.addAttribute("departments", departmentService.findAll());
             System.out.println("나와라");
             return "student/signup";
         }
+		studentMapper.insert(student);
+		userMapper.studentInsert(user);
 		System.out.println("나왔냐");
 		return "redirect:signupSuccess";
 	}

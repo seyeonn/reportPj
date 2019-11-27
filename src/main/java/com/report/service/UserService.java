@@ -43,6 +43,7 @@ public class UserService {
 		Student student1 =studentMapper.findByStudentId(student.getId());
 		if(student1!=null) {
 			bindingResult.rejectValue("id", null, "이미 존재하는 ID입니다.");
+			System.out.println("실행되니?");
 			return true;
 		}
 		return false;

@@ -20,7 +20,7 @@
 			<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 
 			<form:form method="post" modelAttribute="student"
-				class="needs-validation" novalidate="novalidate">
+				class="needs-validation" >
 				<hr class="mb-4">
 				<div class="mb-3">
 					<label>아이디</label>
@@ -28,7 +28,7 @@
 						<form:input path="id" class="form-control"
 							placeholder="반드시 학번이어야 합니다. ex)201732032" required="required"/>
 							<div class="invalid-feedback">학번을 입력해주세요.</div>
-						<form:errors path="id" class="error" />
+						<form:errors path="*" class="error" />
 						<!-- 
 						<button type="button" class="idCheck">ID중복확인</button>
 
