@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!doctype html>
 <html lang="en">
 
@@ -15,7 +17,7 @@
 
 
 
-  <main role="main" class="main-container">
+ <main role="main" class="main-container">
     <c:import url="../ta/lecturename.jsp" />
     <div class="row">
       <div class="col-md-3 order-md-1 mb-4">
@@ -26,7 +28,7 @@
 
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-       
+        
        
         
           <form method="post">
@@ -54,8 +56,25 @@
                   <td>${homework.student.id } </td>
                   <td>${homework.student.name } </td>
                   <td>${homework.student.department.department_name}</td>
-                  <td><button type="button" class="btn btn-outline-primary" >열람</button></td>
-                  <td><fmt:formatDate value="${homework.submitdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+                  <td><button type="submit" name="cmd" value="downloadHomework" class="btn btn-outline-primary" >열람</button></td>
+                  <td>
+                   <c:set var="submitdate" value="${homework.submitdate}" />
+                  <fmt:formatDate value="${submitdate}" var="submitdate" pattern="yyyy-MM-dd hh:mm:ss"/>
+                   <c:choose>
+                  	<c:when test="${professorNotice.deadline >= submitdate}">
+				  		${submitdate}
+				  	</c:when>
+                  	<c:when test="${professorNotice.deadline < submitdate and submitdate <= professorNotice.deadline_add}">
+                  		<div style="background-color: yellow;">${submitdate}</div>
+				  	</c:when>
+				  	<c:when test="${professorNotice.deadline_add <= submitdate}">
+				  		<div style="background-color: red;">${submitdate}</div>
+				  	</c:when>
+				  	<c:when test="${professorNotice.deadline < '무기한'}">
+				  		${submitdate}
+				  	</c:when>
+                  </c:choose>   
+				  </td>
                   <td>
                   	<input type="text" class="form-control" name="grade" value="${homework.grade}" style="width:50px"  />
                   </td>
@@ -69,19 +88,23 @@
 		
 			<div style="float: right; display:inline-block; width: 900px;">
             	<button type="button" class="btn btn-primary mx-2 my-sm-0" style="width: 100px; float: right" onclick="location.href='noticecontent?id=${professorNotice.notice_no}'">목록</button>
+            	<c:if test="${fn:length(homeworks) > 0}">
             	<button type="submit"class="btn btn-primary my-2 my-sm-0" name="cmd" value="input" style="width: 100px; float: right" >점수입력</button>
           		<button type="submit"class="btn btn-primary mx-2 my-sm-0" name="cmd" value="rank" style="width: 100px; float: right" >등수산출</button>
+          		</c:if>
           	</div>
+          	<label></label>
+         <label></label>
+          	
 		</form>
+		
          <label></label>
          <label></label>
           
         </div>
         
 	</div>
-	</div>
-
-  </main>
+	</main>
 </body>
 
 </html>

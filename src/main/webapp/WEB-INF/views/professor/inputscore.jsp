@@ -12,8 +12,6 @@
 
 <body class="bg-light">
 
-	<!-- Nav -->
-	<c:import url="../professor/nav.jsp" />
      <!-- Nav -->
    <c:import url="../professor/nav.jsp" />
 
