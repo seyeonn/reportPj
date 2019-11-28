@@ -21,11 +21,12 @@
 		<!-- Menu -->
 		<c:import url="../common/menu.jsp" />
       </div>
+      
 
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
           <form>
-
+			
             <table class="table table-hover  text-center">
               <thead class="thead-light">
                 <tr>
@@ -37,34 +38,34 @@
                   <th>등수</th>
                 </tr>
               </thead>
+              
               <tbody>
-
-                <c:forEach var="professorNotice" items="${professorNotices}"> 
+				<c:forEach var="professorNotice" items="${professorNotices}"> 
 				 <tr onClick = " location.href='noticecontent?id=${professorNotice.notice_no}' ">
                   <td>${professorNotice.title}</td>
                   <td>${professorNotice.deadline}</td>
                   <td>${professorNotice.deadline_add}</td>
-                  <td></td>
+                  <c:choose>
+					<c:when test="${ professorNotice.homework.hw_no > 0}">
+						<td>Y</td>
+					</c:when>
+					<c:otherwise>
+						<td>N</td>
+					</c:otherwise>
+				  </c:choose>
                   <td>${professorNotice.homework.grade}/${professorNotice.perfect_score}</td>
                   <td>${professorNotice.homework.ranking}</td>
                  </tr>
                 </c:forEach>
-
               </tbody>
+              
             </table>
-            
              <my:pagination pageSize="${ pagination.sz }" recordCount="${ pagination.recordCount }" queryStringName="pg" />
-            <div style="float: right; display:inline-block; width: 900px;">
-			 <!--  <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right">삭제</button>
-              <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='posting.html'">작성</button> -->
-             
-            </div>
+           </form>  
         </div>
-
-        </form>
       </div>
     </div>
-    </div>
+
   </main>
 </body>
 

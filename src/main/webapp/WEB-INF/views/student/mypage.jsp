@@ -41,10 +41,23 @@
             <label for="country">학과</label>
             <select class="custom-select d-block w-100" id="department_no" name="department_no" required >
             
-              <option value= "1" ${student.department_no == 1 ? "selected" :""}>소프트웨어공학과</option>
+              <option value="1" ${student.department_no == 1 ? "selected" :""}>소프트웨어공학과</option>
               <option value="2" ${student.department_no == 2 ? "selected" :""}>컴퓨터공학과</option>
               <option value="3" ${student.department_no == 3 ? "selected" :""}>정보통신학과</option>
-              <option value="4" ${student.department_no == 4 ? "selected" :""}>글로컬IT학과</option>
+              <option value="4" ${student.department_no == 4 ? "selectd" :""}>글로컬IT학과</option>
+              <option value="18" ${student.department_no == 18 ? "selected" :""}>신학과</option>
+              <option value="19" ${student.department_no == 19 ? "selected" :""}>영어학과</option>
+              <option value="20" ${student.department_no == 20 ? "selectd" :""}>일어일본학과</option>
+              <option value="21" ${student.department_no == 21 ? "selected" :""}>중어중국학과</option>
+              <option value="22" ${student.department_no == 22 ? "selected" :""}>사회복지학과</option>
+              <option value="23" ${student.department_no == 23 ? "selected" :""}>사회과학부</option>
+              <option value="24" ${student.department_no == 24 ? "selected" :""}>신문방송학과</option>
+              <option value="25" ${student.department_no == 25 ? "selected" :""}>경영학부</option>
+              <option value="26" ${student.department_no == 26 ? "selectd" :""}>디지털컨텐츠학과</option>
+              <option value="27" ${student.department_no == 27 ? "selected" :""}>인문융합 자율학부</option>
+              <option value="28" ${student.department_no == 28 ? "selected" :""}>사회융합 자율학부</option>
+              <option value="29" ${student.department_no == 29 ? "selected" :""}>미디어컨테츠융합 자율학부</option>
+              <option value="30" ${student.department_no == 30 ? "selected" :""}>IT융합 자율학부</option>
             </select>
           </div>
 

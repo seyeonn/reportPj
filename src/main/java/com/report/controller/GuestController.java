@@ -67,27 +67,35 @@ public class GuestController {
 		return "guest/findpassword";
 	}
 
-	@PostMapping("findpassword")
-	public String findpassword2(Model model, User user, HttpServletResponse response) throws IOException {
-		if(user == null) {
-			return null;
-		}
+	 @PostMapping("findpassword")
+	   public String findpassword2(Model model, User user) {
 
-		if(user.getId().equals(null)) {  //id가 null일 경우 null 리턴
-			return null;
-		}
-		if(userService.findPassword(user.getId(), user.getName(), user.getEmail(), response)) {
-			model.addAttribute("findError", false);
-			model.addAttribute("loginError", false);
-			return "guest/login";
-		}else {
-			model.addAttribute("findError", true);
-			model.addAttribute("loginError", false);
-			return null;
-		}
-		//비민번호 찾기
+//	      User users = userMapper.findByLoginId(user.getId());
+	//
+//	      if(user.getId() == null) {
+//	         return null;
+//	      }
+//	      String gname = user.getName();
+//	      if(!users.getName().equals(gname)) {
+//	         return null;
+//	      }
+//	      String gemail = user.getEmail();
+//	      if(!users.getEmail().equals(gemail)) {
+//	         return null;
+//	      }
+	      if(userService.findPassword(user.getId(), user.getName(), user.getEmail())) {
+	            model.addAttribute("findError", false);
+	            model.addAttribute("loginError", false);
+	            return "guest/login";
+	        }else {
+	            model.addAttribute("findError", true);
+	            model.addAttribute("loginError", false);
+	            return null;
+	        }
 
-	}
+	       //비민번호 찾
+
+	   }
 
 	//교수회원가입
 	@Transactional
@@ -112,10 +120,14 @@ public class GuestController {
 
 	@Transactional
 	@PostMapping(value="professorsignup")
-	public String professorcreate(Model model, Professor professor, User user) {
+	public String professorcreate(Model model, User user,@Valid Professor professor, BindingResult bindingResult) {
+		if (userService.hasErrorsInProfessor(professor, bindingResult)) {
+            model.addAttribute("departments", departmentService.findAll());
+            return "professor/signup";
+        }
 		professorMapper.insert(professor);
 		userMapper.professorInsert(user);
-		return "guest/login";
+		return "redirect:signupSuccess";
 	}
 
 
@@ -146,13 +158,17 @@ public class GuestController {
 
 	@PostMapping(value="studentsignup")
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public String studentcreate(Model model, Student student,@Valid User user, BindingResult bindingResult) {
+	public String studentcreate(Model model, User user,@Valid Student student, BindingResult bindingResult) {
+//		studentMapper.insert(student);
+//		userMapper.studentInsert(user);
+		if (userService.hasErrorsInStudent(student, bindingResult)) {
+            model.addAttribute("departments", departmentService.findAll());
+            System.out.println("나와라");
+            return "student/signup";
+        }
 		studentMapper.insert(student);
 		userMapper.studentInsert(user);
-		//		if (userService.hasErrors(user, bindingResult)) {
-		//            model.addAttribute("departments", departmentService.findAll());
-		//            return "redirect:studentsignup";
-		//        }
+		System.out.println("나왔냐");
 		return "redirect:signupSuccess";
 	}
 	@RequestMapping("signupSuccess")
@@ -160,23 +176,41 @@ public class GuestController {
 		return "guest/login";
 	}
 
+//
+//	// 회원 확인
+//	@ResponseBody
+//	@PostMapping(value = "idCheck")
+//	public int postIdCheck(HttpServletRequest req) throws Exception {
+////	 logger.info("post idCheck");
+//
+//	 String id = req.getParameter("id");
+//
+//	 int result = 0;
+//
+//	 if(studentMapper.findByStudentId(id) != null) {
+//	  result = 1;
+//	 }
+//
+//	 return result;
+//	}
 
-	// 회원 확인
-	@ResponseBody
-	@PostMapping(value = "idCheck")
-	public int postIdCheck(HttpServletRequest req) throws Exception {
-		//	 logger.info("post idCheck");
 
-		String id = req.getParameter("id");
-
-		int result = 0;
-
-		if(studentMapper.findByStudentId(id) != null) {
-			result = 1;
-		}
-
-		return result;
-	}
+//	// 회원 확인
+//	@ResponseBody
+//	@PostMapping(value = "idCheck")
+//	public int postIdCheck(HttpServletRequest req) throws Exception {
+//		//	 logger.info("post idCheck");
+//
+//		String id = req.getParameter("id");
+//
+//		int result = 0;
+//
+//		if(studentMapper.findByStudentId(id) != null) {
+//			result = 1;
+//		}
+//
+//		return result;
+//	}
 
 }
 
