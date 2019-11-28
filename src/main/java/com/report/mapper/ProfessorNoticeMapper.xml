@@ -18,7 +18,11 @@
         SELECT p.*, h.grade, h.ranking, h.hw_no
     	FROM professor_notice p
     	LEFT JOIN homework h ON h.professornotice_no = p.notice_no
-    	WHERE lecture_no = #{lecture_no}
+        WHERE lecture_no = #{lecture_no}
+        AND h.hw_no is null
+        OR h.hw_no IN (SELECT hw_no
+						FROM homework
+						WHERE student_no = #{student_no} )
         order by p.notice_no DESC
         LIMIT #{start}, #{pagination.sz}
     </select>

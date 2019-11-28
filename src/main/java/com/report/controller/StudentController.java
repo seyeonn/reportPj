@@ -204,10 +204,6 @@ public class StudentController {
     	model.addAttribute("lecture", lecture);
     	model.addAttribute("professor", professor);
     	model.addAttribute("professorNotices", professorNotices);
-//    	for(ProfessorNotice p : professorNotices) {
-//    		System.out.printf("%s -> %d ", student.getName(), p.getHomework().getGrade());
-    	
-//    	}
     	
     	System.out.println(professorNotices.size());
   		return "student/notice"; // 과제 및 공지 페이지
