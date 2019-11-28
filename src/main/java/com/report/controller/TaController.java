@@ -223,11 +223,7 @@ public class TaController {
 
 
 		for (int i=0; i < hw_no.length ;++i) {
-			//System.out.println("======================");
-			homeworkMapper.gradeUpdate(grade[i], hw_no[i]);
-			//System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
-			//System.out.println("======================\n\n");
-
+			homeworkMapper.gradeUpdate(grade[i], hw_no[i]);	
 		}
 
 
@@ -273,8 +269,6 @@ public class TaController {
 
 			System.out.printf("[%d] : %s	-> %d\n======================\n",homeworks.get(i).getRanking(), homeworks.get(i).getStudent().getName(), homeworks.get(i).getGrade());
 			homeworkMapper.rankUpdate(rank[i], hw_no[i]);
-//			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
-//			System.out.println("======================\n\n");
 		}
 
 

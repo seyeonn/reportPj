@@ -378,8 +378,7 @@ public class ProfessorController {
 
 			System.out.printf("[%d] : %s	-> %d\n======================\n",homeworks.get(i).getRanking(), homeworks.get(i).getStudent().getName(), homeworks.get(i).getGrade());
 			homeworkMapper.rankUpdate(rank[i], hw_no[i]);
-//			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
-//			System.out.println("======================\n\n");
+
 		}
 
 
@@ -489,10 +488,7 @@ public class ProfessorController {
 
 		professorMapper.taUpdate(ta.getTa_no(), professor.getProfessor_no());
 
-//		System.out.printf("%s %s\n", professor.getName(), professor.getPassword1());
-//		System.out.printf("%d TA아이디 : %s, TA비밀번호 : %s\n", ta.getTa_no(),ta.getTa_id() ,ta.getPassword());
-//
-//		System.out.printf("TA아이디 : %s, TA비밀번호 : %s\n", user.getId() ,user.getPassword1());
+
 		return "redirect:taapprove";
 	}
 
