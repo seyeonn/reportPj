@@ -18,4 +18,10 @@
 	<delete id="delete">
 		DELETE FROM Student_Lecture WHERE lecture_no=#{lecture_no} and student_no=#{student_no}
 	</delete>
+	
+	<select id="findList" resultType="StudentLecture">
+		SELECT *
+		FROM Student_Lecture
+		WHERE lecture_no = #{lecture_no}
+	</select>
 </mapper>

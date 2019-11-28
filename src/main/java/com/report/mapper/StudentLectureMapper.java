@@ -10,4 +10,5 @@ public interface StudentLectureMapper {
 	StudentLecture findOne(int student_lecture_no);
 	void insert(StudentLecture studentLecture);
 	void delete(int lecture_no, int student_no);
+	List<StudentLecture> findList(int lecutre_no);
 }
