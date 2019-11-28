@@ -58,7 +58,24 @@
                   <td>${homework.student.name } </td>
                   <td>${homework.student.department.department_name}</td>
                   <td><button type="submit" name="cmd" value="downloadHomework" class="btn btn-outline-primary" >열람</button></td>
-                  <td><fmt:formatDate value="${homework.submitdate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+                  <td>
+                   <c:set var="submitdate" value="${homework.submitdate}" />
+                  <fmt:formatDate value="${submitdate}" var="submitdate" pattern="yyyy-MM-dd hh:mm:ss"/>
+                   <c:choose>
+                  	<c:when test="${professorNotice.deadline >= submitdate}">
+				  		${submitdate}
+				  	</c:when>
+                  	<c:when test="${professorNotice.deadline < submitdate and submitdate <= professorNotice.deadline_add}">
+                  		<div style="background-color: yellow;">${submitdate}</div>
+				  	</c:when>
+				  	<c:when test="${professorNotice.deadline_add <= submitdate}">
+				  		<div style="background-color: red;">${submitdate}</div>
+				  	</c:when>
+				  	<c:when test="${professorNotice.deadline < '무기한'}">
+				  		${submitdate}
+				  	</c:when>
+                  </c:choose>   
+				  </td>
                   <td>
                   	<input type="text" class="form-control" name="grade" value="${homework.grade}" style="width:50px"  />
                   </td>

@@ -17,8 +17,8 @@
             <table class="table text-center table-bordered">
 
                 <tr>
-                  <th class="table-active" colspan="2" width="30%">타임라인</th>
-                  <td>각 강좌마다 올라온 학생게시판의 게시글들을 보여준다.</th>
+                  <th class="table-active" colspan="2">제목</th>
+                  <td style="width: 670px">부여된 과제에 대한 제목입니다. 클릭하여 세부내용을 볼 수 있습니다.  아이콘은 '공지사항' 임을 나타냅니다.</th>
                 </tr>
 
 
@@ -26,16 +26,17 @@
                   <tr>
                     <th class="table-active">제출기한 </th>
                     <th class="table-active">날짜표기</th>
-                    <td>과제를 제출해야 하는 기한입니다.</td>
+                    <td>과제를 제출해야 하는 기한입니다. 제출기한이 지나면 날짜에 노란색 배경이 나타납니다.</td>
                   </tr>
                   <tr>
                     <th class="table-active" rowspan="2">연장기한</th>
                     <th class="table-active">날짜표기</th>
-                    <td>제출기한내에 과제를 제출하지 못한 경우 연장기한내에 제출할 수 있습니다. 단, 제출기한 후의 제출날짜에 따라 감점될 수 있습니다.</td>
+                    <td>제출기한내에 과제를 제출하지 못한 경우 연장기한내에 제출할 수 있습니다. <br> 단, 제출기한 후의 제출날짜에 따라 감점될 수 있습니다. 
+                    <br> 또한, 연장기한이 지나면 날짜에 빨간색 배경이 나타납니다.</td>
                   </tr>
                   <tr>
                     <th class="table-active">무기한</th>
-                    <td>과제를 제출해야 하는 기한입니다.</td>
+                    <td>기한이 없을 경우 작성하지 않으면 됩니다.</td>
                   </tr>
                 <tr>
                   <th class="table-active" rowspan="4">제출</th>

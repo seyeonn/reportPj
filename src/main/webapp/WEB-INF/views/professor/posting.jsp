@@ -69,18 +69,18 @@
 						</tr> --%>
 						<tr>
 							<td class="table-active">만점</td>
-							<td><form:input path="perfect_score" class="form-control"
+							<td><form:input path="perfect_score" class="form-control" value="10"
 									style="width: 50px" /></td>
 						</tr>
 						<tr>
 							<td class="table-active">제출기한</td>
 							<td><input type="text" name="deadline"
-								class="datetimepicker" autocomplete="off"/></td>
+								class="datetimepicker" autocomplete="off" value="무기한"/></td>
 						</tr>
 						<tr>
 							<td class="table-active">연장기한</td>
 							<td><input type="text" name="deadline_add"
-								class="datetimepicker" autocomplete="off"/></td>
+								class="datetimepicker" autocomplete="off" value=""/></td>
 						</tr>
 					</table>
 					<div style="float: right; display: inline-block; width: 900px;">
