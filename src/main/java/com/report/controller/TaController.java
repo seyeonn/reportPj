@@ -209,13 +209,13 @@ public class TaController {
 			@RequestParam(value="ranking", required = false, defaultValue = "ranking") int[] ranking) {
 
 
-		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		Ta ta = taMapper.findByTaId(principal.getName());
 		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
 
 
-		model.addAttribute("professor", professor);
+		model.addAttribute("ta", ta);
 		model.addAttribute("professorNotice", professorNotice);
 		model.addAttribute("homeworks", homeworks);
 		model.addAttribute("lecture", lecture);
@@ -223,10 +223,10 @@ public class TaController {
 
 
 		for (int i=0; i < hw_no.length ;++i) {
-			System.out.println("======================");
-			//homeworkMapper.gradeUpdate(grade[i], ranking[i], hw_no[i]);
-			System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
-			System.out.println("======================\n\n");
+			//System.out.println("======================");
+			homeworkMapper.gradeUpdate(grade[i], hw_no[i]);
+			//System.out.printf("점수 : %d,	등수 : %d, 과제번호 :%d\n",grade[i], ranking[i], hw_no[i]);
+			//System.out.println("======================\n\n");
 
 		}
 
@@ -241,7 +241,7 @@ public class TaController {
 			@RequestParam(value="grade", required = false, defaultValue = "grade")  Integer[] grade,
 			@RequestParam(value="ranking", required = false, defaultValue = "ranking")  Integer[] ranking) {
 
-		Professor professor = professorMapper.findByProfessorId(principal.getName());
+		Ta ta = taMapper.findByTaId(principal.getName());
 		ProfessorNotice professorNotice = professorNoticeMapper.findOne(notice_no);
 		List<Homework> homeworks = homeworkMapper.findNotoiceStudents(notice_no);
 		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
@@ -278,7 +278,7 @@ public class TaController {
 		}
 
 
-		model.addAttribute("professor", professor);
+		model.addAttribute("ta", ta);
 		model.addAttribute("professorNotice", professorNotice);
 		model.addAttribute("homeworks", homeworks);
 		model.addAttribute("lecture", lecture);
