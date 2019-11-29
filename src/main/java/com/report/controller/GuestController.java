@@ -131,7 +131,6 @@ public class GuestController {
 	}
 
 
-
 	//학생회원가입
 	@Transactional
 	@GetMapping(value="studentsignup")
@@ -176,41 +175,7 @@ public class GuestController {
 		return "guest/login";
 	}
 
-//
-//	// 회원 확인
-//	@ResponseBody
-//	@PostMapping(value = "idCheck")
-//	public int postIdCheck(HttpServletRequest req) throws Exception {
-////	 logger.info("post idCheck");
-//
-//	 String id = req.getParameter("id");
-//
-//	 int result = 0;
-//
-//	 if(studentMapper.findByStudentId(id) != null) {
-//	  result = 1;
-//	 }
-//
-//	 return result;
-//	}
 
-
-//	// 회원 확인
-//	@ResponseBody
-//	@PostMapping(value = "idCheck")
-//	public int postIdCheck(HttpServletRequest req) throws Exception {
-//		//	 logger.info("post idCheck");
-//
-//		String id = req.getParameter("id");
-//
-//		int result = 0;
-//
-//		if(studentMapper.findByStudentId(id) != null) {
-//			result = 1;
-//		}
-//
-//		return result;
-//	}
 
 }
 
