@@ -25,6 +25,7 @@ import com.report.dto.Lecture;
 import com.report.dto.Lecturefile;
 import com.report.dto.Professor;
 import com.report.dto.ProfessorNotice;
+import com.report.dto.StudentLecture;
 import com.report.dto.StudentNotice;
 import com.report.dto.Ta;
 import com.report.dto.User;
@@ -35,6 +36,7 @@ import com.report.mapper.LecturefileMapper;
 import com.report.mapper.ProfessorLectureMapper;
 import com.report.mapper.ProfessorMapper;
 import com.report.mapper.ProfessorNoticeMapper;
+import com.report.mapper.StudentLectureMapper;
 import com.report.mapper.StudentMapper;
 import com.report.mapper.StudentNoticeMapper;
 import com.report.mapper.TaMapper;
@@ -65,6 +67,7 @@ public class ProfessorController {
 	@Autowired LecturefileService lecturefileService;
 	@Autowired UserMapper userMapper;
 	@Autowired StudentNoticeMapper studentNoticeMapper;
+	@Autowired StudentLectureMapper studentLectureMapper;
 	@Autowired ProfessorNoticeMapper professorNoticeMapper;
     @Autowired StudentUploadedFileService studentUploadedFileService;
     @Autowired LecturefileMapper lecturefileMapper;
@@ -118,9 +121,22 @@ public class ProfessorController {
 		model.addAttribute("professor", professor);
 		Lecture lecture = lectureMapper.findOne(id);
 		model.addAttribute("lecture", lecture);
+		
+		List<StudentLecture> studentLecture = studentLectureMapper.findList(id);
+		
+		
 		professorNotice.setLecture_no(id);
 		professorNotice.setProfessor_no(professor.getProfessor_no());
 		professorNoticeMapper.insert(professorNotice);
+		
+		for(int i=0 ; i<studentLecture.size() ; i++) {
+			System.out.println(studentLecture.get(i).getStudent_no());
+		
+		}
+		
+		for(int i=0 ; i<studentLecture.size() ; i++) {
+			homeworkMapper.noSubmit(studentLecture.get(i).getStudent_no(), professorNotice.getNotice_no());
+		}
 		return "redirect:notice?id="+id; // 과제 및 공지 작성 페이지
 	}
 

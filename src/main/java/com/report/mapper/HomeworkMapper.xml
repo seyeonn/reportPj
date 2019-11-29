@@ -44,6 +44,10 @@
 		WHERE hw_no=#{hw_no}
 	</update>
 	
+	<insert id="noSubmit" useGeneratedKeys="false">
+		INSERT Homework (student_no, professornotice_no)
+		VALUES (#{student_no}, #{professornotice_no})
+	</insert>
 	
 </mapper>
 

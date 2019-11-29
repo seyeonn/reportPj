@@ -15,5 +15,5 @@ public interface HomeworkMapper {
 	
 	void rankUpdate(int ranking, int hw_no);
 	
-
+	void noSubmit(int student_no, int professornotice_no);
 }

@@ -15,15 +15,11 @@
     
     <select id="studentlist" resultMap="resultMap_ProfessorNotice">
         <bind name="start" value="(pagination.pg - 1) * pagination.sz" />
-        SELECT p.*, h.grade, h.ranking, h.hw_no
+        SELECT p.*, h.grade, h.ranking, h.file_size
     	FROM professor_notice p
     	LEFT JOIN homework h ON h.professornotice_no = p.notice_no
         WHERE lecture_no = #{lecture_no}
-        AND h.hw_no is null
-        OR h.hw_no IN (SELECT hw_no
-						FROM homework
-						WHERE student_no = #{student_no} )
-        order by p.notice_no DESC
+        AND h.student_no = #{student_no}
         LIMIT #{start}, #{pagination.sz}
     </select>
     
@@ -38,6 +34,7 @@
     		<id property="hw_no" column="hw_no"/>
     		<result property="grade" column="grade"/>
     		<result property="ranking" column="ranking"/>
+    		<result property="file_size" column="file_size"/>
     	</association>
     </resultMap>
     

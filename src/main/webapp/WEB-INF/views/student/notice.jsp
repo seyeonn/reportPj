@@ -32,7 +32,7 @@
                 <tr>
                   <th style="width: 350px">제목</th>
                   <th>제출기한</th>
-                  <th>연장기한</th>                 
+                  <th>연장기한</th>
                   <th>제출여부</th>
                   <th>성적/만점</th>
                   <th>등수</th>
@@ -46,7 +46,7 @@
                   <td>${professorNotice.deadline}</td>
                   <td>${professorNotice.deadline_add}</td>
                   <c:choose>
-					<c:when test="${ professorNotice.homework.hw_no > 0}">
+					<c:when test="${professorNotice.homework.file_size > 0}">
 						<td>Y</td>
 					</c:when>
 					<c:otherwise>
