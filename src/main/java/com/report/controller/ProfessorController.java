@@ -160,6 +160,8 @@ public class ProfessorController {
 		ProfessorNotice professorNotice = professorNoticeMapper.findOne(id);
 		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
 		List<Comment> comments = commentService.listWithUserName(professorNotice.getNotice_no());
+		User user = userMapper.findByLoginId(principal.getName());
+		model.addAttribute("user", user);
 		model.addAttribute("comment", comments);
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professor", professor);
@@ -172,6 +174,7 @@ public class ProfessorController {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		model.addAttribute("professor", professor);
 		Lecture lecture = lectureMapper.findOne(lecture_no);
+		
 		model.addAttribute("lecture", lecture);
 		professorNoticeMapper.delete(notice_no);
 		return "redirect:notice?id="+lecture_no; // 과제 및 공지 작성 페이지

@@ -60,7 +60,7 @@
                 <td style="width: 200px">
                   <fmt:formatDate value="${comment.notice_date}" pattern="yyyy-MM-dd" />
                 </td>
-                    <c:if test="${comment.user.no == user.no}"/>
+                    <c:if test="${comment.user.no == user.no}">
                       <td>
                         <form method="post">
                         <input type="hidden" name="comment_no" value="${comment.comment_no}"/>
@@ -68,6 +68,7 @@
                         <button class="btn btn-outline-primary" type="submit" name="cmd" value="deleteComment" style="height:30px; width:45px; font-size:13px; text-align: center;">X</button>
                         </form>
                       </td>
+                      </c:if>
                       </tr>
               </c:forEach>
             </table>

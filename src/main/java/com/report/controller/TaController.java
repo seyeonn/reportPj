@@ -182,6 +182,8 @@ public class TaController {
 		ProfessorNotice professorNotice = professorNoticeMapper.findOne(id);
 		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
 		List<Comment> comments = commentService.listWithUserName(professorNotice.getNotice_no());
+		User user = userMapper.findByLoginId(principal.getName());
+		model.addAttribute("user", user);
 		model.addAttribute("comment", comments);
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("ta", ta);
