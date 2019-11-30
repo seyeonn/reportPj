@@ -12,7 +12,13 @@ public class Comment {
 	int comment_no;
 	int notice_no;
 	Date notice_date;
-	int depth;
 	String content;
-	int parent;
+	int no;
+
+	StudentNotice studentNotice;
+	ProfessorNotice professorNotice;
+	User user;
+	
+	//int depth;
+	//int parent;
 }

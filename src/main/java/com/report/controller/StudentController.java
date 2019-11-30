@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.report.dto.Comment;
 import com.report.dto.Homework;
 import com.report.dto.Lecture;
 import com.report.dto.Lecturefile;
@@ -40,6 +41,7 @@ import com.report.mapper.StudentNoticeMapper;
 import com.report.mapper.TimelineMapper;
 import com.report.mapper.UserMapper;
 import com.report.model.Pagination;
+import com.report.service.CommentService;
 import com.report.service.LectureService;
 import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
@@ -72,7 +74,8 @@ public class StudentController {
 	@Autowired LecturefileService lecturefileService;
 	@Autowired LecturefileMapper lecturefileMapper;
 	@Autowired TimelineMapper timelineMapper;
-
+	@Autowired CommentService commentService;
+	
 	@RequestMapping("studentMain")
 	public String studentMain(Model model, Principal principal, Pagination pagination) {
 		Student student = studentMapper.findByStudentId(principal.getName());
@@ -384,13 +387,13 @@ public class StudentController {
    	public String noticecontent(Model model, Principal principal, @RequestParam("id") int id) {
     	Student student = studentMapper.findByStudentId(principal.getName());
     	ProfessorNotice professorNotice = professorNoticeMapper.findOne(id);
-
     	Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
     	ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
     	Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
-
-		System.out.println(id);
-
+    	List<Comment> comments = commentService.listWithUserName(professorNotice.getNotice_no());
+    	
+    	
+    	model.addAttribute("comment", comments);
     	model.addAttribute("professor", professor);
     	model.addAttribute("lecture", lecture);
     	model.addAttribute("professorNotice", professorNotice);
@@ -398,6 +401,27 @@ public class StudentController {
    		return "student/noticecontent"; // 과제 및 공지 내용 페이지
     }
 
+    @PostMapping(value = "noticecontent", params = "cmd=insertComment")
+	public String insertComment(Model model, Principal principal, Comment newComment, @RequestParam("notice_no") int notice_no){
+        User user = userMapper.findByLoginId(principal.getName());
+        System.out.println(user.getName());
+
+        newComment.setNotice_no(notice_no);
+        newComment.setNo(user.getNo());
+
+        model.addAttribute("user", user);
+
+		commentService.insert(newComment);
+		return "redirect:noticecontent?id="+notice_no;
+	}
+
+	@PostMapping(value = "noticecontent", params = "cmd=deleteComment")
+	public String deleteComment(@RequestParam("comment_no")int comment_no,
+								@RequestParam("notice_no")int notice_no){
+		commentService.delete(comment_no);
+		return "redirect:noticecontent?id="+notice_no;
+	}
+	
     @RequestMapping("worksubmit")
 	public String worksubmit(Model model, Principal principal, @RequestParam("id") int id,
 			@RequestParam("id2") int id2) {

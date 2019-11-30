@@ -1,6 +1,7 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -22,7 +23,7 @@
 
       <div class="col-md-9 order-md-2">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-       
+
 
             <table class="table table-bordered  text-center">
               <tbody>
@@ -33,12 +34,11 @@
                 <tr>
                   <td class="table-active">내용</td>
                   <td style="white-space:pre;">${professorNotice.content}</td>
-
                 </tr>
-                <!-- <tr>
+                <tr>
                   <td class="table-active">첨부파일 </td>
                   <td><button type="button" class="btn btn-outline-primary">열람</button></td>
-                </tr> -->
+                </tr>
                 <tr>
                   <td class="table-active">만점</td>
                   <td>${professorNotice.perfect_score}</td>
@@ -54,18 +54,31 @@
               </tbody>
             </table>
             <table class="table text-center">
-              <tr class="table-active">
-                <td>댓글 </td>
-                <td style="width:700px">익명: 감사합니다 교수님~!</td>
-              </tr>
-              <tr>
-                <td>익명 </td>
-                  <td style="width:700px">
-                    <input type="text" name="comment" id="comment" style="width: 450px">
-                    <button type="submit">입력</button>
-                  </td>
-              </tr>
+                <c:forEach var="comment" items="${comment}">
+                  <tr>
+                <td style="width: 100px">${comment.user.name}</td>
+                <td style="width: 700px">${comment.content}</td>
+                <td style="width: 200px">
+                  <fmt:formatDate value="${comment.notice_date}" pattern="yyyy-MM-dd" />
+                </td>
+                    <c:if test="${comment.user.no == user.no}" />
+                      <td>
+                        <form method="post">
+                        <input type="hidden" name="comment_no" value="${comment.comment_no}"/>
+                        <input type="hidden" name="notice_no" value="${professorNotice.notice_no}"/>
+                        <button class="btn btn-outline-primary" type="submit" name="cmd" value="deleteComment" style="height:30px; width:45px; font-size:13px; text-align: center;">X</button>
+                        </form>
+                      </td>
+                      </tr>
+              </c:forEach>
             </table>
+          <tr>
+            <form method="post">
+                <textarea name="content" cols="50" rows="1"></textarea>
+              <input type="hidden" name="notice_no" value="${professorNotice.notice_no}">
+              <button type="submit" name="cmd" value="insertComment">입력</button>
+            </form>
+          </tr>
 
 
             <div style="float: right; display:inline-block; width: 900px;">
@@ -77,15 +90,13 @@
               	<input type="hidden" name="notice_no" value="${ professorNotice.notice_no }" />
               	<input type="hidden" name="lecture_no" value="${ lecture.lecture_no }" />
               	<button class="btn btn-primary my-sm-0" type="submit" name="cmd" value="delete" style="width: 100px; float: right">삭제</button>
-              </form> 
+              </form>
               <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='noticecontentedit?notice_no=${ professorNotice.notice_no }&lecture_no=${ lecture.lecture_no }'">수정</button>
             </div>
             <label for=""><br></label>
-
         </div>
       </div>
     </div>
   </main>
 </body>
-
 </html>

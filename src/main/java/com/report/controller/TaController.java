@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.report.dto.Comment;
 import com.report.dto.Homework;
 import com.report.dto.Lecture;
 import com.report.dto.Lecturefile;
@@ -37,6 +38,7 @@ import com.report.mapper.TaMapper;
 import com.report.mapper.TimelineMapper;
 import com.report.mapper.UserMapper;
 import com.report.model.Pagination;
+import com.report.service.CommentService;
 import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
 
@@ -56,6 +58,7 @@ public class TaController {
 	@Autowired StudentNoticeMapper studentNoticeMapper;
 	@Autowired TimelineMapper timelineMapper;
 	@Autowired UserMapper userMapper;
+	@Autowired CommentService commentService;
 	@RequestMapping("taMain")
 
 
@@ -178,12 +181,34 @@ public class TaController {
 		Ta ta = taMapper.findByTaId(principal.getName());
 		ProfessorNotice professorNotice = professorNoticeMapper.findOne(id);
 		Lecture lecture = lectureMapper.findOne(professorNotice.getLecture_no());
+		List<Comment> comments = commentService.listWithUserName(professorNotice.getNotice_no());
+		model.addAttribute("comment", comments);
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("ta", ta);
 		model.addAttribute("professorNotice", professorNotice);
 		return "ta/noticecontent"; // 과제 및 공지 작성 페이지
 	}
 
+	@PostMapping(value = "noticecontent", params = "cmd=insertComment")
+	public String insertComment(Model model, Principal principal, Comment newComment, @RequestParam("notice_no") int notice_no){
+        User user = userMapper.findByLoginId(principal.getName());
+        System.out.println(user.getName());
+
+        newComment.setNotice_no(notice_no);
+        newComment.setNo(user.getNo());
+
+        model.addAttribute("user", user);
+
+		commentService.insert(newComment);
+		return "redirect:noticecontent?id="+notice_no;
+	}
+
+	@PostMapping(value = "noticecontent", params = "cmd=deleteComment")
+	public String deleteComment(@RequestParam("comment_no")int comment_no,
+								@RequestParam("notice_no")int notice_no){
+		commentService.delete(comment_no);
+		return "redirect:noticecontent?id="+notice_no;
+	}
 
 	@RequestMapping(value="inputscore", method=RequestMethod.GET)
 	public String inputscore1(Model model, Principal principal, @RequestParam("notice_no") int notice_no) {
