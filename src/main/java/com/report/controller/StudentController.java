@@ -413,6 +413,7 @@ public class StudentController {
 
 		commentService.insert(newComment);
 		System.out.println(newComment.getNo());
+		System.out.println("학생 노티스노" + notice_no);
 		return "redirect:noticecontent?id="+notice_no;
 	}
 

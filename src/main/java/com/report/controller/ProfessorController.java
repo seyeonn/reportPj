@@ -191,6 +191,7 @@ public class ProfessorController {
         model.addAttribute("user", user);
 
 		commentService.insert(newComment);
+		System.out.println("교수 노티스노 나오냐" + notice_no);
 		return "redirect:noticecontent?id="+notice_no;
 	}
 
