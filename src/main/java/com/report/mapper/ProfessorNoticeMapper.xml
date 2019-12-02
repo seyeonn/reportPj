@@ -20,6 +20,7 @@
     	LEFT JOIN homework h ON h.professornotice_no = p.notice_no
         WHERE lecture_no = #{lecture_no}
         AND h.student_no = #{student_no}
+        order by notice_no DESC
         LIMIT #{start}, #{pagination.sz}
     </select>
     

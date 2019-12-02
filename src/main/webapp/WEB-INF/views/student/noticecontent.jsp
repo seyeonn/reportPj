@@ -25,7 +25,6 @@
         <div class="my-3 p-3 bg-white rounded shadow-sm">
        
 
-          <form class="form">
             <table class="table table-bordered  text-center">
               <tbody>
                 <tr>
@@ -35,9 +34,7 @@
                 <tr>
                   <td class="table-active">내용</td>
                   <td style="white-space:pre;">${professorNotice.content}</td>
-
                 </tr>
-                
                 <tr>
                   <td class="table-active">만점</td>
                   <td>${professorNotice.perfect_score}</td>
@@ -52,6 +49,7 @@
                 </tr>
               </tbody>
             </table>
+            
             <table class="table text-center">
                 <c:forEach var="comment" items="${comment}">
                   <tr>
@@ -79,17 +77,17 @@
               <button type="submit" name="cmd" value="insertComment">입력</button>
             </form>
           </tr>
+          
 
             <div style="float: right; display:inline-block; width: 900px;">
               <button class="btn btn-primary mx-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='notice?id=${lecture.lecture_no}'">목록보기</button>
               <button class="btn btn-primary my-2 my-sm-0" type="button" style="width: 100px; float: right" onclick="location.href='worksubmit?id=${professorNotice.notice_no}&id2=${student.student_no}'">제출</button>
             </div>
             <label for=""><br></label>
-          </form>
+          <label for=""><br></label>
         </div>
       </div>
     </div>
   </main>
 </body>
-
 </html>

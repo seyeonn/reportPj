@@ -402,25 +402,25 @@ public class StudentController {
 	}
 
 	@PostMapping(value = "noticecontent", params = "cmd=insertComment")
-	public String insertComment(Model model, Principal principal, Comment newComment, @RequestParam("notice_no") int notice_no){
+	public String insertComment(Model model, Principal principal, Comment newComment, @RequestParam("id") int id){
 		User user = userMapper.findByLoginId(principal.getName());
 		System.out.println(user.getNo());
-
-		newComment.setNotice_no(notice_no);
+		System.out.println("댓글 들어가라");
+		newComment.setNotice_no(id);
 		newComment.setNo(user.getNo());
 
 		model.addAttribute("user", user);
 
 		commentService.insert(newComment);
 		System.out.println(newComment.getNo());
-		return "redirect:noticecontent?id="+notice_no;
+		return "redirect:noticecontent?id="+id;
 	}
 
 	@PostMapping(value = "noticecontent", params = "cmd=deleteComment")
 	public String deleteComment(@RequestParam("comment_no")int comment_no,
-			@RequestParam("notice_no")int notice_no){
+			@RequestParam("id")int id){
 		commentService.delete(comment_no);
-		return "redirect:noticecontent?id="+notice_no;
+		return "redirect:noticecontent?id="+id;
 	}
 
 	@RequestMapping("worksubmit")
