@@ -114,21 +114,27 @@ img {vertical-align: middle;}
 <div class="slideshow-container">
 
 <div class="mySlides">
-  <div class="numbertext">1 / 3</div>
-  <img src="main\img\1.jpg" style="width:100%"/>
-  <div class="text">Caption Text</div>
+  <div class="numbertext">1 / 4</div>
+  <img src="/imgs/ta/ta1.jpg" style="width:100%"/>
+  <!-- <div class="text">Caption Text</div> -->
 </div>
 
 <div class="mySlides">
-  <div class="numbertext">2 / 3</div>
-  <img src="http://placehold.it/300x100" style="width:100%"/>
-  <div class="text">Caption Two</div>
+  <div class="numbertext">2 / 4</div>
+  <img src="/imgs/ta/ta2.jpg" style="width:100%"/>
+  <!-- <div class="text">Caption Two</div> -->
 </div>
 
-<div class="mySlides fade">
-  <div class="numbertext">3 / 3</div>
-  <img src="http://placehold.it/300x100" style="width:100%">
-  <div class="text">Caption Three</div>
+<div class="mySlides ">
+  <div class="numbertext">3 / 4</div>
+  <img src="/imgs/ta/ta3.jpg" style="width:100%">
+  <!-- <div class="text">Caption Three</div> -->
+</div>
+
+<div class="mySlides">
+  <div class="numbertext">4 / 4</div>
+  <img src="/imgs/ta/ta4.jpg" style="width:100%">
+ <!--  <div class="text">Caption Three</div> -->
 </div>
 
 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -141,6 +147,7 @@ img {vertical-align: middle;}
   <span class="dot" onclick="currentSlide(1)"></span> 
   <span class="dot" onclick="currentSlide(2)"></span> 
   <span class="dot" onclick="currentSlide(3)"></span> 
+  <span class="dot" onclick="currentSlide(4)"></span>
 </div>
 
 </div>
