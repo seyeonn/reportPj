@@ -35,10 +35,7 @@
                   <td class="table-active">내용</td>
                   <td style="white-space:pre;">${professorNotice.content}</td>
                 </tr>
-                <tr>
-                  <td class="table-active">첨부파일 </td>
-                  <td><button type="button" class="btn btn-outline-primary">열람</button></td>
-                </tr>
+                
                 <tr>
                   <td class="table-active">만점</td>
                   <td>${professorNotice.perfect_score}</td>

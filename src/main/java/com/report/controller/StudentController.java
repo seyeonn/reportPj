@@ -413,7 +413,9 @@ public class StudentController {
 
 		commentService.insert(newComment);
 		System.out.println(newComment.getNo());
+		
 		return "redirect:noticecontent?id="+id;
+
 	}
 
 	@PostMapping(value = "noticecontent", params = "cmd=deleteComment")
