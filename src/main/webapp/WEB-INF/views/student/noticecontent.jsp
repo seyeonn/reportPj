@@ -74,7 +74,7 @@
             <form method="post">
                 <textarea name="content" cols="50" rows="1"></textarea>
               <input type="hidden" name="notice_no" value="${professorNotice.notice_no}">
-              <button type="submit" name="cmd" value="insertComment">입력</button>
+              <button class="btn btn-outline-primary" type="submit" name="cmd" value="insertComment">입력</button>
             </form>
           </tr>
           
