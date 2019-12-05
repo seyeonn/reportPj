@@ -124,22 +124,15 @@ public class ProfessorController {
 		model.addAttribute("professor", professor);
 		Lecture lecture = lectureMapper.findOne(id);
 		model.addAttribute("lecture", lecture);
-		
+
 		List<StudentLecture> studentLecture = studentLectureMapper.findList(id);
-		
-		
+
+
 		professorNotice.setLecture_no(id);
 		professorNotice.setProfessor_no(professor.getProfessor_no());
 		professorNoticeMapper.insert(professorNotice);
-		
-		for(int i=0 ; i<studentLecture.size() ; i++) {
-			System.out.println(studentLecture.get(i).getStudent_no());
-		
-		}
-		
-		for(int i=0 ; i<studentLecture.size() ; i++) {
-			homeworkMapper.noSubmit(studentLecture.get(i).getStudent_no(), professorNotice.getNotice_no());
-		}
+
+
 		return "redirect:notice?id="+id; // 과제 및 공지 작성 페이지
 	}
 
@@ -174,7 +167,7 @@ public class ProfessorController {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
 		model.addAttribute("professor", professor);
 		Lecture lecture = lectureMapper.findOne(lecture_no);
-		
+
 		model.addAttribute("lecture", lecture);
 		professorNoticeMapper.delete(notice_no);
 		return "redirect:notice?id="+lecture_no; // 과제 및 공지 작성 페이지
@@ -201,7 +194,7 @@ public class ProfessorController {
 		commentService.delete(comment_no);
 		return "redirect:noticecontent?id="+notice_no;
 	}
-	
+
 	@GetMapping("noticecontentedit")
 	public String noticecontentedit1(Model model,Principal principal, @RequestParam("notice_no") int notice_no,@RequestParam("lecture_no") int lecture_no) {
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
