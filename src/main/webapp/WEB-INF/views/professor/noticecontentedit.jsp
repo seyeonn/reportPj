@@ -50,14 +50,14 @@
                 <tr>
                   <td class="table-active">제출기한</td> 
                   <td>             
-                 <input type="text" name="deadline" class="datetimepicker" />  
+                 <form:input path="deadline" class="datetimepicker" autocomplete="off"/>  
                   </td>
                 </tr>
                 <tr>
                   <td class="table-active">연장기한</td>
                   <td>
             
-                 <input type="text" name="deadline_add" class="datetimepicker" />  
+                 <form:input path="deadline_add" class="datetimepicker" autocomplete="off"/> 
                   </td>
                 </tr>
             </table>
@@ -105,7 +105,7 @@ $(document).ready(function() {
 
 });
 $(function(){
-    $('.datetimepicker').appendDtpicker({'locale':'ko'});
+    $('.datetimepicker').appendDtpicker({'locale':'ko', 'autodateOnStart' : false});
 });
 
 </script>
