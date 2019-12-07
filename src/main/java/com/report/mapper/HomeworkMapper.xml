@@ -31,6 +31,10 @@
 		</association>
 	</resultMap>
 	
+	<select id="findByNo" resultType="Homework">
+	SELECT * FROM dbcapston.homework where student_no = #{student_no} and professornotice_no = #{professornotice_no};
+	</select>
+	
 	
 	<update id="gradeUpdate">
 		UPDATE Homework SET

@@ -40,6 +40,25 @@
                   <td>${professorNotice.perfect_score}</td>
                 </tr>
                 <tr>
+                  <td class="table-active">제출여부</td>
+                  <c:choose>
+					<c:when test="${homework.file_size > 0}">
+						<td>Y</td>
+					</c:when>
+					<c:otherwise>
+						<td>N</td>
+					</c:otherwise>
+				  </c:choose>
+                </tr>
+                <tr>
+                  <td class="table-active">점수</td>
+                  <td>${homework.grade}</td>
+                </tr>
+                <tr>
+                  <td class="table-active">등수</td>
+                  <td>${homework.ranking}</td>
+                </tr>
+                <tr>
                   <td class="table-active">제출기한</td>
                   <td>${professorNotice.deadline}</td>
                 </tr>

@@ -30,6 +30,7 @@ import com.report.dto.Student;
 import com.report.dto.StudentLecture;
 import com.report.dto.StudentNotice;
 import com.report.dto.User;
+import com.report.mapper.HomeworkMapper;
 import com.report.mapper.LectureMapper;
 import com.report.mapper.LecturefileMapper;
 import com.report.mapper.ProfessorLectureMapper;
@@ -75,6 +76,7 @@ public class StudentController {
 	@Autowired LecturefileMapper lecturefileMapper;
 	@Autowired TimelineMapper timelineMapper;
 	@Autowired CommentService commentService;
+	@Autowired HomeworkMapper homeworkMapper;
 
 	@RequestMapping("studentMain")
 	public String studentMain(Model model, Principal principal, Pagination pagination) {
@@ -201,7 +203,7 @@ public class StudentController {
 		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
 		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
 		Student student = studentMapper.findByStudentId(principal.getName());
-		List<ProfessorNotice>  professorNotices = professorNoticeMapper.studentlist(lecture.getLecture_no(), pagination,student.getStudent_no());
+		List<ProfessorNotice>  professorNotices = professorNoticeMapper.list(lecture.getLecture_no(), pagination);
 		pagination.setRecordCount(professorNoticeMapper.count(id));
 		model.addAttribute("student", student);
 		model.addAttribute("lecture", lecture);
@@ -391,6 +393,7 @@ public class StudentController {
 		ProfessorLecture professorLecture = professorLectureMapper.findOne(lecture.getLecture_no());
 		Professor professor = professorMapper.findOne(professorLecture.getProfessor_no());
 		User user = userMapper.findByLoginId(principal.getName());
+		Homework homework = homeworkMapper.findByNo(student.getStudent_no(), professorNotice.getNotice_no());
 		List<Comment> comments = commentService.listWithUserName(professorNotice.getNotice_no());
 		model.addAttribute("user", user);
 		model.addAttribute("comment", comments);
@@ -398,6 +401,7 @@ public class StudentController {
 		model.addAttribute("lecture", lecture);
 		model.addAttribute("professorNotice", professorNotice);
 		model.addAttribute("student", student);
+		model.addAttribute("homework", homework);
 		return "student/noticecontent"; // 과제 및 공지 내용 페이지
 	}
 
@@ -413,7 +417,7 @@ public class StudentController {
 
 		commentService.insert(newComment);
 		System.out.println(newComment.getNo());
-		
+
 		return "redirect:noticecontent?id="+id;
 
 	}
