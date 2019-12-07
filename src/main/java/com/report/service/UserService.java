@@ -1,11 +1,14 @@
 package com.report.service;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-import com.report.dto.Student;
-import com.report.dto.User;
 import com.report.dto.Professor;
 import com.report.dto.Student;
 import com.report.dto.User;
@@ -60,7 +63,8 @@ public class UserService {
 		return false;
 	}
 
-	public Boolean findPassword(String loginId, String name, String email) {
+	public Boolean findPassword(String loginId, String name, String email, HttpServletResponse response) throws IOException {
+		try {
 		User user = userMapper.findByLoginId(loginId);
 
 		if (user.getName().equals(name) && user.getEmail().equals(email)) {
@@ -82,7 +86,19 @@ public class UserService {
 			return true;
 		}
 
-		return false;
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('이름이나 이메일이 일치하지 않습니다.'); history.go(-1);</script>");
+        out.flush();
+	      return false;
+		}
+		catch(NullPointerException e) {
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('아이디를 다시 확인해주세요.'); history.go(-1);</script>");
+            out.flush();
+			return false;
+		}
 	}
 
 }

@@ -17,7 +17,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.report.dto.Department;
 import com.report.dto.Professor;
@@ -68,7 +67,7 @@ public class GuestController {
 	}
 
 	 @PostMapping("findpassword")
-	   public String findpassword2(Model model, User user) {
+	   public String findpassword2(Model model, User user, HttpServletResponse response)throws IOException {
 
 //	      User users = userMapper.findByLoginId(user.getId());
 	//
@@ -83,7 +82,7 @@ public class GuestController {
 //	      if(!users.getEmail().equals(gemail)) {
 //	         return null;
 //	      }
-	      if(userService.findPassword(user.getId(), user.getName(), user.getEmail())) {
+	      if(userService.findPassword(user.getId(), user.getName(), user.getEmail(), response)) {
 	            model.addAttribute("findError", false);
 	            model.addAttribute("loginError", false);
 	            return "guest/login";
