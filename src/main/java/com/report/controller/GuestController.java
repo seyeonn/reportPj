@@ -148,7 +148,7 @@ public class GuestController {
 		user.setDepartment_no(student.getDepartment_no());
 		user.setPassword_question(student.getPassword_question());
 		user.setPassword_answer(student.getPassword_answer());
-
+		
 
 		return "student/signup";
 	}
