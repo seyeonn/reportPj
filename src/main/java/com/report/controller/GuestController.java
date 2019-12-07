@@ -148,7 +148,7 @@ public class GuestController {
 		user.setDepartment_no(student.getDepartment_no());
 		user.setPassword_question(student.getPassword_question());
 		user.setPassword_answer(student.getPassword_answer());
-		
+
 
 		return "student/signup";
 	}
@@ -164,6 +164,7 @@ public class GuestController {
             System.out.println("나와라");
             return "student/signup";
         }
+		user.setEmail(student.getStudent_email());
 		studentMapper.insert(student);
 		userMapper.studentInsert(user);
 		System.out.println("나왔냐");
