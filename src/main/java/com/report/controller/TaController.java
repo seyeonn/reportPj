@@ -177,6 +177,19 @@ public class TaController {
 		return "ta/lecturefile"; // 강의자료 페이지
 	}
 
+	@RequestMapping(value = "lecturefile", params="cmd=downloadLecturefile")
+	public void downloadLecturefile(@RequestParam("no") int no, HttpServletResponse response) throws Exception {
+		Lecturefile lecturefile = lecturefileService.getUploadedFile(no);
+		if (lecturefile == null)
+			return;
+		String fileName = URLEncoder.encode(lecturefile.getFile_name(), "UTF-8");
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ";");
+		try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+			output.write(lecturefile.getData());
+		}
+	}
+
 	@GetMapping("noticecontent")
 	public String noticecontent(Model model,Principal principal, @RequestParam("id") int id) {
 		Ta ta = taMapper.findByTaId(principal.getName());
@@ -263,7 +276,7 @@ public class TaController {
 
 
 		for (int i=0; i < hw_no.length ;++i) {
-			homeworkMapper.gradeUpdate(grade[i], hw_no[i]);	
+			homeworkMapper.gradeUpdate(grade[i], hw_no[i]);
 		}
 
 
