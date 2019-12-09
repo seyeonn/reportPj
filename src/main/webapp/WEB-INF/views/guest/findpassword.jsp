@@ -19,13 +19,13 @@
       <h4 class="mb-3">비밀번호 찾기</h4>
       <hr class="mb-4">
       아이디<label for="inputId" class="sr-only">아이디</label>
-      <input type="text" name="id" value="${user.id}" class="form-control" placeholder="아이디는 학번입니다." required autofocus>
+      <input type="text" name="id" value="${user.id}" class="form-control" placeholder="아이디는 학번입니다." autocomplete="off" required autofocus>
       <br>
       이름<label for="inputName" class="sr-only">이름</label>
-      <input type="text" name="name" value="${user.name}" class="form-control" placeholder="이름을 입력해주세요." required autofocus>
+      <input type="text" name="name" value="${user.name}" class="form-control" autocomplete="off" placeholder="이름을 입력해주세요." required autofocus>
       <br>
       이메일<label for="inputEmail" class="sr-only">이메일</label>
-      <input type="email" name="email" value="${user.email}" class="form-control" placeholder="이메일 형식에 맞게 입력해주세요." required>
+      <input type="email" name="email" value="${user.email}" class="form-control" autocomplete="off" placeholder="이메일 형식에 맞게 입력해주세요." required>
       <div class="checkbox">
       <hr>
         <label >
