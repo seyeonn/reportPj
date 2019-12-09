@@ -21,12 +21,12 @@
       <hr class="mb-4">
       <div class="form-group">
       <label>아이디:</label>
-      <form:input path="ta_id" class="form-control" required="required"/>
+      <form:input path="ta_id" class="form-control" autocomplete="off" required="required"/>
       <div class="invalid-feedback">아이디를 입력해주세요.</div>
     </div>
     <div class="form-group">
     <label>비밀번호:</label>
-      <form:input path="password"  class="form-control" placeholder="password" required="required"/>
+      <form:input path="password"  class="form-control" autocomplete="off" placeholder="password" required="required"/>
       <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
     </div>
     <hr />

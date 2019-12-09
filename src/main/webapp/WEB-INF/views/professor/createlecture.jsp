@@ -67,7 +67,7 @@
                 <tr>
                   <td class="table-active">강좌명 </td>
                   <td>
-                  	<form:input path="lecture_name" style="width: 50%;" class="form-control" required="required"/>
+                  	<form:input path="lecture_name" style="width: 50%;" class="form-control" autocomplete="off" required="required"/>
                   	<div class="invalid-feedback">
         			강좌명을 입력해주세요.
       			  	</div>

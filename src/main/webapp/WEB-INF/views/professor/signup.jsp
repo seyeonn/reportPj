@@ -25,7 +25,7 @@
 					<label>아이디</label>
 					<div class="input-group">
 						<form:input path="id" class="form-control"
-							placeholder="사용할 아이디를 입력주세요." required="required" />
+							placeholder="사용할 아이디를 입력주세요." autocomplete="off" required="required" />
 						<div class="invalid-feedback">아이디를 입력해주세요.</div>
 					</div>
 					<div>
@@ -37,7 +37,7 @@
 					<label>이름</label>
 					<div class="input-group">
 						<form:input path="name" class="form-control"
-							placeholder="반드시 실명이어야 합니다. ex)홍길동" required="required" />
+							placeholder="반드시 실명이어야 합니다. ex)홍길동" autocomplete="off" required="required" />
 						<div class="invalid-feedback">이름을 입력해주세요.</div>
 					</div>
 				</div>
@@ -64,7 +64,7 @@
 				<div class="mb-3">
 					<label>이메일</label> <input type="email" name="professor_email"
 						id="email" placeholder="올바른 이메일 형식을 입력해 주세요" class="form-control"
-						required="required" />
+						 autocomplete="off" required="required" />
 					<div class="invalid-feedback">이메일을 입력해주세요.</div>
 				</div>
 				<div class="alert alert-success" id="email-alert-success">이메일
@@ -84,7 +84,7 @@
 				<div class="mb-3">
 					<label>비밀번호</label> <input type="password" name="password1"
 						id="pwd1" class="form-control" placeholder="password"
-						required="required" />
+						 autocomplete="off" required="required" />
 					<div class="invalid-feedback">비밀번호를 입력해주세요.</div>
 				</div>
 
