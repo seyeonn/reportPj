@@ -185,7 +185,7 @@ public class StudentController {
 		//model.addAttribute("lectures", lectures);
 
 		List<Lecture> lectures = lectureMapper.findSearch(student.getStudent_no(),pagination,search);
-		pagination.setRecordCount(lectureMapper.count(student.getStudent_no()));
+		pagination.setRecordCount(lectureMapper.countSearch(student.getStudent_no(),search));
 		model.addAttribute("lectures", lectures);
 
 		System.out.println(search+"  "+lectures.size());

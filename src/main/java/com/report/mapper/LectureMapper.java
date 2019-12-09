@@ -2,7 +2,6 @@ package com.report.mapper;
 
 import java.util.List;
 
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -32,9 +31,11 @@ public interface LectureMapper {
 
 	List<Lecture> findA(@Param("student_no") int student_no, @Param("pagination") Pagination pagination);
 	List<Lecture> findSearch(@Param("student_no") int student_no, @Param("pagination") Pagination pagination, String search);
+	int countSearch(@Param("student_no") int student_no, String search);
 	Lecture findO(int lecture_no);
 	int count(int studnet_no);
-	
+
 	List<Lecture> search(String name);
+
 
 }
