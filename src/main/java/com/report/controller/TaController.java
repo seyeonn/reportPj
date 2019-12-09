@@ -41,6 +41,7 @@ import com.report.model.Pagination;
 import com.report.service.CommentService;
 import com.report.service.LecturefileService;
 import com.report.service.StudentNoticeService;
+import com.report.service.StudentUploadedFileService;
 
 @Controller
 
@@ -59,9 +60,9 @@ public class TaController {
 	@Autowired TimelineMapper timelineMapper;
 	@Autowired UserMapper userMapper;
 	@Autowired CommentService commentService;
+    @Autowired StudentUploadedFileService studentUploadedFileService;
+
 	@RequestMapping("taMain")
-
-
 	public String taMain(Model model, Principal principal, Pagination pagination) {
 		Ta ta = taMapper.findByTaId(principal.getName());
 		Professor professor = professorMapper.findByProfessorId(principal.getName());
@@ -226,6 +227,18 @@ public class TaController {
 		return "ta/inputscore";
 	}
 
+	@RequestMapping(value="inputscore", params ="cmd=downloadHomework")
+	public void downloadHomework(@RequestParam("hw_no") int hw_no, HttpServletResponse response) throws Exception {
+		Homework homework = studentUploadedFileService.getUploadedFile(hw_no);
+		if (homework == null)
+			return;
+		String fileName = URLEncoder.encode(homework.getFile_name(), "UTF-8");
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ";");
+		try (BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream())) {
+			output.write(homework.getData());
+		}
+	}
 
 
 	@RequestMapping(value="inputscore", method=RequestMethod.POST, params="cmd=input")
