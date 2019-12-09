@@ -124,6 +124,7 @@ public class GuestController {
             model.addAttribute("departments", departmentService.findAll());
             return "professor/signup";
         }
+		user.setEmail(professor.getProfessor_email());
 		professorMapper.insert(professor);
 		userMapper.professorInsert(user);
 		return "redirect:signupSuccess";
